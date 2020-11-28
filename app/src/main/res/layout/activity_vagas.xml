@@ -25,7 +25,8 @@ android:layout_height="wrap_content">
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="#E91E63"
-        app:fabSize="normal"/>
+        app:fabSize="normal"
+        android:contentDescription="TODO" />
 
     <ListView
         android:id="@+id/listViewVagas"

@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     Voluntario voluntario = new Voluntario();
 //    //Ong ong = new Ong();
 //    Button btnEntrar = findViewById(R.id.btnEntrar);
-      Button btnEsqueciASenha = findViewById(R.id.esqueceuSenhaBtn);
+      //Button btnEsqueciASenha = findViewById(R.id.btn);
 //    EditText edtTextEmailLogin = findViewById(R.id.edtTextEmailLogin);
 //    EditText edtTextSenhaLogin = findViewById(R.id.edtTextSenhaLogin);
 

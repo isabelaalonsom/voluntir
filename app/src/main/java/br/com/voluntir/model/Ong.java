@@ -1,7 +1,7 @@
 package br.com.voluntir.model;
 
 public class Ong {
-    private int idOng;
+    private String idOng;
     private String nome;
     private String emailong;
     private String senhaong;
@@ -12,11 +12,11 @@ public class Ong {
     private String resumoOng;
     private String telefone;
 
-    public int getIdOng() {
+    public String getIdOng() {
         return idOng;
     }
 
-    public void setIdOng(int idOng) {
+    public void setIdOng(String idOng) {
         this.idOng = idOng;
     }
 

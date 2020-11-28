@@ -2,7 +2,7 @@ package br.com.voluntir.model;
 
 public class Voluntario {
 
-    private int idVoluntario;
+    private String idVoluntario;
     private String email;
     private String senha;
     private String cpf;
@@ -10,15 +10,15 @@ public class Voluntario {
     private String sobrenome;
     private String endereco;
     private String telefone;
-    private char genero;
+    private String genero;
     private String datanasc;
     private String especialidade;
 
-    public int getIdVoluntario() {
+    public String getIdVoluntario() {
         return idVoluntario;
     }
 
-    public void setIdVoluntario(int idVoluntario) {
+    public void setIdVoluntario(String idVoluntario) {
         this.idVoluntario = idVoluntario;
     }
 
@@ -78,11 +78,11 @@ public class Voluntario {
         this.telefone = telefone;
     }
 
-    public char getGenero() {
+    public String getGenero() {
         return genero;
     }
 
-    public void setGenero(char genero) {
+    public void setGenero(String genero) {
         this.genero = genero;
     }
 
