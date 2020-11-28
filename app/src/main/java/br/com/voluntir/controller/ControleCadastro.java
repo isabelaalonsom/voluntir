@@ -1,0 +1,138 @@
+package br.com.voluntir.controller;
+
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
+import br.com.voluntir.BancoFirebase;
+import br.com.voluntir.DAO.OngDao;
+import br.com.voluntir.DAO.VoluntarioDao;
+import br.com.voluntir.model.Ong;
+import br.com.voluntir.model.Voluntario;
+
+public class ControleCadastro {
+    private FirebaseAuth autenticacao;
+    Voluntario voluntario ;
+    VoluntarioDao voluntarioDao;
+    Ong ong;
+    OngDao ongDao;
+    private Boolean retorno;
+
+    public boolean cadastrarVoluntario(Voluntario dado, String tabela,Context context){
+        this.voluntario=dado;
+
+        voluntarioDao = new VoluntarioDao();
+        try {
+            retorno= voluntarioDao.adiciona(voluntario, tabela, context);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return retorno;
+    }
+
+    public boolean cadastrarOng(Ong dado, String tabela, Context context){
+        this.ong=dado;
+
+        ongDao = new OngDao();
+        try {
+            retorno= ongDao.adiciona(ong, tabela, context);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return retorno;
+    }
+
+    public void enviarEmailRecuperarSenha(String email, final Context context){
+        autenticacao = BancoFirebase.getFirebaseAutenticacao();
+        autenticacao.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(context,
+                                    "Sucesso ao enviar email ",
+                                    Toast.LENGTH_SHORT).show();
+                            Log.d("EMAIL ENVIADO", "Email enviado.");
+                        }else{
+                            Toast.makeText(context,
+                                    "Erro ao enviar email ",
+                                    Toast.LENGTH_SHORT).show();
+                            Log.d("EMAIL NÃO ENVIADO", "Email não enviado.");
+                        }
+                    }
+                });
+    }
+
+    public void validarLoginOng(final Ong dado, final String nomeTabela, final Context context){
+        ongDao = new OngDao();
+        this.ong=dado;
+        autenticacao = BancoFirebase.getFirebaseAutenticacao();
+        autenticacao.signInWithEmailAndPassword(
+                ong.getEmailong(),ong.getSenhaong()
+        ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    //recupera os dados do usuario
+                    FirebaseUser ongFirebase = task.getResult().getUser();
+
+                    //recupera o uid do usuario
+                    ong.setIdOng( ongFirebase.getUid() );
+
+                            boolean usuario=false;
+                            ong=ongDao.busca(ong,nomeTabela);
+                                if (ong.getEmailong().equals( dado.getEmailong())){
+                                    usuario=true;
+                                }
+
+                            if (usuario == true){
+                                Toast.makeText(context,
+                                        "Sucesso ao fazer Login ",
+                                        Toast.LENGTH_SHORT).show();
+                                //chamar proxima tela
+                                //Intent intent = new Intent(context, ServicoVoluntarioActivity.class);
+                                //startActivity(intent);
+                            }else{
+                                Toast.makeText(context,
+                                        "E-mail não cadastrado ",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+                }else{
+                    String erroExcecao = "";
+                    try {
+                        throw task.getException();
+                    }catch (FirebaseAuthInvalidUserException e) {
+                        erroExcecao = "E-mail não cadastrado ou desativado ";
+                    } catch (FirebaseAuthInvalidCredentialsException e) {
+                        erroExcecao = "Senha inválida";
+                    } catch (Exception e) {
+                        erroExcecao = "Ao fazer login";
+                        e.printStackTrace();
+                    }
+
+                    Log.w("Login", "erro ao fazer login", task.getException());
+                    Toast.makeText(context,
+                            "Erro: " + erroExcecao,
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+}

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "351025421393",
+    "firebase_url": "https://voluntir-6db67.firebaseio.com",
+    "project_id": "voluntir-6db67",
+    "storage_bucket": "voluntir-6db67.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351025421393:android:7a6b87ffc0b1c6c3196c70",
+        "android_client_info": {
+          "package_name": "br.com.voluntir.voluntir"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351025421393-cf38p82vokqraijk8c5t41o134c6nt5u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.voluntir.voluntir",
+            "certificate_hash": "cb2565c03868b8dfa48cf5914e146f61c9025cf1"
+          }
+        },
+        {
+          "client_id": "351025421393-b15vkdsff1dr7e0uliselk0lr9jn5ij9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBahIbHsnpH-stjhW4R_UgDBTvLPh_N3xw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351025421393-b15vkdsff1dr7e0uliselk0lr9jn5ij9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
