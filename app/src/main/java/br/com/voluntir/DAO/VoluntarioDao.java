@@ -45,7 +45,7 @@ public class VoluntarioDao implements DAO<Voluntario> {
 
                     //recupera o uid do usuario
                     voluntario.setIdVoluntario( voluntarioFirebase.getUid() );
-                    //voluntario.salvar();
+
                     DatabaseReference bancoReferencia = BancoFirebase.getBancoReferencia();
                     //seta o valor do proprio usuario
                     bancoReferencia.child(tabela).child(voluntario.getIdVoluntario()).setValue(voluntario);

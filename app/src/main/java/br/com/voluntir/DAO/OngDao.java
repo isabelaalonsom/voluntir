@@ -1,7 +1,6 @@
 package br.com.voluntir.DAO;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -38,8 +37,8 @@ public class OngDao implements DAO<Ong> {
 
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
         autenticacao.createUserWithEmailAndPassword(
-                ong.getEmailong(),
-                ong.getSenhaong()
+                ong.getEmailOng(),
+                ong.getSenhaOng()
         ).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -117,7 +116,7 @@ public class OngDao implements DAO<Ong> {
                 for (DataSnapshot objSnapshot:snapshot.getChildren()){
                     ong = objSnapshot.getValue(Ong.class);
                     //busca o email no banco
-                    if (ong.getEmailong().equals(dado.getEmailong())){
+                    if (ong.getEmailOng().equals(dado.getEmailOng())){
                         break;
 
                     }

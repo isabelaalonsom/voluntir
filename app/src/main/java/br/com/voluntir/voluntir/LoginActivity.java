@@ -15,11 +15,11 @@ import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
 
 
 public class LoginActivity extends AppCompatActivity {
-
+    Button btnEsqueciASenha;
     Voluntario voluntario = new Voluntario();
 //    //Ong ong = new Ong();
 //    Button btnEntrar = findViewById(R.id.btnEntrar);
-      //Button btnEsqueciASenha = findViewById(R.id.btn);
+
 //    EditText edtTextEmailLogin = findViewById(R.id.edtTextEmailLogin);
 //    EditText edtTextSenhaLogin = findViewById(R.id.edtTextSenhaLogin);
 
@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         getSupportActionBar().hide();
+
 
 //        btnEntrar.setOnClickListener(new View.OnClickListener() {
 //            @Override

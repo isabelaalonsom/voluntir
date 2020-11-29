@@ -3,8 +3,8 @@ package br.com.voluntir.model;
 public class Ong {
     private String idOng;
     private String nome;
-    private String emailong;
-    private String senhaong;
+    private String emailOng;
+    private String senhaOng;
     private String cpnj;
     private String site;
     private String endereco;
@@ -28,20 +28,20 @@ public class Ong {
         this.nome = nome;
     }
 
-    public String getEmailong() {
-        return emailong;
+    public String getEmailOng() {
+        return emailOng;
     }
 
-    public void setEmailong(String emailong) {
-        this.emailong = emailong;
+    public void setEmailOng(String emailOng) {
+        this.emailOng = emailOng;
     }
 
-    public String getSenhaong() {
-        return senhaong;
+    public String getSenhaOng() {
+        return senhaOng;
     }
 
-    public void setSenhaong(String senhaong) {
-        this.senhaong = senhaong;
+    public void setSenhaOng(String senhaOng) {
+        this.senhaOng = senhaOng;
     }
 
     public String getCpnj() {

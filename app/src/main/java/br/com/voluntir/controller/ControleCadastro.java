@@ -1,7 +1,6 @@
 package br.com.voluntir.controller;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -14,9 +13,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.DAO.OngDao;
@@ -84,7 +80,7 @@ public class ControleCadastro {
         this.ong=dado;
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
         autenticacao.signInWithEmailAndPassword(
-                ong.getEmailong(),ong.getSenhaong()
+                ong.getEmailOng(),ong.getSenhaOng()
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -97,7 +93,7 @@ public class ControleCadastro {
 
                             boolean usuario=false;
                             ong=ongDao.busca(ong,nomeTabela);
-                                if (ong.getEmailong().equals( dado.getEmailong())){
+                                if (ong.getEmailOng().equals( dado.getEmailOng())){
                                     usuario=true;
                                 }
 

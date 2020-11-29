@@ -81,9 +81,10 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 voluntario.setEndereco(endereco.getText().toString());
                 voluntario.setDatanasc(data.getText().toString());
                 voluntario.setSobrenome(sobrenome.getText().toString());
-                if (radioButtonFeminino.isEnabled()){
+                if (radioButtonFeminino.isSelected()){
+
                     voluntario.setGenero("F");
-                }else if (radioButtonMasculino.isEnabled()){
+                }else if (radioButtonMasculino.isSelected()){
                     voluntario.setGenero("M");
                 }
 
