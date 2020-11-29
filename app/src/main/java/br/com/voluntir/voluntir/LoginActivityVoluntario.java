@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.ong.CadastroVagaActivity;
 import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
 //import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
 
@@ -69,6 +70,18 @@ public class LoginActivityVoluntario extends AppCompatActivity {
         Intent intent = new Intent(this, CadastroVoluntarioActivity.class);
         startActivity(intent);
     }
+
+    public void clicarBotaoEsqueceuASenha(View view) {
+        Intent i = new Intent(LoginActivityVoluntario.this, EsqueceuASenhaActivity.class);
+        startActivity(i);
+    }
+
+    public void clicarBotaoEntrar (View view) {
+        //isso está errado, fiz so para testar a CadastroVagaActivity
+        Intent i = new Intent(LoginActivityVoluntario.this, CadastroVagaActivity.class);
+        startActivity(i);
+    }
+
 
 }
 

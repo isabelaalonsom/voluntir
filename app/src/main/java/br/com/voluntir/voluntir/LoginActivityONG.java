@@ -10,14 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.CadastroONGActivity;
+import br.com.voluntir.ong.CadastroVagaActivity;
+import br.com.voluntir.voluntir.EsqueceuASenhaActivity;
 import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
 //import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
 
 
 public class LoginActivityONG extends AppCompatActivity {
-
-//    Button btnEsqueciASenha;
-//    Button criarContaBtn = findViewById(R.id.criarContaBtn);
+    //    Button criarContaBtn = findViewById(R.id.criarContaBtn);
 //    Voluntario voluntario = new Voluntario();
 //    //Ong ong = new Ong();
 //    Button btnEntrar = findViewById(R.id.btnEntrar);
@@ -32,6 +32,8 @@ public class LoginActivityONG extends AppCompatActivity {
         setContentView(R.layout.activity_login_ong);
 
         getSupportActionBar().hide();
+
+        Button btnEsqueceuASenha = findViewById(R.id.esqueceuSenhaBtn);
 
 
 //        btnEntrar.setOnClickListener(new View.OnClickListener() {
@@ -51,14 +53,6 @@ public class LoginActivityONG extends AppCompatActivity {
 //            }
 //        });
 
-//        btnEsqueciASenha.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(LoginActivity.this, EsqueceuASenhaActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
     }
 
     public void mensagemLogin(String msg) {
@@ -68,6 +62,17 @@ public class LoginActivityONG extends AppCompatActivity {
     public void clicarCriarConta(View view) {
           Intent intent = new Intent(this, CadastroONGActivity.class);
           startActivity(intent);
+    }
+
+    public void clicarBotaoEsqueceuASenha(View view) {
+        Intent i = new Intent(this, EsqueceuASenhaActivity.class);
+        startActivity(i);
+    }
+
+    public void clicarBotaoEntrar (View view) {
+        //isso está errado, fiz so para testar a CadastroVagaActivity
+        Intent i = new Intent(this, CadastroVagaActivity.class);
+        startActivity(i);
     }
 
 }
