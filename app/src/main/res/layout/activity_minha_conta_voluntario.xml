@@ -249,6 +249,14 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btnSair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="clicarBotaoSair"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="80dp"
+        android:text="Sair" />
 
 
 </LinearLayout>
