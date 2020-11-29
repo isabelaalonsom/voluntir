@@ -45,6 +45,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
         periodicidade = (EditText) findViewById(R.id.edtTextPeriodicidade);
         detalheVaga = (EditText) findViewById(R.id.edtTextDetalhesVaga);
 
+        //nome.setText(ong.getNome());
         //mascara para a DataInicio
         SimpleMaskFormatter simpleMaskDataInicio = new SimpleMaskFormatter("NN/NN/NNNN");
         MaskTextWatcher maskDataInicio = new MaskTextWatcher(dataInicio,simpleMaskDataInicio);

@@ -1,6 +1,8 @@
 package br.com.voluntir.model;
 
-public class Voluntario {
+import java.io.Serializable;
+
+public class Voluntario implements Serializable {
 
     private String idVoluntario;
     private String email;

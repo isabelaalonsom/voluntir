@@ -40,7 +40,7 @@ public class EsqueceuASenhaActivity extends AppCompatActivity {
         botaoEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                email = (EditText) findViewById(R.id.edtTextEmail);
                 emailEnviar = email.getText().toString();
 
                 if (emailEnviar.isEmpty() ){

@@ -67,14 +67,14 @@ public class CadastroONGActivity extends AppCompatActivity {
                 ong.setNome(nome.getText().toString());
                 ong.setCausas(causa.getText().toString());
                 ong.setTelefone(telefone.getText().toString());
-                ong.setEndereco(endereco.getText().toString());
+                ong.setLocalizacao(localizacao.getText().toString());
                 ong.setResumoOng(resumo.getText().toString());
 
                 //verifica se não tem campos em branco
                 if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty() ||
                         cnpj.getText().toString().isEmpty() || nome.getText().toString().isEmpty() ||
                         causa.getText().toString().isEmpty() || telefone.getText().toString().isEmpty() ||
-                        endereco.getText().toString().isEmpty() || resumo.getText().toString().isEmpty()){
+                        localizacao.getText().toString().isEmpty() || resumo.getText().toString().isEmpty()){
 
                     //exibe mensagem na tela
                     Toast.makeText(getApplicationContext(),

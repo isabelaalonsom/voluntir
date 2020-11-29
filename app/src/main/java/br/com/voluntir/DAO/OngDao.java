@@ -104,8 +104,8 @@ public class OngDao implements DAO<Ong> {
     }
 
     @Override
-    public Ong busca(final Ong dado, String tabela) {
-        ong = dado;
+    public Ong busca(final String id, String tabela) {
+
         bancoFirebase = BancoFirebase.getBancoReferencia();
         bancoFirebase.child(tabela).addValueEventListener(new ValueEventListener() {
             @Override
@@ -116,10 +116,10 @@ public class OngDao implements DAO<Ong> {
                 for (DataSnapshot objSnapshot:snapshot.getChildren()){
                     ong = objSnapshot.getValue(Ong.class);
                     //busca o email no banco
-                    if (ong.getEmailOng().equals(dado.getEmailOng())){
+                   /* if (ong.getEmailOng().equals()){
                         break;
 
-                    }
+                    }*/
 
                 }
 

@@ -1,13 +1,15 @@
 package br.com.voluntir.model;
 
-public class Ong {
+import java.io.Serializable;
+
+public class Ong implements Serializable {
     private String idOng;
     private String nome;
     private String emailOng;
     private String senhaOng;
     private String cpnj;
     private String site;
-    private String endereco;
+    private String localizacao;
     private String causas;
     private String resumoOng;
     private String telefone;
@@ -60,12 +62,12 @@ public class Ong {
         this.site = site;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getLocalizacao() {
+        return localizacao;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
     }
 
     public String getCausas() {

@@ -1,6 +1,7 @@
 package br.com.voluntir.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import br.com.voluntir.DAO.VoluntarioDao;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.voluntir.VagaActivity;
 
 public class ControleCadastro {
     private FirebaseAuth autenticacao;
@@ -30,8 +32,9 @@ public class ControleCadastro {
     OngDao ongDao;
     Vaga vaga;
     VagaDao vagaDao;
+    boolean entrou;
     private Boolean retorno;
-
+    boolean usuario=false;
     public boolean cadastrarVoluntario(Voluntario dado, String tabela,Context context){
         this.voluntario=dado;
 
@@ -93,7 +96,7 @@ public class ControleCadastro {
                 });
     }
 
-    public void validarLoginOng(final Ong dado, final String nomeTabela, final Context context){
+    public Ong validarLoginOng(final Ong dado, final String nomeTabela, final Context context){
         ongDao = new OngDao();
         this.ong=dado;
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
@@ -109,24 +112,11 @@ public class ControleCadastro {
                     //recupera o uid do usuario
                     ong.setIdOng( ongFirebase.getUid() );
 
-                            boolean usuario=false;
-                            ong=ongDao.busca(ong,nomeTabela);
-                                if (ong.getEmailOng().equals( dado.getEmailOng())){
-                                    usuario=true;
-                                }
 
-                            if (usuario == true){
                                 Toast.makeText(context,
                                         "Sucesso ao fazer Login ",
                                         Toast.LENGTH_SHORT).show();
-                                //chamar proxima tela
-                                //Intent intent = new Intent(context, ServicoVoluntarioActivity.class);
-                                //startActivity(intent);
-                            }else{
-                                Toast.makeText(context,
-                                        "E-mail não cadastrado ",
-                                        Toast.LENGTH_SHORT).show();
-                            }
+
 
                 }else{
                     String erroExcecao = "";
@@ -148,5 +138,59 @@ public class ControleCadastro {
                 }
             }
         });
+        return ong;
+    }
+
+    public void validarLoginVoluntario(final Voluntario dado, final String nomeTabela, final Context context){
+        voluntarioDao = new VoluntarioDao();
+
+        this.voluntario=dado;
+        autenticacao = BancoFirebase.getFirebaseAutenticacao();
+        autenticacao.signInWithEmailAndPassword(
+                voluntario.getEmail(),voluntario.getSenha()
+        ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    //recupera os dados do usuario
+                    FirebaseUser voluntarioFirebase = task.getResult().getUser();
+
+                    //recupera o uid do usuario
+                    voluntario.setIdVoluntario( voluntarioFirebase.getUid() );
+
+
+                    //voluntario=voluntarioDao.busca(voluntario.getIdVoluntario(),nomeTabela);
+
+
+                        Toast.makeText(context,
+                                "Sucesso ao fazer Login ",
+                                Toast.LENGTH_SHORT).show();
+
+                        //chamar proxima tela
+                        //Intent intent = new Intent(context, VagaActivity.class);
+                        //startActivity(intent);
+
+                }else{
+                    String erroExcecao = "";
+                    try {
+                        throw task.getException();
+                    }catch (FirebaseAuthInvalidUserException e) {
+                        erroExcecao = "E-mail não cadastrado ou desativado ";
+                    } catch (FirebaseAuthInvalidCredentialsException e) {
+                        erroExcecao = "Senha inválida";
+                    } catch (Exception e) {
+                        erroExcecao = "Ao fazer login";
+                        e.printStackTrace();
+                    }
+
+                    Log.w("Login", "erro ao fazer login", task.getException());
+                    Toast.makeText(context,
+                            "Erro: " + erroExcecao,
+                            Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
     }
 }

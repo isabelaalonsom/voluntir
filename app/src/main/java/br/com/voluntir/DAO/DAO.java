@@ -15,7 +15,7 @@ public interface DAO <ValueObjects> {
     public boolean atualiza(ValueObjects dado, String tabela)
             throws SQLException;
 
-    public ValueObjects busca(ValueObjects dado, String tabela)
+    public ValueObjects busca(String id, String tabela)
             throws SQLException;
 
     public List<ValueObjects> listar(String criterio, String tabela)
