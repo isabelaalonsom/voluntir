@@ -4,19 +4,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.ong.CadastroONGActivity;
 import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
 //import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
 
 
-public class LoginActivity extends AppCompatActivity {
-    Button btnEsqueciASenha;
-    Voluntario voluntario = new Voluntario();
+public class LoginActivityONG extends AppCompatActivity {
+
+//    Button btnEsqueciASenha;
+//    Button criarContaBtn = findViewById(R.id.criarContaBtn);
+//    Voluntario voluntario = new Voluntario();
 //    //Ong ong = new Ong();
 //    Button btnEntrar = findViewById(R.id.btnEntrar);
 
@@ -27,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login_ong);
 
         getSupportActionBar().hide();
 
@@ -64,18 +66,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void clicarCriarConta(View view) {
-
-        if (voluntario.isVoluntario()) {
-            Intent intent = new Intent(this, CadastroVoluntarioActivity.class);
-            startActivity(intent);
-
-        }
-
-//        if (ong.isOng()) {
-//            Intent intent = new Intent(this, CadastroONGActivity.class);
-//            startActivity(intent);
-//        }
-
+          Intent intent = new Intent(this, CadastroONGActivity.class);
+          startActivity(intent);
     }
 
 }
+
+
+

@@ -45,6 +45,7 @@
                     android:id="@+id/txtViewNome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:text="Nome:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
@@ -54,6 +55,7 @@
                     android:id="@+id/edtTextNome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:ems="10"
                     android:hint="Nome"
                     android:inputType="textPersonName"
@@ -76,15 +78,17 @@
                     android:text="CNPJ:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="136dp" />
+                    tools:layout_editor_absoluteY="136dp"
+                    android:layout_marginLeft="15dp" />
 
                 <EditText
                     android:id="@+id/edtTextCpnj"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:ems="10"
                     android:hint="CNPJ"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     tools:layout_editor_absoluteX="81dp"
                     tools:layout_editor_absoluteY="115dp" />
 
@@ -101,6 +105,7 @@
                     android:id="@+id/txtViewLocalizacao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:text="Localização:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
@@ -110,9 +115,9 @@
                     android:id="@+id/edtTextLocalizacao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:ems="10"
                     android:hint="Localização"
-                    android:inputType="textPersonName"
                     tools:layout_editor_absoluteX="135dp"
                     tools:layout_editor_absoluteY="170dp" />
 
@@ -129,6 +134,7 @@
                     android:id="@+id/txtViewCausas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:text="Causas:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
@@ -138,6 +144,7 @@
                     android:id="@+id/edtTextCausas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:ems="10"
                     android:hint="Causas"
                     android:inputType="textPersonName"
@@ -157,6 +164,7 @@
                     android:id="@+id/txtViewTelefone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:text="Telefone:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
@@ -166,9 +174,10 @@
                     android:id="@+id/edtTextTelefone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:ems="10"
+                    android:inputType="number"
                     android:hint="(  )____-_____"
-                    android:inputType="textPersonName"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="458dp" />
 
@@ -185,6 +194,7 @@
                     android:id="@+id/txtViewSite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:text="Site:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
@@ -194,9 +204,9 @@
                     android:id="@+id/edtTextSite"
                     android:layout_width="306dp"
                     android:layout_height="44dp"
+                    android:layout_marginLeft="15dp"
                     android:ems="10"
                     android:hint="Site"
-                    android:inputType="textPersonName"
                     tools:layout_editor_absoluteX="70dp"
                     tools:layout_editor_absoluteY="519dp" />
 
@@ -213,6 +223,7 @@
                     android:id="@+id/txtViewEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:text="E-mail:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
@@ -222,9 +233,10 @@
                     android:id="@+id/edtTextEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:ems="10"
                     android:hint="E-mail"
-                    android:inputType="textPersonName"
+                    android:inputType="textEmailAddress"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="283dp" />
 
@@ -241,6 +253,7 @@
                     android:id="@+id/txtViewSenha"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:text="Senha:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
@@ -250,17 +263,14 @@
                     android:id="@+id/edtTextSenha"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:ems="10"
                     android:hint="Senha"
-                    android:inputType="textPersonName"
+                    android:inputType="textPassword"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="343dp" />
 
             </LinearLayout>
-
-
-
-
 
         <LinearLayout
             android:id="@+id/LinearResumoOng"
@@ -273,6 +283,7 @@
                 android:id="@+id/txtViewResumoOng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:text="Resumo da ONG:"
                 android:textSize="18sp"
                 tools:layout_editor_absoluteX="16dp"
@@ -282,23 +293,24 @@
                 android:id="@+id/edtTextResumoOng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:ems="10"
                 android:hint="Resumo da ONG"
-                android:inputType="textPersonName"
                 tools:layout_editor_absoluteX="163dp"
                 tools:layout_editor_absoluteY="395dp" />
 
         </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/txtViewImagem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Imagem:"
-            android:textSize="18sp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="594dp" />
+            <TextView
+                android:id="@+id/txtViewImagem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Imagem:"
+                android:textSize="18sp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="594dp" />
 
         <LinearLayout
             android:id="@+id/LinearBotoes"
@@ -313,6 +325,7 @@
                 android:id="@+id/limparBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="limparDados"
                 android:text="Limpar" />
 
             <Button

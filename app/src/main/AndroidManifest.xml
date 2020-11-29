@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivityVoluntario"></activity>
+        <activity android:name=".LoginActivityONG"></activity>
         <activity android:name="br.com.voluntir.voluntario.CadastroVoluntarioActivity"></activity>
         <activity android:name="br.com.voluntir.voluntario.MinhaContaVoluntarioActivity"></activity>
         <activity android:name=".EsqueceuASenhaActivity"></activity>

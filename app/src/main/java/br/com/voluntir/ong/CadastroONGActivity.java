@@ -14,7 +14,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
-import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
 
 public class CadastroONGActivity extends AppCompatActivity {
@@ -53,7 +52,7 @@ public class CadastroONGActivity extends AppCompatActivity {
         MaskTextWatcher maskTelefone = new MaskTextWatcher(telefone,simpleMaskTelefone);
         telefone.addTextChangedListener(maskTelefone);
 
-        botaoConfirmar = findViewById(R.id.btnConfirmar);
+        botaoConfirmar = findViewById(R.id.confirmarBtn);
         botaoConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,4 +96,17 @@ public class CadastroONGActivity extends AppCompatActivity {
         Toast.makeText(this, "Cadastro Criado!", Toast.LENGTH_SHORT).show();
         //aqui tem que jogar pro banco de dados os edit text preenchidos
     }
+
+    public void limparDados(View view) {
+        nome.setText("");
+        cnpj.setText("");
+        localizacao.setText("");
+        causa.setText("");
+        telefone.setText("");
+        site.setText("");
+        email.setText("");
+        senha.setText("");
+        resumo.setText("");
+    }
+
 }

@@ -209,6 +209,12 @@
                     tools:layout_editor_absoluteX="11dp"
                     tools:layout_editor_absoluteY="306dp" />
 
+                <RadioGroup
+                    android:id="@+id/rdBtnGrpGenero"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
                 <RadioButton
                     android:id="@+id/rdBtnFeminino"
                     android:layout_width="wrap_content"
@@ -226,6 +232,8 @@
                     android:text="Masculino"
                     tools:layout_editor_absoluteX="200dp"
                     tools:layout_editor_absoluteY="296dp" />
+
+                </RadioGroup>
 
             </LinearLayout>
 
@@ -312,7 +320,7 @@
                     android:text="Limpar" />
 
                 <Button
-                    android:id="@+id/btnConfirmar"
+                    android:id="@+id/btnConfirmarVoluntario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="72dp"

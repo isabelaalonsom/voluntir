@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -28,8 +29,10 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     private Spinner generoSelecionado;
     private ControleCadastro controleCadastro;
     private String tabelaBanco= "voluntario";
-    private RadioButton radioButtonFeminino;
-    private RadioButton radioButtonMasculino;
+    private RadioGroup rdBtnGrpGenero;
+    private RadioButton rdBtnFeminino;
+    private RadioButton rdBtnMasculino;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +48,8 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         telefone = (EditText) findViewById(R.id.edtTextTel);
         endereco = (EditText) findViewById(R.id.edtTextEndereco);
         especialidade = (EditText) findViewById(R.id.edtTextDescricao);
-        radioButtonFeminino = findViewById(R.id.rdBtnFeminino);
-        radioButtonMasculino = findViewById(R.id.rdBtnMasculino);
+        rdBtnFeminino = findViewById(R.id.rdBtnFeminino);
+        rdBtnMasculino = findViewById(R.id.rdBtnMasculino);
 
         //mascara para o Cpf
         SimpleMaskFormatter simpleMaskCpf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
@@ -63,11 +66,11 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         MaskTextWatcher maskTelefone = new MaskTextWatcher(telefone,simpleMaskTelefone);
         telefone.addTextChangedListener(maskTelefone);
 
-        botaoConfirmar = findViewById(R.id.btnConfirmar);
+        botaoConfirmar = findViewById(R.id.btnConfirmarVoluntario);
         botaoConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //clicarBotaoConfirmar();
+                clicarBotaoConfirmar();
                 voluntario = new Voluntario();
                 controleCadastro = new ControleCadastro();
 
@@ -81,10 +84,10 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 voluntario.setEndereco(endereco.getText().toString());
                 voluntario.setDatanasc(data.getText().toString());
                 voluntario.setSobrenome(sobrenome.getText().toString());
-                if (radioButtonFeminino.isSelected()){
 
+                if(rdBtnFeminino.isEnabled()) {
                     voluntario.setGenero("F");
-                }else if (radioButtonMasculino.isSelected()){
+                } else {
                     voluntario.setGenero("M");
                 }
 
@@ -115,7 +118,16 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     }
 
     public void clicarBotaoLimpar(View view) {
-
-        //aqui fazer a programacao para limpar os Edit Text
+        nome.setText("");
+        sobrenome.setText("");
+        cpf.setText("");
+        data.setText("");
+        email.setText("");
+        senha.setText("");
+        rdBtnFeminino.setChecked(false);
+        rdBtnMasculino.setChecked(false);
+        especialidade.setText("");
+        endereco.setText("");
+        telefone.setText("");
     }
 }

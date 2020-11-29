@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     Voluntario voluntario = new Voluntario();
     Ong ong = new Ong();
+    public String isVoluntario;
+    public String isOng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         btnONG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent i = new Intent(getApplicationContext(), LoginActivityONG.class);
                 startActivity(i);
             }
         });
@@ -37,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
         btnVoluntario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //voluntario.isVoluntario();
-                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent i = new Intent(getApplicationContext(), LoginActivityVoluntario.class);
                 startActivity(i);
             }
         });
