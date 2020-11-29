@@ -59,6 +59,7 @@
     </LinearLayout>
 
     <EditText
+        android:id="@+id/edtTextAreaConhecimento"
         android:layout_width="match_parent"
         android:hint="Escreva a área de conhecimento"
         android:layout_height="84dp" />
@@ -76,12 +77,14 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Data de início: "
+            android:inputType="number"
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/edtTextDataInicio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="__/__/____"
             android:ems="10" />
 
@@ -99,13 +102,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Data de início: "
+            android:text="Data de término: "
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/edtTextDataTermino"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:ems="10"
             android:hint="__/__/____" />
 
@@ -130,6 +134,7 @@
             android:id="@+id/edtTextHorario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:ems="10"
             android:hint="10:00" />
 
@@ -154,6 +159,7 @@
             android:id="@+id/edtTextPeriodicidade"
             android:layout_width="38dp"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:ems="10"
             android:hint="X" />
 
@@ -204,10 +210,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="68dp"
+            android:onClick="limparDadosDoCadastroVaga"
             android:text="Limpar" />
 
         <Button
-            android:id="@+id/btnConfirmar"
+            android:id="@+id/btnConfirmarVaga"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="72dp"

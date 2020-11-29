@@ -16,16 +16,20 @@ import com.google.firebase.auth.FirebaseUser;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.DAO.OngDao;
+import br.com.voluntir.DAO.VagaDao;
 import br.com.voluntir.DAO.VoluntarioDao;
 import br.com.voluntir.model.Ong;
+import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 
 public class ControleCadastro {
     private FirebaseAuth autenticacao;
-    Voluntario voluntario ;
+    Voluntario voluntario;
     VoluntarioDao voluntarioDao;
     Ong ong;
     OngDao ongDao;
+    Vaga vaga;
+    VagaDao vagaDao;
     private Boolean retorno;
 
     public boolean cadastrarVoluntario(Voluntario dado, String tabela,Context context){
@@ -33,7 +37,7 @@ public class ControleCadastro {
 
         voluntarioDao = new VoluntarioDao();
         try {
-            retorno= voluntarioDao.adiciona(voluntario, tabela, context);
+            retorno = voluntarioDao.adiciona(voluntario, tabela, context);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -46,7 +50,21 @@ public class ControleCadastro {
 
         ongDao = new OngDao();
         try {
-            retorno= ongDao.adiciona(ong, tabela, context);
+            retorno = ongDao.adiciona(ong, tabela, context);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return retorno;
+    }
+
+    public boolean cadastrarVaga(Vaga dado, String tabela, Context context) {
+        this.vaga=dado;
+
+        vagaDao = new VagaDao();
+
+        try {
+            retorno = vagaDao.adiciona(vaga, tabela, context);
         } catch (Exception e) {
             e.printStackTrace();
         }

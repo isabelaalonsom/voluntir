@@ -16,20 +16,26 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.voluntir.BancoFirebase;
 
+import static br.com.voluntir.voluntir.R.layout.activity_esqueceu_a_senha;
+
 public class EsqueceuASenhaActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao;
     private EditText email;
+    private EditText edtTextEmail;
     private String emailEnviar;
     private Button botaoEnviar;
 
-    EditText edtTextEmail = findViewById(R.id.edtTextEmail);
+    public EsqueceuASenhaActivity() {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_esqueceu_a_senha);
+        setContentView(activity_esqueceu_a_senha);
 
         getSupportActionBar().hide();
+        //EditText edtTextEmail = findViewById(R.id.edtTextEmail);
         botaoEnviar = (Button) findViewById(R.id.btnEnviar);
         botaoEnviar.setOnClickListener(new View.OnClickListener() {
             @Override

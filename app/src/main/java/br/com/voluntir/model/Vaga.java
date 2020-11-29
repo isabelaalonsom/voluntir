@@ -10,8 +10,16 @@ public class Vaga {
     private String dataTermino;
     private String periodicidade;
     private String horario;
+    private String nomeOng;
 
-    //não sei como entra aqui o foreign key da ONG
+    public String getNomeOng() {
+        return nomeOng;
+    }
+
+    public void setNomeOng(String nomeOng) {
+        this.nomeOng = nomeOng;
+    }
+//não sei como entra aqui o foreign key da ONG
 
 
     public String getDescricaoVaga() {
