@@ -27,6 +27,7 @@
                 android:id="@+id/txtViewONG"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:gravity="center"
                 android:text="Nome: "
                 android:textSize="18sp" />
@@ -35,6 +36,7 @@
                 android:id="@+id/txtViewNomeDaONG"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:gravity="center"
                 android:text="Nome da Ong"
                 android:textSize="18sp" />
@@ -52,6 +54,7 @@
             android:id="@+id/txtViewAreaConhecimento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
             android:gravity="center"
             android:text="Área de conhecimento: "
             android:textSize="18sp" />
@@ -61,8 +64,9 @@
     <EditText
         android:id="@+id/edtTextAreaConhecimento"
         android:layout_width="match_parent"
-        android:hint="Escreva a área de conhecimento"
-        android:layout_height="84dp" />
+        android:layout_height="84dp"
+        android:layout_marginLeft="15dp"
+        android:hint="Escreva a área de conhecimento" />
 
     <LinearLayout
         android:id="@+id/LinearDataInicio"
@@ -75,18 +79,20 @@
             android:id="@+id/txtViewDataInicio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
             android:gravity="center"
-            android:text="Data de início: "
             android:inputType="number"
+            android:text="Data de início: "
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/edtTextDataInicio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:layout_marginLeft="15dp"
+            android:ems="10"
             android:hint="__/__/____"
-            android:ems="10" />
+            android:inputType="number" />
 
         </LinearLayout>
 
@@ -101,6 +107,7 @@
             android:id="@+id/txtViewDataTermino"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
             android:gravity="center"
             android:text="Data de término: "
             android:textSize="18sp" />
@@ -109,9 +116,10 @@
             android:id="@+id/edtTextDataTermino"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:layout_marginLeft="15dp"
             android:ems="10"
-            android:hint="__/__/____" />
+            android:hint="__/__/____"
+            android:inputType="number" />
 
     </LinearLayout>
 
@@ -126,6 +134,7 @@
             android:id="@+id/txtViewHorario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
             android:gravity="center"
             android:text="Horário: "
             android:textSize="18sp" />
@@ -134,9 +143,10 @@
             android:id="@+id/edtTextHorario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:layout_marginLeft="15dp"
             android:ems="10"
-            android:hint="10:00" />
+            android:hint="10:00"
+            android:inputType="number" />
 
     </LinearLayout>
 
@@ -151,6 +161,7 @@
             android:id="@+id/txtViewPeriodicidade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
             android:gravity="center"
             android:text="Periodicidade: "
             android:textSize="18sp" />
@@ -159,14 +170,16 @@
             android:id="@+id/edtTextPeriodicidade"
             android:layout_width="38dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:layout_marginLeft="15dp"
             android:ems="10"
-            android:hint="X" />
+            android:hint="X"
+            android:inputType="number" />
 
         <TextView
             android:id="@+id/txtViewVezesPorSemana"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
             android:gravity="center"
             android:text="vezes por semana"
             android:textSize="18sp" />
@@ -184,6 +197,7 @@
             android:id="@+id/txtViewDetalhesVaga"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
             android:gravity="center"
             android:text="Detalhes Sobre a Vaga: "
             android:textSize="18sp" />
@@ -195,6 +209,7 @@
         android:id="@+id/edtTextDetalhesVaga"
         android:layout_width="match_parent"
         android:layout_height="124dp"
+        android:layout_marginLeft="15dp"
         android:ems="10"
         android:hint="Escreva os detalhes sobre a vaga" />
 
