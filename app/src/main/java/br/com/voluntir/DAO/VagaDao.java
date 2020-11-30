@@ -23,11 +23,12 @@ public class VagaDao implements DAO<Vaga> {
     private DatabaseReference tabela;
     Vaga vaga;
     List<Vaga> listaVaga;
+    private ValueEventListener valueEventListener;
 
     @Override
     public boolean adiciona(Vaga dado, String tabela, Context appContext) throws DatabaseException {
         refenciaBanco = BancoFirebase.getBancoReferencia();
-        this.tabela = refenciaBanco.child(tabela);
+        refenciaBanco.child(tabela).push().setValue(dado);
 
         return false;
     }
@@ -44,11 +45,31 @@ public class VagaDao implements DAO<Vaga> {
 
     @Override
     public Vaga busca(String id, String tabela) throws DatabaseException {
-        return null;
+        //vaga = new Vaga();
+        refenciaBanco = BancoFirebase.getBancoReferencia();
+        refenciaBanco.child(tabela).child(id).addValueEventListener(new ValueEventListener() {
+            //recuperar os dados sempre que for mudado no banco
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                //DataSnapshot é o retorno do firebase
+
+                    vaga = snapshot.getValue(Vaga.class);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+        return vaga;
+
     }
 
     @Override
-    public List<Vaga> listar(String criterio, String tabela) throws DatabaseException {
+    public List<Vaga> listar(final String criterio, String tabela) throws DatabaseException {
         listaVaga = new ArrayList<>();
 
         refenciaBanco = BancoFirebase.getBancoReferencia();
@@ -60,7 +81,11 @@ public class VagaDao implements DAO<Vaga> {
                 //DataSnapshot é o retorno do firebase
                 Log.i("FIREBASE", snapshot.getValue().toString());
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
                     vaga = dataSnapshot.getValue(Vaga.class);
+                    if (vaga.getNomeOng().equals(criterio)){
+
+                    }
                     listaVaga.add(vaga);
                 }
             }

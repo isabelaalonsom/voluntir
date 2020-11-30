@@ -13,6 +13,7 @@ import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.firebase.auth.FirebaseAuth;
 
+import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
@@ -51,15 +52,9 @@ public class CadastroVagaActivity extends AppCompatActivity {
         Bundle dados = getIntent().getExtras();
         //String email = dados.getString("email");
 
-        if ( dados.getSerializable("ong") instanceof Ong){
-            ong = new Ong();
-            ong = (Ong)  dados.getSerializable("ong");
-            nome.setText(ong.getNome());
-        }else{
-            voluntario = (Voluntario) dados.getSerializable("voluntario");
 
-        }
-        //nome.setText(ong.getNome());
+        autenticacao = BancoFirebase.getFirebaseAutenticacao();
+        nome.setText(autenticacao.getCurrentUser().getDisplayName());
         //mascara para a DataInicio
         SimpleMaskFormatter simpleMaskDataInicio = new SimpleMaskFormatter("NN/NN/NNNN");
         MaskTextWatcher maskDataInicio = new MaskTextWatcher(dataInicio,simpleMaskDataInicio);
@@ -84,7 +79,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
                 controleCadastro = new ControleCadastro();
 
                 //pegas os dados digitados
-                vaga.setNomeOng(ong.getNome());
+                vaga.setNomeOng(autenticacao.getCurrentUser().getDisplayName());
                 vaga.setAreaConhecimento(especialidade.getText().toString());
                 vaga.setDataInicio(dataInicio.getText().toString());
                 vaga.setDataTermino(dataTermino.getText().toString());
@@ -114,7 +109,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
 
             public void clicarBotaoConfirmar(View view) {
-                Toast.makeText(this, "Vaga Criada!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "VagaActivity Criada!", Toast.LENGTH_SHORT).show();
             }
 
             public void limparDadosDoCadastroVaga(View view) {

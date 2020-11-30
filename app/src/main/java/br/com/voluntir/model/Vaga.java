@@ -1,6 +1,8 @@
 package br.com.voluntir.model;
 
-public class Vaga {
+import java.io.Serializable;
+
+public class Vaga implements Serializable {
 
     private int idVaga;
     private int qtdCandidaturas;

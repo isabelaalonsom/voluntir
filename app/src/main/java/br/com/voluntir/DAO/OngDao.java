@@ -24,6 +24,7 @@ import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Ong;
+import br.com.voluntir.model.Vaga;
 
 public class OngDao implements DAO<Ong> {
     private Ong ong;
@@ -107,21 +108,14 @@ public class OngDao implements DAO<Ong> {
     public Ong busca(final String id, String tabela) {
 
         bancoFirebase = BancoFirebase.getBancoReferencia();
-        bancoFirebase.child(tabela).addValueEventListener(new ValueEventListener() {
+        bancoFirebase.child(tabela).child(id).addValueEventListener(new ValueEventListener() {
+            //recuperar os dados sempre que for mudado no banco
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                boolean usuario=false;
 
-                //laço para percorrer o banco
-                for (DataSnapshot objSnapshot:snapshot.getChildren()){
-                    ong = objSnapshot.getValue(Ong.class);
-                    //busca o email no banco
-                   /* if (ong.getEmailOng().equals()){
-                        break;
+                //DataSnapshot é o retorno do firebase
 
-                    }*/
-
-                }
+                ong = snapshot.getValue(Ong.class);
 
             }
 
@@ -129,6 +123,7 @@ public class OngDao implements DAO<Ong> {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
         return ong;
     }

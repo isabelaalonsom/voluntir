@@ -21,13 +21,13 @@
             android:orientation="vertical" >
 
             <Button
-                android:id="@+id/btnVagas"
+                android:id="@+id/btnVagasMenuOng"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="VAGAS" />
 
             <Button
-                android:id="@+id/btnMinhaConta"
+                android:id="@+id/btnMinhaContaMenuOng"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="clicarMinhaContaVoluntario"

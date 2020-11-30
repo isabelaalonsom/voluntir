@@ -212,7 +212,7 @@
         android:layout_marginTop="50dp"
         android:orientation="horizontal">
 
-        <!-- Esse botão volta para a activity Nova Vaga com os editText preenchidos para alteração posterior -->
+        <!-- Esse botão volta para a activity Nova VagaActivity com os editText preenchidos para alteração posterior -->
         <Button
             android:id="@+id/btnEditar"
             android:layout_width="197dp"

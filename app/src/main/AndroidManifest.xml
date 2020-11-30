@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".VagaActivity"></activity>
+        <activity android:name=".MenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,8 +22,6 @@
         <activity android:name=".LoginActivityONG" />
         <activity android:name="br.com.voluntir.voluntario.CadastroVoluntarioActivity" />
         <activity android:name="br.com.voluntir.voluntario.MinhaContaVoluntarioActivity" />
-        <activity android:name="br.com.voluntir.voluntario.MenuVoluntarioActivity" />
-        <activity android:name="br.com.voluntir.voluntir.MenuOngActivity" />
         <activity android:name=".EsqueceuASenhaActivity" />
         <activity android:name="br.com.voluntir.ong.MinhaContaONGActivity" />
         <activity android:name="br.com.voluntir.ong.CadastroVagaActivity" />
