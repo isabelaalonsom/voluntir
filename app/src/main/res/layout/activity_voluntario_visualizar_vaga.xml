@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".VoluntarioVisualizarVaga">
+
+    <TextView
+        android:id="@+id/txtViewDescriçãoVagaV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:text="Descrição da Vaga"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="173dp"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <LinearLayout
+        android:id="@+id/LinearNomeV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtViewONGV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="Nome: "
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtViewONGVariavelV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ONG X"
+            android:textColor="#AA0B0B"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearAreaConhecimentoV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtViewAreaConhecimentoV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Área de conhecimento: "
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txtViewAreaConhecimentoVariavelV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Pacote Office"
+            android:textColor="#AA0B0B"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearDataInicioV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtViewDataInicioV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Data de início: "
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txtViewDataInicioVariavelV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="23/12/2020"
+            android:textColor="#AA0B0B"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearDataTerminoV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtViewDataTerminoV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data de término: "
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtViewDataTeminoVariavelV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="05/01/2021"
+            android:textColor="#AA0B0B"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearHorarioV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtViewHorarioV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Horário: "
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txtViewHorarioVariavelV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10:00"
+            android:textColor="#AA0B0B"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearPeriodicidadeV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtViewPeriodicidadeV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Periodicidade: "
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txtViewPeriodicidadeVariavelV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2 "
+            android:textColor="#AA0B0B"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txtViewVezesPorSemanaV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="vezes por semana"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearDescricaoV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtViewDescricaoV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descrição: "
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtViewDescricaoVariavelV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ensinar as pessoas que estão aprendendo a utilizar o Pacote Office, especialmente Excel e Word. "
+        android:textColor="#AA0B0B"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:id="@+id/LinearBotoesV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+
+        <!-- Esse botão volta para a activity Nova VagaActivity com os editText preenchidos para alteração posterior -->
+        <Button
+            android:id="@+id/btnEditarV"
+            android:layout_width="197dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110dp"
+            android:layout_marginRight="110dp"
+            android:text="CANDIDATAR" />
+
+
+
+
+</LinearLayout>
+
+</LinearLayout>

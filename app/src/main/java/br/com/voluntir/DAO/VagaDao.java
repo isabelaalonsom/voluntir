@@ -40,7 +40,10 @@ public class VagaDao implements DAO<Vaga> {
 
     @Override
     public boolean atualiza(Vaga dado, String tabela) throws DatabaseException {
+        refenciaBanco = BancoFirebase.getBancoReferencia();
+        refenciaBanco.child(tabela).child(dado.getIdVaga()).setValue(dado);
         return false;
+
     }
 
     @Override

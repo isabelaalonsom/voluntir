@@ -13,10 +13,14 @@ public class ControleCriarVagas {
     Vaga vaga;
     VagaDao vagaDao;
     List<Vaga> listaVaga;
-
+    String tabela="vaga";
     public List<Vaga> listarVaga(String criterio, String tabela){
         listaVaga = new ArrayList<>();
         listaVaga = vagaDao.listar(null,tabela);
         return listaVaga;
+    }
+
+    public void candidatarVaga(){
+        vagaDao.atualiza(vaga,tabela);
     }
 }
