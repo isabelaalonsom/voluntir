@@ -33,6 +33,13 @@
                 android:onClick="clicarMinhaContaVoluntario"
                 android:text="MINHA CONTA" />
 
+            <Button
+                android:id="@+id/btnCandidaturas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clicarMinhaContaVoluntario"
+                android:text="Candidaturas" />
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
