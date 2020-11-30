@@ -10,6 +10,7 @@ import android.widget.Button;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.CadastroVagaActivity;
+import br.com.voluntir.ong.MinhaContaONGActivity;
 
 public class MenuActivity extends AppCompatActivity {
     Voluntario voluntario;
@@ -43,6 +44,11 @@ public class MenuActivity extends AppCompatActivity {
         }else{
             intent.putExtra("voluntario",voluntario);
         }
+        startActivity(intent);
+    }
+
+    public void clicarMinhaConta(View view) {
+        Intent intent = new Intent(this, MinhaContaONGActivity.class);
         startActivity(intent);
     }
 }

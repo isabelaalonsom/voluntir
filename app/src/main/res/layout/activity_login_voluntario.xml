@@ -57,7 +57,7 @@
         android:layout_marginEnd="42dp"
         android:layout_marginBottom="161dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:hint="Senha"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

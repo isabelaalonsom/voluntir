@@ -93,11 +93,14 @@ public class LoginActivityONG extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }else{
             ong = controleCadastro.validarLoginOng(ong,nomeTabela,getApplicationContext());
-            Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
-            //para passar a ong para a proxima tela
-            intent.putExtra("email", ong.getEmailOng());
-            intent.putExtra("ong", (Serializable) ong);
-            startActivity(intent);
+            //if se o validarLoginOng der ok {
+                Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+                //para passar a ong para a proxima tela
+                intent.putExtra("email", ong.getEmailOng());
+                intent.putExtra("ong", (Serializable) ong);
+                startActivity(intent);
+            //}
+
         }
 
         //descomentar para testar MinhaContaOng e o botão de Editar
