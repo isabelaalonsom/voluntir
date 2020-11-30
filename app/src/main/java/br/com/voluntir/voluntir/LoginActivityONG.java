@@ -14,8 +14,6 @@ import java.io.Serializable;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.ong.CadastroONGActivity;
-import br.com.voluntir.ong.CadastroVagaActivity;
-import br.com.voluntir.ong.MinhaContaONGActivity;
 //import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
 
 
@@ -44,7 +42,7 @@ public class LoginActivityONG extends AppCompatActivity {
         getSupportActionBar().hide();
 
         email = (EditText) findViewById(R.id.edtTextEmailLogin);
-        senha = (EditText) findViewById(R.id.edtTextSenhaLogin  );
+        senha = (EditText) findViewById(R.id.edtTextSenhaLogin);
 
         Button btnEsqueceuASenha = findViewById(R.id.esqueceuSenhaBtn);
 
@@ -94,7 +92,7 @@ public class LoginActivityONG extends AppCompatActivity {
         }else{
             ong = controleCadastro.validarLoginOng(ong,nomeTabela,getApplicationContext());
             //if se o validarLoginOng der ok {
-                Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MenuOngActivity.class);
                 //para passar a ong para a proxima tela
                 intent.putExtra("email", ong.getEmailOng());
                 intent.putExtra("ong", (Serializable) ong);

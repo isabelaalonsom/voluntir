@@ -12,7 +12,7 @@ import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.CadastroVagaActivity;
 import br.com.voluntir.ong.MinhaContaONGActivity;
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuOngActivity extends AppCompatActivity {
     Voluntario voluntario;
     Ong ong;
     Button botaoCriarVaga;
@@ -20,7 +20,9 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_menu_ong);
+
+        getSupportActionBar().hide();
 
         botaoCriarVaga = findViewById(R.id.btnCriarVaga);
         //Recuperar os dados vindos de outra activity
