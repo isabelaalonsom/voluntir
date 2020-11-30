@@ -1,5 +1,6 @@
 package br.com.voluntir.ong;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,11 +21,11 @@ public class CadastroONGActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao;
     private Button botaoConfirmar;
     private Ong ong;
-    private EditText email,senha,cnpj,resumo;
-    private EditText nome,telefone,endereco;
-    private EditText causa,localizacao,site;
+    private EditText email, senha, cnpj, resumo;
+    private EditText nome, telefone, endereco;
+    private EditText causa, localizacao, site;
     private ControleCadastro controleCadastro;
-    private String tabelaBanco= "ong";
+    private String tabelaBanco = "ong";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,69 +45,96 @@ public class CadastroONGActivity extends AppCompatActivity {
 
         //mascara para o Cnpj
         SimpleMaskFormatter simpleMaskCnpj = new SimpleMaskFormatter("NN.NNN.NNN/NNNN-NN");
-        MaskTextWatcher maskCnpj = new MaskTextWatcher(cnpj,simpleMaskCnpj);
+        MaskTextWatcher maskCnpj = new MaskTextWatcher(cnpj, simpleMaskCnpj);
         cnpj.addTextChangedListener(maskCnpj);
 
         //mascara para o Telefone
         SimpleMaskFormatter simpleMaskTelefone = new SimpleMaskFormatter("(NN) NNNNN-NNNN");
-        MaskTextWatcher maskTelefone = new MaskTextWatcher(telefone,simpleMaskTelefone);
+        MaskTextWatcher maskTelefone = new MaskTextWatcher(telefone, simpleMaskTelefone);
         telefone.addTextChangedListener(maskTelefone);
 
-        botaoConfirmar = findViewById(R.id.confirmarBtn);
-        botaoConfirmar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //clicarBotaoConfirmar();
-                controleCadastro = new ControleCadastro();
+        Intent i = getIntent();
+        Bundle parametros = i.getExtras();
 
-                //pegas os dados digitados
-                ong = new Ong();
-                ong.setEmailOng(email.getText().toString());
-                ong.setSenhaOng(senha.getText().toString());
-                ong.setCpnj(cnpj.getText().toString());
-                ong.setNome(nome.getText().toString());
-                ong.setCausas(causa.getText().toString());
-                ong.setTelefone(telefone.getText().toString());
-                ong.setLocalizacao(localizacao.getText().toString());
-                ong.setResumoOng(resumo.getText().toString());
+        if (parametros != null) {
+            String nomeOngPreenchido = parametros.getString("chave_nome_ong");
+            String cnpjOngPreenchido = parametros.getString("chave_cnpj_ong");
+            String localizacaoOngPreenchido = parametros.getString("chave_localizacao_ong");
+            String causasOngPreenchido = parametros.getString("chave_causas_ong");
+            String emailOngPreenchido = parametros.getString("chave_email_ong");
+            String telefoneOngPreenchido = parametros.getString("chave_telefone_ong");
+            String siteOngPreenchido = parametros.getString("chave_site_ong");
+            String resumoOngPreenchido = parametros.getString("chave_resumo_ong");
 
-                //verifica se não tem campos em branco
-                if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty() ||
-                        cnpj.getText().toString().isEmpty() || nome.getText().toString().isEmpty() ||
-                        causa.getText().toString().isEmpty() || telefone.getText().toString().isEmpty() ||
-                        localizacao.getText().toString().isEmpty() || resumo.getText().toString().isEmpty()){
+            nome.setText(nomeOngPreenchido);
+            cnpj.setText(cnpjOngPreenchido);
+            localizacao.setText(localizacaoOngPreenchido);
+            causa.setText(causasOngPreenchido);
+            email.setText(emailOngPreenchido);
+            telefone.setText(telefoneOngPreenchido);
+            site.setText(siteOngPreenchido);
+            resumo.setText(resumoOngPreenchido);
 
-                    //exibe mensagem na tela
-                    Toast.makeText(getApplicationContext(),
-                            "Preencha todos os campos ",
-                            Toast.LENGTH_SHORT).show();
-                }else{
+            // botaoConfirmar.setEnabled(false);
 
-                    Boolean retorno =controleCadastro.cadastrarOng(ong,tabelaBanco,getApplicationContext());
+        }
+
+            botaoConfirmar = findViewById(R.id.confirmarBtn);
+            botaoConfirmar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //clicarBotaoConfirmar();
+                    controleCadastro = new ControleCadastro();
+
+                    //pegas os dados digitados
+                    ong = new Ong();
+                    ong.setEmailOng(email.getText().toString());
+                    ong.setSenhaOng(senha.getText().toString());
+                    ong.setCpnj(cnpj.getText().toString());
+                    ong.setNome(nome.getText().toString());
+                    ong.setCausas(causa.getText().toString());
+                    ong.setTelefone(telefone.getText().toString());
+                    ong.setLocalizacao(localizacao.getText().toString());
+                    ong.setResumoOng(resumo.getText().toString());
+
+                    //verifica se não tem campos em branco
+                    if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty() ||
+                            cnpj.getText().toString().isEmpty() || nome.getText().toString().isEmpty() ||
+                            causa.getText().toString().isEmpty() || telefone.getText().toString().isEmpty() ||
+                            localizacao.getText().toString().isEmpty() || resumo.getText().toString().isEmpty()) {
+
+                        //exibe mensagem na tela
+                        Toast.makeText(getApplicationContext(),
+                                "Preencha todos os campos ",
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+
+                        Boolean retorno = controleCadastro.cadastrarOng(ong, tabelaBanco, getApplicationContext());
+
+                    }
 
                 }
+            });
 
-            }
-        });
 
+        }
+
+        public void clicarBotaoConfirmar (View view){
+            Toast.makeText(this, "Cadastro Criado!", Toast.LENGTH_SHORT).show();
+            //aqui tem que jogar pro banco de dados os edit text preenchidos
+        }
+
+        public void limparDados (View view){
+            nome.setText("");
+            cnpj.setText("");
+            localizacao.setText("");
+            causa.setText("");
+            telefone.setText("");
+            site.setText("");
+            email.setText("");
+            senha.setText("");
+            resumo.setText("");
+        }
 
     }
-    
-    public void clicarBotaoConfirmar(View view) {
-        Toast.makeText(this, "Cadastro Criado!", Toast.LENGTH_SHORT).show();
-        //aqui tem que jogar pro banco de dados os edit text preenchidos
-    }
 
-    public void limparDados(View view) {
-        nome.setText("");
-        cnpj.setText("");
-        localizacao.setText("");
-        causa.setText("");
-        telefone.setText("");
-        site.setText("");
-        email.setText("");
-        senha.setText("");
-        resumo.setText("");
-    }
-
-}

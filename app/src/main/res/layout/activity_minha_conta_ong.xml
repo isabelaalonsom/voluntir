@@ -100,6 +100,33 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/LinearCausas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtViewCausas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="Causas: "
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txtViewCausasVariavel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Desenvolvimento pessoal"
+            android:textColor="#AA0B0B"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/LinearTelefone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -220,6 +247,7 @@
             android:id="@+id/btnEditar"
             android:layout_width="197dp"
             android:layout_height="wrap_content"
+            android:onClick="clicarBotaoEditarOng"
             android:layout_marginRight="110dp"
             android:layout_marginLeft="110dp"
             android:text="Editar" />

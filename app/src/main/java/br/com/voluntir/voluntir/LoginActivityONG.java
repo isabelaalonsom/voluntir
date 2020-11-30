@@ -15,6 +15,7 @@ import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.ong.CadastroONGActivity;
 import br.com.voluntir.ong.CadastroVagaActivity;
+import br.com.voluntir.ong.MinhaContaONGActivity;
 //import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
 
 
@@ -99,9 +100,9 @@ public class LoginActivityONG extends AppCompatActivity {
             startActivity(intent);
         }
 
-        /*//isso está errado, fiz so para testar a CadastroVagaActivity
-        Intent i = new Intent(this, CadastroVagaActivity.class);
-        startActivity(i);*/
+        //descomentar para testar MinhaContaOng e o botão de Editar
+//        Intent i = new Intent(this, MinhaContaONGActivity.class);
+//        startActivity(i);
     }
 
 }
