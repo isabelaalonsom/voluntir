@@ -1,7 +1,9 @@
 package br.com.voluntir.ong;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,13 +19,13 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
-//    public void clicarBotaoEditar(View view) {
-//
-//        //nao sei se é aqui que configura os edit text alimentados (ver layout pq tem comentario)
-//        Toast.makeText(this, "Editou!", Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent(this, CadastroONGActivity.class);
-//        startActivity(intent);
-//
-//    }
+    public void clicarBotaoEditar(View view) {
+
+        //nao sei se é aqui que configura os edit text alimentados (ver layout pq tem comentario)
+        //Toast.makeText(this, "Editou!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, CadastroONGActivity.class);
+        startActivity(intent);
+
+    }
 
 }
