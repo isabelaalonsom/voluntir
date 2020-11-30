@@ -14,6 +14,7 @@ import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.voluntir.controller.ControleCadastro;
+import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
@@ -28,7 +29,8 @@ public class CadastroVagaActivity extends AppCompatActivity {
     private EditText horario, periodicidade, especialidade, detalheVaga;
     private ControleCadastro controleCadastro;
     private String tabelaBanco= "vaga";
-
+    Ong ong;
+    Voluntario voluntario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,18 @@ public class CadastroVagaActivity extends AppCompatActivity {
         periodicidade = (EditText) findViewById(R.id.edtTextPeriodicidade);
         detalheVaga = (EditText) findViewById(R.id.edtTextDetalhesVaga);
 
+        //Recuperar os dados vindos de outra activity
+        Bundle dados = getIntent().getExtras();
+        //String email = dados.getString("email");
+
+        if ( dados.getSerializable("ong") instanceof Ong){
+            ong = new Ong();
+            ong = (Ong)  dados.getSerializable("ong");
+            nome.setText(ong.getNome());
+        }else{
+            voluntario = (Voluntario) dados.getSerializable("voluntario");
+
+        }
         //nome.setText(ong.getNome());
         //mascara para a DataInicio
         SimpleMaskFormatter simpleMaskDataInicio = new SimpleMaskFormatter("NN/NN/NNNN");
@@ -70,7 +84,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
                 controleCadastro = new ControleCadastro();
 
                 //pegas os dados digitados
-                vaga.setNomeOng(nome.getText().toString());
+                vaga.setNomeOng(ong.getNome());
                 vaga.setAreaConhecimento(especialidade.getText().toString());
                 vaga.setDataInicio(dataInicio.getText().toString());
                 vaga.setDataTermino(dataTermino.getText().toString());
@@ -80,9 +94,9 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
 
                 //verifica se todos os campos foram preenchidos
-                if (nome.getText().toString().isEmpty() || especialidade.getText().toString().isEmpty() ||
+                if (especialidade.getText().toString().isEmpty() ||
                         dataInicio.getText().toString().isEmpty() || dataTermino.getText().toString().isEmpty() ||
-                        especialidade.getText().toString().isEmpty() || horario.getText().toString().isEmpty() ||
+                         horario.getText().toString().isEmpty() ||
                         detalheVaga.getText().toString().isEmpty() || periodicidade.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(),
                             "Preencha todos os campos ",

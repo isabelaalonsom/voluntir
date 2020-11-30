@@ -27,7 +27,9 @@ public class MenuActivity extends AppCompatActivity {
         String email = dados.getString("email");
 
         if ( dados.getSerializable("ong") instanceof Ong){
+            ong = new Ong();
             ong = (Ong)  dados.getSerializable("ong");
+
         }else{
             voluntario = (Voluntario) dados.getSerializable("voluntario");
             botaoCriarVaga.setEnabled(false);
@@ -36,6 +38,11 @@ public class MenuActivity extends AppCompatActivity {
 
     public void clicarCriarVaga(View view) {
         Intent intent = new Intent(this, CadastroVagaActivity.class);
+        if (ong !=null){
+            intent.putExtra("ong",ong);
+        }else{
+            intent.putExtra("voluntario",voluntario);
+        }
         startActivity(intent);
     }
 }
