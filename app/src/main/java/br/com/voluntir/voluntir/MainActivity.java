@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void menuOng () {
-        Intent intent = new Intent(this, MenuActivity.class);
+        Intent intent = new Intent(this, MenuVoluntarioActivity.class);
         startActivity(intent);
     }
 
