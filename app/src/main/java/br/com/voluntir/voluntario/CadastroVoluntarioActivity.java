@@ -1,5 +1,6 @@
 package br.com.voluntir.voluntario;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -65,6 +66,39 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         SimpleMaskFormatter simpleMaskTelefone = new SimpleMaskFormatter("(NN) NNNNN-NNNN");
         MaskTextWatcher maskTelefone = new MaskTextWatcher(telefone,simpleMaskTelefone);
         telefone.addTextChangedListener(maskTelefone);
+
+        Intent i = getIntent();
+        Bundle parametros = i.getExtras();
+
+        if (parametros != null) {
+            String nomePreenchido = parametros.getString("chave_nome");
+            String sobrenomePreenchido = parametros.getString("chave_sobrenome");
+            String cpfPreenchido = parametros.getString("chave_cpf");
+            String dataNascPreenchido = parametros.getString("chave_dataNasc");
+            String emailPreenchido = parametros.getString("chave_email");
+            String telefonePreenchido = parametros.getString("chave_telefone");
+            String enderecoPreenchido = parametros.getString("chave_endereco");
+            String generoPreenchido = parametros.getString("chave_genero");
+            String descricaoTecnicaPreenchido = parametros.getString("chave_descricaoTecnica");
+
+            nome.setText(nomePreenchido);
+            sobrenome.setText(sobrenomePreenchido);
+            cpf.setText(cpfPreenchido);
+            data.setText(dataNascPreenchido);
+            email.setText(emailPreenchido);
+            telefone.setText(telefonePreenchido);
+            endereco.setText(enderecoPreenchido);
+            especialidade.setText(descricaoTecnicaPreenchido);
+
+            if (generoPreenchido.equals("Masculino")) {
+                rdBtnMasculino.setChecked(true);
+            } else {
+                rdBtnFeminino.setChecked(true);
+            }
+
+           // botaoConfirmar.setEnabled(false);
+
+        }
 
         botaoConfirmar = findViewById(R.id.btnConfirmarVoluntario);
         botaoConfirmar.setOnClickListener(new View.OnClickListener() {

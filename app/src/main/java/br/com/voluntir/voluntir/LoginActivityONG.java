@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.CadastroONGActivity;
 import br.com.voluntir.ong.CadastroVagaActivity;
+import br.com.voluntir.ong.MinhaContaONGActivity;
 import br.com.voluntir.voluntir.EsqueceuASenhaActivity;
 import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
 //import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
@@ -71,7 +72,7 @@ public class LoginActivityONG extends AppCompatActivity {
 
     public void clicarBotaoEntrar (View view) {
         //isso está errado, fiz so para testar a CadastroVagaActivity
-        Intent i = new Intent(this, CadastroVagaActivity.class);
+        Intent i = new Intent(this, MinhaContaONGActivity.class);
         startActivity(i);
     }
 

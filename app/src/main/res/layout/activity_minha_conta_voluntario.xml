@@ -29,15 +29,17 @@
             android:id="@+id/txtViewCpf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="CPF: "
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/xtViewCpfVariavel"
+            android:id="@+id/txtViewCpfVariavel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:gravity="center"
             android:text="125.856.586-85"
             android:textColor="#AA0B0B"
@@ -56,6 +58,7 @@
             android:id="@+id/txtViewNomeDoVoluntario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="Nome: "
@@ -65,6 +68,7 @@
             android:id="@+id/txtViewNomeDoVoluntarioVariavel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:gravity="center"
             android:text="Victor"
             android:textColor="#AA0B0B"
@@ -83,6 +87,7 @@
             android:id="@+id/txtViewSobrenome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="Sobrenome: "
@@ -92,6 +97,7 @@
             android:id="@+id/txtViewSobrenomeVariavel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:gravity="center"
             android:text="Capel"
             android:textColor="#AA0B0B"
@@ -110,6 +116,7 @@
             android:id="@+id/txtViewDataNasc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="Data de Nascimento: "
@@ -119,6 +126,7 @@
             android:id="@+id/txtViewDataNascVariavel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:gravity="center"
             android:text="09/12/1999"
             android:textColor="#AA0B0B"
@@ -137,6 +145,7 @@
             android:id="@+id/txtViewGenero"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="Gênero: "
@@ -147,6 +156,7 @@
             android:id="@+id/txtViewGeneroVariavel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:gravity="center"
             android:text="Masculino"
             android:textColor="#AA0B0B"
@@ -165,6 +175,7 @@
             android:id="@+id/txtViewTelefone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="Telefone: "
@@ -174,6 +185,7 @@
             android:id="@+id/txtViewTelefoneVariavel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:gravity="center"
             android:text="(11)12345-6798"
             android:textColor="#AA0B0B"
@@ -192,6 +204,7 @@
             android:id="@+id/txtViewEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="E-mail: "
@@ -201,10 +214,41 @@
             android:id="@+id/txtViewEmailVariavel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:textColor="#AA0B0B"
             android:text="victor@gmail.com"
+            android:textColor="#AA0B0B"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearEndereco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtViewEndereco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="Endereço: "
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txtViewEnderecoVariavel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="Rua Bell Aliance, 70"
+            android:textColor="#AA0B0B"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -213,6 +257,7 @@
         android:id="@+id/txtViewDescricaoTecnica"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:text="Descrição Técnica: "
         android:textSize="24sp" />
@@ -221,6 +266,7 @@
         android:id="@+id/txtViewDescricaoTecnicaVariavel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:text="Conhecimento em lógica de programação, desenvolvimento Web e Banco de Dados"
         android:textColor="#AA0B0B"
         android:textSize="24sp" />
@@ -233,18 +279,12 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnLimpar"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnEditar"
+            android:layout_width="209dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="68dp"
-            android:text="Limpar" />
-
-        <Button
-            android:id="@+id/btnConfirmar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="72dp"
-            android:text="Confirmar" />
+            android:onClick="clicarBotaoEditar"
+            android:layout_marginStart="100dp"
+            android:text="Editar" />
 
 
     </LinearLayout>
