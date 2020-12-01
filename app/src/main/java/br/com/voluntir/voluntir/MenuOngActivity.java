@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.ong.CadastroVagaActivity;
+import br.com.voluntir.ong.MinhaContaONGActivity;
 import br.com.voluntir.voluntario.MinhaContaVoluntarioActivity;
 
 public class MenuOngActivity extends AppCompatActivity {
@@ -38,8 +40,19 @@ public class MenuOngActivity extends AppCompatActivity {
 //        }
     }
 
-    public void clicarMinhaContaVoluntario(View view) {
-        Intent intent = new Intent(this, MinhaContaVoluntarioActivity.class);
+    public void clicarMinhaConta(View view) {
+        Intent intent = new Intent(this, MinhaContaONGActivity.class);
         startActivity(intent);
     }
+
+    public void clicarVagas(View view) {
+        Intent intent = new Intent(this, VagaActivity.class);
+        startActivity(intent);
+    }
+
+    public void clicarCriarVaga(View view) {
+        Intent intent = new Intent(this, CadastroVagaActivity.class);
+        startActivity(intent);
+    }
+
 }

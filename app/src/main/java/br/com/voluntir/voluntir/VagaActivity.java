@@ -41,6 +41,8 @@ public class VagaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vaga);
 
+        getSupportActionBar().hide();
+
         recyclerView = findViewById(R.id.recyclerViewVaga);
 
         //Configurar Recyclerview

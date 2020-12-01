@@ -12,6 +12,7 @@ import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.CadastroVagaActivity;
 import br.com.voluntir.ong.MinhaContaONGActivity;
 import br.com.voluntir.voluntir.R;
+import br.com.voluntir.voluntir.VagaActivity;
 
 public class MenuVoluntarioActivity extends AppCompatActivity {
     Voluntario voluntario;
@@ -44,4 +45,15 @@ public class MenuVoluntarioActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MinhaContaVoluntarioActivity.class);
         startActivity(intent);
     }
+
+    public void clicarVagasVoluntario(View view) {
+        Intent intent = new Intent(this, VagaActivity.class);
+        startActivity(intent);
+    }
+
+    public void clicarBotaoCandidaturas(View view) {
+        Intent intent = new Intent(this, CandidaturaActivity.class);
+        startActivity(intent);
+    }
+
 }

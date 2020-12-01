@@ -24,6 +24,7 @@
                 android:id="@+id/btnVagasMenuOng"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="clicarVagasVoluntario"
                 android:text="VAGAS" />
 
             <Button

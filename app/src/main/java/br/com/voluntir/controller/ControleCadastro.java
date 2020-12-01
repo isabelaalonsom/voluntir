@@ -32,9 +32,10 @@ public class ControleCadastro {
     VagaDao vagaDao;
     boolean entrou;
     private Boolean retorno;
-    boolean usuario=false;
-    public boolean cadastrarVoluntario(Voluntario dado, String tabela,Context context){
-        this.voluntario=dado;
+    boolean usuario = false;
+
+    public boolean cadastrarVoluntario(Voluntario dado, String tabela, Context context) {
+        this.voluntario = dado;
 
         voluntarioDao = new VoluntarioDao();
         try {
@@ -46,8 +47,8 @@ public class ControleCadastro {
         return retorno;
     }
 
-    public boolean cadastrarOng(Ong dado, String tabela, Context context){
-        this.ong=dado;
+    public boolean cadastrarOng(Ong dado, String tabela, Context context) {
+        this.ong = dado;
 
         ongDao = new OngDao();
         try {
@@ -60,7 +61,7 @@ public class ControleCadastro {
     }
 
     public boolean cadastrarVaga(Vaga dado, String tabela, Context context) {
-        this.vaga=dado;
+        this.vaga = dado;
 
         vagaDao = new VagaDao();
 
@@ -73,7 +74,7 @@ public class ControleCadastro {
         return retorno;
     }
 
-    public void enviarEmailRecuperarSenha(String email, final Context context){
+    public void enviarEmailRecuperarSenha(String email, final Context context) {
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
         autenticacao.sendPasswordResetEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -84,7 +85,7 @@ public class ControleCadastro {
                                     "Sucesso ao enviar email ",
                                     Toast.LENGTH_SHORT).show();
                             Log.d("EMAIL ENVIADO", "Email enviado.");
-                        }else{
+                        } else {
                             Toast.makeText(context,
                                     "Erro ao enviar email ",
                                     Toast.LENGTH_SHORT).show();
@@ -94,34 +95,34 @@ public class ControleCadastro {
                 });
     }
 
-    public Ong validarLoginOng(final Ong dado, final String nomeTabela, final Context context){
+    public Ong validarLoginOng(final Ong dado, final String nomeTabela, final Context context) {
         ongDao = new OngDao();
-        this.ong=dado;
+        this.ong = dado;
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
         autenticacao.signInWithEmailAndPassword(
-                ong.getEmailOng(),ong.getSenhaOng()
+                ong.getEmailOng(), ong.getSenhaOng()
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     //recupera os dados do usuario
                     FirebaseUser ongFirebase = task.getResult().getUser();
 
                     //recupera o uid do usuario
-                    ong.setIdOng( ongFirebase.getUid() );
+                    ong.setIdOng(ongFirebase.getUid());
 
-                    ongDao.busca(ong.getIdOng(),nomeTabela);
+                    ongDao.busca(ong.getIdOng(), nomeTabela);
 
-                                Toast.makeText(context,
-                                        "Sucesso ao fazer Login ",
-                                        Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,
+                            "Sucesso ao fazer Login ",
+                            Toast.LENGTH_SHORT).show();
 
 
-                }else{
+                } else {
                     String erroExcecao = "";
                     try {
                         throw task.getException();
-                    }catch (FirebaseAuthInvalidUserException e) {
+                    } catch (FirebaseAuthInvalidUserException e) {
                         erroExcecao = "E-mail não cadastrado ou desativado ";
                     } catch (FirebaseAuthInvalidCredentialsException e) {
                         erroExcecao = "Senha inválida";
@@ -140,40 +141,40 @@ public class ControleCadastro {
         return ong;
     }
 
-    public void validarLoginVoluntario(final Voluntario dado, final String nomeTabela, final Context context){
+    public Voluntario validarLoginVoluntario(final Voluntario dado, final String nomeTabela, final Context context) {
         voluntarioDao = new VoluntarioDao();
 
-        this.voluntario=dado;
+        this.voluntario = dado;
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
         autenticacao.signInWithEmailAndPassword(
-                voluntario.getEmail(),voluntario.getSenha()
+                voluntario.getEmail(), voluntario.getSenha()
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     //recupera os dados do usuario
                     FirebaseUser voluntarioFirebase = task.getResult().getUser();
 
                     //recupera o uid do usuario
-                    voluntario.setIdVoluntario( voluntarioFirebase.getUid() );
+                    voluntario.setIdVoluntario(voluntarioFirebase.getUid());
 
 
                     //voluntario=voluntarioDao.busca(voluntario.getIdVoluntario(),nomeTabela);
 
 
-                        Toast.makeText(context,
-                                "Sucesso ao fazer Login ",
-                                Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,
+                            "Sucesso ao fazer Login ",
+                            Toast.LENGTH_SHORT).show();
 
-                        //chamar proxima tela
-                        //Intent intent = new Intent(context, VagaActivity.class);
-                        //startActivity(intent);
+                    //chamar proxima tela
+                    //Intent intent = new Intent(context, VagaActivity.class);
+                    //startActivity(intent);
 
-                }else{
+                } else {
                     String erroExcecao = "";
                     try {
                         throw task.getException();
-                    }catch (FirebaseAuthInvalidUserException e) {
+                    } catch (FirebaseAuthInvalidUserException e) {
                         erroExcecao = "E-mail não cadastrado ou desativado ";
                     } catch (FirebaseAuthInvalidCredentialsException e) {
                         erroExcecao = "Senha inválida";
@@ -191,5 +192,7 @@ public class ControleCadastro {
             }
         });
 
+        return voluntario;
     }
+
 }

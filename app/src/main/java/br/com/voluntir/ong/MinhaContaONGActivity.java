@@ -79,7 +79,7 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
 
     }
 
-    public void clicarBotaoSair (View view) {
+    public void clicarBotaoSairOng (View view) {
         this.finishAffinity();
     }
 

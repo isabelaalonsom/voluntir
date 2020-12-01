@@ -23,6 +23,7 @@
             <Button
                 android:id="@+id/btnVagasMenuOng"
                 android:layout_width="match_parent"
+                android:onClick="clicarVagas"
                 android:layout_height="wrap_content"
                 android:text="VAGAS" />
 
@@ -39,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="clicarCriarVaga"
                 android:text="CRIAR VAGA" />
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
