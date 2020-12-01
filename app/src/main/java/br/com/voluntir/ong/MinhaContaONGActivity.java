@@ -28,9 +28,13 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
     private TextView txtEmail;
     private TextView txtResumoOng;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getReference("ong");
-    private DatabaseReference nomeOngDatabase = databaseReference.child("nome");
-    private DatabaseReference cnpjOngDatabase = databaseReference.child("cnpj");
+    //private DatabaseReference databaseReference = firebaseDatabase.getReference("ong");
+    //private DatabaseReference nomeOngDatabase = databaseReference.child("nome");
+    //private DatabaseReference cnpjOngDatabase = databaseReference.child("cnpj");
+    private DatabaseReference databaseReference = firebaseDatabase.getInstance().getReference();
+    private DatabaseReference tabelaVaga = databaseReference.child("ong");
+    private DatabaseReference nomeOngDatabase = tabelaVaga.child("nome");
+    private DatabaseReference cnpjOngDatabase = tabelaVaga.child("cnpj");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -36,7 +36,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="28dp"
         android:layout_marginBottom="250dp"
-        android:ems="10"
+
         android:hint="Digite o e-mail cadastrado"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +47,7 @@
         android:id="@+id/btnEnviar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="35dp"
         android:text="Enviar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

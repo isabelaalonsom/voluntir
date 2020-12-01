@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 public class Vaga implements Serializable {
 
-    private String idVaga;
+    //private String idVaga;
+    private int idVaga;
     private int qtdCandidaturas;
     private String areaConhecimento;
     private String descricaoVaga;
@@ -14,6 +15,14 @@ public class Vaga implements Serializable {
     private String horario;
     private String nomeOng;
     Voluntario voluntario;
+
+    public int getIdVaga() {
+        return idVaga;
+    }
+
+    public void setIdVaga(int idVaga) {
+        this.idVaga = idVaga;
+    }
 
     public String getNomeOng() {
         return nomeOng;
@@ -65,13 +74,13 @@ public class Vaga implements Serializable {
         this.horario = horario;
     }
 
-    public String getIdVaga() {
-        return idVaga;
-    }
+    //public String getIdVaga() {
+   //     return idVaga;
+    //}
 
-    public void setIdVaga(String idVaga) {
-        this.idVaga = idVaga;
-    }
+    //public void setIdVaga(String idVaga) {
+    //    this.idVaga = idVaga;
+    //}
 
     public int getQtdCandidaturas() {
         return qtdCandidaturas;
