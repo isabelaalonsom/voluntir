@@ -2,6 +2,7 @@ package br.com.voluntir.DAO;
 
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ import java.util.List;
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.voluntir.LoginActivityVoluntario;
 
 public class VoluntarioDao implements DAO<Voluntario> {
     private Voluntario voluntario;
@@ -60,7 +62,6 @@ public class VoluntarioDao implements DAO<Voluntario> {
                     Toast.makeText(appContext,
                             "Cadastrado com sucesso ",
                             Toast.LENGTH_SHORT).show();
-
                     //encerra a activity
                     //finish();
 
@@ -86,8 +87,10 @@ public class VoluntarioDao implements DAO<Voluntario> {
                             Toast.LENGTH_SHORT).show();
                     Log.w("CADASTRO", "signInWithEmail:erro"+erroExcecao, task.getException());
 
-
                 }
+
+
+
             }
         });
 

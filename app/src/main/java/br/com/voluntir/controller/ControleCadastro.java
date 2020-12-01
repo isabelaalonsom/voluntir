@@ -1,6 +1,7 @@
 package br.com.voluntir.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import br.com.voluntir.DAO.VoluntarioDao;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.voluntir.LoginActivityVoluntario;
 
 public class ControleCadastro {
     private FirebaseAuth autenticacao;
@@ -158,9 +160,7 @@ public class ControleCadastro {
                     //recupera o uid do usuario
                     voluntario.setIdVoluntario(voluntarioFirebase.getUid());
 
-
                     //voluntario=voluntarioDao.busca(voluntario.getIdVoluntario(),nomeTabela);
-
 
                     Toast.makeText(context,
                             "Sucesso ao fazer Login ",

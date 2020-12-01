@@ -94,7 +94,7 @@ public class LoginActivityONG extends AppCompatActivity {
             //if se o validarLoginOng der ok {
                 Intent intent = new Intent(getApplicationContext(), MenuOngActivity.class);
                 //para passar a ong para a proxima tela
-                //intent.putExtra("email", ong.getEmailOng());
+                intent.putExtra("ong", ong);
                 //intent.putExtra("ong", (Serializable) ong);
                 startActivity(intent);
             //}

@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.voluntir.LoginActivityVoluntario;
 import br.com.voluntir.voluntir.R;
 
 
@@ -109,7 +110,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         botaoConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clicarBotaoConfirmar();
+                //clicarBotaoConfirmar();
                 voluntario = new Voluntario();
                 controleCadastro = new ControleCadastro();
                 int radioId = radioGroup.getCheckedRadioButtonId();
@@ -128,11 +129,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 voluntario.setDatanasc(data.getText().toString());
                 voluntario.setSobrenome(sobrenome.getText().toString());
 
-                /*if(botaoFeminino.isEnabled()) {
-                    voluntario.setGenero("F");
-                } else {
-                    voluntario.setGenero("M");
-                }*/
 
                 //verifica se todos os campos foram preenchidos
                 if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty() ||
@@ -146,6 +142,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                     //VoluntarioDao voluntarioDao = new VoluntarioDao();
 
                     Boolean retorno =controleCadastro.cadastrarVoluntario(voluntario,tabelaBanco,getApplicationContext());
+
                     //voluntarioDao.adiciona(voluntario,tabelaBanco);
 
                 }
@@ -154,11 +151,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         });
     }
 
-    public void clicarBotaoConfirmar() {
-
-        Toast.makeText(this, "Cadastro criado do Voluntário!", Toast.LENGTH_SHORT).show();
-        //aqui tem que jogar pro banco de dados os edit text preenchidos
-    }
 
     public void clicarBotaoLimpar(View view) {
         nome.setText("");

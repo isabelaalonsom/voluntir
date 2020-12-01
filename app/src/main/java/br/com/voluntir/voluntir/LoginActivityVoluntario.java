@@ -101,9 +101,11 @@ public class LoginActivityVoluntario extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         } else {
             voluntario = controleCadastro.validarLoginVoluntario(voluntario, nomeTabela, getApplicationContext());
+            if (voluntario.isVoluntario()) {
+                Intent i = new Intent(LoginActivityVoluntario.this, MenuVoluntarioActivity.class);
+                startActivity(i);
+            }
 
-            Intent i = new Intent(LoginActivityVoluntario.this, MenuVoluntarioActivity.class);
-            startActivity(i);
         }
     }
 }
