@@ -20,16 +20,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Ong;
-import br.com.voluntir.model.Vaga;
 
 public class OngDao implements DAO<Ong> {
     private Ong ong;
     private FirebaseAuth autenticacao;
     private DatabaseReference bancoFirebase;
+    private final static List<Ong> ongs = new ArrayList<>();
     Boolean cadastrado=false;
 
     @Override
@@ -94,6 +95,17 @@ public class OngDao implements DAO<Ong> {
         return cadastrado;
     }
 
+//    public FirebaseUser pegaDados() {
+//        autenticacao = BancoFirebase.getFirebaseAutenticacao();
+//        FirebaseUser ongLogada = autenticacao.getCurrentUser();
+//
+//        String nome = ongLogada.getDisplayName();
+//
+//
+//
+//        return ongLogada;
+//    }
+
     @Override
     public boolean remove(Ong dado, String tabela) throws SQLException {
         return false;
@@ -127,6 +139,29 @@ public class OngDao implements DAO<Ong> {
         });
         return ong;
     }
+
+//    public void edita(Ong ong) {
+//        Ong ongEncontrada = buscaOngPeloId(ong);
+//
+//        if (ongEncontrada != null) {
+//            int posicaoDaOng = ongs.indexOf(ongEncontrada);
+//            ongs.set(posicaoDaOng, ong);
+//        }
+//    }
+
+    public Ong buscaOngPeloId(Ong ong) {
+        Ong ongEncontrada = null;
+        for (Ong o :
+                 ongs) {
+            if (o.getIdOng() == ongEncontrada.getIdOng()) {
+                return ong;
+            }
+        }
+        return null;
+    }
+
+
+
 
     @Override
     public List<Ong> listar(String criterio, String tabela) throws SQLException {

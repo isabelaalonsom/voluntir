@@ -9,8 +9,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+
 import java.io.Serializable;
 
+import br.com.voluntir.BancoFirebase;
+import br.com.voluntir.DAO.OngDao;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.ong.CadastroONGActivity;
@@ -34,6 +40,9 @@ public class LoginActivityONG extends AppCompatActivity {
     private String nomeTabela = "ong";
     private ControleCadastro controleCadastro;
 
+    private FirebaseAuth autenticacao;
+    private DatabaseReference bancoFirebase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +54,8 @@ public class LoginActivityONG extends AppCompatActivity {
         senha = (EditText) findViewById(R.id.edtTextSenhaLogin);
 
         Button btnEsqueceuASenha = findViewById(R.id.esqueceuSenhaBtn);
+
+        String emailPreenchido;
 
 
 //        btnEntrar.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +94,8 @@ public class LoginActivityONG extends AppCompatActivity {
     public void clicarBotaoEntrarOng(View view) {
         ong = new Ong();
         controleCadastro = new ControleCadastro();
+        //String emailPreenchido;
+        //emailPreenchido = ong.setEmailOng(email.getText().toString());
         ong.setEmailOng(email.getText().toString());
         ong.setSenhaOng(senha.getText().toString());
         if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty()){
@@ -91,22 +104,46 @@ public class LoginActivityONG extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }else{
             ong = controleCadastro.validarLoginOng(ong,nomeTabela,getApplicationContext());
-            //if se o validarLoginOng der ok {
-                Intent intent = new Intent(getApplicationContext(), MenuOngActivity.class);
-                //para passar a ong para a proxima tela
+
+            //coloquei o email da ong numa variavel
+            String emailPreenchido;
+            emailPreenchido = ong.getEmailOng();
+
+            Intent intent = new Intent(getApplicationContext(), MenuOngActivity.class);
+
+            //autenticacao com o banco para usar essa função getCurrentUser() que puxa varios dados do banco
+            //ongLogada é um firebaseUser
+                autenticacao = BancoFirebase.getFirebaseAutenticacao();
+                FirebaseUser ongLogada = autenticacao.getCurrentUser();
+
+                //esses pegaram
+                String emailCurrentUser = ongLogada.getEmail();
+                String idCurrentUser = ongLogada.getUid();
+
+                //não pegou o fone
+                //String foneCurrentUser = ongLogada.getPhoneNumber();
+
+                //se o emailPreenchido for igual do usuário que está logado
+                //então a ong vai receber os dados do usuário logado
+                if (emailPreenchido.equals(emailCurrentUser)) {
+                    ong.setEmailOng(emailCurrentUser);
+                    ong.setIdOng(idCurrentUser);
+                    //ong.setNome();
+                }
+
+                //toast para testar
+                //Toast.makeText(this, "Fone: " + foneCurrentUser, Toast.LENGTH_SHORT).show();
+
+                //passa dados da ong que foram recebidos no if la em cima
                 intent.putExtra("ong", ong);
-                //intent.putExtra("ong", (Serializable) ong);
+
+                //intent.putExtra("email_ong", emailPreenchido);
                 startActivity(intent);
-            //}
-
+            }
         }
-
-        //descomentar para testar MinhaContaOng e o botão de Editar
-//        Intent i = new Intent(this, MinhaContaONGActivity.class);
-//        startActivity(i);
     }
 
-}
+
 
 
 
