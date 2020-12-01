@@ -1,5 +1,6 @@
 package br.com.voluntir.ong;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +19,9 @@ import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.voluntir.EsqueceuASenhaActivity;
 import br.com.voluntir.voluntir.R;
+import br.com.voluntir.voluntir.VagaActivity;
 
 public class CadastroVagaActivity extends AppCompatActivity {
 
@@ -74,7 +77,6 @@ public class CadastroVagaActivity extends AppCompatActivity {
         botaoConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //clicarBotaoConfirmar();
                 vaga = new Vaga();
                 controleCadastro = new ControleCadastro();
 
@@ -98,8 +100,10 @@ public class CadastroVagaActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 } else {
                     //VagaDao vagaDao = new VagaDao();
-
+                    Toast.makeText(CadastroVagaActivity.this, "Vaga Criada!", Toast.LENGTH_SHORT).show();
                     Boolean retorno = controleCadastro.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
+                    Intent i = new Intent(CadastroVagaActivity.this, VagaActivity.class);
+                    startActivity(i);
                     //vagaDao.adiciona(vaga,tabelaBanco);
 
                 }
@@ -108,9 +112,6 @@ public class CadastroVagaActivity extends AppCompatActivity {
     }
 
 
-            public void clicarBotaoConfirmar(View view) {
-                Toast.makeText(this, "VagaActivity Criada!", Toast.LENGTH_SHORT).show();
-            }
 
             public void limparDadosDoCadastroVaga(View view) {
                 nome.setText("Nome da ONG");
