@@ -30,10 +30,11 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     private Spinner generoSelecionado;
     private ControleCadastro controleCadastro;
     private String tabelaBanco= "voluntario";
-    private RadioGroup rdBtnGrpGenero;
-    private RadioButton rdBtnFeminino;
-    private RadioButton rdBtnMasculino;
-
+    private RadioGroup radioGroup;
+    RadioButton radioButton;
+    private RadioButton botaoFeminino;
+    private RadioButton botaoMasculino;
+    String genero;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +50,12 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         telefone = (EditText) findViewById(R.id.edtTextTel);
         endereco = (EditText) findViewById(R.id.edtTextEndereco);
         especialidade = (EditText) findViewById(R.id.edtTextDescricao);
-        rdBtnFeminino = findViewById(R.id.rdBtnFeminino);
-        rdBtnMasculino = findViewById(R.id.rdBtnMasculino);
+        botaoFeminino = findViewById(R.id.rdBtnFeminino);
+        botaoMasculino = findViewById(R.id.rdBtnMasculino);
+
+        radioGroup = findViewById(R.id.rdBtnGrpGenero);
+
+
 
         //mascara para o Cpf
         SimpleMaskFormatter simpleMaskCpf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
@@ -90,11 +95,11 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
             endereco.setText(enderecoPreenchido);
             especialidade.setText(descricaoTecnicaPreenchido);
 
-            if (generoPreenchido.equals("Masculino")) {
-                rdBtnMasculino.setChecked(true);
+            /*if (generoPreenchido.equals("Masculino")) {
+                botaoMasculino.setChecked(true);
             } else {
-                rdBtnFeminino.setChecked(true);
-            }
+                botaoFeminino.setChecked(true);
+            }*/
 
            // botaoConfirmar.setEnabled(false);
 
@@ -107,7 +112,11 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 clicarBotaoConfirmar();
                 voluntario = new Voluntario();
                 controleCadastro = new ControleCadastro();
+                int radioId = radioGroup.getCheckedRadioButtonId();
 
+                radioButton = findViewById(radioId);
+
+                voluntario.setGenero((String) radioButton.getText());
                 //pegas os dados digitados
                 voluntario.setEmail(email.getText().toString());
                 voluntario.setSenha(senha.getText().toString());
@@ -119,11 +128,11 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 voluntario.setDatanasc(data.getText().toString());
                 voluntario.setSobrenome(sobrenome.getText().toString());
 
-                if(rdBtnFeminino.isEnabled()) {
+                /*if(botaoFeminino.isEnabled()) {
                     voluntario.setGenero("F");
                 } else {
                     voluntario.setGenero("M");
-                }
+                }*/
 
                 //verifica se todos os campos foram preenchidos
                 if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty() ||
@@ -158,10 +167,17 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         data.setText("");
         email.setText("");
         senha.setText("");
-        rdBtnFeminino.setChecked(false);
-        rdBtnMasculino.setChecked(false);
+        botaoFeminino.setChecked(false);
+        botaoMasculino.setChecked(false);
         especialidade.setText("");
         endereco.setText("");
         telefone.setText("");
+    }
+
+    public void radioButtonApertado(View view){
+        int radioId = radioGroup.getCheckedRadioButtonId();
+
+        radioButton = findViewById(radioId);
+        genero = (String) radioButton.getText();
     }
 }
