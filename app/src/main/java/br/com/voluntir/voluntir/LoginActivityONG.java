@@ -34,6 +34,7 @@ public class LoginActivityONG extends AppCompatActivity {
     private Button botaoEntrar;
     private Button botaoCriarConta;
     private Button botaoEsqueciSenha;
+    public Ong ongPegaDados;
     private Ong ong;
     private EditText email;
     private EditText senha;
@@ -92,22 +93,30 @@ public class LoginActivityONG extends AppCompatActivity {
     }
 
     public void clicarBotaoEntrarOng(View view) {
-        ong = new Ong();
+        //ong = new Ong();
+
         controleCadastro = new ControleCadastro();
-        //String emailPreenchido;
         //emailPreenchido = ong.setEmailOng(email.getText().toString());
+
         ong.setEmailOng(email.getText().toString());
         ong.setSenhaOng(senha.getText().toString());
+
+        //aqui eu tenho que alimentar a ong com os dados que faltam
+        //aqui o cesar setou o email e a senha, nao ta puxando do banco
+        //setar o resto relacionado com o id do currentuser
+
+
         if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty()){
             Toast.makeText(getApplicationContext(),
                     "Preencha todos os campos ",
                     Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             ong = controleCadastro.validarLoginOng(ong,nomeTabela,getApplicationContext());
 
             //coloquei o email da ong numa variavel
-            String emailPreenchido;
+            String emailPreenchido, nomepuxado;
             emailPreenchido = ong.getEmailOng();
+            //nomepuxado = ong.getNome();
 
             Intent intent = new Intent(getApplicationContext(), MenuOngActivity.class);
 
@@ -120,6 +129,10 @@ public class LoginActivityONG extends AppCompatActivity {
                 String emailCurrentUser = ongLogada.getEmail();
                 String idCurrentUser = ongLogada.getUid();
 
+                //OngDao dao = new OngDao();
+
+                //ongPegaDados = new Ong();
+
                 //não pegou o fone
                 //String foneCurrentUser = ongLogada.getPhoneNumber();
 
@@ -128,11 +141,11 @@ public class LoginActivityONG extends AppCompatActivity {
                 if (emailPreenchido.equals(emailCurrentUser)) {
                     ong.setEmailOng(emailCurrentUser);
                     ong.setIdOng(idCurrentUser);
-                    //ong.setNome();
                 }
 
                 //toast para testar
-                //Toast.makeText(this, "Fone: " + foneCurrentUser, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Nome: " + ong.getNome(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Id: " + ong.getIdOng(), Toast.LENGTH_SHORT).show();
 
                 //passa dados da ong que foram recebidos no if la em cima
                 intent.putExtra("ong", ong);
