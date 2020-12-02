@@ -94,6 +94,14 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
             endereco.setText(enderecoPreenchido);
             especialidade.setText(descricaoTecnicaPreenchido);
 
+            if (generoPreenchido.equals("Masculino")) {
+                botaoMasculino.setChecked(true);
+            } else if (generoPreenchido.equals("Feminino")) {
+                botaoFeminino.setChecked(true);
+            } else {
+                Toast.makeText(CadastroVoluntarioActivity.this, "Sem gênero", Toast.LENGTH_LONG).show();
+            }
+
         }
 
         botaoConfirmar = findViewById(R.id.btnConfirmarVoluntario);
@@ -107,7 +115,15 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
 
                 radioButton = findViewById(radioId);
 
-                voluntario.setGenero((String) radioButton.getText());
+                //voluntario.setGenero((String) radioButton.getText());
+                //String generoPressionado = voluntario.getGenero();
+
+                if (botaoMasculino.isPressed()) {
+                    voluntario.setGenero(botaoMasculino.getText().toString());
+                } else {
+                    voluntario.setGenero(botaoFeminino.getText().toString());
+                }
+
                 //pegas os dados digitados
                 voluntario.setEmail(email.getText().toString());
                 voluntario.setSenha(senha.getText().toString());
@@ -118,6 +134,8 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 voluntario.setEndereco(endereco.getText().toString());
                 voluntario.setDatanasc(data.getText().toString());
                 voluntario.setSobrenome(sobrenome.getText().toString());
+
+
 
 
                 //verifica se todos os campos foram preenchidos
