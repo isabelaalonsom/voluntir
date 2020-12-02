@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.voluntir.adapter.AdapterVaga;
-import br.com.voluntir.model.Candidatura;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.voluntir.R;
 
@@ -31,7 +30,6 @@ public class CandidaturaActivity extends AppCompatActivity {
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     Vaga vaga = new Vaga();
-    //Candidatura candidatura = new Candidatura();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,33 +47,15 @@ public class CandidaturaActivity extends AppCompatActivity {
         //coloca uma linha para separar
         recyclerViewCandidatura.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
 
-        Intent dados = getIntent();
-
-        if (dados.hasExtra("vaga")) {
-            vaga = (Vaga) dados.getSerializableExtra("vaga");
-
-            if (dados.hasExtra("ong")) {
-
-                vaga = (Vaga) dados.getSerializableExtra("vaga");
-
-            } else {
-                vaga = new Vaga();
-            }
-        }
-
+        trazVagaClicada();
 
         tabelaVaga.addValueEventListener(new ValueEventListener() {
             //recuperar os dados sempre que for mudado no banco
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listaVagaCandidatada.clear();
-                //DataSnapshot é o retorno do firebase
-                //Log.i("FIREBASE", snapshot.getValue().toString());
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    vaga = dataSnapshot.getValue(Vaga.class);
-                    //Log.i("FIREBASE", snapshot.getValue().toString());
-                    listaVagaCandidatada.add(vaga);
-                }
+                listaVagaCandidatada.add(vaga);
+
                 AdapterVaga adapterVaga = new AdapterVaga(listaVagaCandidatada);
                 recyclerViewCandidatura.setAdapter(adapterVaga);
             }
@@ -84,8 +64,23 @@ public class CandidaturaActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-
         });
-
     }
+
+    public void trazVagaClicada() {
+        Intent dados = getIntent();
+
+        if (dados.hasExtra("vaga")) {
+            vaga = (Vaga) dados.getSerializableExtra("vaga");
+
+            if (dados.hasExtra("vaga")) {
+
+                vaga = (Vaga) dados.getSerializableExtra("vaga");
+
+            } else {
+                vaga = new Vaga();
+            }
+        }
+    }
+
 }

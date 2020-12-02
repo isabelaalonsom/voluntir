@@ -57,7 +57,10 @@ public class CadastroVagaActivity extends AppCompatActivity {
         //String email = dados.getString("email");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        nome.setText(user.getDisplayName());
+        //nome.setText(user.getDisplayName());
+
+        //ong.setNome("ONG Ajuda Certa");
+
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
         //nome.setText(autenticacao.getCurrentUser().getDisplayName());
         //mascara para a DataInicio
@@ -83,7 +86,8 @@ public class CadastroVagaActivity extends AppCompatActivity {
                 controleCadastro = new ControleCadastro();
 
                 //pegas os dados digitados
-                vaga.setNomeOng((String) nome.getText());
+                //vaga.setNomeOng((String) nome.getText());
+                //vaga.setNomeOng(ong.getNome());
                 vaga.setAreaConhecimento(especialidade.getText().toString());
                 vaga.setDataInicio(dataInicio.getText().toString());
                 vaga.setDataTermino(dataTermino.getText().toString());
@@ -113,10 +117,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
         });
     }
 
-
-
             public void limparDadosDoCadastroVaga(View view) {
-                nome.setText("Nome da ONG");
                 especialidade.setText("");
                 dataInicio.setText("");
                 dataTermino.setText("");

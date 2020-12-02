@@ -56,8 +56,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
 
         radioGroup = findViewById(R.id.rdBtnGrpGenero);
 
-
-
         //mascara para o Cpf
         SimpleMaskFormatter simpleMaskCpf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
         MaskTextWatcher maskCpf = new MaskTextWatcher(cpf,simpleMaskCpf);
@@ -96,14 +94,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
             endereco.setText(enderecoPreenchido);
             especialidade.setText(descricaoTecnicaPreenchido);
 
-            /*if (generoPreenchido.equals("Masculino")) {
-                botaoMasculino.setChecked(true);
-            } else {
-                botaoFeminino.setChecked(true);
-            }*/
-
-           // botaoConfirmar.setEnabled(false);
-
         }
 
         botaoConfirmar = findViewById(R.id.btnConfirmarVoluntario);
@@ -141,11 +131,14 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 }else{
                     //VoluntarioDao voluntarioDao = new VoluntarioDao();
 
-                    Boolean retorno =controleCadastro.cadastrarVoluntario(voluntario,tabelaBanco,getApplicationContext());
+                    Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario,tabelaBanco,getApplicationContext());
 
                     //voluntarioDao.adiciona(voluntario,tabelaBanco);
 
                 }
+
+                Intent i = new Intent(CadastroVoluntarioActivity.this, LoginActivityVoluntario.class);
+                startActivity(i);
 
             }
         });

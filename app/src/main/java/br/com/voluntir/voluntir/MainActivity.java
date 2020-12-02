@@ -54,39 +54,45 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /*
 
-    protected void onStart() {
+    na MainActivity, não adianta ter o getCurrentUser() pq aqui ainda não tem nenhum usuario logado
+    daria pra usar só após a tela de Login, ou seja, nas telas de Menu em diante
 
-        super.onStart();
-        autenticacao = BancoFirebase.getFirebaseAutenticacao();
-        FirebaseUser currentUser = autenticacao.getCurrentUser();
-    }
+     */
 
-    private void verificarUsuarioLogado(){
-        String id;
-        autenticacao = BancoFirebase.getFirebaseAutenticacao();
-        if( autenticacao.getCurrentUser() != null){
-            id=autenticacao.getUid();
-            if (autenticacao.getUid().equals(ongDao.busca(id, "ong"))){
-                ong = new Ong();
-                ong.setIdOng(id);
-                menuOng();
-            }else{
-                voluntario = new Voluntario();
-                voluntario.setIdVoluntario(id);
-                menuVoluntario();
-            }
-        }
-    }
+//    protected void onStart() {
+//
+//        super.onStart();
+//        autenticacao = BancoFirebase.getFirebaseAutenticacao();
+//        FirebaseUser currentUser = autenticacao.getCurrentUser();
+//    }
 
-    public void menuOng () {
-        Intent intent = new Intent(this, MenuOngActivity.class);
-        startActivity(intent);
-    }
+//    private void verificarUsuarioLogado(){
+//        String id;
+//        autenticacao = BancoFirebase.getFirebaseAutenticacao();
+//        if( autenticacao.getCurrentUser() != null){
+//            id=autenticacao.getUid();
+//            if (autenticacao.getUid().equals(ongDao.busca(id, "ong"))){
+//                ong = new Ong();
+//                ong.setIdOng(id);
+//                menuOng();
+//            }else{
+//                voluntario = new Voluntario();
+//                voluntario.setIdVoluntario(id);
+//                menuVoluntario();
+//            }
+//        }
+//    }
 
-    public void menuVoluntario(){
-        Intent intent = new Intent(this, MenuVoluntarioActivity.class);
-        startActivity(intent);
-    }
+//    public void menuOng () {
+//        Intent intent = new Intent(this, MenuOngActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    public void menuVoluntario(){
+//        Intent intent = new Intent(this, MenuVoluntarioActivity.class);
+//        startActivity(intent);
+//    }
 
 }

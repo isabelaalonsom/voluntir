@@ -85,7 +85,7 @@
         android:layout_marginTop="13dp"
         android:layout_marginEnd="46dp"
         android:layout_marginBottom="27dp"
-        android:onClick="clicarCriarConta"
+        android:onClick="clicarCriarContaOng"
         android:text="Criar Conta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/esqueceuSenhaBtn"

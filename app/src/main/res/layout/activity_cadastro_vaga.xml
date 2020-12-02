@@ -51,7 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Nome da Ong"
+                    android:text="ONG Ajuda Certa!"
                     android:textSize="18sp" />
 
             </LinearLayout>

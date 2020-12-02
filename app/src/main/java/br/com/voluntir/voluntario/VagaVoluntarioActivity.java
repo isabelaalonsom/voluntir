@@ -38,6 +38,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     private DatabaseReference tabelaCandidatura = bancoReferencia.child("candidatura");
     Vaga vaga = new Vaga();
+    Vaga vagaClicada = new Vaga();
     private FirebaseAuth usuario = FirebaseAuth.getInstance();
 
     @Override
@@ -108,8 +109,20 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                                 ).show();
 
                                 Intent intent = new Intent(getApplicationContext(), CandidaturaActivity.class);
+
+                                //listaVaga.get(position);
+                                //AdapterVaga adapterVaga = new AdapterVaga();
+
+                                Vaga vagaClicada = listaVaga.get(position);
+
+//                                Toast.makeText(getApplicationContext(), "Conhecimento: " + vagaClicada.getAreaConhecimento() ,Toast.LENGTH_SHORT
+//                                ).show();
+
+                                //vagaClicada.getNomeOng();
+
+
                                 //tabelaCandidatura = tabelaVaga;
-                                intent.putExtra("vaga",vaga);
+                                intent.putExtra("vaga", vagaClicada);
                                 startActivity(intent);
 
                             }

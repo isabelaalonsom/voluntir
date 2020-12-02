@@ -34,7 +34,6 @@ public class Vaga implements Serializable {
     public void setNomeOng(String nomeOng) {
         this.nomeOng = nomeOng;
     }
-//não sei como entra aqui o foreign key da ONG
 
 
     public String getDescricaoVaga() {

@@ -217,7 +217,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:text="victor@gmail.com"
+            android:text="voluntario.voluntir@gmail.com"
             android:textColor="#AA0B0B"
             android:textSize="24sp" />
 

@@ -24,13 +24,7 @@ import br.com.voluntir.ong.CadastroONGActivity;
 
 
 public class LoginActivityONG extends AppCompatActivity {
-    //    Button criarContaBtn = findViewById(R.id.criarContaBtn);
-//    Voluntario voluntario = new Voluntario();
-//    //Ong ong = new Ong();
-//    Button btnEntrar = findViewById(R.id.btnEntrar);
 
-//    EditText edtTextEmailLogin = findViewById(R.id.edtTextEmailLogin);
-//    EditText edtTextSenhaLogin = findViewById(R.id.edtTextSenhaLogin);
     private Button botaoEntrar;
     private Button botaoCriarConta;
     private Button botaoEsqueciSenha;
@@ -56,8 +50,6 @@ public class LoginActivityONG extends AppCompatActivity {
 
         Button btnEsqueceuASenha = findViewById(R.id.esqueceuSenhaBtn);
 
-        String emailPreenchido;
-
 
 //        btnEntrar.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -78,11 +70,7 @@ public class LoginActivityONG extends AppCompatActivity {
 
     }
 
-    public void mensagemLogin(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-    }
-
-    public void clicarCriarConta(View view) {
+    public void clicarCriarContaOng(View view) {
           Intent intent = new Intent(this, CadastroONGActivity.class);
           startActivity(intent);
     }

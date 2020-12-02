@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="ONG X"
+            android:text="ONG Ajuda Certa"
             android:textColor="#AA0B0B"
             android:textSize="24sp" />
 

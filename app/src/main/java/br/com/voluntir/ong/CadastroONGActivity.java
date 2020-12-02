@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
+import br.com.voluntir.voluntir.LoginActivityONG;
 import br.com.voluntir.voluntir.MainActivity;
 import br.com.voluntir.voluntir.R;
 
@@ -112,20 +113,20 @@ public class CadastroONGActivity extends AppCompatActivity {
                     } else {
                         boolean retorno;
                         retorno = controleCadastro.cadastrarOng(ong, tabelaBanco, getApplicationContext());
-                        if (retorno == true){
-                            limparDados(null);
-                            //desloga o usuario e joga pra tela de login
-                            autenticacao = BancoFirebase.getFirebaseAutenticacao();
-                            autenticacao.signOut();
-                            Intent intent = new Intent(null , MainActivity.class);
-                            startActivity(intent);
-                        }
+//                        if (retorno == true){
+//                            limparDados(null);
+//                            //desloga o usuario e joga pra tela de login
+//                            autenticacao = BancoFirebase.getFirebaseAutenticacao();
+//                            autenticacao.signOut();
+//                            Intent intent = new Intent(null , MainActivity.class);
+//                            startActivity(intent);
+//                        }
                     }
 
-                }
+                    Intent intent = new Intent(CadastroONGActivity.this, LoginActivityONG.class);
+                    startActivity(intent);
+                 }
             });
-
-
         }
 
         public void clicarBotaoConfirmar (View view){
