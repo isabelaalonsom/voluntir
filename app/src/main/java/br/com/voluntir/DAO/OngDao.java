@@ -130,9 +130,9 @@ public class OngDao implements DAO<Ong> {
 
                 //DataSnapshot é o retorno do firebase
 
-                Log.i("ONG",snapshot.toString());
+                //Log.i("ONG",snapshot.toString());
                 Ong ong = snapshot.getValue(Ong.class);
-                Log.i("ONG", ong.toString());
+                //Log.i("ONG", ong.toString());
 
             }
 

@@ -34,9 +34,9 @@ public class AdapterVaga extends RecyclerView.Adapter<AdapterVaga.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Vaga vaga = listaVaga.get(position);
-        holder.nomeOng.setText("X");
+        holder.nomeOng.setText(vaga.getNomeOng());
         holder.areaConhecimento.setText(vaga.getAreaConhecimento());
-        holder.vaga.setText("Vagas:"+"5");
+        holder.vaga.setText("5");
 
         holder.txtViewStatus.setVisibility(View.INVISIBLE);
         holder.txtViewStatusVariavel.setVisibility(View.INVISIBLE);

@@ -22,14 +22,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="ONG:" />
+            android:text="ONG:"
+            android:textColor="@android:color/secondary_text_light" />
 
         <TextView
             android:id="@+id/textNomeOng"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="ONG Ajuda Certa!" />
+            android:text="ONG Ajuda Certa!"
+            android:textColor="@android:color/secondary_text_light" />
 
     </LinearLayout>
 
@@ -44,14 +46,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Area Conhecimento" />
+            android:text="Area Conhecimento"
+            android:textColor="@android:color/secondary_text_light" />
 
         <TextView
             android:id="@+id/txtVagas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Vagas:" />
+            android:text="Vagas:"
+            android:textColor="@android:color/secondary_text_light" />
 
     </LinearLayout>
 
@@ -66,7 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Status:" />
+            android:text="Status:"
+            android:textColor="@android:color/secondary_text_light" />
 
         <TextView
             android:id="@+id/txtStatusVariavel"
