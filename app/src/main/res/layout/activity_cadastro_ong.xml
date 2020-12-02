@@ -302,17 +302,7 @@
         </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/txtViewImagem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="Imagem:"
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="594dp" />
-
-        <LinearLayout
+            <LinearLayout
             android:id="@+id/LinearBotoes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
