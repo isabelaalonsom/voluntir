@@ -4,17 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.ong.AprovacaoCandidatoActivity;
 import br.com.voluntir.voluntir.R;
 
 public class AdapterAprovacao extends RecyclerView.Adapter<AdapterAprovacao.MyViewHolder> {
@@ -59,7 +62,30 @@ public class AdapterAprovacao extends RecyclerView.Adapter<AdapterAprovacao.MyVi
 
             candidato = itemView.findViewById(R.id.txtCandidato);
             btnAprovar = itemView.findViewById(R.id.btnAprovar);
+            btnAprovar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    btnAprovar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (btnAprovar.getText().equals("APROVAR")){
+                                btnAprovar.setText("APROVADO");
+                                btnAprovar.setTextColor(Color.GREEN);
+                            }else{
+                                btnAprovar.setText("APROVAR");
+                                btnAprovar.setTextColor(Color.BLACK);
+                            }
+
+                        }
+
+
+                    });
+                }
+            });
 
         }
     }
+
+
 }

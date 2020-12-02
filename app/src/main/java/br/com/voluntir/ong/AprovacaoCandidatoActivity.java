@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +38,7 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVoluntario = bancoReferencia.child("voluntario");
     Voluntario voluntario = new Voluntario();
-
+    Button botaoAprovado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +48,7 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
 
         recyclerViewCandidato = findViewById(R.id.recyclerViewCandidatos);
         txtNomeVoluntario = findViewById(R.id.txtViewCandidatos);
-
+        //botaoAprovado = (Button) findViewById(R.id.btnAprovar);
         //Configurar Recyclerview
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerViewCandidato.setLayoutManager(layoutManager);
@@ -64,7 +65,7 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                 listaVoluntarios.clear();
                 listaVoluntarios.add(voluntario);
 
-                txtNomeVoluntario.setText("Victor Capel");
+                //txtNomeVoluntario.setText("Victor Capel");
 
                 //alterar aqui qualquer coisa
 
@@ -98,9 +99,16 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
 //    }
 
     public void clicarBotaoAprovarCandidato(View view) {
-        Toast.makeText(this, "Candidato aprovado!", Toast.LENGTH_SHORT).show();
-        txtViewStatusVariavel.setText("Aprovado");
-        txtViewStatusVariavel.setTextColor(Color.GREEN);
+        /*botaoAprovado = (Button) findViewById(R.id.btnAprovar);
+        botaoAprovado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(this, "Candidato aprovado!", Toast.LENGTH_SHORT).show();
+                botaoAprovado.setText("Aprovado");
+                botaoAprovado.setTextColor(Color.GREEN);
+
+            }
+        });*/
     }
 
 }
