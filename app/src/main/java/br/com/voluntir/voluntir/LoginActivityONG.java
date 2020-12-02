@@ -134,6 +134,7 @@ public class LoginActivityONG extends AppCompatActivity {
                 //toast para testar
                 //Toast.makeText(this, "Nome: " + ong.getNome(), Toast.LENGTH_SHORT).show();
                 //Toast.makeText(this, "Id: " + ong.getIdOng(), Toast.LENGTH_SHORT).show();
+                ong.setIdOng(ongLogada.getUid());
 
                 //passa dados da ong que foram recebidos no if la em cima
                 intent.putExtra("ong", ong);

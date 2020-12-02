@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.DAO.OngDao;
+import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.CadastroVagaActivity;
@@ -28,7 +29,7 @@ public class MenuOngActivity extends AppCompatActivity {
     Button botaoCriarVaga;
     TextView txtEmailOng, txtNomeOng, txtIdOng;
     private FirebaseAuth autenticacao;
-
+    ControleCadastro controleCadastro;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     //private DatabaseReference databaseReference = firebaseDatabase.getInstance().getReference();
     private DatabaseReference bancoFirebase;
@@ -41,6 +42,7 @@ public class MenuOngActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
+        
         //ong = new Ong();
 
 //        txtEmailOng = findViewById(R.id.txtViewEmailOngVariavel);
