@@ -62,9 +62,6 @@ public class AdapterAprovacao extends RecyclerView.Adapter<AdapterAprovacao.MyVi
 
             candidato = itemView.findViewById(R.id.txtCandidato);
             btnAprovar = itemView.findViewById(R.id.btnAprovar);
-            btnAprovar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
                     btnAprovar.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -79,9 +76,6 @@ public class AdapterAprovacao extends RecyclerView.Adapter<AdapterAprovacao.MyVi
 
                         }
 
-
-                    });
-                }
             });
 
         }

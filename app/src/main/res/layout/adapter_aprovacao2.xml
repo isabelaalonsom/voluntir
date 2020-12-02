@@ -20,7 +20,6 @@
         <Button
             android:id="@+id/btnAprovar"
             android:layout_width="wrap_content"
-            android:onClick="clicarBotaoAprovarCandidato"
             android:layout_height="wrap_content"
             android:text="Aprovar">
 
