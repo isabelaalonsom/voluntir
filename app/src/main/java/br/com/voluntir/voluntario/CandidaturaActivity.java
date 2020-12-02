@@ -67,7 +67,6 @@ public class CandidaturaActivity extends AppCompatActivity {
                 AdapterCandidatura adapterCandidatura = new AdapterCandidatura(listaVagaCandidatada);
 
                 recyclerViewCandidatura.setAdapter(adapterCandidatura);
-
             }
 
             //trata o erro se a operação for cancelada
