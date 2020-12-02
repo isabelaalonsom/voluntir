@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.voluntir.RecyclerItemClickListener;
+import br.com.voluntir.adapter.AdapterVaga;
 import br.com.voluntir.model.Vaga;
 
 public class VagaActivity extends AppCompatActivity {
@@ -96,6 +97,7 @@ public class VagaActivity extends AppCompatActivity {
 
                             @Override
                             public void onLongItemClick(View view, int position) {
+
 
                             }
 

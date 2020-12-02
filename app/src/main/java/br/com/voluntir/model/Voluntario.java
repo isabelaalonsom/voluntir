@@ -37,7 +37,7 @@ public class Voluntario implements Serializable {
         this.email = email;
     }
 
-    @Exclude
+    //@Exclude
     public String getSenha() {
         return senha;
     }

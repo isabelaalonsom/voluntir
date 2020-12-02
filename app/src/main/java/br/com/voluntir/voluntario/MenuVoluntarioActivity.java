@@ -47,7 +47,7 @@ public class MenuVoluntarioActivity extends AppCompatActivity {
     }
 
     public void clicarVagasVoluntario(View view) {
-        Intent intent = new Intent(this, VagaActivity.class);
+        Intent intent = new Intent(this, VagaVoluntarioActivity.class);
         startActivity(intent);
     }
 

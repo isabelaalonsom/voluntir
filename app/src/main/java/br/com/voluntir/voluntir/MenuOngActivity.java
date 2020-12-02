@@ -136,16 +136,18 @@ public class MenuOngActivity extends AppCompatActivity {
 
 //    public void carregaDadosOng() {
 //
-////        autenticacao = BancoFirebase.getFirebaseAutenticacao();
-////        FirebaseUser ongLogada = autenticacao.getCurrentUser();
-////        OngDao dao = new OngDao();
-////        Ong ongTeste;
-////
-////        String emailCurrentUser = ongLogada.getEmail();
-////        String idCurrentUser = ongLogada.getUid();
-////
-////        ong.setEmailOng(emailCurrentUser);
-////        ong.setIdOng(idCurrentUser);
+//        autenticacao = BancoFirebase.getFirebaseAutenticacao();
+//        FirebaseUser ongLogada = autenticacao.getCurrentUser();
+//
+//        String emailCurrentUser = ongLogada.getEmail();
+//        String idCurrentUser = ongLogada.getUid();
+//
+//        ong.setEmailOng(emailCurrentUser);
+//        ong.setIdOng(idCurrentUser);
+//
+//        Toast.makeText(this, "Id: " + ong.getIdOng(), Toast.LENGTH_SHORT).show();
+//
+//
 //
 ////        Intent dados = getIntent();
 ////
