@@ -41,10 +41,10 @@ public class MenuOngActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        ong = new Ong();
+        //ong = new Ong();
 
-        txtEmailOng = findViewById(R.id.txtViewEmailOngVariavel);
-        txtNomeOng = findViewById(R.id.txtViewNomeOngVariavel);
+//        txtEmailOng = findViewById(R.id.txtViewEmailOngVariavel);
+//        txtNomeOng = findViewById(R.id.txtViewNomeOngVariavel);
 
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
 
@@ -52,10 +52,8 @@ public class MenuOngActivity extends AppCompatActivity {
         //private DatabaseReference tabelaOng = databaseReference.child("ong");
         //private DatabaseReference emailOngDatabase = tabelaOng.child("emailOng");
         //private DatabaseReference nomeOngDatabase = tabelaOng.child("nome");
-        FirebaseAuth autenticacao = BancoFirebase.getFirebaseAutenticacao();
 
-        carregaDadosOng();
-        preencheOng();
+
 
 //        tabelaOng.addValueEventListener(new ValueEventListener() {
 //            @Override
@@ -136,47 +134,47 @@ public class MenuOngActivity extends AppCompatActivity {
         //ver o temIdValido
     }
 
-    public void carregaDadosOng() {
-
-        autenticacao = BancoFirebase.getFirebaseAutenticacao();
-        FirebaseUser ongLogada = autenticacao.getCurrentUser();
-        OngDao dao = new OngDao();
-        Ong ongTeste;
-
-        String emailCurrentUser = ongLogada.getEmail();
-        String idCurrentUser = ongLogada.getUid();
-
-        ong.setEmailOng(emailCurrentUser);
-        ong.setIdOng(idCurrentUser);
-
-        Intent dados = getIntent();
-
-
-        if (dados.hasExtra("ong")) {
-            ong = (Ong) dados.getSerializableExtra("ong");
-            txtEmailOng.setText(ong.getEmailOng());
-            //txtIdOng.setText(ong.setIdOng();
-            txtNomeOng.setText(ong.getNome());
-            if (dados.hasExtra("ong")) {
-                //ong = (Ong) dados.getSerializableExtra("ong");
-
-                ong = (Ong) dados.getSerializableExtra("ong");
-
-                //consegui pegar a senha e o email
-                //Toast.makeText(this, "Senha: " + ong.getSenhaOng(), Toast.LENGTH_SHORT).show();
-                //Toast.makeText(this, "Id: " + ong.getIdOng(), Toast.LENGTH_SHORT).show();
-
-                preencheTextViewEmail();
-            } else {
-                ong = new Ong();
-            }
-        }
+//    public void carregaDadosOng() {
+//
+////        autenticacao = BancoFirebase.getFirebaseAutenticacao();
+////        FirebaseUser ongLogada = autenticacao.getCurrentUser();
+////        OngDao dao = new OngDao();
+////        Ong ongTeste;
+////
+////        String emailCurrentUser = ongLogada.getEmail();
+////        String idCurrentUser = ongLogada.getUid();
+////
+////        ong.setEmailOng(emailCurrentUser);
+////        ong.setIdOng(idCurrentUser);
+//
+////        Intent dados = getIntent();
+////
+////
+////        if (dados.hasExtra("ong")) {
+////            ong = (Ong) dados.getSerializableExtra("ong");
+////            txtEmailOng.setText(ong.getEmailOng());
+////            //txtIdOng.setText(ong.setIdOng();
+////            txtNomeOng.setText(ong.getNome());
+////            if (dados.hasExtra("ong")) {
+////                //ong = (Ong) dados.getSerializableExtra("ong");
+////
+////                ong = (Ong) dados.getSerializableExtra("ong");
+//
+//                //consegui pegar a senha e o email
+//                //Toast.makeText(this, "Senha: " + ong.getSenhaOng(), Toast.LENGTH_SHORT).show();
+//                //Toast.makeText(this, "Id: " + ong.getIdOng(), Toast.LENGTH_SHORT).show();
+//
+//                preencheTextViewEmail();
+//            } else {
+//                ong = new Ong();
+//            }
+//        }
 
 //        if (dados.hasExtra("email_ong")) {
 //            ong = (Ong) dados.getSerializableExtra("email_ong");
 //            txtEmailOng.setText(ong.getEmailOng());
 ////          txtNomeOng.setText(ong.getNome()); }
-    }
+//    }
 
 
     public void clicarMinhaConta(View view) {

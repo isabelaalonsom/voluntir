@@ -93,7 +93,7 @@ public class LoginActivityONG extends AppCompatActivity {
     }
 
     public void clicarBotaoEntrarOng(View view) {
-        //ong = new Ong();
+        ong = new Ong();
 
         controleCadastro = new ControleCadastro();
         //emailPreenchido = ong.setEmailOng(email.getText().toString());

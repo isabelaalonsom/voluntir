@@ -36,24 +36,15 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/txtViewEmailOngVariavel"
+                android:id="@+id/txtViewNomeOng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="8dp"
-                android:text="Email da ONG!"
+                android:text="ONG Ajuda certa!"
                 android:textSize="24sp" />
 
         </LinearLayout>
-
-            <TextView
-                android:id="@+id/txtViewNomeOngVariavel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="8dp"
-                android:text="Nome da ONG!"
-                android:textSize="24sp" />
 
 
             <Button
@@ -78,5 +69,6 @@
                 android:text="CRIAR VAGA" />
 
         </LinearLayout>
+
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
