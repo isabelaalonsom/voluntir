@@ -16,6 +16,9 @@ public class Vaga implements Serializable {
     private String nomeOng;
     Voluntario voluntario;
 
+    public Vaga() {
+    }
+
     public int getIdVaga() {
         return idVaga;
     }

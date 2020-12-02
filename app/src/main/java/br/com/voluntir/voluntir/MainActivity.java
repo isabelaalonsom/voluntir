@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.DAO.OngDao;
@@ -51,6 +52,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+
+    protected void onStart() {
+
+        super.onStart();
+        autenticacao = BancoFirebase.getFirebaseAutenticacao();
+        FirebaseUser currentUser = autenticacao.getCurrentUser();
     }
 
     private void verificarUsuarioLogado(){

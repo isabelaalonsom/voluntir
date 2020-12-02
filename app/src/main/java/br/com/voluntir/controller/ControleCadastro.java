@@ -42,6 +42,7 @@ public class ControleCadastro {
         voluntarioDao = new VoluntarioDao();
         try {
             retorno = voluntarioDao.adiciona(voluntario, tabela, context);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,11 +54,8 @@ public class ControleCadastro {
         this.ong = dado;
 
         ongDao = new OngDao();
-        try {
+
             retorno = ongDao.adiciona(ong, tabela, context);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         return retorno;
     }

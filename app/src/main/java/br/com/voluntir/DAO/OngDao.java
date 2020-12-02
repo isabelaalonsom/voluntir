@@ -1,6 +1,7 @@
 package br.com.voluntir.DAO;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -25,13 +26,14 @@ import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Ong;
+import br.com.voluntir.voluntir.MainActivity;
 
 public class OngDao implements DAO<Ong> {
     private Ong ong;
     private FirebaseAuth autenticacao;
     private DatabaseReference bancoFirebase;
     private final static List<Ong> ongs = new ArrayList<>();
-    Boolean cadastrado=false;
+    boolean cadastrado;
 
     @Override
     public boolean adiciona(Ong dado, final String tabela, final Context appContext) {
@@ -57,10 +59,11 @@ public class OngDao implements DAO<Ong> {
                     //seta o valor do proprio usuario
                     bancoReferencia.child(tabela).child(ong.getIdOng()).setValue(ong);
                     //desloga o usuário
-                    autenticacao.signOut();
+
                     Toast.makeText(appContext,
                             "Cadastrado com sucesso ",
                             Toast.LENGTH_SHORT).show();
+
 
                     //encerra a activity
                     //finish();
@@ -120,14 +123,16 @@ public class OngDao implements DAO<Ong> {
     public Ong busca(final String id, String tabela) {
 
         bancoFirebase = BancoFirebase.getBancoReferencia();
-        bancoFirebase.child(tabela).child(id).addValueEventListener(new ValueEventListener() {
+        bancoFirebase.child(tabela).equalTo(id).addValueEventListener(new ValueEventListener() {
             //recuperar os dados sempre que for mudado no banco
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 //DataSnapshot é o retorno do firebase
 
-                ong = snapshot.getValue(Ong.class);
+                Log.i("ONG",snapshot.toString());
+                Ong ong = snapshot.getValue(Ong.class);
+                Log.i("ONG", ong.toString());
 
             }
 

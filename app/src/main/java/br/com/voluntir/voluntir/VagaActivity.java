@@ -89,7 +89,7 @@ public class VagaActivity extends AppCompatActivity {
                                         "Item pressionado: " ,
                                         Toast.LENGTH_SHORT
                                 ).show();
-                                Intent intent = new Intent(getApplicationContext(), VisualizacaoVagaActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), VoluntarioVisualizarVaga.class);
                                 intent.putExtra("vaga",vaga);
                                 startActivity(intent);
                             }

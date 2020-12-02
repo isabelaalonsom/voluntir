@@ -1,5 +1,7 @@
 package br.com.voluntir.model;
 
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
 
 public class Ong implements Serializable {
@@ -13,6 +15,9 @@ public class Ong implements Serializable {
     private String causas;
     private String resumoOng;
     private String telefone;
+
+    public Ong() {
+    }
 
     public String getIdOng() {
         return idOng;
@@ -38,6 +43,7 @@ public class Ong implements Serializable {
         this.emailOng = emailOng;
     }
 
+    @Exclude
     public String getSenhaOng() {
         return senhaOng;
     }

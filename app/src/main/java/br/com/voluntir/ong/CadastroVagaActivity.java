@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.controller.ControleCadastro;
@@ -55,9 +56,10 @@ public class CadastroVagaActivity extends AppCompatActivity {
         Bundle dados = getIntent().getExtras();
         //String email = dados.getString("email");
 
-
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        nome.setText(user.getDisplayName());
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
-        nome.setText(autenticacao.getCurrentUser().getDisplayName());
+        //nome.setText(autenticacao.getCurrentUser().getDisplayName());
         //mascara para a DataInicio
         SimpleMaskFormatter simpleMaskDataInicio = new SimpleMaskFormatter("NN/NN/NNNN");
         MaskTextWatcher maskDataInicio = new MaskTextWatcher(dataInicio,simpleMaskDataInicio);
@@ -81,7 +83,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
                 controleCadastro = new ControleCadastro();
 
                 //pegas os dados digitados
-                vaga.setNomeOng(autenticacao.getCurrentUser().getDisplayName());
+                vaga.setNomeOng((String) nome.getText());
                 vaga.setAreaConhecimento(especialidade.getText().toString());
                 vaga.setDataInicio(dataInicio.getText().toString());
                 vaga.setDataTermino(dataTermino.getText().toString());

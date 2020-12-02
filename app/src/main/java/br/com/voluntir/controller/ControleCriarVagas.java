@@ -20,7 +20,7 @@ public class ControleCriarVagas {
         return listaVaga;
     }
 
-    public void candidatarVaga(){
+    public void candidatarVaga(Vaga vaga){
         vagaDao.atualiza(vaga,tabela);
     }
 }

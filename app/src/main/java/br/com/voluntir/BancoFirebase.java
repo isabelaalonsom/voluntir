@@ -8,6 +8,7 @@ public class BancoFirebase {
     private static DatabaseReference bancoReferencia ;
     private static FirebaseAuth autenticacao;
 
+    //pega referencia do no inicial do banco
     public static DatabaseReference getBancoReferencia() {
         if ( bancoReferencia == null){
             bancoReferencia = FirebaseDatabase.getInstance().getReference();
