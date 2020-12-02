@@ -103,6 +103,10 @@ public class VagaActivity extends AppCompatActivity {
                             @Override
                             public void onLongItemClick(View view, int position) {
                                 Intent i = new Intent(VagaActivity.this, AprovacaoCandidatoActivity.class);
+
+                                //i.putExtra("nome_voluntario", vaga);
+                                //i.putExtra("nome_voluntario", voluntario.getNome());
+
                                 startActivity(i);
 
                             }

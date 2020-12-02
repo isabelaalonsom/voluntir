@@ -32,7 +32,7 @@ public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Vaga vaga = listaVaga.get(position);
-        holder.nomeOng.setText("X");
+        //holder.nomeOng.setText("X");
         holder.areaConhecimento.setText(vaga.getAreaConhecimento());
         holder.vaga.setText("Vagas:"+"5");
 
