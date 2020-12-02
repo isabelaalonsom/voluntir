@@ -45,7 +45,7 @@ public class CandidaturaActivity extends AppCompatActivity {
 
         recyclerViewCandidatura = findViewById(R.id.recyclerViewCandidaturas);
         txtViewStatus = findViewById(R.id.txtStatus);
-        txtViewStatusVariavel = findViewById(R.id.txtViewCausasVariavel);
+        txtViewStatusVariavel = findViewById(R.id.txtStatusVariavel);
 
 
         //Configurar Recyclerview

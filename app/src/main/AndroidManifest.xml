@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="br.com.voluntir.voluntario.VagaVoluntarioActivity"></activity>
+        <activity android:name="br.com.voluntir.adapter.AdapterAprovacao"></activity>
+        <activity android:name="br.com.voluntir.ong.AprovacaoCandidatoActivity" />
+        <activity android:name="br.com.voluntir.voluntario.VagaVoluntarioActivity" />
         <activity android:name=".VoluntarioVisualizarVaga" />
         <activity android:name="br.com.voluntir.voluntario.CandidaturaActivity" />
         <activity android:name=".VagaActivity" />

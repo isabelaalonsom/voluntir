@@ -24,12 +24,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.voluntir.RecyclerItemClickListener;
+import br.com.voluntir.adapter.AdapterAprovacao;
 import br.com.voluntir.adapter.AdapterVaga;
 import br.com.voluntir.model.Vaga;
+import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.ong.AprovacaoCandidatoActivity;
 
 public class VagaActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<Vaga> listaVaga = new ArrayList<>();
+    private List<Voluntario> listaVoluntario = new ArrayList<>();
     //cria referencia para o banco de dados e getinstance estamos recuperando a instancia do
     // firebase utilizada para salvar e o getReferecence volta pro nó raiz
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
@@ -66,6 +70,7 @@ public class VagaActivity extends AppCompatActivity {
                     listaVaga.add(vaga);
                 }
                 AdapterVaga adapterVaga = new AdapterVaga(listaVaga);
+                AdapterAprovacao adapterAprovacao = new AdapterAprovacao(listaVoluntario);
                 recyclerView.setAdapter(adapterVaga);
             }
             //trata o erro se a operação for cancelada
@@ -97,7 +102,8 @@ public class VagaActivity extends AppCompatActivity {
 
                             @Override
                             public void onLongItemClick(View view, int position) {
-
+                                Intent i = new Intent(VagaActivity.this, AprovacaoCandidatoActivity.class);
+                                startActivity(i);
 
                             }
 
