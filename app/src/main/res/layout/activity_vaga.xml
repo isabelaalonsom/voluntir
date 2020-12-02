@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
         android:layout_marginEnd="177dp"
+        android:layout_marginLeft="5dp"
         android:text="Dê um clique longo na vaga que deseja visualizar os candidatos"
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewVaga"
         app:layout_constraintEnd_toEndOf="parent"
