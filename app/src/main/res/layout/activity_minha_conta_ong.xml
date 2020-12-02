@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="69.716.797/0001-24"
+            android:text="68.999.567/4326-19"
             android:textColor="#AA0B0B"
             android:textSize="24sp" />
 
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="Rua Bell Aliance, São Caetano do Sul"
+            android:text="Estrada das Lágrimas, 100"
             android:textColor="#AA0B0B"
             android:textSize="24sp" />
 
@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="(11)99744-1254"
+            android:text="(11) 94475-8229"
             android:textColor="#AA0B0B"
             android:textSize="24sp" />
 
@@ -185,7 +185,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="ongx.com.br"
+            android:text="www.ajudacerta.org"
             android:textColor="#AA0B0B"
             android:textSize="24sp" />
 
@@ -214,7 +214,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="ongx@gmail.com"
+            android:text="ajudacerta@gmail.com"
             android:textColor="#AA0B0B"
             android:textSize="24sp" />
 
@@ -245,7 +245,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:gravity="center"
-        android:text="A ONG X tem sua localização em São Caetano do Sul, há 5 anos trabalhando no desenvolvimento de pessoas para recolocação no mercado de trabalho"
+        android:text="somos uma ONG que garante educação gratuita para todas as idades"
         android:textColor="#AA0B0B"
         android:textSize="24sp" />
 

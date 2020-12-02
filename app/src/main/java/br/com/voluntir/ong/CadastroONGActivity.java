@@ -99,7 +99,7 @@ public class CadastroONGActivity extends AppCompatActivity {
                     ong.setTelefone(telefone.getText().toString());
                     ong.setLocalizacao(localizacao.getText().toString());
                     ong.setResumoOng(resumo.getText().toString());
-
+                    ong.setSite(site.getText().toString());
                     //verifica se não tem campos em branco
                     if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty() ||
                             cnpj.getText().toString().isEmpty() || nome.getText().toString().isEmpty() ||
