@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -50,6 +51,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerViewVaga);
 
+
         //Configurar Recyclerview
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -71,7 +73,8 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                 }
                 AdapterVaga adapterVaga = new AdapterVaga(listaVaga);
                 recyclerView.setAdapter(adapterVaga);
-//                tabelaCandidatura = tabelaVaga;
+
+
             }
             //trata o erro se a operação for cancelada
             @Override
@@ -110,18 +113,8 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
 
                                 Intent intent = new Intent(getApplicationContext(), CandidaturaActivity.class);
 
-                                //listaVaga.get(position);
-                                //AdapterVaga adapterVaga = new AdapterVaga();
-
                                 Vaga vagaClicada = listaVaga.get(position);
 
-//                                Toast.makeText(getApplicationContext(), "Conhecimento: " + vagaClicada.getAreaConhecimento() ,Toast.LENGTH_SHORT
-//                                ).show();
-
-                                //vagaClicada.getNomeOng();
-
-
-                                //tabelaCandidatura = tabelaVaga;
                                 intent.putExtra("vaga", vagaClicada);
                                 startActivity(intent);
 
@@ -134,6 +127,5 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                         }
                 )
         );
-
     }
 }

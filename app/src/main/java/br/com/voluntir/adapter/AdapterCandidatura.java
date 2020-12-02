@@ -1,10 +1,8 @@
 package br.com.voluntir.adapter;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,10 +13,10 @@ import java.util.List;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.voluntir.R;
 
-public class AdapterVaga extends RecyclerView.Adapter<AdapterVaga.MyViewHolder> {
+public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.MyViewHolder> {
     private List<Vaga> listaVaga;
 
-    public AdapterVaga(List<Vaga> lista) {
+    public AdapterCandidatura(List<Vaga> lista) {
         this.listaVaga = lista;
     }
 
@@ -26,7 +24,7 @@ public class AdapterVaga extends RecyclerView.Adapter<AdapterVaga.MyViewHolder> 
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemLista = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.adapter_vaga, parent, false);
+                .inflate(R.layout.adapter_candidatura, parent, false);
 
         return new MyViewHolder(itemLista);
     }
@@ -38,8 +36,8 @@ public class AdapterVaga extends RecyclerView.Adapter<AdapterVaga.MyViewHolder> 
         holder.areaConhecimento.setText(vaga.getAreaConhecimento());
         holder.vaga.setText("Vagas:"+"5");
 
-        holder.txtViewStatus.setVisibility(View.INVISIBLE);
-        holder.txtViewStatusVariavel.setVisibility(View.INVISIBLE);
+        holder.txtViewStatus.setVisibility(View.VISIBLE);
+        holder.txtViewStatusVariavel.setVisibility(View.VISIBLE);
 
     }
 

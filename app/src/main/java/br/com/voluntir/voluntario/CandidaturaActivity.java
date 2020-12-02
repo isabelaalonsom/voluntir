@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,17 +21,20 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.voluntir.adapter.AdapterCandidatura;
 import br.com.voluntir.adapter.AdapterVaga;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.voluntir.R;
 
 public class CandidaturaActivity extends AppCompatActivity {
 
+    private TextView txtViewStatus, txtViewStatusVariavel;
     private RecyclerView recyclerViewCandidatura;
     private List<Vaga> listaVagaCandidatada = new ArrayList<>();
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     Vaga vaga = new Vaga();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,9 @@ public class CandidaturaActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         recyclerViewCandidatura = findViewById(R.id.recyclerViewCandidaturas);
+        txtViewStatus = findViewById(R.id.txtStatus);
+        txtViewStatusVariavel = findViewById(R.id.txtViewCausasVariavel);
+
 
         //Configurar Recyclerview
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -56,9 +64,12 @@ public class CandidaturaActivity extends AppCompatActivity {
                 listaVagaCandidatada.clear();
                 listaVagaCandidatada.add(vaga);
 
-                AdapterVaga adapterVaga = new AdapterVaga(listaVagaCandidatada);
-                recyclerViewCandidatura.setAdapter(adapterVaga);
+                AdapterCandidatura adapterCandidatura = new AdapterCandidatura(listaVagaCandidatada);
+
+                recyclerViewCandidatura.setAdapter(adapterCandidatura);
+
             }
+
             //trata o erro se a operação for cancelada
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
