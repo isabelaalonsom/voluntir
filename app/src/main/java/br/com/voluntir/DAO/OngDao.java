@@ -1,7 +1,6 @@
 package br.com.voluntir.DAO;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -26,13 +25,13 @@ import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Ong;
-import br.com.voluntir.voluntir.MainActivity;
+import br.com.voluntir.model.Vaga;
 
 public class OngDao implements DAO<Ong> {
     private Ong ong;
     private FirebaseAuth autenticacao;
     private DatabaseReference bancoFirebase;
-    private final static List<Ong> ongs = new ArrayList<>();
+    private final static List<Ong> ongList = new ArrayList<>();
     boolean cadastrado;
 
     @Override
@@ -123,17 +122,41 @@ public class OngDao implements DAO<Ong> {
     public Ong busca(final String id, String tabela) {
 
         bancoFirebase = BancoFirebase.getBancoReferencia();
-        bancoFirebase.child(tabela).equalTo(id).addValueEventListener(new ValueEventListener() {
+        bancoFirebase.child("ong").orderByKey().equalTo(id).addValueEventListener(new ValueEventListener() {
             //recuperar os dados sempre que for mudado no banco
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 //DataSnapshot é o retorno do firebase
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Ong ong = dataSnapshot.getValue(Ong.class);
+                    ongList.add(ong);
 
-                //Log.i("ONG",snapshot.toString());
-                Ong ong = snapshot.getValue(Ong.class);
-                //Log.i("ONG", ong.toString());
+//                    ongList.add(ong);
+                }
+                //Log.i("ONG",ongList.toString());
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    ong = dataSnapshot.getValue(Ong.class);
+                    Log.i("FIREBASE", dataSnapshot.getValue().toString());
+                    //listaVaga.add(vaga);
+                }
+                Log.i("FIREBASE", ong.getNome());
+                Log.i("FIREBASE", ong.getIdOng());
+                Log.i("FIREBASE", ong.getEmailOng());
+                Log.i("FIREBASE", ong.getCausas());
+                Log.i("FIREBASE", ong.getCpnj());
+                Log.i("FIREBASE", ong.getLocalizacao());
+                Log.i("FIREBASE", ong.getTelefone());
 
+                //Log.i("ONG",id);
+                //ong = new Ong();
+                //ong= snapshot.getValue(Ong.class);
+//                Log.i("ONG", ong.toString());
+                //ong.setIdOng(snapshot.getKey());
+                //Log.i("ONG", ong.getIdOng());
+                //snapshot.getValue();
+//                Log.i("ONG", (String) snapshot.getKey());
+//                Log.i("ONG", ong.getIdOng());
             }
 
             @Override
@@ -141,8 +164,11 @@ public class OngDao implements DAO<Ong> {
 
             }
 
+
         });
         return ong;
+
+
     }
 
 //    public void edita(Ong ong) {
@@ -157,7 +183,7 @@ public class OngDao implements DAO<Ong> {
     public Ong buscaOngPeloId(Ong ong) {
         Ong ongEncontrada = null;
         for (Ong o :
-                 ongs) {
+                ongList) {
             if (o.getIdOng() == ongEncontrada.getIdOng()) {
                 return ong;
             }

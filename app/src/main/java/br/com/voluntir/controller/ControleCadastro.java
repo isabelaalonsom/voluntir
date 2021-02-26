@@ -22,20 +22,22 @@ import br.com.voluntir.DAO.VoluntarioDao;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
-import br.com.voluntir.voluntir.LoginActivityVoluntario;
+import br.com.voluntir.voluntir.MenuOngActivity;
+import br.com.voluntir.voluntir.VagaActivity;
 
 public class ControleCadastro {
     private FirebaseAuth autenticacao;
     Voluntario voluntario;
     VoluntarioDao voluntarioDao;
     Ong ong;
+    Ong ongRetorno;
     OngDao ongDao;
     Vaga vaga;
     VagaDao vagaDao;
     boolean entrou;
-    private Boolean retorno;
+    boolean retorno = false;
     boolean usuario = false;
-
+    boolean terminou= false;
     public boolean cadastrarVoluntario(Voluntario dado, String tabela, Context context) {
         this.voluntario = dado;
 
@@ -95,50 +97,76 @@ public class ControleCadastro {
                 });
     }
 
-    public Ong validarLoginOng(final Ong dado, final String nomeTabela, final Context context) {
+
+
+
+    public void validarLoginOng(final Ong dado, final String nomeTabela, final Context context) {
         ongDao = new OngDao();
-        this.ong = dado;
-        autenticacao = BancoFirebase.getFirebaseAutenticacao();
-        autenticacao.signInWithEmailAndPassword(
-                ong.getEmailOng(), ong.getSenhaOng()
-        ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    //recupera os dados do usuario
-                    FirebaseUser ongFirebase = task.getResult().getUser();
 
-                    //recupera o uid do usuario
-                    ong.setIdOng(ongFirebase.getUid());
+        Task taskretorno;
 
-                    ongDao.busca(ong.getIdOng(), nomeTabela);
+            autenticacao = BancoFirebase.getFirebaseAutenticacao();
+            autenticacao.signInWithEmailAndPassword(
+                    dado.getEmailOng(), dado.getSenhaOng()
+            ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        retorno = true;
+                        //recupera os dados do usuario
+                        FirebaseUser ongFirebase = autenticacao.getCurrentUser();
 
-                    Toast.makeText(context,
-                            "Sucesso ao fazer Login ",
-                            Toast.LENGTH_SHORT).show();
+                        //recupera o uid do usuario
+                        //ong.setIdOng(ongFirebase.getUid());
+
+                        Toast.makeText(context,
+                                "id: " + ongFirebase.getUid(),
+                                Toast.LENGTH_SHORT).show();
+                        //ongRetorno=ongDao.busca(ong.getIdOng(), nomeTabela);
+                        ongRetorno=ongDao.busca(ongFirebase.getUid().toString(), nomeTabela);
+
+                        Toast.makeText(context,
+                                "Sucesso ao fazer Login ",
+                                Toast.LENGTH_SHORT).show();
+
+//                        Toast.makeText(context,
+//                                "Retorno ong: " + ongRetorno.getIdOng(),
+//                                Toast.LENGTH_SHORT).show();
+
+                        if (ongRetorno.getIdOng() != null) {
+                            Intent intent = new Intent(context.getApplicationContext(), VagaActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            context.startActivity(intent);
+                        }
 
 
-                } else {
-                    String erroExcecao = "";
-                    try {
-                        throw task.getException();
-                    } catch (FirebaseAuthInvalidUserException e) {
-                        erroExcecao = "E-mail não cadastrado ou desativado ";
-                    } catch (FirebaseAuthInvalidCredentialsException e) {
-                        erroExcecao = "Senha inválida";
-                    } catch (Exception e) {
-                        erroExcecao = "Ao fazer login";
-                        e.printStackTrace();
+                    } else {
+                        String erroExcecao = "";
+                        try {
+                            throw task.getException();
+                        } catch (FirebaseAuthInvalidUserException e) {
+                            erroExcecao = "E-mail não cadastrado ou desativado ";
+                        } catch (FirebaseAuthInvalidCredentialsException e) {
+                            erroExcecao = "Senha inválida";
+                        } catch (Exception e) {
+                            erroExcecao = "Ao fazer login";
+                            e.printStackTrace();
+                        }
+
+                        Log.w("Login", "erro ao fazer login", task.getException());
+                        Toast.makeText(context,
+                                "Erro: " + erroExcecao,
+                                Toast.LENGTH_SHORT).show();
+                        terminou = true;
+
+
                     }
 
-                    Log.w("Login", "erro ao fazer login", task.getException());
-                    Toast.makeText(context,
-                            "Erro: " + erroExcecao,
-                            Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-        return ong;
+
+            });
+
+
     }
 
     public Voluntario validarLoginVoluntario(final Voluntario dado, final String nomeTabela, final Context context) {
@@ -189,6 +217,7 @@ public class ControleCadastro {
                 }
             }
         });
+
 
         return voluntario;
     }

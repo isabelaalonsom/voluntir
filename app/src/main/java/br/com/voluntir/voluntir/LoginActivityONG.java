@@ -2,6 +2,7 @@ package br.com.voluntir.voluntir;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,8 +72,8 @@ public class LoginActivityONG extends AppCompatActivity {
     }
 
     public void clicarCriarContaOng(View view) {
-          Intent intent = new Intent(this, CadastroONGActivity.class);
-          startActivity(intent);
+        Intent intent = new Intent(this, CadastroONGActivity.class);
+        startActivity(intent);
     }
 
     public void clicarBotaoEsqueceuASenha(View view) {
@@ -94,56 +95,57 @@ public class LoginActivityONG extends AppCompatActivity {
         //setar o resto relacionado com o id do currentuser
 
 
-        if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty()){
+        if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty()) {
             Toast.makeText(getApplicationContext(),
                     "Preencha todos os campos ",
                     Toast.LENGTH_SHORT).show();
         } else {
-            ong = controleCadastro.validarLoginOng(ong,nomeTabela,getApplicationContext());
-
+            boolean resposta;
+            controleCadastro.validarLoginOng(ong, nomeTabela, getApplicationContext());
+            Log.i("ONG", ong.toString());
             //coloquei o email da ong numa variavel
             String emailPreenchido, nomepuxado;
             emailPreenchido = ong.getEmailOng();
             //nomepuxado = ong.getNome();
 
-            Intent intent = new Intent(getApplicationContext(), MenuOngActivity.class);
 
             //autenticacao com o banco para usar essa função getCurrentUser() que puxa varios dados do banco
             //ongLogada é um firebaseUser
-                autenticacao = BancoFirebase.getFirebaseAutenticacao();
-                FirebaseUser ongLogada = autenticacao.getCurrentUser();
+            autenticacao = BancoFirebase.getFirebaseAutenticacao();
+            FirebaseUser ongLogada = autenticacao.getCurrentUser();
 
-                //esses pegaram
-                String emailCurrentUser = ongLogada.getEmail();
-                String idCurrentUser = ongLogada.getUid();
+    /*
+            //esses pegaram
+            String emailCurrentUser = ongLogada.getEmail();
+            String idCurrentUser = ongLogada.getUid();
 
-                //OngDao dao = new OngDao();
+            //OngDao dao = new OngDao();
 
-                //ongPegaDados = new Ong();
+            //ongPegaDados = new Ong();
 
-                //não pegou o fone
-                //String foneCurrentUser = ongLogada.getPhoneNumber();
+            //não pegou o fone
+            //String foneCurrentUser = ongLogada.getPhoneNumber();
 
-                //se o emailPreenchido for igual do usuário que está logado
-                //então a ong vai receber os dados do usuário logado
-                if (emailPreenchido.equals(emailCurrentUser)) {
-                    ong.setEmailOng(emailCurrentUser);
-                    ong.setIdOng(idCurrentUser);
-                }
-
-                //toast para testar
-                //Toast.makeText(this, "Nome: " + ong.getNome(), Toast.LENGTH_SHORT).show();
-                //Toast.makeText(this, "Id: " + ong.getIdOng(), Toast.LENGTH_SHORT).show();
-                ong.setIdOng(ongLogada.getUid());
-
-                //passa dados da ong que foram recebidos no if la em cima
-                intent.putExtra("ong", ong);
-
-                //intent.putExtra("email_ong", emailPreenchido);
-                startActivity(intent);
+            //se o emailPreenchido for igual do usuário que está logado
+            //então a ong vai receber os dados do usuário logado
+            if (emailPreenchido.equals(emailCurrentUser)) {
+                ong.setEmailOng(emailCurrentUser);
+                ong.setIdOng(idCurrentUser);
             }
+
+            //toast para testar
+            //Toast.makeText(this, "Nome: " + ong.getNome(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Id: " + ong.getIdOng(), Toast.LENGTH_SHORT).show();
+            ong.setIdOng(ongLogada.getUid());
+
+            //passa dados da ong que foram recebidos no if la em cima
+            intent.putExtra("ong", ong);
+
+            //intent.putExtra("email_ong", emailPreenchido);
+            startActivity(intent);*/
         }
     }
+}
 
 
 
