@@ -1,6 +1,8 @@
 package br.com.voluntir.DAO;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -8,6 +10,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -23,9 +26,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.callback.Callback;
+
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
+import br.com.voluntir.voluntir.VagaActivity;
 
 public class OngDao implements DAO<Ong> {
     private Ong ong;
@@ -122,24 +128,16 @@ public class OngDao implements DAO<Ong> {
     public Ong busca(final String id, String tabela) {
 
         bancoFirebase = BancoFirebase.getBancoReferencia();
-        bancoFirebase.child("ong").orderByKey().equalTo(id).addValueEventListener(new ValueEventListener() {
-            //recuperar os dados sempre que for mudado no banco
+        bancoFirebase.child("ong").orderByKey().equalTo(id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                //DataSnapshot é o retorno do firebase
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    Ong ong = dataSnapshot.getValue(Ong.class);
-                    ongList.add(ong);
-
-//                    ongList.add(ong);
-                }
-                //Log.i("ONG",ongList.toString());
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     ong = dataSnapshot.getValue(Ong.class);
                     Log.i("FIREBASE", dataSnapshot.getValue().toString());
                     //listaVaga.add(vaga);
+
                 }
+
                 Log.i("FIREBASE", ong.getNome());
                 Log.i("FIREBASE", ong.getIdOng());
                 Log.i("FIREBASE", ong.getEmailOng());
@@ -147,25 +145,14 @@ public class OngDao implements DAO<Ong> {
                 Log.i("FIREBASE", ong.getCpnj());
                 Log.i("FIREBASE", ong.getLocalizacao());
                 Log.i("FIREBASE", ong.getTelefone());
-
-                //Log.i("ONG",id);
-                //ong = new Ong();
-                //ong= snapshot.getValue(Ong.class);
-//                Log.i("ONG", ong.toString());
-                //ong.setIdOng(snapshot.getKey());
-                //Log.i("ONG", ong.getIdOng());
-                //snapshot.getValue();
-//                Log.i("ONG", (String) snapshot.getKey());
-//                Log.i("ONG", ong.getIdOng());
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-
-
         });
+
         return ong;
 
 
@@ -192,7 +179,10 @@ public class OngDao implements DAO<Ong> {
     }
 
 
+    public Ong buscaCompleta(Ong ong){
 
+        return ong;
+    }
 
     @Override
     public List<Ong> listar(String criterio, String tabela) throws SQLException {

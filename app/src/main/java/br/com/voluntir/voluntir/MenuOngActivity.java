@@ -41,8 +41,13 @@ public class MenuOngActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu_ong);
 
         getSupportActionBar().hide();
+        Bundle dados = getIntent().getExtras();
+        Ong ong = (Ong) dados.getSerializable("objeto");
+        Toast.makeText(MenuOngActivity.this, "Email: " + ong.getEmailOng(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(MenuOngActivity.this, "Nome: " + ong.getNome(), Toast.LENGTH_SHORT).show();
+        txtNomeOng = (TextView) findViewById(R.id.txtViewNomeOng);
+        txtNomeOng.setText(ong.getNome());
 
-        
         //ong = new Ong();
 
 //        txtEmailOng = findViewById(R.id.txtViewEmailOngVariavel);

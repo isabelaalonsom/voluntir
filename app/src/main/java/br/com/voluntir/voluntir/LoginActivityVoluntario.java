@@ -92,19 +92,19 @@ public class LoginActivityVoluntario extends AppCompatActivity {
 
     public void clicarBotaoEntrarVoluntario (View view) {
         voluntario = new Voluntario();
+
         controleCadastro = new ControleCadastro();
+
         voluntario.setEmail(email.getText().toString());
         voluntario.setSenha(senha.getText().toString());
+
         if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty()) {
             Toast.makeText(getApplicationContext(),
                     "Preencha todos os campos",
                     Toast.LENGTH_SHORT).show();
         } else {
-            voluntario = controleCadastro.validarLoginVoluntario(voluntario, nomeTabela, getApplicationContext());
-            if (voluntario.isVoluntario()) {
-                Intent i = new Intent(LoginActivityVoluntario.this, MenuVoluntarioActivity.class);
-                startActivity(i);
-            }
+            controleCadastro.validarLoginVoluntario(voluntario, nomeTabela, getApplicationContext());
+
 
         }
     }
