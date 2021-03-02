@@ -175,7 +175,7 @@ public class ControleCadastro {
 
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
         autenticacao.signInWithEmailAndPassword(
-                voluntario.getEmail(), voluntario.getSenha()
+                dado.getEmail(), dado.getSenha()
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {

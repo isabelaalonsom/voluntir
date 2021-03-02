@@ -21,6 +21,7 @@ import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.EsqueceuASenhaActivity;
+import br.com.voluntir.voluntir.MenuOngActivity;
 import br.com.voluntir.voluntir.R;
 import br.com.voluntir.voluntir.VagaActivity;
 
@@ -54,10 +55,12 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
         //Recuperar os dados vindos de outra activity
         Bundle dados = getIntent().getExtras();
-        //String email = dados.getString("email");
+        Ong ong = (Ong) dados.getSerializable("objeto");
+        //Toast.makeText(this, "Email: " + ong.getEmailOng(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Nome: " + ong.getNome(), Toast.LENGTH_SHORT).show();
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        //nome.setText(user.getDisplayName());
+        //txtNomeOng = (TextView) findViewById(R.id.txtViewNomeOng);
+        nome.setText(ong.getNome());
 
         //ong.setNome("ONG Ajuda Certa");
 

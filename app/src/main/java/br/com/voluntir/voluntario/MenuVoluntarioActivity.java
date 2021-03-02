@@ -32,7 +32,7 @@ public class MenuVoluntarioActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         Bundle dados = getIntent().getExtras();
-        Voluntario voluntario = (Voluntario) dados.getSerializable("objeto");
+        voluntario = (Voluntario) dados.getSerializable("objeto");
         Toast.makeText(this, "Email: " + voluntario.getEmail(), Toast.LENGTH_SHORT).show();
         Toast.makeText(this, "Nome: " + voluntario.getNome(), Toast.LENGTH_SHORT).show();
 
@@ -54,7 +54,9 @@ public class MenuVoluntarioActivity extends AppCompatActivity {
     }
 
     public void clicarMinhaContaVoluntario(View view) {
-        Intent intent = new Intent(this, MinhaContaVoluntarioActivity.class);
+        Intent intent = new Intent(getApplicationContext(), MinhaContaVoluntarioActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("objeto",voluntario);
         startActivity(intent);
     }
 
@@ -64,7 +66,9 @@ public class MenuVoluntarioActivity extends AppCompatActivity {
     }
 
     public void clicarBotaoCandidaturas(View view) {
-        Intent intent = new Intent(this, CandidaturaActivity.class);
+        Intent intent = new Intent(getApplicationContext(), MinhaContaONGActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("objeto",ong);
         startActivity(intent);
     }
 
