@@ -89,8 +89,6 @@ public class VoluntarioDao implements DAO<Voluntario> {
 
                 }
 
-
-
             }
         });
 
