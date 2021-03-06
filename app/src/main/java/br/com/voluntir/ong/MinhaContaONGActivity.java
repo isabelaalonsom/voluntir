@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +15,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import br.com.voluntir.model.Ong;
 import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
+import br.com.voluntir.voluntir.MenuOngActivity;
 import br.com.voluntir.voluntir.R;
 
 public class MinhaContaONGActivity extends AppCompatActivity implements ValueEventListener {
@@ -35,6 +38,7 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
     private DatabaseReference tabelaVaga = databaseReference.child("ong");
     private DatabaseReference nomeOngDatabase = tabelaVaga.child("nome");
     private DatabaseReference cnpjOngDatabase = tabelaVaga.child("cnpj");
+    Ong ong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +47,30 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
 
         getSupportActionBar().hide();
 
-        txtNomeOng = findViewById(R.id.txtViewONGVariavel);
-        txtCnpj = findViewById(R.id.txtViewCpnjVariavel);
-        txtLocalizacao = findViewById(R.id.txtViewLocalizaoVariavel);
-        txtCausas = findViewById(R.id.txtViewCausasVariavel);
-        txtTelefone = findViewById(R.id.txtViewTelefoneVariavel);
-        txtSite = findViewById(R.id.txtViewSiteVariavel);
-        txtEmail = findViewById(R.id.txtViewEmailVariavel);
-        txtResumoOng = findViewById(R.id.txtViewResumoOngVariavel);
+        txtNomeOng = (TextView) findViewById(R.id.txtViewONGVariavel);
+        txtCnpj = (TextView) findViewById(R.id.txtViewCpnjVariavel);
+        txtLocalizacao = (TextView) findViewById(R.id.txtViewLocalizaoVariavel);
+        txtCausas = (TextView) findViewById(R.id.txtViewCausasVariavel);
+        txtTelefone = (TextView) findViewById(R.id.txtViewTelefoneVariavel);
+        txtSite = (TextView) findViewById(R.id.txtViewSiteVariavel);
+        txtEmail = (TextView) findViewById(R.id.txtViewEmailVariavel);
+        txtResumoOng = (TextView) findViewById(R.id.txtViewResumoOngVariavel);
+
+        Bundle dados = getIntent().getExtras();
+        ong = (Ong) dados.getSerializable("objeto");
+        Toast.makeText(this, "Email: " + ong.getEmailOng(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Nome: " + ong.getNome(), Toast.LENGTH_SHORT).show();
+        //txtNomeOng = (TextView) findViewById(R.id.txtViewNomeOng);
+
+        txtNomeOng.setText(ong.getNome());
+        txtCnpj.setText(ong.getCpnj());
+        txtLocalizacao.setText(ong.getLocalizacao());
+        txtCausas.setText(ong.getCausas());
+        txtTelefone.setText(ong.getTelefone());
+        txtSite.setText(ong.getSite());
+        txtEmail.setText(ong.getEmailOng());
+        txtResumoOng.setText(ong.getResumoOng());
+
     }
 
 

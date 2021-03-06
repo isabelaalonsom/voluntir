@@ -21,16 +21,6 @@ import br.com.voluntir.voluntario.MinhaContaVoluntarioActivity;
 
 public class LoginActivityVoluntario extends AppCompatActivity {
 
-//    Button btnEsqueciASenha;
-//    Button criarContaBtn = findViewById(R.id.criarContaBtn);
-//    Button criarContaONGBtn = findViewById(R.id.criarContaONGBtn);
-//    Voluntario voluntario = new Voluntario();
-//    //Ong ong = new Ong();
-//    Button btnEntrar = findViewById(R.id.btnEntrar);
-
-//    EditText edtTextEmailLogin = findViewById(R.id.edtTextEmailLogin);
-//    EditText edtTextSenhaLogin = findViewById(R.id.edtTextSenhaLogin);
-
     private Voluntario voluntario;
     private EditText email;
     private EditText senha;
@@ -48,31 +38,6 @@ public class LoginActivityVoluntario extends AppCompatActivity {
         email = (EditText) findViewById(R.id.edtTextEmailLogin);
         senha = (EditText) findViewById(R.id.edtTextSenhaLogin);
 
-
-//        btnEntrar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                String login = edtTextEmailLogin.getText().toString();
-//                String senha = edtTextSenhaLogin.getText().toString();
-//
-//                if (login.equals("voluntario.voluntir@gmail.com") && senha.equals("voluntir2020")) {
-//                    mensagemLogin("Login realizado!");
-////                    Intent i = new Intent(LoginActivity.this, VagasActivity.class);
-//                    //startActivity(i);
-//                } else {
-//                    mensagemLogin("E-mail e/ou senha incorretos");
-//                }
-//            }
-//        });
-
-//        btnEsqueciASenha.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(LoginActivity.this, EsqueceuASenhaActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
     }
 
@@ -92,19 +57,19 @@ public class LoginActivityVoluntario extends AppCompatActivity {
 
     public void clicarBotaoEntrarVoluntario (View view) {
         voluntario = new Voluntario();
+
         controleCadastro = new ControleCadastro();
+
         voluntario.setEmail(email.getText().toString());
         voluntario.setSenha(senha.getText().toString());
+
         if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty()) {
             Toast.makeText(getApplicationContext(),
                     "Preencha todos os campos",
                     Toast.LENGTH_SHORT).show();
         } else {
-            voluntario = controleCadastro.validarLoginVoluntario(voluntario, nomeTabela, getApplicationContext());
-            if (voluntario.isVoluntario()) {
-                Intent i = new Intent(LoginActivityVoluntario.this, MenuVoluntarioActivity.class);
-                startActivity(i);
-            }
+            controleCadastro.validarLoginVoluntario(voluntario, nomeTabela, getApplicationContext());
+
 
         }
     }

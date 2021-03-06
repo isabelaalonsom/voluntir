@@ -14,6 +14,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.DAO.OngDao;
@@ -22,19 +26,21 @@ import br.com.voluntir.DAO.VoluntarioDao;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
-import br.com.voluntir.voluntir.LoginActivityVoluntario;
+import br.com.voluntir.voluntario.MenuVoluntarioActivity;
+import br.com.voluntir.voluntir.MenuOngActivity;
+import br.com.voluntir.voluntir.VagaActivity;
 
 public class ControleCadastro {
     private FirebaseAuth autenticacao;
     Voluntario voluntario;
     VoluntarioDao voluntarioDao;
     Ong ong;
+    Ong ongRetorno;
     OngDao ongDao;
     Vaga vaga;
     VagaDao vagaDao;
-    boolean entrou;
-    private Boolean retorno;
-    boolean usuario = false;
+    DatabaseReference bancoFirebase;
+    boolean retorno = false;
 
     public boolean cadastrarVoluntario(Voluntario dado, String tabela, Context context) {
         this.voluntario = dado;
@@ -55,7 +61,7 @@ public class ControleCadastro {
 
         ongDao = new OngDao();
 
-            retorno = ongDao.adiciona(ong, tabela, context);
+        retorno = ongDao.adiciona(ong, tabela, context);
 
         return retorno;
     }
@@ -95,78 +101,141 @@ public class ControleCadastro {
                 });
     }
 
-    public Ong validarLoginOng(final Ong dado, final String nomeTabela, final Context context) {
+
+    public void validarLoginOng(final Ong dado, final String nomeTabela, final Context context) {
         ongDao = new OngDao();
-        this.ong = dado;
+
+        Task taskretorno;
+
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
         autenticacao.signInWithEmailAndPassword(
-                ong.getEmailOng(), ong.getSenhaOng()
+                dado.getEmailOng(), dado.getSenhaOng()
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+            public void onComplete(@NonNull final Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    retorno = true;
                     //recupera os dados do usuario
-                    FirebaseUser ongFirebase = task.getResult().getUser();
+                    FirebaseUser ongFirebase = autenticacao.getCurrentUser();
 
-                    //recupera o uid do usuario
-                    ong.setIdOng(ongFirebase.getUid());
+                    bancoFirebase = BancoFirebase.getBancoReferencia();
+                    bancoFirebase.child("ong").orderByKey().equalTo(ongFirebase.getUid().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                ong = dataSnapshot.getValue(Ong.class);
+                                Log.i("FIREBASE", dataSnapshot.getValue().toString());
 
-                    ongDao.busca(ong.getIdOng(), nomeTabela);
+                            }
+                            if (ong != null) {
+                                Toast.makeText(context,
+                                        "Sucesso ao fazer Login ",
+                                        Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(context.getApplicationContext(), MenuOngActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.putExtra("objeto", ong);
+                                context.startActivity(intent);
+                            } else {
+                                String erroExcecao = "";
+                                try {
+                                    throw task.getException();
+                                } catch (Exception e) {
+                                    erroExcecao = "Ao fazer login";
+                                    e.printStackTrace();
+                                }
 
-                    Toast.makeText(context,
-                            "Sucesso ao fazer Login ",
-                            Toast.LENGTH_SHORT).show();
+                                Log.w("Login", "erro ao fazer login", task.getException());
+                                Toast.makeText(context,
+                                        "Erro: " + erroExcecao,
+                                        Toast.LENGTH_SHORT).show();
+                            }
 
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
 
                 } else {
                     String erroExcecao = "";
                     try {
                         throw task.getException();
-                    } catch (FirebaseAuthInvalidUserException e) {
-                        erroExcecao = "E-mail não cadastrado ou desativado ";
                     } catch (FirebaseAuthInvalidCredentialsException e) {
                         erroExcecao = "Senha inválida";
+                    } catch (NullPointerException e) {
+                        erroExcecao = "E-mail não cadastrado";
                     } catch (Exception e) {
-                        erroExcecao = "Ao fazer login";
+                        erroExcecao = e.getMessage();
                         e.printStackTrace();
                     }
 
-                    Log.w("Login", "erro ao fazer login", task.getException());
                     Toast.makeText(context,
                             "Erro: " + erroExcecao,
                             Toast.LENGTH_SHORT).show();
+
                 }
+
             }
+
         });
-        return ong;
+
     }
 
     public Voluntario validarLoginVoluntario(final Voluntario dado, final String nomeTabela, final Context context) {
         voluntarioDao = new VoluntarioDao();
 
-        this.voluntario = dado;
+
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
         autenticacao.signInWithEmailAndPassword(
-                voluntario.getEmail(), voluntario.getSenha()
+                dado.getEmail(), dado.getSenha()
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+            public void onComplete(@NonNull final Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     //recupera os dados do usuario
-                    FirebaseUser voluntarioFirebase = task.getResult().getUser();
+                    FirebaseUser voluntarioFirebase = autenticacao.getCurrentUser();
 
-                    //recupera o uid do usuario
-                    voluntario.setIdVoluntario(voluntarioFirebase.getUid());
 
-                    //voluntario=voluntarioDao.busca(voluntario.getIdVoluntario(),nomeTabela);
+                    bancoFirebase = BancoFirebase.getBancoReferencia();
+                    bancoFirebase.child("voluntario").orderByKey().equalTo(voluntarioFirebase.getUid().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                voluntario = dataSnapshot.getValue(Voluntario.class);
+                                Log.i("FIREBASE", dataSnapshot.getValue().toString());
 
-                    Toast.makeText(context,
-                            "Sucesso ao fazer Login ",
-                            Toast.LENGTH_SHORT).show();
+                            }
 
-                    //chamar proxima tela
-                    //Intent intent = new Intent(context, VagaActivity.class);
-                    //startActivity(intent);
+                            if (voluntario != null) {
+                                Toast.makeText(context,
+                                        "Sucesso ao fazer Login ",
+                                        Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(context.getApplicationContext(), MenuVoluntarioActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.putExtra("objeto", voluntario);
+                                context.startActivity(intent);
+                            } else {
+                                String erroExcecao = "";
+                                try {
+                                    throw task.getException();
+                                } catch (Exception e) {
+                                    erroExcecao = e.getMessage();
+                                    e.printStackTrace();
+                                }
+
+                                Toast.makeText(context,
+                                        "Erro: " + erroExcecao,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
 
                 } else {
                     String erroExcecao = "";
@@ -177,11 +246,10 @@ public class ControleCadastro {
                     } catch (FirebaseAuthInvalidCredentialsException e) {
                         erroExcecao = "Senha inválida";
                     } catch (Exception e) {
-                        erroExcecao = "Ao fazer login";
+                        erroExcecao = e.getMessage();
                         e.printStackTrace();
                     }
 
-                    Log.w("Login", "erro ao fazer login", task.getException());
                     Toast.makeText(context,
                             "Erro: " + erroExcecao,
                             Toast.LENGTH_SHORT).show();
@@ -189,6 +257,7 @@ public class ControleCadastro {
                 }
             }
         });
+
 
         return voluntario;
     }

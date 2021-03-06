@@ -89,8 +89,6 @@ public class VoluntarioDao implements DAO<Voluntario> {
 
                 }
 
-
-
             }
         });
 
@@ -109,27 +107,25 @@ public class VoluntarioDao implements DAO<Voluntario> {
 
     @Override
     public Voluntario busca(final String id, final String tabela) {
-        //voluntario = dado;
         bancoFirebase = BancoFirebase.getBancoReferencia();
-        bancoFirebase.child(tabela).addValueEventListener(new ValueEventListener() {
+        bancoFirebase.child("voluntario").orderByKey().equalTo(id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                boolean usuario=false;
-
-                //laço para percorrer o banco
-                for (DataSnapshot objSnapshot:snapshot.getChildren()){
-                    voluntario = objSnapshot.getValue(Voluntario.class);
-
-                    //busca o email no banco
-                    /*if (voluntario.getIdVoluntario().equals(id)){
-                        break;
-
-                    }*/
-
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    voluntario = dataSnapshot.getValue(Voluntario.class);
+                    Log.i("FIREBASE", dataSnapshot.getValue().toString());
+                    //listaVaga.add(vaga);
                 }
-
+                Log.i("FIREBASE", voluntario.getNome());
+                Log.i("FIREBASE", voluntario.getIdVoluntario());
+                Log.i("FIREBASE", voluntario.getEmail());
+                Log.i("FIREBASE", voluntario.getCpf());
+                Log.i("FIREBASE", voluntario.getDatanasc());
+                Log.i("FIREBASE", voluntario.getEndereco());
+                Log.i("FIREBASE", voluntario.getEspecialidade());
+                Log.i("FIREBASE", voluntario.getGenero());
+                Log.i("FIREBASE", voluntario.getTelefone());
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

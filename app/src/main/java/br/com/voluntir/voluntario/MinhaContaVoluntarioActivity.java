@@ -4,17 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.w3c.dom.Text;
 
+import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.CadastroONGActivity;
 import br.com.voluntir.voluntir.R;
 
 
 public class MinhaContaVoluntarioActivity extends AppCompatActivity {
-
+    Voluntario voluntario;
     private TextView txtNome;
     private TextView txtSobrenome;
     private TextView txtCpf;
@@ -32,15 +34,30 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        txtNome = findViewById(R.id.txtViewNomeDoVoluntarioVariavel);
-        txtSobrenome = findViewById(R.id.txtViewSobrenomeVariavel);
-        txtCpf = findViewById(R.id.txtViewCpfVariavel);
-        txtDataNasc = findViewById(R.id.txtViewDataNascVariavel);
-        txtEmail = findViewById(R.id.txtViewEmailVariavel);
-        txtEndereco = findViewById(R.id.txtViewEnderecoVariavel);
-        txtTelefone = findViewById(R.id.txtViewTelefoneVariavel);
-        txtGenero = findViewById(R.id.txtViewGeneroVariavel);
-        txtDescricaoTecnica = findViewById(R.id.txtViewDescricaoTecnicaVariavel);
+        txtNome = (TextView) findViewById(R.id.txtViewNomeDoVoluntarioVariavel);
+        txtSobrenome = (TextView) findViewById(R.id.txtViewSobrenomeVariavel);
+        txtCpf = (TextView) findViewById(R.id.txtViewCpfVariavel);
+        txtDataNasc = (TextView) findViewById(R.id.txtViewDataNascVariavel);
+        txtEmail = (TextView) findViewById(R.id.txtViewEmailVariavel);
+        txtEndereco = (TextView) findViewById(R.id.txtViewEnderecoVariavel);
+        txtTelefone = (TextView) findViewById(R.id.txtViewTelefoneVariavel);
+        txtGenero = (TextView) findViewById(R.id.txtViewGeneroVariavel);
+        txtDescricaoTecnica = (TextView) findViewById(R.id.txtViewDescricaoTecnicaVariavel);
+
+        Bundle dados = getIntent().getExtras();
+        voluntario = (Voluntario) dados.getSerializable("objeto");
+        Toast.makeText(this, "Email: " + voluntario.getEmail(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Nome: " + voluntario.getNome(), Toast.LENGTH_SHORT).show();
+
+        txtNome.setText(voluntario.getNome());
+        txtSobrenome.setText(voluntario.getSobrenome());
+        txtCpf.setText(voluntario.getCpf());
+        txtDataNasc.setText(voluntario.getDatanasc());
+        txtEmail.setText(voluntario.getEmail());
+        txtEndereco.setText(voluntario.getEndereco());
+        txtTelefone.setText(voluntario.getTelefone());
+        txtGenero.setText(voluntario.getGenero());
+        txtDescricaoTecnica.setText(voluntario.getEspecialidade());
 
     }
 
