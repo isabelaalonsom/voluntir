@@ -35,13 +35,12 @@
             android:text="Nome: "
             android:textSize="24sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/txtViewONGVariavel"
-            android:layout_width="match_parent"
+            android:layout_width="291dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="ONG Ajuda Certa"
             android:textColor="#AA0B0B"
             android:textSize="24sp" />
 
@@ -64,13 +63,12 @@
             android:text="CNPJ: "
             android:textSize="24sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/txtViewCpnjVariavel"
-            android:layout_width="match_parent"
+            android:layout_width="291dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="68.999.567/4326-19"
             android:textColor="#AA0B0B"
             android:textSize="24sp" />
 
@@ -93,13 +91,12 @@
             android:text="Localização: "
             android:textSize="24sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/txtViewLocalizaoVariavel"
-            android:layout_width="match_parent"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="Estrada das Lágrimas, 100"
             android:textColor="#AA0B0B"
             android:textSize="24sp" />
 
@@ -122,13 +119,12 @@
             android:text="Causas: "
             android:textSize="24sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/txtViewCausasVariavel"
-            android:layout_width="match_parent"
+            android:layout_width="277dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="Desenvolvimento pessoal"
             android:textColor="#AA0B0B"
             android:textSize="24sp" />
 
@@ -150,13 +146,13 @@
             android:text="Telefone: "
             android:textSize="24sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/txtViewTelefoneVariavel"
-            android:layout_width="match_parent"
+            android:layout_width="273dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="(11) 94475-8229"
+            android:inputType="phone"
             android:textColor="#AA0B0B"
             android:textSize="24sp" />
 
@@ -180,12 +176,11 @@
             android:textSize="24sp" />
 
         <!-- esse campo não pode ser obrigatorio pq nem todas as ongs tem site -->
-        <TextView
+        <EditText
             android:id="@+id/txtViewSiteVariavel"
-            android:layout_width="match_parent"
+            android:layout_width="325dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="www.ajudacerta.com.br"
             android:textColor="#AA0B0B"
             android:textSize="24sp" />
 
@@ -208,13 +203,12 @@
             android:text="E-mail: "
             android:textSize="24sp" />
 
-        <TextView
+        <EditText
             android:id="@+id/txtViewEmailVariavel"
-            android:layout_width="match_parent"
+            android:layout_width="291dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="ajudacerta@gmail.com"
             android:textColor="#AA0B0B"
             android:textSize="24sp" />
 
@@ -239,13 +233,12 @@
 
     </LinearLayout>
 
-    <TextView
+    <EditText
         android:id="@+id/txtViewResumoOngVariavel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:gravity="center"
-        android:text="somos uma ONG que garante educação gratuita para todas as idades"
         android:textColor="#AA0B0B"
         android:textSize="24sp" />
 

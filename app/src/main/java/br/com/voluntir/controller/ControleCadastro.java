@@ -28,7 +28,6 @@ import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntario.MenuVoluntarioActivity;
 import br.com.voluntir.voluntir.MenuOngActivity;
-import br.com.voluntir.voluntir.VagaActivity;
 
 public class ControleCadastro {
     private FirebaseAuth autenticacao;
@@ -41,6 +40,16 @@ public class ControleCadastro {
     VagaDao vagaDao;
     DatabaseReference bancoFirebase;
     boolean retorno = false;
+
+    public void excluirDadosVoluntario(Voluntario dado, String tabela, Context context) {
+        voluntarioDao = new VoluntarioDao();
+        try {
+            retorno = voluntarioDao.remove(dado, tabela, context);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public boolean cadastrarVoluntario(Voluntario dado, String tabela, Context context) {
         this.voluntario = dado;
@@ -64,6 +73,24 @@ public class ControleCadastro {
         retorno = ongDao.adiciona(ong, tabela, context);
 
         return retorno;
+    }
+
+    public void atualizarDadosOng(Ong dado, String tabela, Context context) {
+        this.ong = dado;
+
+        ongDao = new OngDao();
+
+        ongDao.atualiza(dado, tabela, context);
+
+    }
+
+    public void atualizarDadosOng(Voluntario dado, String tabela, Context context) {
+        this.voluntario = dado;
+
+        voluntarioDao = new VoluntarioDao();
+
+        voluntarioDao.atualiza(dado, tabela, context);
+
     }
 
     public boolean cadastrarVaga(Vaga dado, String tabela, Context context) {
@@ -221,10 +248,11 @@ public class ControleCadastro {
                                 try {
                                     throw task.getException();
                                 } catch (Exception e) {
-                                    erroExcecao = e.getMessage();
+                                    erroExcecao = "Ao fazer login";
                                     e.printStackTrace();
                                 }
 
+                                Log.w("Login", "erro ao fazer login", task.getException());
                                 Toast.makeText(context,
                                         "Erro: " + erroExcecao,
                                         Toast.LENGTH_SHORT).show();

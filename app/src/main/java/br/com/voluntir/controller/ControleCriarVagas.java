@@ -21,6 +21,6 @@ public class ControleCriarVagas {
     }
 
     public void candidatarVaga(Vaga vaga){
-        vagaDao.atualiza(vaga,tabela);
+        //vagaDao.atualiza(vaga,tabela);
     }
 }

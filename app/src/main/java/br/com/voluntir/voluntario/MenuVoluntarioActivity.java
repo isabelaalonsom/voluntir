@@ -29,27 +29,9 @@ public class MenuVoluntarioActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        getSupportActionBar().hide();
         Bundle dados = getIntent().getExtras();
         voluntario = (Voluntario) dados.getSerializable("objeto");
-        Toast.makeText(this, "Email: " + voluntario.getEmail(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "Nome: " + voluntario.getNome(), Toast.LENGTH_SHORT).show();
 
-        /*txtNomeVoluntario = (TextView) findViewById(R.id.txtViewNomeDoVoluntario);
-        txtNomeVoluntario.setText(voluntario.getNome());*/
-//        botaoCriarVaga = findViewById(R.id.btnCriarVaga);
-//        //Recuperar os dados vindos de outra activity
-//        Bundle dados = getIntent().getExtras();
-//        String email = dados.getString("email");
-//
-//        if ( dados.getSerializable("ong") instanceof Ong){
-//            ong = new Ong();
-//            ong = (Ong)  dados.getSerializable("ong");
-//
-//        }else{
-//            voluntario = (Voluntario) dados.getSerializable("voluntario");
-//            botaoCriarVaga.setEnabled(false);
-//        }
     }
 
     public void clicarMinhaContaVoluntario(View view) {
@@ -60,12 +42,14 @@ public class MenuVoluntarioActivity extends AppCompatActivity {
     }
 
     public void clicarVagasVoluntario(View view) {
-        Intent intent = new Intent(this, VagaVoluntarioActivity.class);
+        Intent intent = new Intent(getApplicationContext(), VagaVoluntarioActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("objeto", voluntario);
         startActivity(intent);
     }
 
     public void clicarBotaoCandidaturas(View view) {
-        Intent intent = new Intent(getApplicationContext(), MinhaContaONGActivity.class);
+        Intent intent = new Intent(getApplicationContext(), CandidaturaActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("objeto",ong);
         startActivity(intent);

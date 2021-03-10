@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
 import br.com.voluntir.voluntir.MenuOngActivity;
@@ -31,15 +32,13 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
     private TextView txtEmail;
     private TextView txtResumoOng;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    //private DatabaseReference databaseReference = firebaseDatabase.getReference("ong");
-    //private DatabaseReference nomeOngDatabase = databaseReference.child("nome");
-    //private DatabaseReference cnpjOngDatabase = databaseReference.child("cnpj");
     private DatabaseReference databaseReference = firebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVaga = databaseReference.child("ong");
     private DatabaseReference nomeOngDatabase = tabelaVaga.child("nome");
     private DatabaseReference cnpjOngDatabase = tabelaVaga.child("cnpj");
+    String tabelaOng = "ong";
     Ong ong;
-
+    ControleCadastro controleCadastro;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,30 +75,29 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
 
     public void clicarBotaoEditarOng(View view) {
 
-        String nome = txtNomeOng.getText().toString();
-        String cnpj = txtCnpj.getText().toString();
-        String localizacao = txtLocalizacao.getText().toString();
-        String causa = txtCausas.getText().toString();
-        String email = txtEmail.getText().toString();
-        String telefone = txtTelefone.getText().toString();
-        String site = txtSite.getText().toString();
-        String resumoOng = txtResumoOng.getText().toString();
+        if (txtNomeOng.getText().toString().isEmpty() || txtCnpj.getText().toString().isEmpty() || txtLocalizacao.getText().toString().isEmpty() ||
+                txtCausas.getText().toString().isEmpty() || txtEmail.getText().toString().isEmpty() || txtTelefone.getText().toString().isEmpty() ||
+                txtSite.getText().toString().isEmpty() || txtResumoOng.getText().toString().isEmpty()) {
 
-        Intent i = new Intent(this, CadastroONGActivity.class);
-        Bundle parametros = new Bundle();
+            Toast.makeText(getApplicationContext(),
+                    "Preencha todos os campos ",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            Ong dados = new Ong();
+            dados.setIdOng(ong.getIdOng());
+            dados.setCausas(txtCausas.getText().toString());
+            dados.setCpnj(txtCnpj.getText().toString());
+            dados.setEmailOng(txtEmail.getText().toString());
+            dados.setNome(txtNomeOng.getText().toString());
+            dados.setLocalizacao(txtLocalizacao.getText().toString());
+            dados.setResumoOng(txtResumoOng.getText().toString());
+            dados.setTelefone(txtTelefone.getText().toString());
+            dados.setSite(txtSite.getText().toString());
 
-        parametros.putString("chave_nome_ong", nome);
-        parametros.putString("chave_cnpj_ong", cnpj);
-        parametros.putString("chave_localizacao_ong", localizacao);
-        parametros.putString("chave_causas_ong", causa);
-        parametros.putString("chave_email_ong", email);
-        parametros.putString("chave_telefone_ong", telefone);
-        parametros.putString("chave_site_ong", site);
-        parametros.putString("chave_resumo_ong", resumoOng);
+            controleCadastro = new ControleCadastro();
+            controleCadastro.atualizarDadosOng(dados, tabelaOng, getApplicationContext());
+        }
 
-        i.putExtras(parametros);
-
-        startActivity(i);
 
     }
 

@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.w3c.dom.Text;
 
+import br.com.voluntir.controller.ControleCadastro;
+import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.CadastroONGActivity;
 import br.com.voluntir.voluntir.R;
@@ -26,6 +28,8 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
     private TextView txtEndereco;
     private TextView txtGenero;
     private TextView txtDescricaoTecnica;
+    ControleCadastro controleCadastro;
+    String tabelaVoluntario = "voluntario";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +50,6 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
 
         Bundle dados = getIntent().getExtras();
         voluntario = (Voluntario) dados.getSerializable("objeto");
-        Toast.makeText(this, "Email: " + voluntario.getEmail(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "Nome: " + voluntario.getNome(), Toast.LENGTH_SHORT).show();
 
         txtNome.setText(voluntario.getNome());
         txtSobrenome.setText(voluntario.getSobrenome());
@@ -61,37 +63,52 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
 
     }
 
-    public void clicarBotaoEditar (View view) {
+    public void clicarBotaoEditar(View view) {
 
-        String nome = txtNome.getText().toString();
-        String sobrenome = txtSobrenome.getText().toString();
-        String cpf = txtCpf.getText().toString();
-        String dataNasc = txtDataNasc.getText().toString();
-        String email = txtEmail.getText().toString();
-        String telefone = txtTelefone.getText().toString();
-        String genero = txtGenero.getText().toString();
-        String endereco = txtEndereco.getText().toString();
-        String descricaoTecnica = txtDescricaoTecnica.getText().toString();
+        if (txtNome.getText().toString().isEmpty() || txtCpf.getText().toString().isEmpty() || txtDataNasc.getText().toString().isEmpty() ||
+                txtEmail.getText().toString().isEmpty() || txtEndereco.getText().toString().isEmpty() || txtTelefone.getText().toString().isEmpty() ||
+                txtGenero.getText().toString().isEmpty() || txtDescricaoTecnica.getText().toString().isEmpty() || txtSobrenome.getText().toString().isEmpty()) {
 
-        Intent intent = new Intent(this, CadastroVoluntarioActivity.class);
-        Bundle parametros = new Bundle();
+            Toast.makeText(getApplicationContext(),
+                    "Preencha todos os campos ",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            Voluntario dados = new Voluntario();
+            dados.setIdVoluntario(voluntario.getIdVoluntario());
+            dados.setNome(txtNome.getText().toString());
+            dados.setSobrenome(txtSobrenome.getText().toString());
+            dados.setCpf(txtCpf.getText().toString());
+            dados.setDatanasc(txtDataNasc.getText().toString());
+            dados.setEmail(txtEmail.getText().toString());
+            dados.setEndereco(txtEndereco.getText().toString());
+            dados.setTelefone(txtTelefone.getText().toString());
+            dados.setGenero(txtGenero.getText().toString());
+            dados.setEspecialidade(txtDescricaoTecnica.getText().toString());
 
-        parametros.putString("chave_nome", nome);
-        parametros.putString("chave_sobrenome", sobrenome);
-        parametros.putString("chave_cpf", cpf);
-        parametros.putString("chave_dataNasc", dataNasc);
-        parametros.putString("chave_email", email);
-        parametros.putString("chave_telefone", telefone);
-        parametros.putString("chave_endereco", endereco);
-        parametros.putString("chave_genero", genero);
-        parametros.putString("chave_descricaoTecnica", descricaoTecnica);
-
-        intent.putExtras(parametros);
-
-        startActivity(intent);
+            controleCadastro = new ControleCadastro();
+            controleCadastro.atualizarDadosOng(dados, tabelaVoluntario, getApplicationContext());
+        }
     }
 
-    public void clicarBotaoSair (View view) {
+    public void clicarBotaoExcluir(View view) {
+        Voluntario dados = new Voluntario();
+        dados.setIdVoluntario(voluntario.getIdVoluntario());
+        dados.setNome(txtNome.getText().toString());
+        dados.setSobrenome(txtSobrenome.getText().toString());
+        dados.setCpf(txtCpf.getText().toString());
+        dados.setDatanasc(txtDataNasc.getText().toString());
+        dados.setEmail(txtEmail.getText().toString());
+        dados.setEndereco(txtEndereco.getText().toString());
+        dados.setTelefone(txtTelefone.getText().toString());
+        dados.setGenero(txtGenero.getText().toString());
+        dados.setEspecialidade(txtDescricaoTecnica.getText().toString());
+
+        controleCadastro = new ControleCadastro();
+        controleCadastro.excluirDadosVoluntario(dados, tabelaVoluntario, getApplicationContext());
+
+    }
+
+    public void clicarBotaoSair(View view) {
         this.finishAffinity();
     }
 

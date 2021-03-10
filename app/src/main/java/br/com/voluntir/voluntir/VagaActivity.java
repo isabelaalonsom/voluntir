@@ -26,6 +26,7 @@ import java.util.List;
 import br.com.voluntir.RecyclerItemClickListener;
 import br.com.voluntir.adapter.AdapterAprovacao;
 import br.com.voluntir.adapter.AdapterVaga;
+import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.AprovacaoCandidatoActivity;
@@ -41,7 +42,7 @@ public class VagaActivity extends AppCompatActivity {
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     Vaga vaga = new Vaga();
     private FirebaseAuth usuario = FirebaseAuth.getInstance();
-
+    Ong ong;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,8 @@ public class VagaActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         recyclerView = findViewById(R.id.recyclerViewVaga);
+        Bundle dados = getIntent().getExtras();
+        ong = (Ong) dados.getSerializable("objeto");
 
         //Configurar Recyclerview
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -58,14 +61,14 @@ public class VagaActivity extends AppCompatActivity {
         //coloca uma linha para separar
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
 
-        tabelaVaga.addValueEventListener(new ValueEventListener() {
+        tabelaVaga.equalTo(ong.getIdOng()).addValueEventListener(new ValueEventListener() {
             //recuperar os dados sempre que for mudado no banco
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listaVaga.clear();
                 //DataSnapshot é o retorno do firebase
                 //Log.i("FIREBASE", snapshot.getValue().toString());
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     vaga = dataSnapshot.getValue(Vaga.class);
                     //Log.i("FIREBASE", snapshot.getValue().toString());
                     listaVaga.add(vaga);

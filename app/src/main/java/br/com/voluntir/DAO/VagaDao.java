@@ -34,15 +34,15 @@ public class VagaDao implements DAO<Vaga> {
     }
 
     @Override
-    public boolean remove(Vaga dado, String tabela) throws DatabaseException {
+    public boolean remove(Vaga dado, String tabela, Context context) throws DatabaseException {
         return false;
     }
 
     @Override
-    public boolean atualiza(Vaga dado, String tabela) throws DatabaseException {
+    public void atualiza(Vaga dado, String tabela, Context context) throws DatabaseException {
         refenciaBanco = BancoFirebase.getBancoReferencia();
         refenciaBanco.child(tabela).child(String.valueOf(dado.getIdVaga())).setValue(dado);
-        return false;
+
 
     }
 
