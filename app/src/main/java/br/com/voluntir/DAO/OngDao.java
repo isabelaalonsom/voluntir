@@ -1,6 +1,7 @@
 package br.com.voluntir.DAO;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Ong;
+import br.com.voluntir.voluntir.MainActivity;
 
 public class OngDao implements DAO<Ong> {
     private Ong ong;
@@ -98,8 +100,41 @@ public class OngDao implements DAO<Ong> {
 
 
     @Override
-    public boolean remove(Ong dado, String tabela, Context context) throws SQLException {
+    public boolean remove(Ong dado, String tabela, final Context context) throws SQLException {
+        final String id = dado.getIdOng();
+        final FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+
+        usuario.delete()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            bancoFirebase = BancoFirebase.getBancoReferencia();
+                            bancoFirebase.child("ong").child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(context,
+                                                "Conta excluida com sucesso ",
+                                                Toast.LENGTH_SHORT).show();
+
+                                        Intent intent = new Intent(context, MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        context.startActivity(intent);
+
+                                    } else {
+                                        Toast.makeText(context,
+                                                "Erro" + task.getException(),
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                        }
+                    }
+                });
         return false;
+
     }
 
     @Override

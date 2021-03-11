@@ -51,6 +51,16 @@ public class ControleCadastro {
         }
     }
 
+    public void excluirDadosOng(Ong dado, String tabela, Context context) {
+        ongDao = new OngDao();
+        try {
+            retorno = ongDao.remove(dado, tabela, context);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public boolean cadastrarVoluntario(Voluntario dado, String tabela, Context context) {
         this.voluntario = dado;
 

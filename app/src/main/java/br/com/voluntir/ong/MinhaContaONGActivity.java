@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
+import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
 import br.com.voluntir.voluntir.MenuOngActivity;
 import br.com.voluntir.voluntir.R;
@@ -101,15 +102,32 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
 
     }
 
-    public void clicarBotaoSairOng (View view) {
+    public void clicarBotaoSairOng(View view) {
         this.finishAffinity();
+    }
+
+    public void clicarBotaoExcluirOng(View view) {
+        Ong dados = new Ong();
+        dados.setIdOng(ong.getIdOng());
+        dados.setCausas(txtCausas.getText().toString());
+        dados.setCpnj(txtCnpj.getText().toString());
+        dados.setEmailOng(txtEmail.getText().toString());
+        dados.setNome(txtNomeOng.getText().toString());
+        dados.setLocalizacao(txtLocalizacao.getText().toString());
+        dados.setResumoOng(txtResumoOng.getText().toString());
+        dados.setTelefone(txtTelefone.getText().toString());
+        dados.setSite(txtSite.getText().toString());
+
+        controleCadastro = new ControleCadastro();
+        controleCadastro.excluirDadosOng(dados, tabelaOng, getApplicationContext());
+
     }
 
 
     @Override
     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        if (dataSnapshot.getValue(String.class)!=null) {
+        if (dataSnapshot.getValue(String.class) != null) {
 
             String key = dataSnapshot.getKey();
             if (key.equals("nome")) {
