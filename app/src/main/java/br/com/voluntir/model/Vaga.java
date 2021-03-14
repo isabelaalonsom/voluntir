@@ -14,6 +14,7 @@ public class Vaga implements Serializable {
     private String periodicidade;
     private String horario;
     private String nomeOng;
+    private String idOng;
     Voluntario voluntario;
 
     public Vaga() {
@@ -76,8 +77,15 @@ public class Vaga implements Serializable {
         this.horario = horario;
     }
 
+    public String getIdOng() {
+        return idOng;
+    }
+
+    public void setIdOng(String idOng) {
+        this.idOng = idOng;
+    }
     //public String getIdVaga() {
-   //     return idVaga;
+    //     return idVaga;
     //}
 
     //public void setIdVaga(String idVaga) {

@@ -26,6 +26,7 @@ import java.util.List;
 import br.com.voluntir.RecyclerItemClickListener;
 import br.com.voluntir.adapter.AdapterVaga;
 import br.com.voluntir.model.Vaga;
+import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
 import br.com.voluntir.voluntir.VoluntarioVisualizarVaga;
 
@@ -40,6 +41,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
     Vaga vaga = new Vaga();
     Vaga vagaClicada = new Vaga();
     private FirebaseAuth usuario = FirebaseAuth.getInstance();
+    Voluntario voluntario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,8 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         recyclerView = findViewById(R.id.recyclerViewVaga);
-
+        Bundle dados = getIntent().getExtras();
+        voluntario = (Voluntario) dados.getSerializable("objeto");
 
         //Configurar Recyclerview
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -91,15 +94,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-//                                Vaga vaga = listaVaga.get(position);
-//                                Toast.makeText(
-//                                        getApplicationContext(),
-//                                        "Item pressionado: " ,
-//                                        Toast.LENGTH_SHORT
-//                                ).show();
-//                                Intent intent = new Intent(getApplicationContext(), VoluntarioVisualizarVaga.class);
-//                                intent.putExtra("vaga",vaga);
-//                                startActivity(intent);
+
                             }
 
                             @Override

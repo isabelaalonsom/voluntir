@@ -10,9 +10,10 @@ public interface DAO <ValueObjects> {
     public boolean adiciona(ValueObjects dado, String tabela, Context appContext);
 
 
-    public boolean remove(ValueObjects dado, String tabela)
+    public boolean remove(ValueObjects dado, String tabela, Context context)
             throws SQLException;
-    public boolean atualiza(ValueObjects dado, String tabela)
+
+    public void atualiza(ValueObjects dado, String tabela, Context appContext)
             throws SQLException;
 
     public ValueObjects busca(String id, String tabela)

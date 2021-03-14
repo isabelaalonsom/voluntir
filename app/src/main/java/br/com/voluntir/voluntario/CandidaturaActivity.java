@@ -23,6 +23,7 @@ import java.util.List;
 
 import br.com.voluntir.adapter.AdapterCandidatura;
 import br.com.voluntir.adapter.AdapterVaga;
+import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.voluntir.R;
 
@@ -33,6 +34,8 @@ public class CandidaturaActivity extends AppCompatActivity {
     private List<Vaga> listaVagaCandidatada = new ArrayList<>();
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
+    Ong ong;
+
     Vaga vaga = new Vaga();
 
 

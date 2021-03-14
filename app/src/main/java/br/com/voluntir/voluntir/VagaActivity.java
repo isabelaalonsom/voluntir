@@ -2,6 +2,7 @@ package br.com.voluntir.voluntir;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -18,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.List;
 import br.com.voluntir.RecyclerItemClickListener;
 import br.com.voluntir.adapter.AdapterAprovacao;
 import br.com.voluntir.adapter.AdapterVaga;
+import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.AprovacaoCandidatoActivity;
@@ -34,6 +37,7 @@ import br.com.voluntir.voluntario.CandidaturaActivity;
 public class VagaActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<Vaga> listaVaga = new ArrayList<>();
+    private List<Vaga> listaVagaOng = new ArrayList<>();
     private List<Voluntario> listaVoluntario = new ArrayList<>();
     //cria referencia para o banco de dados e getinstance estamos recuperando a instancia do
     // firebase utilizada para salvar e o getReferecence volta pro nó raiz
@@ -41,7 +45,7 @@ public class VagaActivity extends AppCompatActivity {
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     Vaga vaga = new Vaga();
     private FirebaseAuth usuario = FirebaseAuth.getInstance();
-
+    Ong ong;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +54,8 @@ public class VagaActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         recyclerView = findViewById(R.id.recyclerViewVaga);
+        Bundle dados = getIntent().getExtras();
+        ong = (Ong) dados.getSerializable("objeto");
 
         //Configurar Recyclerview
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -57,19 +63,25 @@ public class VagaActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         //coloca uma linha para separar
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
-
-        tabelaVaga.addValueEventListener(new ValueEventListener() {
+        Query teste = tabelaVaga.orderByChild("idOng").equalTo(ong.getIdOng());
+        teste.addValueEventListener(new ValueEventListener() {
             //recuperar os dados sempre que for mudado no banco
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listaVaga.clear();
                 //DataSnapshot é o retorno do firebase
                 //Log.i("FIREBASE", snapshot.getValue().toString());
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
                     vaga = dataSnapshot.getValue(Vaga.class);
-                    //Log.i("FIREBASE", snapshot.getValue().toString());
-                    listaVaga.add(vaga);
+                    Log.i("FIREBASE", dataSnapshot.getValue().toString());
+                    if (vaga.getIdOng().equals(ong.getIdOng())) {
+                        listaVaga.add(vaga);
+                    }
+
+
                 }
+
                 AdapterVaga adapterVaga = new AdapterVaga(listaVaga);
                 AdapterAprovacao adapterAprovacao = new AdapterAprovacao(listaVoluntario);
                 recyclerView.setAdapter(adapterVaga);

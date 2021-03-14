@@ -2,7 +2,6 @@ package br.com.voluntir.DAO;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -10,7 +9,6 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -26,12 +24,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.security.auth.callback.Callback;
-
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Ong;
-import br.com.voluntir.model.Vaga;
-import br.com.voluntir.voluntir.VagaActivity;
+import br.com.voluntir.voluntir.MainActivity;
 
 public class OngDao implements DAO<Ong> {
     private Ong ong;
@@ -103,25 +98,64 @@ public class OngDao implements DAO<Ong> {
         return cadastrado;
     }
 
-//    public FirebaseUser pegaDados() {
-//        autenticacao = BancoFirebase.getFirebaseAutenticacao();
-//        FirebaseUser ongLogada = autenticacao.getCurrentUser();
-//
-//        String nome = ongLogada.getDisplayName();
-//
-//
-//
-//        return ongLogada;
-//    }
 
     @Override
-    public boolean remove(Ong dado, String tabela) throws SQLException {
+    public boolean remove(Ong dado, String tabela, final Context context) throws SQLException {
+        final String id = dado.getIdOng();
+        final FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+
+        usuario.delete()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            bancoFirebase = BancoFirebase.getBancoReferencia();
+                            bancoFirebase.child("ong").child(id).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(context,
+                                                "Conta excluida com sucesso ",
+                                                Toast.LENGTH_SHORT).show();
+
+                                        Intent intent = new Intent(context, MainActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        context.startActivity(intent);
+
+                                    } else {
+                                        Toast.makeText(context,
+                                                "Erro" + task.getException(),
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                        }
+                    }
+                });
         return false;
+
     }
 
     @Override
-    public boolean atualiza(Ong dado, String tabela) throws SQLException {
-        return false;
+    public void atualiza(Ong dado, String tabela, final Context appContext) {
+        bancoFirebase = BancoFirebase.getBancoReferencia();
+        bancoFirebase.child("ong").child(dado.getIdOng()).setValue(dado).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(appContext,
+                            "Dados atualizados com sucesso ",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(appContext,
+                            "Erro" + task.getException(),
+                            Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
     }
 
     @Override
@@ -138,13 +172,6 @@ public class OngDao implements DAO<Ong> {
 
                 }
 
-                Log.i("FIREBASE", ong.getNome());
-                Log.i("FIREBASE", ong.getIdOng());
-                Log.i("FIREBASE", ong.getEmailOng());
-                Log.i("FIREBASE", ong.getCausas());
-                Log.i("FIREBASE", ong.getCpnj());
-                Log.i("FIREBASE", ong.getLocalizacao());
-                Log.i("FIREBASE", ong.getTelefone());
             }
 
             @Override
@@ -155,34 +182,8 @@ public class OngDao implements DAO<Ong> {
 
         return ong;
 
-
     }
 
-//    public void edita(Ong ong) {
-//        Ong ongEncontrada = buscaOngPeloId(ong);
-//
-//        if (ongEncontrada != null) {
-//            int posicaoDaOng = ongs.indexOf(ongEncontrada);
-//            ongs.set(posicaoDaOng, ong);
-//        }
-//    }
-
-    public Ong buscaOngPeloId(Ong ong) {
-        Ong ongEncontrada = null;
-        for (Ong o :
-                ongList) {
-            if (o.getIdOng() == ongEncontrada.getIdOng()) {
-                return ong;
-            }
-        }
-        return null;
-    }
-
-
-    public Ong buscaCompleta(Ong ong){
-
-        return ong;
-    }
 
     @Override
     public List<Ong> listar(String criterio, String tabela) throws SQLException {
