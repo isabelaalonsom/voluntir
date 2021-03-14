@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.CadastroVagaActivity;
-import br.com.voluntir.ong.MinhaContaONGActivity;
 import br.com.voluntir.voluntir.MenuOngActivity;
 import br.com.voluntir.voluntir.R;
 import br.com.voluntir.voluntir.VagaActivity;

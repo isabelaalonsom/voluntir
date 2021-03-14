@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuOngActivity">
+    tools:context="br.com.voluntir.voluntir.MenuOngActivity">
 
     <ScrollView
         android:id="@+id/scrollView4"
@@ -50,9 +50,16 @@
             <Button
                 android:id="@+id/btnVagasMenuOng"
                 android:layout_width="match_parent"
-                android:onClick="clicarVagas"
                 android:layout_height="wrap_content"
-                android:text="VAGAS" />
+                android:onClick="clicarVagas"
+                android:text="TODAS AS VAGAS" />
+
+            <Button
+                android:id="@+id/btnMinhasVagas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clicarMinhasVagas"
+                android:text="Minhas Vagas" />
 
             <Button
                 android:id="@+id/btnMinhaContaMenuOng"

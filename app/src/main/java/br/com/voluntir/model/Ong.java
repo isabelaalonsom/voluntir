@@ -1,6 +1,5 @@
 package br.com.voluntir.model;
 
-import com.google.firebase.database.Exclude;
 
 import java.io.Serializable;
 
