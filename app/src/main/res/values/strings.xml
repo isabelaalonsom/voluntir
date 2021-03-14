@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">VolunTIr</string>
+    <string name="logo">logo do aplicativo</string>
+    <string name="senha">senha:</string>
 </resources>
