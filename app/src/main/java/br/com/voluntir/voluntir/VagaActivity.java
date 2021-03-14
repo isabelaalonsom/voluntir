@@ -63,8 +63,8 @@ public class VagaActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         //coloca uma linha para separar
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
-        Query teste = tabelaVaga.orderByChild("idOng").equalTo(ong.getIdOng());
-        teste.addValueEventListener(new ValueEventListener() {
+
+        tabelaVaga.addValueEventListener(new ValueEventListener() {
             //recuperar os dados sempre que for mudado no banco
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -75,9 +75,9 @@ public class VagaActivity extends AppCompatActivity {
 
                     vaga = dataSnapshot.getValue(Vaga.class);
                     Log.i("FIREBASE", dataSnapshot.getValue().toString());
-                    if (vaga.getIdOng().equals(ong.getIdOng())) {
+                    //if (vaga.getIdOng().equals(ong.getIdOng())) {
                         listaVaga.add(vaga);
-                    }
+                    //}
 
 
                 }

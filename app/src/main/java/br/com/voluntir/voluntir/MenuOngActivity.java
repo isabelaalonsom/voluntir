@@ -88,6 +88,8 @@ public class MenuOngActivity extends AppCompatActivity {
     public void clicarMinhasVagas(View view) {
         //criar logica que aqui puxe um adapter só das vagas vinculadas a essa ONG
         Intent intent = new Intent(getApplicationContext(), MinhasVagasActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("objeto", ong);
         startActivity(intent);
     }
 
