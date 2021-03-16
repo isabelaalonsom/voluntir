@@ -146,17 +146,17 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Preencha todos os campos ",
                             Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     //VoluntarioDao voluntarioDao = new VoluntarioDao();
 
-                    Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario,tabelaBanco,getApplicationContext());
+                    Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario, tabelaBanco, getApplicationContext());
 
                     //voluntarioDao.adiciona(voluntario,tabelaBanco);
 
                 }
 
-                Intent i = new Intent(CadastroVoluntarioActivity.this, LoginActivityVoluntario.class);
-                startActivity(i);
+                /*Intent i = new Intent(CadastroVoluntarioActivity.this, LoginActivityVoluntario.class);
+                startActivity(i);*/
 
             }
         });

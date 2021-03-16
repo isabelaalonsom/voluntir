@@ -66,7 +66,7 @@ public class ControleCadastro {
 
         voluntarioDao = new VoluntarioDao();
         try {
-            retorno = voluntarioDao.adiciona(voluntario, tabela, context);
+            voluntarioDao.adiciona(voluntario, tabela, context);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,7 +80,7 @@ public class ControleCadastro {
 
         ongDao = new OngDao();
 
-        retorno = ongDao.adiciona(ong, tabela, context);
+        ongDao.adiciona(ong, tabela, context);
 
         return retorno;
     }
@@ -109,7 +109,7 @@ public class ControleCadastro {
         vagaDao = new VagaDao();
 
         try {
-            retorno = vagaDao.adiciona(vaga, tabela, context);
+            vagaDao.adiciona(vaga, tabela, context);
         } catch (Exception e) {
             e.printStackTrace();
         }

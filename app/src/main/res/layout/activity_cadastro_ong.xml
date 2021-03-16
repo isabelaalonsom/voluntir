@@ -308,25 +308,24 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="55dp"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/limparBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="limparDados"
-                android:text="Limpar" />
+                <Button
+                    android:id="@+id/limparBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="limparDados"
+                    android:text="Limpar" />
 
-            <Button
-                android:id="@+id/confirmarBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:onClick="clicarBotaoConfirmar"
-                android:text="Confirmar" />
+                <Button
+                    android:id="@+id/confirmarBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70dp"
+                    android:text="Confirmar" />
 
-        </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

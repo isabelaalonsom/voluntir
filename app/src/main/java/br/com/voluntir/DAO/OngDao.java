@@ -26,6 +26,7 @@ import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Ong;
+import br.com.voluntir.voluntir.LoginActivityONG;
 import br.com.voluntir.voluntir.MainActivity;
 
 public class OngDao implements DAO<Ong> {
@@ -36,37 +37,37 @@ public class OngDao implements DAO<Ong> {
     boolean cadastrado;
 
     @Override
-    public boolean adiciona(Ong dado, final String tabela, final Context appContext) {
-        ong=dado;
+    public void adiciona(final Ong dado, final String tabela, final Context appContext) {
+        ong = dado;
 
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
         autenticacao.createUserWithEmailAndPassword(
-                ong.getEmailOng(),
-                ong.getSenhaOng()
-        ).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                dado.getEmailOng(),
+                dado.getSenhaOng()
+        ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
 
-                    cadastrado=true;
+                    cadastrado = true;
                     //recupera os dados do usuario
                     FirebaseUser ongFirebase = task.getResult().getUser();
 
                     //recupera o uid do usuario
-                    ong.setIdOng( ongFirebase.getUid() );
+                    //ong.setIdOng( ongFirebase.getUid() );
+                    dado.setIdOng(ongFirebase.getUid());
                     //voluntario.salvar();
                     DatabaseReference bancoReferencia = BancoFirebase.getBancoReferencia();
                     //seta o valor do proprio usuario
-                    bancoReferencia.child(tabela).child(ong.getIdOng()).setValue(ong);
+                    bancoReferencia.child(tabela).child(dado.getIdOng()).setValue(dado);
                     //desloga o usuário
 
                     Toast.makeText(appContext,
                             "Cadastrado com sucesso ",
                             Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(appContext, LoginActivityONG.class);
+                    appContext.startActivity(intent);
 
-
-                    //encerra a activity
-                    //finish();
 
                 }else{
 
@@ -95,7 +96,7 @@ public class OngDao implements DAO<Ong> {
             }
         });
 
-        return cadastrado;
+        return;
     }
 
 

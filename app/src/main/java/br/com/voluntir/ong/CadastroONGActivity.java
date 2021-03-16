@@ -56,7 +56,7 @@ public class CadastroONGActivity extends AppCompatActivity {
         MaskTextWatcher maskTelefone = new MaskTextWatcher(telefone, simpleMaskTelefone);
         telefone.addTextChangedListener(maskTelefone);
 
-        Intent i = getIntent();
+/*        Intent i = getIntent();
         Bundle parametros = i.getExtras();
 
         if (parametros != null) {
@@ -80,7 +80,7 @@ public class CadastroONGActivity extends AppCompatActivity {
 
             // botaoConfirmar.setEnabled(false);
 
-        }
+        }*/
 
             botaoConfirmar = findViewById(R.id.confirmarBtn);
             botaoConfirmar.setOnClickListener(new View.OnClickListener() {
@@ -100,19 +100,19 @@ public class CadastroONGActivity extends AppCompatActivity {
                     ong.setLocalizacao(localizacao.getText().toString());
                     ong.setResumoOng(resumo.getText().toString());
                     ong.setSite(site.getText().toString());
+
                     //verifica se não tem campos em branco
                     if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty() ||
                             cnpj.getText().toString().isEmpty() || nome.getText().toString().isEmpty() ||
                             causa.getText().toString().isEmpty() || telefone.getText().toString().isEmpty() ||
                             localizacao.getText().toString().isEmpty() || resumo.getText().toString().isEmpty()) {
 
-                        //exibe mensagem na tela
                         Toast.makeText(getApplicationContext(),
                                 "Preencha todos os campos ",
                                 Toast.LENGTH_SHORT).show();
                     } else {
                         boolean retorno;
-                        retorno = controleCadastro.cadastrarOng(ong, tabelaBanco, getApplicationContext());
+                        controleCadastro.cadastrarOng(ong, tabelaBanco, getApplicationContext());
 //                        if (retorno == true){
 //                            limparDados(null);
 //                            //desloga o usuario e joga pra tela de login
@@ -123,15 +123,14 @@ public class CadastroONGActivity extends AppCompatActivity {
 //                        }
                     }
 
-                    Intent intent = new Intent(CadastroONGActivity.this, LoginActivityONG.class);
-                    startActivity(intent);
-                 }
+                    //Intent intent = new Intent(CadastroONGActivity.this, LoginActivityONG.class);
+                    //startActivity(intent);
+                }
             });
         }
 
         public void clicarBotaoConfirmar (View view){
-            Toast.makeText(this, "Cadastro Criado!", Toast.LENGTH_SHORT).show();
-            //aqui tem que jogar pro banco de dados os edit text preenchidos
+
         }
 
         public void limparDados (View view){

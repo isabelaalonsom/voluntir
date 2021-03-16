@@ -29,7 +29,7 @@ public class VagaDao implements DAO<Vaga> {
     private ValueEventListener valueEventListener;
 
     @Override
-    public boolean adiciona(Vaga dado, String tabela, final Context appContext) throws DatabaseException {
+    public void adiciona(Vaga dado, String tabela, final Context appContext) throws DatabaseException {
         refenciaBanco = BancoFirebase.getBancoReferencia();
         refenciaBanco.child(tabela).push().setValue(dado).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -42,7 +42,7 @@ public class VagaDao implements DAO<Vaga> {
             }
         });
 
-        return false;
+        return;
     }
 
     @Override

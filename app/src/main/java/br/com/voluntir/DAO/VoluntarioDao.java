@@ -25,7 +25,6 @@ import java.util.List;
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.MainActivity;
-import br.com.voluntir.voluntir.VagaActivity;
 
 public class VoluntarioDao implements DAO<Voluntario> {
     private Voluntario voluntario;
@@ -34,16 +33,16 @@ public class VoluntarioDao implements DAO<Voluntario> {
     DatabaseReference bancoFirebase;
 
     @Override
-    public boolean adiciona(Voluntario dado, final String tabela, final Context appContext){
-        voluntario=dado;
+    public void adiciona(Voluntario dado, final String tabela, final Context appContext) {
+        voluntario = dado;
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
         autenticacao.createUserWithEmailAndPassword(
                 voluntario.getEmail(),
                 voluntario.getSenha()
-        ).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+        ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
 
                     cadastrado=true;
                     //recupera os dados do usuario
@@ -90,7 +89,7 @@ public class VoluntarioDao implements DAO<Voluntario> {
             }
         });
 
-        return cadastrado;
+        return;
     }
 
     @Override

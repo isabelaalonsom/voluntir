@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DAO <ValueObjects> {
 
-    public boolean adiciona(ValueObjects dado, String tabela, Context appContext);
+    public void adiciona(ValueObjects dado, String tabela, Context appContext);
 
 
     public boolean remove(ValueObjects dado, String tabela, Context context)
