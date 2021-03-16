@@ -2,9 +2,12 @@ package br.com.voluntir.DAO;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseException;
@@ -26,9 +29,18 @@ public class VagaDao implements DAO<Vaga> {
     private ValueEventListener valueEventListener;
 
     @Override
-    public boolean adiciona(Vaga dado, String tabela, Context appContext) throws DatabaseException {
+    public boolean adiciona(Vaga dado, String tabela, final Context appContext) throws DatabaseException {
         refenciaBanco = BancoFirebase.getBancoReferencia();
-        refenciaBanco.child(tabela).push().setValue(dado);
+        refenciaBanco.child(tabela).push().setValue(dado).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(appContext,
+                            "Vaga cadastrada com sucesso ",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         return false;
     }

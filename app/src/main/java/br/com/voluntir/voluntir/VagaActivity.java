@@ -102,16 +102,16 @@ public class VagaActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-//                                Vaga vaga = listaVaga.get(position);
-//                                Toast.makeText(
-//                                        getApplicationContext(),
-//                                        "Item pressionado: " ,
-//                                        Toast.LENGTH_SHORT
-//                                ).show();
-//                                //Intent intent = new Intent(getApplicationContext(), VoluntarioVisualizarVaga.class);
-//                                Intent intent = new Intent(getApplicationContext(), AprovacaoCandidatoActivity.class);
-//                                intent.putExtra("vaga",vaga);
-//                                startActivity(intent);
+/*                                Vaga vaga = listaVaga.get(position);
+                                Toast.makeText(
+                                        getApplicationContext(),
+                                        "Item pressionado: " ,
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                                //Intent intent = new Intent(getApplicationContext(), VoluntarioVisualizarVaga.class);
+                                Intent intent = new Intent(getApplicationContext(), AprovacaoCandidatoActivity.class);
+                                intent.putExtra("vaga",vaga);
+                                startActivity(intent);*/
                             }
 
                             @Override

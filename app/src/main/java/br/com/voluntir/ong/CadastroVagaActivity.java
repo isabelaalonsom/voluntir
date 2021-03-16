@@ -55,9 +55,9 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
         //Recuperar os dados vindos de outra activity
         Bundle dados = getIntent().getExtras();
-        Ong ong = (Ong) dados.getSerializable("objeto");
+        final Ong ong = (Ong) dados.getSerializable("objeto");
         //Toast.makeText(this, "Email: " + ong.getEmailOng(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "Nome: " + ong.getNome(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Nome: " + ong.getNome(), Toast.LENGTH_SHORT).show();
 
         //txtNomeOng = (TextView) findViewById(R.id.txtViewNomeOng);
         nome.setText(ong.getNome());
@@ -90,14 +90,14 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
                 //pegas os dados digitados
                 //vaga.setNomeOng((String) nome.getText());
-                //vaga.setNomeOng(ong.getNome());
+                vaga.setNomeOng(ong.getNome());
                 vaga.setAreaConhecimento(especialidade.getText().toString());
                 vaga.setDataInicio(dataInicio.getText().toString());
                 vaga.setDataTermino(dataTermino.getText().toString());
                 vaga.setPeriodicidade(periodicidade.getText().toString());
                 vaga.setDescricaoVaga(detalheVaga.getText().toString());
                 vaga.setHorario(horario.getText().toString());
-
+                vaga.setIdOng(ong.getIdOng());
 
                 //verifica se todos os campos foram preenchidos
                 if (especialidade.getText().toString().isEmpty() ||
@@ -109,10 +109,10 @@ public class CadastroVagaActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 } else {
                     //VagaDao vagaDao = new VagaDao();
-                    Toast.makeText(CadastroVagaActivity.this, "Vaga Criada!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(CadastroVagaActivity.this, "Vaga Criada!", Toast.LENGTH_SHORT).show();
                     Boolean retorno = controleCadastro.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
-                    Intent i = new Intent(CadastroVagaActivity.this, VagaActivity.class);
-                    startActivity(i);
+                    //Intent i = new Intent(CadastroVagaActivity.this, VagaActivity.class);
+                    //startActivity(i);
                     //vagaDao.adiciona(vaga,tabelaBanco);
 
                 }
