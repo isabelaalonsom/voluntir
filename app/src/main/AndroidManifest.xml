@@ -24,7 +24,6 @@
         </activity>
         <activity android:name=".LoginActivityVoluntario" />
         <activity android:name=".LoginActivityONG" />
-<!--        <activity android:name="br.com.voluntir.voluntario.MenuVoluntarioActivity" />-->
         <activity android:name="br.com.voluntir.voluntario.MenuVoluntarioActivity" />
         <activity android:name="br.com.voluntir.voluntario.CadastroVoluntarioActivity" />
         <activity android:name="br.com.voluntir.voluntario.MinhaContaVoluntarioActivity" />

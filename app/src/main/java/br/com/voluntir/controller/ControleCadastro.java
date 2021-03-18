@@ -199,10 +199,10 @@ public class ControleCadastro {
                     String erroExcecao = "";
                     try {
                         throw task.getException();
+                    } catch (FirebaseAuthInvalidUserException e) {
+                        erroExcecao = "E-mail não cadastrado ou desativado ";
                     } catch (FirebaseAuthInvalidCredentialsException e) {
                         erroExcecao = "Senha inválida";
-                    } catch (NullPointerException e) {
-                        erroExcecao = "E-mail não cadastrado";
                     } catch (Exception e) {
                         erroExcecao = e.getMessage();
                         e.printStackTrace();
