@@ -19,6 +19,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.DAO.OngDao;
 import br.com.voluntir.DAO.VagaDao;
@@ -175,7 +177,7 @@ public class ControleCadastro {
                             } else {
                                 String erroExcecao = "";
                                 try {
-                                    throw task.getException();
+                                    throw Objects.requireNonNull(task.getException());
                                 } catch (Exception e) {
                                     erroExcecao = "E-mail não cadastrado como ONG";
                                 }
@@ -199,7 +201,7 @@ public class ControleCadastro {
                 } else {
                     String erroExcecao = "";
                     try {
-                        throw task.getException();
+                        throw Objects.requireNonNull(task.getException());
                     } catch (FirebaseAuthInvalidUserException e) {
                         erroExcecao = "E-mail não cadastrado ou desativado ";
                     } catch (FirebaseAuthInvalidCredentialsException e) {
@@ -242,6 +244,7 @@ public class ControleCadastro {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 voluntario = dataSnapshot.getValue(Voluntario.class);
+                                ong = new Ong();
                                 Log.i("FIREBASE", dataSnapshot.getValue().toString());
 
                             }

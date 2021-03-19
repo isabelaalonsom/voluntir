@@ -65,7 +65,11 @@ public class OngDao implements DAO<Ong> {
                     Toast.makeText(appContext,
                             "Cadastrado com sucesso ",
                             Toast.LENGTH_SHORT).show();
+
+
                     Intent intent = new Intent(appContext, LoginActivityONG.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("objeto", ong);
                     appContext.startActivity(intent);
 
 
@@ -93,10 +97,13 @@ public class OngDao implements DAO<Ong> {
 
 
                 }
+
             }
+
         });
 
-        return;
+
+
     }
 
 
