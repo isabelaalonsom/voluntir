@@ -24,6 +24,8 @@ import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.voluntir.LoginActivityONG;
+import br.com.voluntir.voluntir.LoginActivityVoluntario;
 import br.com.voluntir.voluntir.MainActivity;
 
 public class VoluntarioDao implements DAO<Voluntario> {
@@ -61,6 +63,12 @@ public class VoluntarioDao implements DAO<Voluntario> {
                             Toast.LENGTH_SHORT).show();
                     //encerra a activity
                     //finish();
+
+                    Intent intent = new Intent(appContext, LoginActivityVoluntario.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("objeto", voluntario);
+                    appContext.startActivity(intent);
+
 
                 }else{
 
