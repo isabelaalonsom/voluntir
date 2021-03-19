@@ -115,14 +115,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
 
                 radioButton = findViewById(radioId);
 
-                //voluntario.setGenero((String) radioButton.getText());
-                //String generoPressionado = voluntario.getGenero();
-
-                if (botaoMasculino.isPressed()) {
-                    voluntario.setGenero(botaoMasculino.getText().toString());
-                } else {
-                    voluntario.setGenero(botaoFeminino.getText().toString());
-                }
+                voluntario.setGenero((String) radioButton.getText());
 
                 //pegas os dados digitados
                 voluntario.setEmail(email.getText().toString());
