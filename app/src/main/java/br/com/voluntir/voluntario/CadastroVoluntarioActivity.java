@@ -115,7 +115,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
 
                 radioButton = findViewById(radioId);
 
-                voluntario.setGenero((String) radioButton.getText());
+
 
                 //pegas os dados digitados
                 voluntario.setEmail(email.getText().toString());
@@ -135,13 +135,13 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty() ||
                         cpf.getText().toString().isEmpty() || nome.getText().toString().isEmpty() ||
                         especialidade.getText().toString().isEmpty() || telefone.getText().toString().isEmpty() ||
-                        endereco.getText().toString().isEmpty() || data.getText().toString().isEmpty()){
+                        endereco.getText().toString().isEmpty() || data.getText().toString().isEmpty() || radioButton.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(),
                             "Preencha todos os campos ",
                             Toast.LENGTH_SHORT).show();
                 } else {
                     //VoluntarioDao voluntarioDao = new VoluntarioDao();
-
+                    voluntario.setGenero((String) radioButton.getText());
                     Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario, tabelaBanco, getApplicationContext());
 
                     //voluntarioDao.adiciona(voluntario,tabelaBanco);
