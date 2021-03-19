@@ -177,14 +177,15 @@ public class ControleCadastro {
                                 try {
                                     throw task.getException();
                                 } catch (Exception e) {
-                                    erroExcecao = "Ao fazer login";
-                                    e.printStackTrace();
+                                    erroExcecao = "E-mail não cadastrado como ONG";
                                 }
 
                                 Log.w("Login", "erro ao fazer login", task.getException());
                                 Toast.makeText(context,
                                         "Erro: " + erroExcecao,
                                         Toast.LENGTH_SHORT).show();
+
+
                             }
 
                         }
@@ -258,8 +259,7 @@ public class ControleCadastro {
                                 try {
                                     throw task.getException();
                                 } catch (Exception e) {
-                                    erroExcecao = "Ao fazer login";
-                                    e.printStackTrace();
+                                    erroExcecao = "E-mail não cadastrado como Voluntário";
                                 }
 
                                 Log.w("Login", "erro ao fazer login", task.getException());
