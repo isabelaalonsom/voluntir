@@ -1,6 +1,7 @@
 package br.com.voluntir.DAO;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -8,6 +9,8 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseException;
@@ -18,26 +21,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
+import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
+import br.com.voluntir.voluntir.MenuOngActivity;
+import br.com.voluntir.voluntir.MinhasVagasActivity;
 
 public class VagaDao implements DAO<Vaga> {
     //DatabaseReference bancoFirebase ;
     private DatabaseReference refenciaBanco;
+    private FirebaseAuth autenticacao;
     private DatabaseReference tabela;
     Vaga vaga;
+    OngDao ongDao;
+    Ong ong;
+    //Ong ong = new Ong();
     List<Vaga> listaVaga;
     private ValueEventListener valueEventListener;
 
     @Override
     public void adiciona(Vaga dado, String tabela, final Context appContext) throws DatabaseException {
         refenciaBanco = BancoFirebase.getBancoReferencia();
+
         refenciaBanco.child(tabela).push().setValue(dado).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
+
+                    ongDao = new OngDao();
+                    ong = new Ong();
+
+                    String idDaOng = dado.getIdOng();
+
+                    ong = ongDao.busca(idDaOng, "ong");
+
                     Toast.makeText(appContext,
                             "Vaga cadastrada com sucesso ",
                             Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(appContext.getApplicationContext(), MenuOngActivity.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.putExtra("objeto", ong);
+                    appContext.startActivity(i);
+
                 }
             }
         });

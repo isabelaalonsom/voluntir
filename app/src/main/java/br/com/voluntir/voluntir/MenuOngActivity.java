@@ -42,11 +42,18 @@ public class MenuOngActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         Bundle dados = getIntent().getExtras();
+
         ong = (Ong) dados.getSerializable("objeto");
 
         txtNomeOng = (TextView) findViewById(R.id.txtViewNomeOng);
         txtNomeOng.setText(ong.getNome());
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
     }
 

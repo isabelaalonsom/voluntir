@@ -111,8 +111,8 @@ public class CadastroVagaActivity extends AppCompatActivity {
                     //VagaDao vagaDao = new VagaDao();
                     //Toast.makeText(CadastroVagaActivity.this, "Vaga Criada!", Toast.LENGTH_SHORT).show();
                     Boolean retorno = controleCadastro.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
-                    //Intent i = new Intent(CadastroVagaActivity.this, VagaActivity.class);
-                    //startActivity(i);
+//                    Intent i = new Intent(CadastroVagaActivity.this, MenuOngActivity.class);
+//                    startActivity(i);
                     //vagaDao.adiciona(vaga,tabelaBanco);
 
                 }
