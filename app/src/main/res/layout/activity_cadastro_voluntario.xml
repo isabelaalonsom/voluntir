@@ -193,6 +193,34 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/LinearConfirmarSenha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtViewConfirmarSenha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Confirmar Senha:"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/edtTextConfirmarSenha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:ems="10"
+                    android:hint="Confirmar Senha"
+                    android:inputType="textPassword"
+                    tools:layout_editor_absoluteX="84dp"
+                    tools:layout_editor_absoluteY="484dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/LinearGenero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -253,7 +281,7 @@
                 android:layout_width="337dp"
                 android:layout_height="53dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginBottom="92dp"
+                android:layout_marginBottom="62dp"
                 android:ems="10"
                 android:hint="Descreva suas habilidades" />
 

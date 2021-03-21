@@ -26,7 +26,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao;
     private Button botaoConfirmar;
     private Voluntario voluntario;
-    private EditText email, senha,cpf,data,nome,telefone;
+    private EditText email, senha,cpf,data,nome,telefone, confirmarSenha;
     private EditText endereco,especialidade,sobrenome;
     private Spinner generoSelecionado;
     private ControleCadastro controleCadastro;
@@ -53,6 +53,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         especialidade = (EditText) findViewById(R.id.edtTextDescricao);
         botaoFeminino = findViewById(R.id.rdBtnFeminino);
         botaoMasculino = findViewById(R.id.rdBtnMasculino);
+        confirmarSenha = findViewById(R.id.edtTextConfirmarSenha);
 
         radioGroup = findViewById(R.id.rdBtnGrpGenero);
 
@@ -93,6 +94,9 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
             telefone.setText(telefonePreenchido);
             endereco.setText(enderecoPreenchido);
             especialidade.setText(descricaoTecnicaPreenchido);
+
+
+
 
             if (generoPreenchido.equals("Masculino")) {
                 botaoMasculino.setChecked(true);
@@ -139,6 +143,8 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Preencha todos os campos ",
                             Toast.LENGTH_SHORT).show();
+                } else if (!senha.getText().toString().equals(confirmarSenha.getText().toString())) {
+                        Toast.makeText(getApplicationContext(), "As senhas não conferem.", Toast.LENGTH_LONG).show();
                 } else {
                     //VoluntarioDao voluntarioDao = new VoluntarioDao();
                     voluntario.setGenero((String) radioButton.getText());

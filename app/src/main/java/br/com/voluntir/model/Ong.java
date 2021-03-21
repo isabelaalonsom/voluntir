@@ -14,6 +14,7 @@ public class Ong implements Serializable {
     private String causas;
     private String resumoOng;
     private String telefone;
+    private String confirmarSenhaOng;
 
     public Ong() {
     }
@@ -48,6 +49,14 @@ public class Ong implements Serializable {
     }
 
     public void setSenhaOng(String senhaOng) {
+        this.senhaOng = senhaOng;
+    }
+
+    public String getConfirmarSenhaOng() {
+        return senhaOng;
+    }
+
+    public void setConfirmarSenhaOng(String senhaOng) {
         this.senhaOng = senhaOng;
     }
 

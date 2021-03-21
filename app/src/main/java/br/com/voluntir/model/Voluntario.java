@@ -7,6 +7,7 @@ public class Voluntario implements Serializable {
     private String idVoluntario;
     private String email;
     private String senha;
+    private String confirmarSenha;
     private String cpf;
     private String nome;
     private String sobrenome;
@@ -42,6 +43,14 @@ public class Voluntario implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getConfirmarSenha() {
+        return confirmarSenha;
+    }
+
+    public void setConfirmarSenha(String confirmarSenha) {
+        this.confirmarSenha = confirmarSenha;
     }
 
     public String getCpf() {

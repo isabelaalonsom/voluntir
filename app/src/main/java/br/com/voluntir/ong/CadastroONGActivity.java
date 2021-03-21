@@ -24,7 +24,7 @@ public class CadastroONGActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao;
     private Button botaoConfirmar;
     private Ong ong;
-    private EditText email, senha, cnpj, resumo;
+    private EditText email, senha, cnpj, resumo, confirmarSenha;
     private EditText nome, telefone, endereco;
     private EditText causa, localizacao, site;
     private ControleCadastro controleCadastro;
@@ -45,6 +45,7 @@ public class CadastroONGActivity extends AppCompatActivity {
         causa = (EditText) findViewById(R.id.edtTextCausas);
         site = (EditText) findViewById(R.id.edtTextSite);
         resumo = (EditText) findViewById(R.id.edtTextResumoOng);
+        confirmarSenha = findViewById(R.id.edtTextConfirmarSenhaOng);
 
         //mascara para o Cnpj
         SimpleMaskFormatter simpleMaskCnpj = new SimpleMaskFormatter("NN.NNN.NNN/NNNN-NN");
@@ -115,9 +116,8 @@ public class CadastroONGActivity extends AppCompatActivity {
                                 "Preencha todos os campos ",
                                 Toast.LENGTH_SHORT).show();
 
-                    //} else if (senha.getText().length() <= 5) {
-//                        Toast.makeText(getApplicationContext(), "Digite uma senha mais forte.",
-//                                Toast.LENGTH_SHORT).show();
+                    } else if (!senha.getText().toString().equals(confirmarSenha.getText().toString())) {
+                        Toast.makeText(getApplicationContext(), "As senhas não conferem.", Toast.LENGTH_LONG).show();
 
                     } else {
                         boolean retorno;
