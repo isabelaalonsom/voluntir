@@ -46,7 +46,6 @@ public class VagaDao implements DAO<Vaga> {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-
                     ongDao = new OngDao();
                     ong = new Ong();
 
@@ -59,6 +58,7 @@ public class VagaDao implements DAO<Vaga> {
                             Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(appContext.getApplicationContext(), MenuOngActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    //i.putExtra("ong", ong1);
                     i.putExtra("objeto", ong);
                     appContext.startActivity(i);
 

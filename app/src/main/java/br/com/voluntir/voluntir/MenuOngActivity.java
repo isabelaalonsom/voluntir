@@ -50,15 +50,29 @@ public class MenuOngActivity extends AppCompatActivity {
 //            txtNomeOng.setText(ong.getNome());
 //        });
 
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
+        runOnUiThread (new Thread((Runnable) () -> {
+            try {
                 txtNomeOng = (TextView) findViewById(R.id.txtViewNomeOng);
                 txtNomeOng.setText(ong.getNome());
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "erro: " + e.getCause(), Toast.LENGTH_LONG).show();
             }
-        };
+        }));
 
-        thread.start();
+//        new Thread() {
+//            public void run() {
+//                try {
+//                    runOnUiThread((Runnable) () -> {
+//                        txtNomeOng = (TextView) findViewById(R.id.txtViewNomeOng);
+//                        txtNomeOng.setText(ong.getNome());
+//                    });
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                    Toast.makeText(getApplicationContext(), "erro: " + e.getCause(), Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        }.start();
 
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
 
