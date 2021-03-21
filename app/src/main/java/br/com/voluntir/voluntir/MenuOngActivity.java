@@ -25,7 +25,7 @@ import br.com.voluntir.ong.MinhaContaONGActivity;
 
 public class MenuOngActivity extends AppCompatActivity {
     Voluntario voluntario;
-    Ong ong;
+    Ong ong = new Ong();
     Button botaoCriarVaga;
     TextView txtEmailOng, txtNomeOng, txtIdOng;
     private FirebaseAuth autenticacao;
@@ -45,8 +45,21 @@ public class MenuOngActivity extends AppCompatActivity {
 
         ong = (Ong) dados.getSerializable("objeto");
 
-        txtNomeOng = (TextView) findViewById(R.id.txtViewNomeOng);
-        txtNomeOng.setText(ong.getNome());
+//        new Thread(() -> {
+//            txtNomeOng = (TextView) findViewById(R.id.txtViewNomeOng);
+//            txtNomeOng.setText(ong.getNome());
+//        });
+
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                txtNomeOng = (TextView) findViewById(R.id.txtViewNomeOng);
+                txtNomeOng.setText(ong.getNome());
+            }
+        };
+
+        thread.start();
+
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
 
     }
