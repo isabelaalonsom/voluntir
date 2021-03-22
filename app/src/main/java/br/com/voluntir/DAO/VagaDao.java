@@ -51,7 +51,7 @@ public class VagaDao implements DAO<Vaga> {
 
                     String idDaOng = dado.getIdOng();
 
-                    ong = ongDao.busca(idDaOng, "ong");
+                    ong = ongDao.busca(idDaOng, "ong", appContext);
 
                     Toast.makeText(appContext,
                             "Vaga cadastrada com sucesso ",
@@ -83,7 +83,7 @@ public class VagaDao implements DAO<Vaga> {
     }
 
     @Override
-    public Vaga busca(String id, String tabela) throws DatabaseException {
+    public Vaga busca(String id, String tabela, Context context) throws DatabaseException {
         //vaga = new Vaga();
         refenciaBanco = BancoFirebase.getBancoReferencia();
         refenciaBanco.child(tabela).child(id).addValueEventListener(new ValueEventListener() {
@@ -93,7 +93,7 @@ public class VagaDao implements DAO<Vaga> {
 
                 //DataSnapshot é o retorno do firebase
 
-                    vaga = snapshot.getValue(Vaga.class);
+                vaga = snapshot.getValue(Vaga.class);
 
             }
 
