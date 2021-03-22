@@ -25,6 +25,7 @@ import br.com.voluntir.adapter.AdapterCandidatura;
 import br.com.voluntir.adapter.AdapterVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
+import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
 
 public class CandidaturaActivity extends AppCompatActivity {
@@ -35,7 +36,7 @@ public class CandidaturaActivity extends AppCompatActivity {
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     Ong ong;
-
+    Voluntario voluntario;
     Vaga vaga = new Vaga();
 
 
@@ -49,6 +50,10 @@ public class CandidaturaActivity extends AppCompatActivity {
         recyclerViewCandidatura = findViewById(R.id.recyclerViewCandidaturas);
         txtViewStatus = findViewById(R.id.txtStatus);
         txtViewStatusVariavel = findViewById(R.id.txtStatusVariavel);
+        Bundle dados = getIntent().getExtras();
+        if (dados != null) {
+            voluntario = (Voluntario) dados.getSerializable("voluntario");
+        }
 
 
         //Configurar Recyclerview
@@ -59,7 +64,7 @@ public class CandidaturaActivity extends AppCompatActivity {
         recyclerViewCandidatura.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
 
         trazVagaClicada();
-
+        vaga.setVoluntario(voluntario);
         tabelaVaga.addValueEventListener(new ValueEventListener() {
             //recuperar os dados sempre que for mudado no banco
             @Override

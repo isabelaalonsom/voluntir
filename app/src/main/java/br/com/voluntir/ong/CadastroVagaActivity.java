@@ -27,7 +27,6 @@ import br.com.voluntir.voluntir.VagaActivity;
 
 public class CadastroVagaActivity extends AppCompatActivity {
 
-    private FirebaseAuth autenticacao;
     private Button botaoConfirmar;
     private Vaga vaga;
     private TextView nome;
@@ -55,25 +54,19 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
         //Recuperar os dados vindos de outra activity
         Bundle dados = getIntent().getExtras();
-        final Ong ong = (Ong) dados.getSerializable("objeto");
-        //Toast.makeText(this, "Email: " + ong.getEmailOng(), Toast.LENGTH_SHORT).show();
-        //Toast.makeText(this, "Nome: " + ong.getNome(), Toast.LENGTH_SHORT).show();
+        if (dados != null) {
+            final Ong ong = (Ong) dados.getSerializable("objeto");
+            nome.setText(ong.getNome());
+        }
 
-        //txtNomeOng = (TextView) findViewById(R.id.txtViewNomeOng);
-        nome.setText(ong.getNome());
 
-        //ong.setNome("ONG Ajuda Certa");
-
-        autenticacao = BancoFirebase.getFirebaseAutenticacao();
-        //nome.setText(autenticacao.getCurrentUser().getDisplayName());
-        //mascara para a DataInicio
         SimpleMaskFormatter simpleMaskDataInicio = new SimpleMaskFormatter("NN/NN/NNNN");
-        MaskTextWatcher maskDataInicio = new MaskTextWatcher(dataInicio,simpleMaskDataInicio);
+        MaskTextWatcher maskDataInicio = new MaskTextWatcher(dataInicio, simpleMaskDataInicio);
         dataInicio.addTextChangedListener(maskDataInicio);
 
         //mascara para a DataTermino
         SimpleMaskFormatter simpleMaskDataTermino = new SimpleMaskFormatter("NN/NN/NNNN");
-        MaskTextWatcher maskDataTermino = new MaskTextWatcher(dataTermino,simpleMaskDataTermino);
+        MaskTextWatcher maskDataTermino = new MaskTextWatcher(dataTermino, simpleMaskDataTermino);
         dataTermino.addTextChangedListener(maskDataTermino);
 
         //mascara para o Horario
@@ -88,17 +81,6 @@ public class CadastroVagaActivity extends AppCompatActivity {
                 vaga = new Vaga();
                 controleCadastro = new ControleCadastro();
 
-                //pegas os dados digitados
-                //vaga.setNomeOng((String) nome.getText());
-                vaga.setNomeOng(ong.getNome());
-                vaga.setAreaConhecimento(especialidade.getText().toString());
-                vaga.setDataInicio(dataInicio.getText().toString());
-                vaga.setDataTermino(dataTermino.getText().toString());
-                vaga.setPeriodicidade(periodicidade.getText().toString());
-                vaga.setDescricaoVaga(detalheVaga.getText().toString());
-                vaga.setHorario(horario.getText().toString());
-                vaga.setIdOng(ong.getIdOng());
-
                 //verifica se todos os campos foram preenchidos
                 if (especialidade.getText().toString().isEmpty() ||
                         dataInicio.getText().toString().isEmpty() || dataTermino.getText().toString().isEmpty() ||
@@ -108,12 +90,18 @@ public class CadastroVagaActivity extends AppCompatActivity {
                             "Preencha todos os campos ",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    //VagaDao vagaDao = new VagaDao();
-                    //Toast.makeText(CadastroVagaActivity.this, "Vaga Criada!", Toast.LENGTH_SHORT).show();
+                    if (ong != null) {
+                        vaga.setNomeOng(ong.getNome());
+                    }
+                    vaga.setAreaConhecimento(especialidade.getText().toString());
+                    vaga.setDataInicio(dataInicio.getText().toString());
+                    vaga.setDataTermino(dataTermino.getText().toString());
+                    vaga.setPeriodicidade(periodicidade.getText().toString());
+                    vaga.setDescricaoVaga(detalheVaga.getText().toString());
+                    vaga.setHorario(horario.getText().toString());
+                    vaga.setIdOng(ong.getIdOng());
+
                     Boolean retorno = controleCadastro.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
-//                    Intent i = new Intent(CadastroVagaActivity.this, MenuOngActivity.class);
-//                    startActivity(i);
-                    //vagaDao.adiciona(vaga,tabelaBanco);
 
                 }
             }

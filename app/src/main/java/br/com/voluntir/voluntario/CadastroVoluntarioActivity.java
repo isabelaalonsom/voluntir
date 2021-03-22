@@ -56,7 +56,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         confirmarSenha = findViewById(R.id.edtTextConfirmarSenha);
 
         radioGroup = findViewById(R.id.rdBtnGrpGenero);
-
+        clicarBotaoLimpar();
         //mascara para o Cpf
         SimpleMaskFormatter simpleMaskCpf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
         MaskTextWatcher maskCpf = new MaskTextWatcher(cpf,simpleMaskCpf);
@@ -162,7 +162,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     }
 
 
-    public void clicarBotaoLimpar(View view) {
+    public void clicarBotaoLimpar() {
         nome.setText("");
         sobrenome.setText("");
         cpf.setText("");
@@ -174,6 +174,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         especialidade.setText("");
         endereco.setText("");
         telefone.setText("");
+        confirmarSenha.setText("");
     }
 
     public void radioButtonApertado(View view){
