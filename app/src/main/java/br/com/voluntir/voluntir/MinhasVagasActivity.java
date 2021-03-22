@@ -42,6 +42,7 @@ public class MinhasVagasActivity extends AppCompatActivity {
     Vaga vaga = new Vaga();
     private FirebaseAuth usuario = FirebaseAuth.getInstance();
     Ong ong;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +79,7 @@ public class MinhasVagasActivity extends AppCompatActivity {
                 AdapterAprovacao adapterAprovacao = new AdapterAprovacao(listaVoluntario);
                 recyclerView.setAdapter(adapterVaga);
             }
+
             //trata o erro se a operação for cancelada
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -95,12 +97,7 @@ public class MinhasVagasActivity extends AppCompatActivity {
                             @Override
                             public void onItemClick(View view, int position) {
                                 Vaga vaga = listaVaga.get(position);
-                                /*Toast.makeText(
-                                        getApplicationContext(),
-                                        "Item pressionado: " ,
-                                        Toast.LENGTH_SHORT
-                                ).show();*/
-                                //Intent intent = new Intent(getApplicationContext(), VoluntarioVisualizarVaga.class);
+
                                 Intent intent = new Intent(getApplicationContext(), AprovacaoCandidatoActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.putExtra("objeto", vaga);
