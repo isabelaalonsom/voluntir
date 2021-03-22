@@ -16,6 +16,8 @@ import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Calendar;
+
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.LoginActivityVoluntario;
@@ -132,9 +134,14 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 voluntario.setDatanasc(data.getText().toString());
                 voluntario.setSobrenome(sobrenome.getText().toString());
 
-
-
-
+                String data2 = data.getText().toString();
+                int dia = Integer.parseInt(data2.substring(0, 2));
+                int mes = Integer.parseInt(data2.substring(3, 5));
+                int ano = Integer.parseInt(data2.substring(6, 10));
+                int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
+                Toast.makeText(getApplicationContext(),
+                        "ano atual " + anoAtual,
+                        Toast.LENGTH_SHORT).show();
                 //verifica se todos os campos foram preenchidos
                 if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty() ||
                         cpf.getText().toString().isEmpty() || nome.getText().toString().isEmpty() ||
@@ -143,8 +150,40 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Preencha todos os campos ",
                             Toast.LENGTH_SHORT).show();
+                    if (mes > 12 || mes < 1) {
+                        Toast.makeText(getApplicationContext(),
+                                "Mês inválido ",
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (mes == 4 || mes == 6 || mes == 7 || mes == 11) {
+                            if (dia > 30)
+                                Toast.makeText(getApplicationContext(),
+                                        "Dia inválido ",
+                                        Toast.LENGTH_SHORT).show();
+                        } else if (mes == 2) {
+                            if (dia > 28)
+                                Toast.makeText(getApplicationContext(),
+                                        "Dia inválido ",
+                                        Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(),
+                                    "Dia inválido ",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    if (ano >= anoAtual) {
+                        Toast.makeText(getApplicationContext(),
+                                "Ano inválido ",
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+                    if ((anoAtual - ano) < 18) {
+                        Toast.makeText(getApplicationContext(),
+                                "Proibido menor de idade ",
+                                Toast.LENGTH_SHORT).show();
+                    }
                 } else if (!senha.getText().toString().equals(confirmarSenha.getText().toString())) {
-                        Toast.makeText(getApplicationContext(), "As senhas não conferem.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "As senhas não conferem.", Toast.LENGTH_LONG).show();
                 } else {
                     //VoluntarioDao voluntarioDao = new VoluntarioDao();
                     voluntario.setGenero((String) radioButton.getText());
