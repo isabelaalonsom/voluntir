@@ -57,19 +57,20 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
         txtResumoOng = (TextView) findViewById(R.id.txtViewResumoOngVariavel);
 
         Bundle dados = getIntent().getExtras();
-        ong = (Ong) dados.getSerializable("objeto");
-        Toast.makeText(this, "Email: " + ong.getEmailOng(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "Nome: " + ong.getNome(), Toast.LENGTH_SHORT).show();
-        //txtNomeOng = (TextView) findViewById(R.id.txtViewNomeOng);
+        if (dados != null) {
+            final Ong ong = (Ong) dados.getSerializable("objeto");
+        }
 
-        txtNomeOng.setText(ong.getNome());
-        txtCnpj.setText(ong.getCpnj());
-        txtLocalizacao.setText(ong.getLocalizacao());
-        txtCausas.setText(ong.getCausas());
-        txtTelefone.setText(ong.getTelefone());
-        txtSite.setText(ong.getSite());
-        txtEmail.setText(ong.getEmailOng());
-        txtResumoOng.setText(ong.getResumoOng());
+        if (ong != null) {
+            txtNomeOng.setText(ong.getNome());
+            txtCnpj.setText(ong.getCpnj());
+            txtLocalizacao.setText(ong.getLocalizacao());
+            txtCausas.setText(ong.getCausas());
+            txtTelefone.setText(ong.getTelefone());
+            txtSite.setText(ong.getSite());
+            txtEmail.setText(ong.getEmailOng());
+            txtResumoOng.setText(ong.getResumoOng());
+        }
 
     }
 
@@ -85,18 +86,20 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
                     Toast.LENGTH_SHORT).show();
         } else {
             Ong dados = new Ong();
-            dados.setIdOng(ong.getIdOng());
-            dados.setCausas(txtCausas.getText().toString());
-            dados.setCpnj(txtCnpj.getText().toString());
-            dados.setEmailOng(txtEmail.getText().toString());
-            dados.setNome(txtNomeOng.getText().toString());
-            dados.setLocalizacao(txtLocalizacao.getText().toString());
-            dados.setResumoOng(txtResumoOng.getText().toString());
-            dados.setTelefone(txtTelefone.getText().toString());
-            dados.setSite(txtSite.getText().toString());
+            if (ong != null) {
+                dados.setIdOng(ong.getIdOng());
+                dados.setCausas(txtCausas.getText().toString());
+                dados.setCpnj(txtCnpj.getText().toString());
+                dados.setEmailOng(txtEmail.getText().toString());
+                dados.setNome(txtNomeOng.getText().toString());
+                dados.setLocalizacao(txtLocalizacao.getText().toString());
+                dados.setResumoOng(txtResumoOng.getText().toString());
+                dados.setTelefone(txtTelefone.getText().toString());
+                dados.setSite(txtSite.getText().toString());
 
-            controleCadastro = new ControleCadastro();
-            controleCadastro.atualizarDadosOng(dados, tabelaOng, getApplicationContext());
+                controleCadastro = new ControleCadastro();
+                controleCadastro.atualizarDadosOng(dados, tabelaOng, getApplicationContext());
+            }
         }
 
 
@@ -108,18 +111,20 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
 
     public void clicarBotaoExcluirOng(View view) {
         Ong dados = new Ong();
-        dados.setIdOng(ong.getIdOng());
-        dados.setCausas(txtCausas.getText().toString());
-        dados.setCpnj(txtCnpj.getText().toString());
-        dados.setEmailOng(txtEmail.getText().toString());
-        dados.setNome(txtNomeOng.getText().toString());
-        dados.setLocalizacao(txtLocalizacao.getText().toString());
-        dados.setResumoOng(txtResumoOng.getText().toString());
-        dados.setTelefone(txtTelefone.getText().toString());
-        dados.setSite(txtSite.getText().toString());
+        if (ong != null) {
+            dados.setIdOng(ong.getIdOng());
+            dados.setCausas(txtCausas.getText().toString());
+            dados.setCpnj(txtCnpj.getText().toString());
+            dados.setEmailOng(txtEmail.getText().toString());
+            dados.setNome(txtNomeOng.getText().toString());
+            dados.setLocalizacao(txtLocalizacao.getText().toString());
+            dados.setResumoOng(txtResumoOng.getText().toString());
+            dados.setTelefone(txtTelefone.getText().toString());
+            dados.setSite(txtSite.getText().toString());
 
-        controleCadastro = new ControleCadastro();
-        controleCadastro.excluirDadosOng(dados, tabelaOng, getApplicationContext());
+            controleCadastro = new ControleCadastro();
+            controleCadastro.excluirDadosOng(dados, tabelaOng, getApplicationContext());
+        }
 
     }
 

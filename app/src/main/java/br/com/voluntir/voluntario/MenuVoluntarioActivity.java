@@ -30,7 +30,10 @@ public class MenuVoluntarioActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         Bundle dados = getIntent().getExtras();
-        voluntario = (Voluntario) dados.getSerializable("objeto");
+        if (dados != null) {
+            voluntario = (Voluntario) dados.getSerializable("objeto");
+        }
+
 
     }
 

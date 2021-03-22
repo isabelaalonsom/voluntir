@@ -46,7 +46,7 @@ public class CadastroONGActivity extends AppCompatActivity {
         site = (EditText) findViewById(R.id.edtTextSite);
         resumo = (EditText) findViewById(R.id.edtTextResumoOng);
         confirmarSenha = findViewById(R.id.edtTextConfirmarSenhaOng);
-
+        limparDados();
         //mascara para o Cnpj
         SimpleMaskFormatter simpleMaskCnpj = new SimpleMaskFormatter("NN.NNN.NNN/NNNN-NN");
         MaskTextWatcher maskCnpj = new MaskTextWatcher(cnpj, simpleMaskCnpj);
@@ -147,16 +147,17 @@ public class CadastroONGActivity extends AppCompatActivity {
             //aqui tem que jogar pro banco de dados os edit text preenchidos
         }
 
-        public void limparDados (View view){
-            nome.setText("");
-            cnpj.setText("");
-            localizacao.setText("");
-            causa.setText("");
-            telefone.setText("");
-            site.setText("");
-            email.setText("");
-            senha.setText("");
-            resumo.setText("");
+    public void limparDados() {
+        nome.setText("");
+        cnpj.setText("");
+        localizacao.setText("");
+        causa.setText("");
+        telefone.setText("");
+        site.setText("");
+        email.setText("");
+        senha.setText("");
+        confirmarSenha.setText("");
+        resumo.setText("");
         }
 
     }

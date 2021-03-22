@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.voluntir.adapter.AdapterAprovacao;
+import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
@@ -37,6 +39,7 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
     private List<Voluntario> listaVoluntarios = new ArrayList<>();
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVoluntario = bancoReferencia.child("voluntario");
+    Vaga vaga;
     Voluntario voluntario = new Voluntario();
     Button botaoAprovado;
     @Override
@@ -45,7 +48,8 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_aprovacao_candidato);
 
         getSupportActionBar().hide();
-
+        Bundle dados = getIntent().getExtras();
+        vaga = (Vaga) dados.getSerializable("objeto");
         recyclerViewCandidato = findViewById(R.id.recyclerViewCandidatos);
         txtNomeVoluntario = findViewById(R.id.txtViewCandidatos);
         //botaoAprovado = (Button) findViewById(R.id.btnAprovar);
@@ -58,11 +62,24 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
 
 //        trazVagaClicada();
 
+
         tabelaVoluntario.addValueEventListener(new ValueEventListener() {
             //recuperar os dados sempre que for mudado no banco
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listaVoluntarios.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    voluntario = dataSnapshot.getValue(Voluntario.class);
+                    if (voluntario.getIdVoluntario().equals(vaga.getVoluntarios())) {
+                        Log.i("Candidatos", voluntario.getIdVoluntario().toString());
+                    }
+                    Toast.makeText(getApplicationContext(),
+                            "Candidatos:" + dataSnapshot.getValue().toString(),
+                            Toast.LENGTH_SHORT).show();
+                }
+
+
                 listaVoluntarios.add(voluntario);
 
                 //txtNomeVoluntario.setText("Victor Capel");

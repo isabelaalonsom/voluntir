@@ -1,6 +1,7 @@
 package br.com.voluntir.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Vaga implements Serializable {
 
@@ -15,6 +16,8 @@ public class Vaga implements Serializable {
     private String horario;
     private String nomeOng;
     private String idOng;
+    private String idVoluntario;
+    private List<Voluntario> voluntarios;
     Voluntario voluntario;
 
     public Vaga() {
@@ -84,13 +87,22 @@ public class Vaga implements Serializable {
     public void setIdOng(String idOng) {
         this.idOng = idOng;
     }
-    //public String getIdVaga() {
-    //     return idVaga;
-    //}
 
-    //public void setIdVaga(String idVaga) {
-    //    this.idVaga = idVaga;
-    //}
+    public List<Voluntario> getVoluntarios() {
+        return voluntarios;
+    }
+
+    public void setVoluntarios(List<Voluntario> voluntarios) {
+        this.voluntarios = voluntarios;
+    }
+
+    public String getIdVoluntario() {
+        return idVoluntario;
+    }
+
+    public void setIdVoluntario(String idVoluntario) {
+        this.idVoluntario = idVoluntario;
+    }
 
     public int getQtdCandidaturas() {
         return qtdCandidaturas;

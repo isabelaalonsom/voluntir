@@ -43,14 +43,17 @@ public class MenuOngActivity extends AppCompatActivity {
 
         Bundle dados = getIntent().getExtras();
 
-        ong = (Ong) dados.getSerializable("objeto");
+        if (dados != null) {
+            ong = (Ong) dados.getSerializable("objeto");
+        }
+
 
 //        new Thread(() -> {
 //            txtNomeOng = (TextView) findViewById(R.id.txtViewNomeOng);
 //            txtNomeOng.setText(ong.getNome());
 //        });
 
-        runOnUiThread (new Thread((Runnable) () -> {
+        runOnUiThread(new Thread((Runnable) () -> {
             try {
                 txtNomeOng = (TextView) findViewById(R.id.txtViewNomeOng);
                 txtNomeOng.setText(ong.getNome());
@@ -120,7 +123,6 @@ public class MenuOngActivity extends AppCompatActivity {
     }
 
     public void clicarMinhasVagas(View view) {
-        //criar logica que aqui puxe um adapter só das vagas vinculadas a essa ONG
         Intent intent = new Intent(getApplicationContext(), MinhasVagasActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("objeto", ong);

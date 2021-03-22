@@ -49,17 +49,20 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         txtDescricaoTecnica = (TextView) findViewById(R.id.txtViewDescricaoTecnicaVariavel);
 
         Bundle dados = getIntent().getExtras();
-        voluntario = (Voluntario) dados.getSerializable("objeto");
+        if (dados != null) {
+            voluntario = (Voluntario) dados.getSerializable("objeto");
 
-        txtNome.setText(voluntario.getNome());
-        txtSobrenome.setText(voluntario.getSobrenome());
-        txtCpf.setText(voluntario.getCpf());
-        txtDataNasc.setText(voluntario.getDatanasc());
-        txtEmail.setText(voluntario.getEmail());
-        txtEndereco.setText(voluntario.getEndereco());
-        txtTelefone.setText(voluntario.getTelefone());
-        txtGenero.setText(voluntario.getGenero());
-        txtDescricaoTecnica.setText(voluntario.getEspecialidade());
+            txtNome.setText(voluntario.getNome());
+            txtSobrenome.setText(voluntario.getSobrenome());
+            txtCpf.setText(voluntario.getCpf());
+            txtDataNasc.setText(voluntario.getDatanasc());
+            txtEmail.setText(voluntario.getEmail());
+            txtEndereco.setText(voluntario.getEndereco());
+            txtTelefone.setText(voluntario.getTelefone());
+            txtGenero.setText(voluntario.getGenero());
+            txtDescricaoTecnica.setText(voluntario.getEspecialidade());
+        }
+
 
     }
 
@@ -74,7 +77,10 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         } else {
             Voluntario dados = new Voluntario();
-            dados.setIdVoluntario(voluntario.getIdVoluntario());
+            if (voluntario != null) {
+                dados.setIdVoluntario(voluntario.getIdVoluntario());
+            }
+
             dados.setNome(txtNome.getText().toString());
             dados.setSobrenome(txtSobrenome.getText().toString());
             dados.setCpf(txtCpf.getText().toString());
@@ -92,7 +98,9 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
 
     public void clicarBotaoExcluir(View view) {
         Voluntario dados = new Voluntario();
-        dados.setIdVoluntario(voluntario.getIdVoluntario());
+        if (voluntario != null) {
+            dados.setIdVoluntario(voluntario.getIdVoluntario());
+        }
         dados.setNome(txtNome.getText().toString());
         dados.setSobrenome(txtSobrenome.getText().toString());
         dados.setCpf(txtCpf.getText().toString());
@@ -104,7 +112,10 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         dados.setEspecialidade(txtDescricaoTecnica.getText().toString());
 
         controleCadastro = new ControleCadastro();
-        controleCadastro.excluirDadosVoluntario(dados, tabelaVoluntario, getApplicationContext());
+        if (dados != null) {
+            controleCadastro.excluirDadosVoluntario(dados, tabelaVoluntario, getApplicationContext());
+        }
+
 
     }
 

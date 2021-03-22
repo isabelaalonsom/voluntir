@@ -52,7 +52,10 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerViewVaga);
         Bundle dados = getIntent().getExtras();
-        voluntario = (Voluntario) dados.getSerializable("objeto");
+        if (dados != null) {
+            voluntario = (Voluntario) dados.getSerializable("objeto");
+        }
+
 
         //Configurar Recyclerview
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -108,7 +111,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                                 Intent intent = new Intent(getApplicationContext(), CandidaturaActivity.class);
 
                                 Vaga vagaClicada = listaVaga.get(position);
-
+                                intent.putExtra("voluntario", voluntario);
                                 intent.putExtra("vaga", vagaClicada);
                                 startActivity(intent);
 
