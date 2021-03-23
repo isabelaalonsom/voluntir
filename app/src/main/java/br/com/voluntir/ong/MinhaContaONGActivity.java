@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
@@ -55,7 +56,7 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
         txtSite = (TextView) findViewById(R.id.txtViewSiteVariavel);
         txtEmail = (TextView) findViewById(R.id.txtViewEmailVariavel);
         txtResumoOng = (TextView) findViewById(R.id.txtViewResumoOngVariavel);
-
+        limparCampos();
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
             final Ong ong = (Ong) dados.getSerializable("objeto");
@@ -99,6 +100,8 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
 
                 controleCadastro = new ControleCadastro();
                 controleCadastro.atualizarDadosOng(dados, tabelaOng, getApplicationContext());
+            } else {
+
             }
         }
 
@@ -106,26 +109,39 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
     }
 
     public void clicarBotaoSairOng(View view) {
+        Preferencias preferencias = new Preferencias(getApplicationContext());
+        preferencias.salvarUsuarioPreferencias(null, null, null);
         this.finishAffinity();
     }
 
     public void clicarBotaoExcluirOng(View view) {
         Ong dados = new Ong();
-        if (ong != null) {
+
             dados.setIdOng(ong.getIdOng());
             dados.setCausas(txtCausas.getText().toString());
-            dados.setCpnj(txtCnpj.getText().toString());
-            dados.setEmailOng(txtEmail.getText().toString());
-            dados.setNome(txtNomeOng.getText().toString());
-            dados.setLocalizacao(txtLocalizacao.getText().toString());
-            dados.setResumoOng(txtResumoOng.getText().toString());
-            dados.setTelefone(txtTelefone.getText().toString());
-            dados.setSite(txtSite.getText().toString());
+        dados.setCpnj(txtCnpj.getText().toString());
+        dados.setEmailOng(txtEmail.getText().toString());
+        dados.setNome(txtNomeOng.getText().toString());
+        dados.setLocalizacao(txtLocalizacao.getText().toString());
+        dados.setResumoOng(txtResumoOng.getText().toString());
+        dados.setTelefone(txtTelefone.getText().toString());
+        dados.setSite(txtSite.getText().toString());
 
-            controleCadastro = new ControleCadastro();
-            controleCadastro.excluirDadosOng(dados, tabelaOng, getApplicationContext());
-        }
+        controleCadastro = new ControleCadastro();
+        controleCadastro.excluirDadosOng(dados, tabelaOng, getApplicationContext());
 
+
+    }
+
+    public void limparCampos() {
+        txtNomeOng.setText("");
+        txtCnpj.setText("");
+        txtLocalizacao.setText("");
+        txtCausas.setText("");
+        txtTelefone.setText("");
+        txtSite.setText("");
+        txtEmail.setText("");
+        txtResumoOng.setText("");
     }
 
 
