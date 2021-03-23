@@ -38,12 +38,13 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     private RadioButton botaoFeminino;
     private RadioButton botaoMasculino;
     String genero;
+    boolean grava = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_voluntario);
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         email = (EditText) findViewById(R.id.edtTextEmail);
         senha = (EditText) findViewById(R.id.edtTextSenha);
         cpf = (EditText) findViewById(R.id.edtTextCpf);
@@ -134,14 +135,19 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 voluntario.setDatanasc(data.getText().toString());
                 voluntario.setSobrenome(sobrenome.getText().toString());
 
+                int dia = 0;
+                int mes = 0;
+                int ano = 0;
+
                 String data2 = data.getText().toString();
-                int dia = Integer.parseInt(data2.substring(0, 2));
-                int mes = Integer.parseInt(data2.substring(3, 5));
-                int ano = Integer.parseInt(data2.substring(6, 10));
+                if (data2 != null) {
+                    dia = Integer.parseInt(data2.substring(0, 2));
+                    mes = Integer.parseInt(data2.substring(3, 5));
+                    ano = Integer.parseInt(data2.substring(6, 10));
+                }
+
                 int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
-                Toast.makeText(getApplicationContext(),
-                        "ano atual " + anoAtual,
-                        Toast.LENGTH_SHORT).show();
+
                 //verifica se todos os campos foram preenchidos
                 if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty() ||
                         cpf.getText().toString().isEmpty() || nome.getText().toString().isEmpty() ||
@@ -150,25 +156,42 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Preencha todos os campos ",
                             Toast.LENGTH_SHORT).show();
+
+                } else if (!senha.getText().toString().equals(confirmarSenha.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "As senhas não conferem.", Toast.LENGTH_LONG).show();
+                } else {
                     if (mes > 12 || mes < 1) {
                         Toast.makeText(getApplicationContext(),
                                 "Mês inválido ",
                                 Toast.LENGTH_SHORT).show();
                     } else {
-                        if (mes == 4 || mes == 6 || mes == 7 || mes == 11) {
-                            if (dia > 30)
+                        if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+                            if (dia > 30) {
                                 Toast.makeText(getApplicationContext(),
                                         "Dia inválido ",
                                         Toast.LENGTH_SHORT).show();
+                            } else {
+                                grava = true;
+                            }
+
                         } else if (mes == 2) {
-                            if (dia > 28)
+                            if (dia > 28) {
                                 Toast.makeText(getApplicationContext(),
                                         "Dia inválido ",
                                         Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getApplicationContext(),
-                                    "Dia inválido ",
-                                    Toast.LENGTH_SHORT).show();
+                            } else {
+                                grava = true;
+                            }
+
+                        } else if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+                            if (dia > 31) {
+                                Toast.makeText(getApplicationContext(),
+                                        "Dia inválido ",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                grava = true;
+                            }
+
                         }
                     }
                     if (ano >= anoAtual) {
@@ -176,18 +199,18 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                                 "Ano inválido ",
                                 Toast.LENGTH_SHORT).show();
 
-                    }
-                    if ((anoAtual - ano) < 18) {
+                    } else if ((anoAtual - ano) < 18) {
                         Toast.makeText(getApplicationContext(),
                                 "Proibido menor de idade ",
                                 Toast.LENGTH_SHORT).show();
-                    }
-                } else if (!senha.getText().toString().equals(confirmarSenha.getText().toString())) {
-                    Toast.makeText(getApplicationContext(), "As senhas não conferem.", Toast.LENGTH_LONG).show();
-                } else {
+                    } else
+                        grava = true;
                     //VoluntarioDao voluntarioDao = new VoluntarioDao();
                     voluntario.setGenero((String) radioButton.getText());
-                    Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario, tabelaBanco, getApplicationContext());
+                    if (grava == true) {
+                        Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario, tabelaBanco, getApplicationContext());
+                    }
+
 
                     //voluntarioDao.adiciona(voluntario,tabelaBanco);
 

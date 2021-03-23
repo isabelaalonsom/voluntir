@@ -39,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
         Button btnONG = findViewById(R.id.btnONG);
         Button btnVoluntario = findViewById(R.id.btnVoluntario);
         if (preferencias.getEmailUsuarioLogado() != null || preferencias.getSenhaUsuarioLogado() != null) {
-            Toast.makeText(getApplicationContext(),
-                    "email:" + preferencias.getEmailUsuarioLogado(),
-                    Toast.LENGTH_SHORT).show();
             controleCadastro = new ControleCadastro();
             if ((preferencias.getUsuarioLogado().equals("ong"))) {
                 controleCadastro.buscaOng(preferencias.getEmailUsuarioLogado(), tabelaOng, getApplicationContext());
