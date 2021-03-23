@@ -280,7 +280,7 @@ public class ControleCadastro {
                                         Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(context.getApplicationContext(), MenuVoluntarioActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                intent.putExtra("voluntario", voluntario);
+                                intent.putExtra("objeto", voluntario);
                                 context.startActivity(intent);
                             } else {
                                 String erroExcecao;
