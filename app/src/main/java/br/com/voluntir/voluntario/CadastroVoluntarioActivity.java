@@ -16,9 +16,7 @@ import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
 
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Voluntario;
@@ -40,12 +38,13 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     private RadioButton botaoFeminino;
     private RadioButton botaoMasculino;
     String genero;
+    boolean grava = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_voluntario);
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         email = (EditText) findViewById(R.id.edtTextEmail);
         senha = (EditText) findViewById(R.id.edtTextSenha);
         cpf = (EditText) findViewById(R.id.edtTextCpf);
@@ -70,13 +69,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         SimpleMaskFormatter simpleMaskData = new SimpleMaskFormatter("NN/NN/NNNN");
         MaskTextWatcher maskData = new MaskTextWatcher(data,simpleMaskData);
         data.addTextChangedListener(maskData);
-
-        String mascaraDaData = "dd/MM/yyyy";
-        SimpleDateFormat sdf = new SimpleDateFormat(mascaraDaData);
-
-        sdf.setLenient(false);
-
-
 
         //mascara para o Telefone
         SimpleMaskFormatter simpleMaskTelefone = new SimpleMaskFormatter("(NN) NNNNN-NNNN");
@@ -105,7 +97,9 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
             telefone.setText(telefonePreenchido);
             endereco.setText(enderecoPreenchido);
             especialidade.setText(descricaoTecnicaPreenchido);
-            
+
+
+
 
             if (generoPreenchido.equals("Masculino")) {
                 botaoMasculino.setChecked(true);
@@ -128,6 +122,8 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
 
                 radioButton = findViewById(radioId);
 
+
+
                 //pegas os dados digitados
                 voluntario.setEmail(email.getText().toString());
                 voluntario.setSenha(senha.getText().toString());
@@ -136,19 +132,21 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 voluntario.setEspecialidade(especialidade.getText().toString());
                 voluntario.setTelefone(telefone.getText().toString());
                 voluntario.setEndereco(endereco.getText().toString());
-                //voluntario.setDatanasc(data.getText().toString());
+                voluntario.setDatanasc(data.getText().toString());
                 voluntario.setSobrenome(sobrenome.getText().toString());
 
-                // Durante a confirmacao de cadastro, faça a validacao
-                String dataDeNasc = data.getText().toString();
+                int dia = 0;
+                int mes = 0;
+                int ano = 0;
 
-                Date dataFormatada = null;
-                try {
-                    dataFormatada = sdf.parse(dataDeNasc);
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                String data2 = data.getText().toString();
+                if (data2 != null) {
+                    dia = Integer.parseInt(data2.substring(0, 2));
+                    mes = Integer.parseInt(data2.substring(3, 5));
+                    ano = Integer.parseInt(data2.substring(6, 10));
                 }
 
+                int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
 
                 //verifica se todos os campos foram preenchidos
                 if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty() ||
@@ -158,14 +156,61 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Preencha todos os campos ",
                             Toast.LENGTH_SHORT).show();
+
                 } else if (!senha.getText().toString().equals(confirmarSenha.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "As senhas não conferem.", Toast.LENGTH_LONG).show();
-                } else if (!dataDeNasc.isEmpty()) {
-                    voluntario.setDatanasc(String.valueOf(dataFormatada));
                 } else {
+                    if (mes > 12 || mes < 1) {
+                        Toast.makeText(getApplicationContext(),
+                                "Mês inválido ",
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+                            if (dia > 30) {
+                                Toast.makeText(getApplicationContext(),
+                                        "Dia inválido ",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                grava = true;
+                            }
+
+                        } else if (mes == 2) {
+                            if (dia > 28) {
+                                Toast.makeText(getApplicationContext(),
+                                        "Dia inválido ",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                grava = true;
+                            }
+
+                        } else if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+                            if (dia > 31) {
+                                Toast.makeText(getApplicationContext(),
+                                        "Dia inválido ",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                grava = true;
+                            }
+
+                        }
+                    }
+                    if (ano >= anoAtual) {
+                        Toast.makeText(getApplicationContext(),
+                                "Ano inválido ",
+                                Toast.LENGTH_SHORT).show();
+
+                    } else if ((anoAtual - ano) < 18) {
+                        Toast.makeText(getApplicationContext(),
+                                "Proibido menor de idade ",
+                                Toast.LENGTH_SHORT).show();
+                    } else
+                        grava = true;
                     //VoluntarioDao voluntarioDao = new VoluntarioDao();
                     voluntario.setGenero((String) radioButton.getText());
-                    Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario, tabelaBanco, getApplicationContext());
+                    if (grava == true) {
+                        Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario, tabelaBanco, getApplicationContext());
+                    }
+
 
                     //voluntarioDao.adiciona(voluntario,tabelaBanco);
 
