@@ -59,7 +59,7 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
         limparCampos();
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
-            final Ong ong = (Ong) dados.getSerializable("objeto");
+            ong = (Ong) dados.getSerializable("objeto");
         }
 
         if (ong != null) {
