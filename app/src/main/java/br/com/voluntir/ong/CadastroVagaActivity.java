@@ -31,7 +31,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
     private Vaga vaga;
     private TextView nome;
     private EditText dataInicio, dataTermino;
-    private EditText horario, periodicidade, especialidade, detalheVaga;
+    private EditText cargaHoraria, periodicidade, especialidade, detalheVaga;
     private ControleCadastro controleCadastro;
     private String tabelaBanco= "vaga";
     Ong ong;
@@ -48,7 +48,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
         especialidade = (EditText) findViewById(R.id.edtTextAreaConhecimento);
         dataInicio = (EditText) findViewById(R.id.edtTextDataInicio);
         dataTermino = (EditText) findViewById(R.id.edtTextDataTermino);
-        horario = (EditText) findViewById(R.id.edtTextHorario);
+        cargaHoraria = (EditText) findViewById(R.id.edtTextCargaHoraria);
         periodicidade = (EditText) findViewById(R.id.edtTextPeriodicidade);
         detalheVaga = (EditText) findViewById(R.id.edtTextDetalhesVaga);
 
@@ -71,8 +71,8 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
         //mascara para o Horario
         SimpleMaskFormatter simpleMaskHorario = new SimpleMaskFormatter("NN:NN");
-        MaskTextWatcher maskHorario = new MaskTextWatcher(horario,simpleMaskHorario);
-        horario.addTextChangedListener(maskHorario);
+        MaskTextWatcher maskHorario = new MaskTextWatcher(cargaHoraria,simpleMaskHorario);
+        cargaHoraria.addTextChangedListener(maskHorario);
 
         botaoConfirmar = findViewById(R.id.btnConfirmarVaga);
         botaoConfirmar.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +84,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
                 //verifica se todos os campos foram preenchidos
                 if (especialidade.getText().toString().isEmpty() ||
                         dataInicio.getText().toString().isEmpty() || dataTermino.getText().toString().isEmpty() ||
-                         horario.getText().toString().isEmpty() ||
+                        cargaHoraria.getText().toString().isEmpty() ||
                         detalheVaga.getText().toString().isEmpty() || periodicidade.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(),
                             "Preencha todos os campos ",
@@ -98,7 +98,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
                     vaga.setDataTermino(dataTermino.getText().toString());
                     vaga.setPeriodicidade(periodicidade.getText().toString());
                     vaga.setDescricaoVaga(detalheVaga.getText().toString());
-                    vaga.setHorario(horario.getText().toString());
+                    vaga.setCargaHoraria(cargaHoraria.getText().toString());
                     vaga.setIdOng(ong.getIdOng());
 
                     Boolean retorno = controleCadastro.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
@@ -114,7 +114,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
                 dataTermino.setText("");
                 periodicidade.setText("");
                 detalheVaga.setText("");
-                horario.setText("");
+                cargaHoraria.setText("");
             }
         }
 

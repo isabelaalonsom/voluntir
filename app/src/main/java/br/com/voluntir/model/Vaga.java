@@ -13,10 +13,19 @@ public class Vaga implements Serializable {
     private String dataInicio;
     private String dataTermino;
     private String periodicidade;
-    private String horario;
     private String nomeOng;
     private String idOng;
+    private String cargaHoraria;
     private String idVoluntario;
+
+    public String getCargaHoraria() {
+        return cargaHoraria;
+    }
+
+    public void setCargaHoraria(String cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
+    }
+
     private List<Voluntario> voluntarios;
     Voluntario voluntario;
 
@@ -70,14 +79,6 @@ public class Vaga implements Serializable {
 
     public void setPeriodicidade(String periodicidade) {
         this.periodicidade = periodicidade;
-    }
-
-    public String getHorario() {
-        return horario;
-    }
-
-    public void setHorario(String horario) {
-        this.horario = horario;
     }
 
     public String getIdOng() {

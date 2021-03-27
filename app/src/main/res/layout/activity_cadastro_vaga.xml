@@ -139,19 +139,19 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtViewHorario"
+                    android:id="@+id/txtViewCargaHoraria"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Horário: "
+                    android:text="Carga Horária:"
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/edtTextHorario"
+                    android:id="@+id/edtTextCargaHoraria"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="10:00"
+                    android:hint="02:00"
                     android:inputType="number" />
 
             </LinearLayout>
