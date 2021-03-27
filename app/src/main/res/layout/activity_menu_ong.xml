@@ -48,13 +48,6 @@
 
 
             <Button
-                android:id="@+id/btnVagasMenuOng"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="clicarVagas"
-                android:text="TODAS AS VAGAS" />
-
-            <Button
                 android:id="@+id/btnMinhasVagas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
