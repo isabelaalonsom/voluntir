@@ -106,6 +106,15 @@ public class ControleCadastro {
         return retorno;
     }
 
+    public boolean cadastrarVaga(Vaga dado, String tabela, Context context) {
+
+        vagaDao = new VagaDao();
+
+        vagaDao.adiciona(dado, tabela, context);
+
+        return retorno;
+    }
+
     public void atualizarDadosOng(Ong dado, String tabela, Context context) {
         this.ong = dado;
 
@@ -115,7 +124,7 @@ public class ControleCadastro {
 
     }
 
-    public void atualizarDadosOng(Voluntario dado, String tabela, Context context) {
+    public void atualizarDadosVoluntario(Voluntario dado, String tabela, Context context) {
         this.voluntario = dado;
 
         voluntarioDao = new VoluntarioDao();
@@ -124,19 +133,13 @@ public class ControleCadastro {
 
     }
 
-    public boolean cadastrarVaga(Vaga dado, String tabela, Context context) {
-        this.vaga = dado;
-
+    public void atualizaVagaVoluntario(Vaga dado, String tabela, Context context) {
         vagaDao = new VagaDao();
 
-        try {
-            vagaDao.adiciona(vaga, tabela, context);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        vagaDao.atualiza(dado, tabela, context);
 
-        return retorno;
     }
+
 
     public void enviarEmailRecuperarSenha(String email, final Context context) {
         autenticacao = BancoFirebase.getFirebaseAutenticacao();

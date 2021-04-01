@@ -6,7 +6,7 @@ import java.util.List;
 public class Vaga implements Serializable {
 
     //private String idVaga;
-    private int idVaga;
+    private String idVaga;
     private int qtdCandidaturas;
     private String areaConhecimento;
     private String descricaoVaga;
@@ -32,11 +32,11 @@ public class Vaga implements Serializable {
     public Vaga() {
     }
 
-    public int getIdVaga() {
+    public String getIdVaga() {
         return idVaga;
     }
 
-    public void setIdVaga(int idVaga) {
+    public void setIdVaga(String idVaga) {
         this.idVaga = idVaga;
     }
 

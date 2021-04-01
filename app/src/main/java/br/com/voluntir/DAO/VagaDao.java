@@ -41,26 +41,27 @@ public class VagaDao implements DAO<Vaga> {
     @Override
     public void adiciona(Vaga dado, String tabela, final Context appContext) throws DatabaseException {
         refenciaBanco = BancoFirebase.getBancoReferencia();
-
-        refenciaBanco.child(tabela).push().setValue(dado).addOnCompleteListener(new OnCompleteListener<Void>() {
+        String idVaga = refenciaBanco.push().getKey();
+        dado.setIdVaga(idVaga);
+        refenciaBanco.child(tabela).child(idVaga).setValue(dado).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    ongDao = new OngDao();
+                    /*ongDao = new OngDao();
                     ong = new Ong();
-
+                    
                     String idDaOng = dado.getIdOng();
 
-                    ong = ongDao.busca(idDaOng, "ong", appContext);
+                    ong = ongDao.busca(idDaOng, "ong", appContext);*/
 
                     Toast.makeText(appContext,
                             "Vaga cadastrada com sucesso ",
                             Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(appContext.getApplicationContext(), MenuOngActivity.class);
+                    /*Intent i = new Intent(appContext.getApplicationContext(), MenuOngActivity.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     //i.putExtra("ong", ong1);
                     i.putExtra("objeto", ong);
-                    appContext.startActivity(i);
+                    appContext.startActivity(i);*/
 
                 }
             }
@@ -77,7 +78,18 @@ public class VagaDao implements DAO<Vaga> {
     @Override
     public void atualiza(Vaga dado, String tabela, Context context) throws DatabaseException {
         refenciaBanco = BancoFirebase.getBancoReferencia();
-        refenciaBanco.child(tabela).child(String.valueOf(dado.getIdVaga())).setValue(dado);
+        refenciaBanco.child(tabela).child(dado.getIdVaga()).setValue(dado).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(
+                            context,
+                            "Candidatura Enviada!",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+            }
+        });
 
 
     }

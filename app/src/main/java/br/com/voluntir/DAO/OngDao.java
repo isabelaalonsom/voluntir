@@ -34,7 +34,7 @@ import br.com.voluntir.voluntir.MenuOngActivity;
 public class OngDao implements DAO<Ong> {
     private Ong ong;
     private FirebaseAuth autenticacao;
-    private DatabaseReference bancoFirebase;
+    DatabaseReference bancoFirebase;
     private final static List<Ong> ongList = new ArrayList<>();
     boolean cadastrado;
 
@@ -169,8 +169,7 @@ public class OngDao implements DAO<Ong> {
     }
 
     @Override
-    public Ong busca(final String email, String tabela, Context context) {
-
+    public Ong busca(final String email, final String tabela, Context context) {
         bancoFirebase = BancoFirebase.getBancoReferencia();
         Query pesquisa = bancoFirebase.child(tabela).orderByChild("emailOng").equalTo(email);
         pesquisa.addListenerForSingleValueEvent(new ValueEventListener() {

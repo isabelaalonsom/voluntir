@@ -25,6 +25,7 @@ import java.util.List;
 
 import br.com.voluntir.RecyclerItemClickListener;
 import br.com.voluntir.adapter.AdapterVaga;
+import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
@@ -33,15 +34,18 @@ import br.com.voluntir.voluntir.VoluntarioVisualizarVaga;
 public class VagaVoluntarioActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<Vaga> listaVaga = new ArrayList<>();
+    private List<Voluntario> listaVoluntario = new ArrayList<>();
     //cria referencia para o banco de dados e getinstance estamos recuperando a instancia do
     // firebase utilizada para salvar e o getReferecence volta pro nó raiz
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     private DatabaseReference tabelaCandidatura = bancoReferencia.child("candidatura");
+    private String nomeTabelaVaga = "vaga";
     Vaga vaga = new Vaga();
-    Vaga vagaClicada = new Vaga();
+    Vaga vagaClicada;
     private FirebaseAuth usuario = FirebaseAuth.getInstance();
     Voluntario voluntario;
+    ControleCadastro controleCadastro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                 //Log.i("FIREBASE", snapshot.getValue().toString());
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     vaga = dataSnapshot.getValue(Vaga.class);
+                    vaga.setIdVaga(dataSnapshot.getKey());
                     //Log.i("FIREBASE", snapshot.getValue().toString());
                     listaVaga.add(vaga);
                 }
@@ -102,18 +107,27 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
 
                             @Override
                             public void onLongItemClick(View view, int position) {
-                                Toast.makeText(
-                                        getApplicationContext(),
-                                        "Candidatura Enviada!" ,
-                                        Toast.LENGTH_SHORT
-                                ).show();
 
-                                Intent intent = new Intent(getApplicationContext(), CandidaturaActivity.class);
 
-                                Vaga vagaClicada = listaVaga.get(position);
+
+                                /*Intent intent = new Intent(getApplicationContext(), CandidaturaActivity.class);
+                                vagaClicada = listaVaga.get(position);
+                                Toast.makeText(getApplicationContext(),
+                                        "id " +position,
+                                        Toast.LENGTH_SHORT).show();
                                 intent.putExtra("voluntario", voluntario);
                                 intent.putExtra("vaga", vagaClicada);
-                                startActivity(intent);
+                                startActivity(intent);*/
+
+                                //Vaga vagaClicada = listaVaga.get(position);
+                                //vagaClicada.setVoluntario(voluntario);
+                                //vagaClicada.setVoluntarios((List<Voluntario>) voluntario);
+
+
+                                listaVoluntario.add(voluntario);
+                                vaga.setVoluntarios(listaVoluntario);
+                                controleCadastro = new ControleCadastro();
+                                controleCadastro.atualizaVagaVoluntario(vaga, nomeTabelaVaga, getApplicationContext());
 
                             }
 

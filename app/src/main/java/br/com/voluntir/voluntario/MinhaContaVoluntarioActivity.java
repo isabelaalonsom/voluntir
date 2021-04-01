@@ -94,7 +94,7 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
             dados.setEspecialidade(txtDescricaoTecnica.getText().toString());
 
             controleCadastro = new ControleCadastro();
-            controleCadastro.atualizarDadosOng(dados, tabelaVoluntario, getApplicationContext());
+            controleCadastro.atualizarDadosVoluntario(dados, tabelaVoluntario, getApplicationContext());
         }
     }
 
