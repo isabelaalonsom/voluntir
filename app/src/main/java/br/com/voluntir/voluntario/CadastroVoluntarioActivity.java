@@ -39,13 +39,15 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     private RadioButton botaoMasculino;
     String genero;
     boolean grava = false;
+
     boolean mesdiaok = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_voluntario);
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         email = (EditText) findViewById(R.id.edtTextEmail);
         senha = (EditText) findViewById(R.id.edtTextSenha);
         cpf = (EditText) findViewById(R.id.edtTextCpf);
@@ -141,7 +143,11 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 int ano = 0;
 
                 String data2 = data.getText().toString();
+
+                if (!data2.toString().isEmpty()) {
+
                 if (data2 != null) {
+
                     dia = Integer.parseInt(data2.substring(0, 2));
                     mes = Integer.parseInt(data2.substring(3, 5));
                     ano = Integer.parseInt(data2.substring(6, 10));
@@ -160,6 +166,13 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
 
                 } else if (!senha.getText().toString().equals(confirmarSenha.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "As senhas não conferem.", Toast.LENGTH_LONG).show();
+
+                } else {
+                    voluntario.setGenero((String) radioButton.getText());
+                    Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario, tabelaBanco, getApplicationContext());
+                }
+
+
                 } else if (mes < 1 || mes > 12) {
                     Toast.makeText(getApplicationContext(),"Mês inválido ", Toast.LENGTH_SHORT).show();
                 } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
@@ -188,6 +201,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                     mesdiaok = true;
                 }
 
+
                 if (mesdiaok) {
                     if (ano >= anoAtual) {
                         Toast.makeText(getApplicationContext(), "Ano inválido ", Toast.LENGTH_SHORT).show();
@@ -197,7 +211,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                         grava = true;
                     }
                 }
-
                 if (grava) {
                     voluntario.setGenero((String) radioButton.getText());
                     Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario, tabelaBanco, getApplicationContext());

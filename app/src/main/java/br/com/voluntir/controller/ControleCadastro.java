@@ -25,6 +25,7 @@ import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.DAO.OngDao;
 import br.com.voluntir.DAO.VagaDao;
 import br.com.voluntir.DAO.VoluntarioDao;
+import br.com.voluntir.Preferencias;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
@@ -63,6 +64,24 @@ public class ControleCadastro {
         }
     }
 
+    public void buscaOng(String email, String tabela, Context context) {
+        ongDao = new OngDao();
+        try {
+            ongDao.busca(email, tabela, context);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void buscaVoluntario(String email, String tabela, Context context) {
+        voluntarioDao = new VoluntarioDao();
+        try {
+            voluntarioDao.busca(email, tabela, context);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public boolean cadastrarVoluntario(Voluntario dado, String tabela, Context context) {
         this.voluntario = dado;
 
@@ -87,6 +106,15 @@ public class ControleCadastro {
         return retorno;
     }
 
+    public boolean cadastrarVaga(Vaga dado, String tabela, Context context) {
+
+        vagaDao = new VagaDao();
+
+        vagaDao.adiciona(dado, tabela, context);
+
+        return retorno;
+    }
+
     public void atualizarDadosOng(Ong dado, String tabela, Context context) {
         this.ong = dado;
 
@@ -96,7 +124,7 @@ public class ControleCadastro {
 
     }
 
-    public void atualizarDadosOng(Voluntario dado, String tabela, Context context) {
+    public void atualizarDadosVoluntario(Voluntario dado, String tabela, Context context) {
         this.voluntario = dado;
 
         voluntarioDao = new VoluntarioDao();
@@ -105,19 +133,13 @@ public class ControleCadastro {
 
     }
 
-    public boolean cadastrarVaga(Vaga dado, String tabela, Context context) {
-        this.vaga = dado;
-
+    public void atualizaVagaVoluntario(Vaga dado, String tabela, Context context) {
         vagaDao = new VagaDao();
 
-        try {
-            vagaDao.adiciona(vaga, tabela, context);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        vagaDao.atualiza(dado, tabela, context);
 
-        return retorno;
     }
+
 
     public void enviarEmailRecuperarSenha(String email, final Context context) {
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
@@ -167,6 +189,9 @@ public class ControleCadastro {
 
                             }
                             if (ong != null) {
+                                Preferencias preferencias = new Preferencias(context.getApplicationContext());
+                                preferencias.salvarUsuarioPreferencias(ong.getEmailOng(), ong.getSenhaOng(), "ong");
+
                                 Toast.makeText(context,
                                         "Sucesso ao fazer Login ",
                                         Toast.LENGTH_SHORT).show();
@@ -244,12 +269,15 @@ public class ControleCadastro {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 voluntario = dataSnapshot.getValue(Voluntario.class);
-                                ong = new Ong();
+
                                 Log.i("FIREBASE", dataSnapshot.getValue().toString());
 
                             }
 
                             if (voluntario != null) {
+                                Preferencias preferencias = new Preferencias(context.getApplicationContext());
+                                preferencias.salvarUsuarioPreferencias(voluntario.getEmail(), voluntario.getSenha(), "voluntario");
+
                                 Toast.makeText(context,
                                         "Sucesso ao fazer Login ",
                                         Toast.LENGTH_SHORT).show();
@@ -258,7 +286,7 @@ public class ControleCadastro {
                                 intent.putExtra("objeto", voluntario);
                                 context.startActivity(intent);
                             } else {
-                                String erroExcecao = "";
+                                String erroExcecao;
                                 try {
                                     throw task.getException();
                                 } catch (Exception e) {

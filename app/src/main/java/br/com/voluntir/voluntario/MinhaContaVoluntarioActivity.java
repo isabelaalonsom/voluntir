@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.w3c.dom.Text;
 
+import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
@@ -47,20 +48,21 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         txtTelefone = (TextView) findViewById(R.id.txtViewTelefoneVariavel);
         txtGenero = (TextView) findViewById(R.id.txtViewGeneroVariavel);
         txtDescricaoTecnica = (TextView) findViewById(R.id.txtViewDescricaoTecnicaVariavel);
-
+        limparCampos();
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
             voluntario = (Voluntario) dados.getSerializable("objeto");
-
-            txtNome.setText(voluntario.getNome());
-            txtSobrenome.setText(voluntario.getSobrenome());
-            txtCpf.setText(voluntario.getCpf());
-            txtDataNasc.setText(voluntario.getDatanasc());
-            txtEmail.setText(voluntario.getEmail());
-            txtEndereco.setText(voluntario.getEndereco());
-            txtTelefone.setText(voluntario.getTelefone());
-            txtGenero.setText(voluntario.getGenero());
-            txtDescricaoTecnica.setText(voluntario.getEspecialidade());
+            if (voluntario != null) {
+                txtNome.setText(voluntario.getNome());
+                txtSobrenome.setText(voluntario.getSobrenome());
+                txtCpf.setText(voluntario.getCpf());
+                txtDataNasc.setText(voluntario.getDatanasc());
+                txtEmail.setText(voluntario.getEmail());
+                txtEndereco.setText(voluntario.getEndereco());
+                txtTelefone.setText(voluntario.getTelefone());
+                txtGenero.setText(voluntario.getGenero());
+                txtDescricaoTecnica.setText(voluntario.getEspecialidade());
+            }
         }
 
 
@@ -92,7 +94,7 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
             dados.setEspecialidade(txtDescricaoTecnica.getText().toString());
 
             controleCadastro = new ControleCadastro();
-            controleCadastro.atualizarDadosOng(dados, tabelaVoluntario, getApplicationContext());
+            controleCadastro.atualizarDadosVoluntario(dados, tabelaVoluntario, getApplicationContext());
         }
     }
 
@@ -120,7 +122,22 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
     }
 
     public void clicarBotaoSair(View view) {
+        Preferencias preferencias = new Preferencias(getApplicationContext());
+        preferencias.salvarUsuarioPreferencias(null, null, null);
         this.finishAffinity();
+
+    }
+
+    public void limparCampos() {
+        txtNome.setText("");
+        txtSobrenome.setText("");
+        txtCpf.setText("");
+        txtDataNasc.setText("");
+        txtEmail.setText("");
+        txtEndereco.setText("");
+        txtTelefone.setText("");
+        txtGenero.setText("");
+        txtDescricaoTecnica.setText("");
     }
 
 

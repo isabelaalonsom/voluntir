@@ -251,16 +251,22 @@
         <!-- Esse botão volta para a activity CadastroONGActivity com os editText preenchidos para alteração posterior -->
         <Button
             android:id="@+id/btnEditar"
-            android:layout_width="197dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="clicarBotaoEditarOng"
             android:text="Editar" />
 
         <Button
-            android:id="@+id/btnExcluirContaOng"
-            android:layout_width="match_parent"
+            android:id="@+id/btnSair"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:onClick="clicarBotaoSairOng"
+            android:text="Sair" />
+
+        <Button
+            android:id="@+id/btnExcluirContaOng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:onClick="clicarBotaoExcluirOng"
             android:text="EXCLUIR" />
 
@@ -268,14 +274,6 @@
     </LinearLayout>
 
     <!-- btnSair - Deve ser substituido por um botão com o ícone de portinha, veja o figma de telas (tela 12) -->
-    <Button
-        android:id="@+id/btnSair"
-        android:layout_width="wrap_content"
-        android:layout_height="46dp"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="100dp"
-        android:onClick="clicarBotaoSairOng"
-        android:text="Sair" />
 
 
 </LinearLayout>

@@ -25,7 +25,7 @@ import br.com.voluntir.ong.MinhaContaONGActivity;
 
 public class MenuOngActivity extends AppCompatActivity {
     Voluntario voluntario;
-    Ong ong = new Ong();
+    Ong ong;
     Button botaoCriarVaga;
     TextView txtEmailOng, txtNomeOng, txtIdOng;
     private FirebaseAuth autenticacao;
@@ -46,6 +46,9 @@ public class MenuOngActivity extends AppCompatActivity {
         if (dados != null) {
             ong = (Ong) dados.getSerializable("objeto");
         }
+        Toast.makeText(getApplicationContext(),
+                "Id " + ong.getIdOng(),
+                Toast.LENGTH_SHORT).show();
 
 
 //        new Thread(() -> {
@@ -107,12 +110,12 @@ public class MenuOngActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void clicarVagas(View view) {
+/*    public void clicarVagas(View view) {
         Intent intent = new Intent(this, VagaActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("objeto", ong);
         startActivity(intent);
-    }
+    }*/
 
     public void clicarCriarVaga(View view) {
         Intent intent = new Intent(getApplicationContext(), CadastroVagaActivity.class);
