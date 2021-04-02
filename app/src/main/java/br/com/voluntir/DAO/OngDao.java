@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.sql.SQLException;
@@ -28,11 +29,12 @@ import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.voluntir.LoginActivityONG;
 import br.com.voluntir.voluntir.MainActivity;
+import br.com.voluntir.voluntir.MenuOngActivity;
 
 public class OngDao implements DAO<Ong> {
     private Ong ong;
     private FirebaseAuth autenticacao;
-    private DatabaseReference bancoFirebase;
+    DatabaseReference bancoFirebase;
     private final static List<Ong> ongList = new ArrayList<>();
     boolean cadastrado;
 
@@ -167,18 +169,26 @@ public class OngDao implements DAO<Ong> {
     }
 
     @Override
-    public Ong busca(final String id, String tabela) {
-
+    public Ong busca(final String email, final String tabela, Context context) {
         bancoFirebase = BancoFirebase.getBancoReferencia();
-        bancoFirebase.child("ong").orderByKey().equalTo(id).addListenerForSingleValueEvent(new ValueEventListener() {
+        Query pesquisa = bancoFirebase.child(tabela).orderByChild("emailOng").equalTo(email);
+        pesquisa.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ong = dataSnapshot.getValue(Ong.class);
-                    Log.i("FIREBASE", dataSnapshot.getValue().toString());
-                    //listaVaga.add(vaga);
+
 
                 }
+                if (ong != null) {
+                    Intent intent = new Intent(context.getApplicationContext(), MenuOngActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("objeto", ong);
+                    context.startActivity(intent);
+                } else {
+
+                }
+
 
             }
 

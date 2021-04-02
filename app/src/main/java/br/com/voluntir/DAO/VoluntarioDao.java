@@ -18,15 +18,19 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
+import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.voluntario.MenuVoluntarioActivity;
 import br.com.voluntir.voluntir.LoginActivityONG;
 import br.com.voluntir.voluntir.LoginActivityVoluntario;
 import br.com.voluntir.voluntir.MainActivity;
+import br.com.voluntir.voluntir.MenuOngActivity;
 
 public class VoluntarioDao implements DAO<Voluntario> {
     private Voluntario voluntario;
@@ -158,25 +162,27 @@ public class VoluntarioDao implements DAO<Voluntario> {
     }
 
     @Override
-    public Voluntario busca(final String id, final String tabela) {
+    public Voluntario busca(final String email, final String tabela, Context context) {
         bancoFirebase = BancoFirebase.getBancoReferencia();
-        bancoFirebase.child("voluntario").orderByKey().equalTo(id).addListenerForSingleValueEvent(new ValueEventListener() {
+        Query pesquisa = bancoFirebase.child(tabela).orderByChild("email").equalTo(email);
+        pesquisa.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     voluntario = dataSnapshot.getValue(Voluntario.class);
-                    //Log.i("FIREBASE", dataSnapshot.getValue().toString());
-                    //listaVaga.add(vaga);
+
+
                 }
-                /*Log.i("FIREBASE", voluntario.getNome());
-                Log.i("FIREBASE", voluntario.getIdVoluntario());
-                Log.i("FIREBASE", voluntario.getEmail());
-                Log.i("FIREBASE", voluntario.getCpf());
-                Log.i("FIREBASE", voluntario.getDatanasc());
-                Log.i("FIREBASE", voluntario.getEndereco());
-                Log.i("FIREBASE", voluntario.getEspecialidade());
-                Log.i("FIREBASE", voluntario.getGenero());
-                Log.i("FIREBASE", voluntario.getTelefone());*/
+                if (voluntario != null) {
+                    Intent intent = new Intent(context.getApplicationContext(), MenuVoluntarioActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("objeto", voluntario);
+                    context.startActivity(intent);
+                } else {
+
+                }
+
+
             }
 
             @Override
@@ -184,6 +190,7 @@ public class VoluntarioDao implements DAO<Voluntario> {
 
             }
         });
+
         return voluntario;
     }
 

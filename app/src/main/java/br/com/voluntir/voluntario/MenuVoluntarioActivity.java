@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.CadastroVagaActivity;
@@ -21,6 +22,7 @@ public class MenuVoluntarioActivity extends AppCompatActivity {
     Ong ong;
     Button botaoCriarVaga;
     TextView txtNomeVoluntario;
+    ControleCadastro controleCadastro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,9 @@ public class MenuVoluntarioActivity extends AppCompatActivity {
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
             voluntario = (Voluntario) dados.getSerializable("objeto");
+        } else {
+            /*controleCadastro = new ControleCadastro();
+            controleCadastro.buscaVoluntario();*/
         }
 
 
@@ -54,7 +59,7 @@ public class MenuVoluntarioActivity extends AppCompatActivity {
     public void clicarBotaoCandidaturas(View view) {
         Intent intent = new Intent(getApplicationContext(), CandidaturaActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("objeto",ong);
+        intent.putExtra("objeto", voluntario);
         startActivity(intent);
     }
 

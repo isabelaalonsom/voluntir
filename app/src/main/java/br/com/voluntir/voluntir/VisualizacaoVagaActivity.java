@@ -11,7 +11,7 @@ import br.com.voluntir.model.Vaga;
 public class VisualizacaoVagaActivity extends AppCompatActivity {
     Vaga vaga;
     TextView textNome,textAreaConhecimento,textDataInicio,textDataFim;
-    TextView textHora, textDescricao;
+    TextView textCargaHoraria, textDescricao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,14 +27,14 @@ public class VisualizacaoVagaActivity extends AppCompatActivity {
         textAreaConhecimento = findViewById(R.id.txtViewAreaConhecimentoVariavel);
         textDataInicio = findViewById(R.id.txtViewDataInicioVariavel);
         textDataFim = findViewById(R.id.txtViewDataTeminoVariavel);
-        textHora = findViewById(R.id.txtViewHorarioVariavel);
+        textCargaHoraria = findViewById(R.id.txtViewCargaHorariaVariavel);
         textDescricao = findViewById(R.id.txtViewDescricaoVariavel);
 
         textNome.setText(vaga.getNomeOng());
         textAreaConhecimento.setText(vaga.getAreaConhecimento());
         textDataInicio.setText(vaga.getDataInicio());
         textDataFim.setText(vaga.getDataTermino());
-        textHora.setText(vaga.getHorario());
+        textCargaHoraria.setText(vaga.getCargaHoraria());
         textDescricao.setText(vaga.getDescricaoVaga());
 
     }
@@ -47,7 +47,5 @@ public class VisualizacaoVagaActivity extends AppCompatActivity {
 //        startActivity(intent);
 //
 //    }
-
-
 
 }

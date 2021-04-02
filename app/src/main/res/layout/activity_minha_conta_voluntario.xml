@@ -278,31 +278,27 @@
 
         <Button
             android:id="@+id/btnEditar"
-            android:layout_width="209dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
             android:onClick="clicarBotaoEditar"
             android:text="Editar" />
 
         <Button
-            android:id="@+id/btnEcluirConta"
-            android:layout_width="wrap_content"
+            android:id="@+id/btnSair"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="clicarBotaoExcluirOng"
+            android:onClick="clicarBotaoSair"
+            android:text="Sair" />
+
+        <Button
+            android:id="@+id/btnEcluirConta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="clicarBotaoExcluir"
             android:text="EXCLUIR" />
 
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btnSair"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="clicarBotaoSair"
-        android:layout_marginLeft="250dp"
-        android:layout_marginTop="80dp"
-        android:text="Sair" />
 
 
 </LinearLayout>
