@@ -40,6 +40,8 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     String genero;
     boolean grava = false;
     boolean mesdiaok = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,8 +102,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
             especialidade.setText(descricaoTecnicaPreenchido);
 
 
-
-
             if (generoPreenchido.equals("Masculino")) {
                 botaoMasculino.setChecked(true);
             } else if (generoPreenchido.equals("Feminino")) {
@@ -123,8 +123,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
 
                 radioButton = findViewById(radioId);
 
-
-
                 //pegas os dados digitados
                 voluntario.setEmail(email.getText().toString());
                 voluntario.setSenha(senha.getText().toString());
@@ -141,6 +139,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 int ano = 0;
 
                 String data2 = data.getText().toString();
+
                 if (data2 != null) {
                     dia = Integer.parseInt(data2.substring(0, 2));
                     mes = Integer.parseInt(data2.substring(3, 5));
@@ -205,7 +204,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
 
                 /*Intent i = new Intent(CadastroVoluntarioActivity.this, LoginActivityVoluntario.class);
                 startActivity(i);*/
-
             }
         });
     }
