@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,10 +28,13 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.voluntir.RecyclerItemClickListener;
 import br.com.voluntir.adapter.AdapterAprovacao;
+import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.voluntir.PerfilCandidato;
 import br.com.voluntir.voluntir.R;
 
 public class AprovacaoCandidatoActivity extends AppCompatActivity {
@@ -74,9 +78,9 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                     if (voluntario.getIdVoluntario().equals(vaga.getVoluntarios())) {
                         Log.i("Candidatos", voluntario.getIdVoluntario().toString());
                     }
-                    Toast.makeText(getApplicationContext(),
+                    /*Toast.makeText(getApplicationContext(),
                             "Candidatos:" + dataSnapshot.getValue().toString(),
-                            Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_SHORT).show();*/
                 }
 
 
@@ -97,6 +101,39 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
 
             }
         });
+
+        //evento de click
+        recyclerViewCandidato.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getApplicationContext(),
+                        recyclerViewCandidato,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+
+                                Intent intent = new Intent(getApplicationContext(), PerfilCandidato.class);
+                                intent.putExtra("objeto", vaga);
+                                intent.putExtra("voluntario", voluntario);
+
+                                startActivity(intent);
+
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        }
+                )
+        );
+
     }
 
 //    public void trazVagaClicada() {

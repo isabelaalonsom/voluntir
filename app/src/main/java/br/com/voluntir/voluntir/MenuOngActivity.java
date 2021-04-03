@@ -46,9 +46,9 @@ public class MenuOngActivity extends AppCompatActivity {
         if (dados != null) {
             ong = (Ong) dados.getSerializable("objeto");
         }
-        Toast.makeText(getApplicationContext(),
+        /*Toast.makeText(getApplicationContext(),
                 "Id " + ong.getIdOng(),
-                Toast.LENGTH_SHORT).show();
+                Toast.LENGTH_SHORT).show();*/
 
 
 //        new Thread(() -> {

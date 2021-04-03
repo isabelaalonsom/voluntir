@@ -122,9 +122,14 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                                 //Vaga vagaClicada = listaVaga.get(position);
                                 //vagaClicada.setVoluntario(voluntario);
                                 //vagaClicada.setVoluntarios((List<Voluntario>) voluntario);
+                                if (vaga.getVoluntarios().isEmpty()) {
+                                    listaVoluntario.add(voluntario);
+                                } else {
+                                    vaga.getVoluntarios();
+                                    listaVoluntario.addAll(vaga.getVoluntarios());
+                                }
 
 
-                                listaVoluntario.add(voluntario);
                                 vaga.setVoluntarios(listaVoluntario);
                                 controleCadastro = new ControleCadastro();
                                 controleCadastro.atualizaVagaVoluntario(vaga, nomeTabelaVaga, getApplicationContext());

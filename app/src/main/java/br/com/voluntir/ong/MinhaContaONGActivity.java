@@ -1,8 +1,8 @@
 package br.com.voluntir.ong;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,12 +18,12 @@ import com.google.firebase.database.ValueEventListener;
 import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
-import br.com.voluntir.model.Voluntario;
-import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
-import br.com.voluntir.voluntir.MenuOngActivity;
 import br.com.voluntir.voluntir.R;
 
 public class MinhaContaONGActivity extends AppCompatActivity implements ValueEventListener {
+    private Button botaoEditar;
+    private Button botaoExcluir;
+    private Button botaoSair;
 
     TextView txtNomeOng;
     TextView txtCnpj;
@@ -47,6 +47,7 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
         setContentView(R.layout.activity_minha_conta_ong);
 
         getSupportActionBar().hide();
+
 
         txtNomeOng = (TextView) findViewById(R.id.txtViewONGVariavel);
         txtCnpj = (TextView) findViewById(R.id.txtViewCpnjVariavel);
@@ -174,5 +175,10 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
         super.onStart();
         nomeOngDatabase.addValueEventListener(this);
         cnpjOngDatabase.addValueEventListener(this);
+    }
+
+    public void esconderBotao() {
+        botaoEditar = findViewById(R.id.btnEditar);
+        botaoEditar.setVisibility(View.INVISIBLE);
     }
 }

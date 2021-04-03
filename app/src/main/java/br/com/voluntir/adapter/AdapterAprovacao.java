@@ -23,7 +23,7 @@ import br.com.voluntir.voluntir.R;
 public class AdapterAprovacao extends RecyclerView.Adapter<AdapterAprovacao.MyViewHolder> {
     private List<Voluntario> listaVoluntario;
     private List<Vaga> listaVaga;
-
+    Voluntario voluntario;
     public AdapterAprovacao(List<Voluntario> listaVoluntario) {
         this.listaVoluntario = listaVoluntario;
     }
@@ -40,9 +40,9 @@ public class AdapterAprovacao extends RecyclerView.Adapter<AdapterAprovacao.MyVi
     @Override
     public void onBindViewHolder(@NonNull AdapterAprovacao.MyViewHolder holder, int position) {
         //Vaga vaga = listaVaga.get(position);
-        Voluntario voluntario = listaVoluntario.get(position);
+        voluntario = listaVoluntario.get(position);
 
-        holder.candidato.setText("Victor Capel");
+        holder.candidato.setText(voluntario.getNome() + " " + voluntario.getSobrenome());
         //holder.candidato.setText(voluntario.getNome());
 
     }

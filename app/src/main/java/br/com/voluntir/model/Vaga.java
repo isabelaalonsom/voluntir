@@ -90,6 +90,8 @@ public class Vaga implements Serializable {
     }
 
     public List<Voluntario> getVoluntarios() {
+        //voluntario.getSobrenome();
+        //voluntario.getNome();
         return voluntarios;
     }
 
