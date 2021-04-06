@@ -44,7 +44,7 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVoluntario = bancoReferencia.child("voluntario");
     Vaga vaga;
-    Voluntario voluntario = new Voluntario();
+    Voluntario voluntario;
     Button botaoAprovado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +75,9 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     voluntario = dataSnapshot.getValue(Voluntario.class);
+                    listaVoluntarios.add(voluntario);
                     if (voluntario.getIdVoluntario().equals(vaga.getVoluntarios())) {
+
                         Log.i("Candidatos", voluntario.getIdVoluntario().toString());
                     }
                     /*Toast.makeText(getApplicationContext(),
@@ -84,13 +86,13 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                 }
 
 
-                listaVoluntarios.add(voluntario);
+
 
                 //txtNomeVoluntario.setText("Victor Capel");
 
                 //alterar aqui qualquer coisa
 
-                AdapterAprovacao adapterAprovacao = new AdapterAprovacao(listaVoluntarios);
+                AdapterAprovacao adapterAprovacao = new AdapterAprovacao(vaga.getVoluntarios());
 
                 recyclerViewCandidato.setAdapter(adapterAprovacao);
             }
@@ -110,18 +112,19 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
+                                Voluntario voluntario = vaga.getVoluntarios().get(position);
+
+                                Intent intent = new Intent(getApplicationContext(), PerfilCandidato.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.putExtra("objeto", vaga);
+                                intent.putExtra("voluntario", voluntario);
+                                startActivity(intent);
 
                             }
 
                             @Override
                             public void onLongItemClick(View view, int position) {
 
-
-                                Intent intent = new Intent(getApplicationContext(), PerfilCandidato.class);
-                                intent.putExtra("objeto", vaga);
-                                intent.putExtra("voluntario", voluntario);
-
-                                startActivity(intent);
 
 
                             }

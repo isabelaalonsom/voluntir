@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import java.util.List;
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
+import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.MenuOngActivity;
 import br.com.voluntir.voluntir.MinhasVagasActivity;
 
@@ -98,14 +100,16 @@ public class VagaDao implements DAO<Vaga> {
     public Vaga busca(String id, String tabela, Context context) throws DatabaseException {
         //vaga = new Vaga();
         refenciaBanco = BancoFirebase.getBancoReferencia();
-        refenciaBanco.child(tabela).child(id).addValueEventListener(new ValueEventListener() {
+        Query pesquisa = refenciaBanco.child(tabela).orderByChild("idVaga").equalTo(id);
+        pesquisa.addValueEventListener(new ValueEventListener() {
             //recuperar os dados sempre que for mudado no banco
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    vaga = dataSnapshot.getValue(Vaga.class);
 
-                //DataSnapshot é o retorno do firebase
 
-                vaga = snapshot.getValue(Vaga.class);
+                }
 
             }
 

@@ -17,6 +17,7 @@ public class Vaga implements Serializable {
     private String idOng;
     private String cargaHoraria;
     private String idVoluntario;
+    Voluntario voluntario;
 
     public String getCargaHoraria() {
         return cargaHoraria;
@@ -27,7 +28,7 @@ public class Vaga implements Serializable {
     }
 
     private List<Voluntario> voluntarios;
-    Voluntario voluntario;
+
 
     public Vaga() {
     }
