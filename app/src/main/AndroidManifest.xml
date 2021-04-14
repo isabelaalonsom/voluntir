@@ -12,7 +12,6 @@
         <activity android:name=".PerfilCandidato"></activity>
         <activity android:name=".MinhasVagasActivity" />
         <activity android:name="br.com.voluntir.voluntario.VagaVoluntarioActivity" />
-        <activity android:name=".VoluntarioVisualizarVaga" />
         <activity android:name="br.com.voluntir.voluntario.CandidaturaActivity" />
         <activity android:name=".VagaActivity" />
         <activity android:name=".MenuOngActivity" />

@@ -1,11 +1,9 @@
 package br.com.voluntir.voluntario;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +27,6 @@ import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
-import br.com.voluntir.voluntir.VoluntarioVisualizarVaga;
 
 public class VagaVoluntarioActivity extends AppCompatActivity {
     private RecyclerView recyclerView;

@@ -25,6 +25,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    testOptions {
+        unitTests.includeAndroidResources = true
+    }
 }
 
 dependencies {
@@ -48,5 +52,21 @@ dependencies {
 
     //serve para colocar maskara nos campos de texto
     implementation 'com.github.rtoshiro.mflibrary:mflibrary:1.0.0'
+
+    //para usar o ApplicationProvider
+    testImplementation 'androidx.test:core:1.0.0'
+
+    // Core library
+    androidTestImplementation 'androidx.test:core:1.1.0'
+// AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test:rules:1.1.1'
+// Espresso dependencies
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.1'
+
+
+
 }
+
 apply plugin: 'com.google.gms.google-services'
