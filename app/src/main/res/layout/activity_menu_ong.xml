@@ -68,6 +68,13 @@
                 android:onClick="clicarCriarVaga"
                 android:text="CRIAR VAGA" />
 
+            <Button
+                android:id="@+id/btnGerarPDF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="gerarPDF"
+                android:text="Gerar PDF de candidatos aprovados" />
+
         </LinearLayout>
 
     </ScrollView>

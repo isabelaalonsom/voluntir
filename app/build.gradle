@@ -17,6 +17,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+
     }
 
     buildTypes {
@@ -29,6 +30,12 @@ android {
     testOptions {
         unitTests.includeAndroidResources = true
     }
+
+//    packagingOptions() {
+//        exclude "com/itextpdf/io/font/cmap_info.txt"
+//        exclude "com/itextpdf/io/font/*"
+//    }
+
 }
 
 dependencies {
@@ -56,6 +63,8 @@ dependencies {
     //para usar o ApplicationProvider
     testImplementation 'androidx.test:core:1.0.0'
 
+    implementation 'com.itextpdf:itextg:5.5.10'
+
     // Core library
     androidTestImplementation 'androidx.test:core:1.1.0'
 // AndroidJUnitRunner and JUnit Rules
@@ -64,8 +73,6 @@ dependencies {
 // Espresso dependencies
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.1'
-
-
 
 }
 
