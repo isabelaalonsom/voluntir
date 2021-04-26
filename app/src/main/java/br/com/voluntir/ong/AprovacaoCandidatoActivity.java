@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,22 +14,20 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.RecyclerItemClickListener;
 import br.com.voluntir.adapter.AdapterAprovacao;
-import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
@@ -39,13 +36,20 @@ import br.com.voluntir.voluntir.R;
 
 public class AprovacaoCandidatoActivity extends AppCompatActivity {
     TextView txtViewStatusVariavel, txtNomeVoluntario;
+    private List<Vaga> listaVaga = new ArrayList<>();
     private RecyclerView recyclerViewCandidato;
-    private List<Voluntario> listaVoluntarios = new ArrayList<>();
+    private List<Voluntario> listaVoluntario = new ArrayList<>();
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVoluntario = bancoReferencia.child("voluntario");
+    private DatabaseReference refenciaBanco;
+    private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
+    int tamanho = 0;
     Vaga vaga;
+    Ong ong;
     Voluntario voluntario;
+    Voluntario voluntario2;
     Button botaoAprovado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +58,7 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         Bundle dados = getIntent().getExtras();
         vaga = (Vaga) dados.getSerializable("objeto");
+        ong = (Ong) dados.getSerializable("ong");
         recyclerViewCandidato = findViewById(R.id.recyclerViewCandidatos);
         txtNomeVoluntario = findViewById(R.id.txtViewCandidatos);
         //botaoAprovado = (Button) findViewById(R.id.btnAprovar);
@@ -66,35 +71,42 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
 
 //        trazVagaClicada();
 
-
-        tabelaVoluntario.addValueEventListener(new ValueEventListener() {
+        Query teste = tabelaVaga.orderByChild("idOng").equalTo(ong.getIdOng());
+        teste.addValueEventListener(new ValueEventListener() {
             //recuperar os dados sempre que for mudado no banco
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                listaVoluntarios.clear();
+                listaVaga.clear();
+                listaVoluntario.clear();
+                //DataSnapshot é o retorno do firebase
+                //Log.i("FIREBASE", snapshot.getValue().toString());
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Vaga vaga1 = dataSnapshot.getValue(Vaga.class);
+                    vaga1.setIdVaga(dataSnapshot.getKey());
+                    //Log.i("Voluntario", vaga.getIdVaga());
+                    if (vaga1.getIdVaga().equals(vaga.getIdVaga())) {
 
-                    voluntario = dataSnapshot.getValue(Voluntario.class);
-                    listaVoluntarios.add(voluntario);
-                    if (voluntario.getIdVoluntario().equals(vaga.getVoluntarios())) {
 
-                        Log.i("Candidatos", voluntario.getIdVoluntario().toString());
+                        if (vaga1.getVoluntarios() != null) {
+                            for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
+                                voluntario = vaga.getVoluntarios().get(i);
+
+                                listaVoluntario.add(voluntario);
+                            }
+                        }
                     }
-                    /*Toast.makeText(getApplicationContext(),
-                            "Candidatos:" + dataSnapshot.getValue().toString(),
-                            Toast.LENGTH_SHORT).show();*/
+
+
+                    //Log.i("FIREBASE", snapshot.getValue().toString());
+                    listaVaga.add(vaga);
+
                 }
 
-
-
-
-                //txtNomeVoluntario.setText("Victor Capel");
-
-                //alterar aqui qualquer coisa
-
-                AdapterAprovacao adapterAprovacao = new AdapterAprovacao(vaga.getVoluntarios());
-
+                AdapterAprovacao adapterAprovacao = new AdapterAprovacao(listaVoluntario);
+                adapterAprovacao.notifyDataSetChanged();
                 recyclerViewCandidato.setAdapter(adapterAprovacao);
+
+
             }
 
             //trata o erro se a operação for cancelada
@@ -102,7 +114,16 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
+
+
+
+
+
+        /*AdapterAprovacao adapterAprovacao = new AdapterAprovacao(listaVoluntarios);
+
+        recyclerViewCandidato.setAdapter(adapterAprovacao);*/
 
         //evento de click
         recyclerViewCandidato.addOnItemTouchListener(

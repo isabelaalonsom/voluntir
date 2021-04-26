@@ -33,6 +33,7 @@ public class CandidaturaActivity extends AppCompatActivity {
     private TextView txtViewStatus, txtViewStatusVariavel;
     private RecyclerView recyclerViewCandidatura;
     private List<Vaga> listaVagaCandidatada = new ArrayList<>();
+    private List<Voluntario> listaVoluntario = new ArrayList<>();
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     Ong ong;
@@ -53,6 +54,7 @@ public class CandidaturaActivity extends AppCompatActivity {
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
             voluntario = (Voluntario) dados.getSerializable("voluntario");
+            listaVoluntario.add(voluntario);
         }
 
 
@@ -64,7 +66,7 @@ public class CandidaturaActivity extends AppCompatActivity {
         recyclerViewCandidatura.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
 
         trazVagaClicada();
-        vaga.setVoluntario(voluntario);
+        //vaga.setVoluntario(listaVoluntario);
         tabelaVaga.addValueEventListener(new ValueEventListener() {
             //recuperar os dados sempre que for mudado no banco
             @Override

@@ -119,17 +119,19 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                                 //Vaga vagaClicada = listaVaga.get(position);
                                 //vagaClicada.setVoluntario(voluntario);
                                 //vagaClicada.setVoluntarios((List<Voluntario>) voluntario);
-                                if (vaga.getVoluntarios().isEmpty()) {
+                                /*if (vaga.getVoluntarios().isEmpty()) {
                                     listaVoluntario.add(voluntario);
                                 } else {
                                     vaga.getVoluntarios();
-                                    listaVoluntario.addAll(vaga.getVoluntarios());
-                                }
+                                    listaVoluntario.add(vaga.getVoluntarios());
+                                }*/
+                                listaVoluntario.clear();
+                                listaVoluntario.add(voluntario);
+                                vagaClicada = listaVaga.get(position);
+                                vagaClicada.setVoluntarios(listaVoluntario);
 
-
-                                vaga.setVoluntarios(listaVoluntario);
                                 controleCadastro = new ControleCadastro();
-                                controleCadastro.atualizaVagaVoluntario(vaga, nomeTabelaVaga, getApplicationContext());
+                                controleCadastro.atualizaVagaVoluntario(vagaClicada, nomeTabelaVaga, getApplicationContext());
 
                             }
 

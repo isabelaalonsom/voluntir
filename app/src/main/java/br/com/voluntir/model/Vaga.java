@@ -17,7 +17,9 @@ public class Vaga implements Serializable {
     private String idOng;
     private String cargaHoraria;
     private String idVoluntario;
-    Voluntario voluntario;
+    //Voluntario voluntario;
+    private List<Voluntario> voluntarios;
+
 
     public String getCargaHoraria() {
         return cargaHoraria;
@@ -26,8 +28,6 @@ public class Vaga implements Serializable {
     public void setCargaHoraria(String cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
     }
-
-    private List<Voluntario> voluntarios;
 
 
     public Vaga() {
@@ -124,11 +124,5 @@ public class Vaga implements Serializable {
         this.areaConhecimento = areaConhecimento;
     }
 
-    public Voluntario getVoluntario() {
-        return voluntario;
-    }
 
-    public void setVoluntario(Voluntario voluntario) {
-        this.voluntario = voluntario;
-    }
 }

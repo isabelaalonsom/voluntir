@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.voluntir.RecyclerItemClickListener;
-import br.com.voluntir.adapter.AdapterAprovacao;
 import br.com.voluntir.adapter.AdapterVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
@@ -42,7 +41,7 @@ public class MinhasVagasActivity extends AppCompatActivity {
     Vaga vaga = new Vaga();
     private FirebaseAuth usuario = FirebaseAuth.getInstance();
     Ong ong;
-
+    int tamanho = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,16 +66,18 @@ public class MinhasVagasActivity extends AppCompatActivity {
                 listaVaga.clear();
                 //DataSnapshot é o retorno do firebase
                 //Log.i("FIREBASE", snapshot.getValue().toString());
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     vaga = dataSnapshot.getValue(Vaga.class);
                     //Log.i("FIREBASE", snapshot.getValue().toString());
                     if (vaga.getIdOng().equals(ong.getIdOng())) {
                         listaVaga.add(vaga);
+
                     }
 
                 }
                 AdapterVaga adapterVaga = new AdapterVaga(listaVaga);
-                AdapterAprovacao adapterAprovacao = new AdapterAprovacao(listaVoluntario);
+                //AdapterAprovacao adapterAprovacao = new AdapterAprovacao(listaVoluntario);
                 recyclerView.setAdapter(adapterVaga);
             }
 
@@ -101,6 +102,7 @@ public class MinhasVagasActivity extends AppCompatActivity {
                                 Intent intent = new Intent(getApplicationContext(), AprovacaoCandidatoActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.putExtra("objeto", vaga);
+                                intent.putExtra("ong", ong);
                                 startActivity(intent);
                             }
 

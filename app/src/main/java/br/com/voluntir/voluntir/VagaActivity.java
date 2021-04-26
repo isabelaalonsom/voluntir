@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,20 +18,17 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.voluntir.RecyclerItemClickListener;
-import br.com.voluntir.adapter.AdapterAprovacao;
 import br.com.voluntir.adapter.AdapterVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.AprovacaoCandidatoActivity;
-import br.com.voluntir.voluntario.CandidaturaActivity;
 
 public class VagaActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -83,7 +79,7 @@ public class VagaActivity extends AppCompatActivity {
                 }
 
                 AdapterVaga adapterVaga = new AdapterVaga(listaVaga);
-                AdapterAprovacao adapterAprovacao = new AdapterAprovacao(listaVoluntario);
+                //AdapterAprovacao adapterAprovacao = new AdapterAprovacao(listaVoluntario);
                 recyclerView.setAdapter(adapterVaga);
             }
             //trata o erro se a operação for cancelada
