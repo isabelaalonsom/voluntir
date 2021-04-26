@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -248,6 +249,30 @@ public class MenuOngActivity extends AppCompatActivity {
     //Versões antigas
     private void visualizarPdfFile(File pdf) {
 
+        PackageManager packageManager = getPackageManager();
+        //Visualização
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        //Tipo de arquivo que quer visualizar
+        intent.setType("application/pdf");
+
+        //Verificar quais aplicativos que podem ler PDF
+        List<ResolveInfo> lista = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+
+        //Se tem um ou mais aplicativo que lê pdf, se não dá a mensagem de que não possui nenhum PDF
+        if(lista.size() > 0) {
+            Intent intent1 = new Intent(Intent.ACTION_VIEW);
+            intent1.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            Uri uri = FileProvider.getUriForFile(getBaseContext(), "br.com.voluntir.voluntir",pdf);
+
+            intent1.setDataAndType(uri, "application/pdf");
+
+            startActivityForResult(intent1, 1234);
+        } else {
+            Toast.makeText(getBaseContext(), "Você não possui nenhum leitor PDF no seu dispositivo.", Toast.LENGTH_LONG).show();
+
+        }
+
     }
 
     //Versões novas
@@ -273,7 +298,6 @@ public class MenuOngActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "Você não possui nenhum leitor PDF no seu dispositivo.", Toast.LENGTH_LONG).show();
 
         }
-
 
     }
 
