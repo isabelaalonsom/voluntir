@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +39,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     private DatabaseReference tabelaCandidatura = bancoReferencia.child("candidatura");
     private String nomeTabelaVaga = "vaga";
+    private boolean usuarioCadastrado = false;
     Vaga vaga = new Vaga();
     Vaga vagaClicada;
     private FirebaseAuth usuario = FirebaseAuth.getInstance();
@@ -105,40 +107,30 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                             @Override
                             public void onLongItemClick(View view, int position) {
 
-
-
-                                /*Intent intent = new Intent(getApplicationContext(), CandidaturaActivity.class);
-                                vagaClicada = listaVaga.get(position);
-                                Toast.makeText(getApplicationContext(),
-                                        "id " +position,
-                                        Toast.LENGTH_SHORT).show();
-                                intent.putExtra("voluntario", voluntario);
-                                intent.putExtra("vaga", vagaClicada);
-                                startActivity(intent);*/
-
-                                //Vaga vagaClicada = listaVaga.get(position);
-                                //vagaClicada.setVoluntario(voluntario);
-                                //vagaClicada.setVoluntarios((List<Voluntario>) voluntario);
-                                /*if (vaga.getVoluntarios().isEmpty()) {
-                                    listaVoluntario.add(voluntario);
-                                } else {
-                                    vaga.getVoluntarios();
-                                    listaVoluntario.add(vaga.getVoluntarios());
-                                }*/
                                 listaVoluntario.clear();
                                 Vaga vaga = listaVaga.get(position);
                                 for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
-                                    Voluntario voluntario = vaga.getVoluntarios().get(i);
-                                    listaVoluntario.add(voluntario);
+                                    Voluntario voluntario2 = vaga.getVoluntarios().get(i);
+                                    listaVoluntario.add(voluntario2);
+                                    if (voluntario2.getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                                        usuarioCadastrado = true;
+                                    }
                                 }
 
 
-                                listaVoluntario.add(voluntario);
-                                vagaClicada = listaVaga.get(position);
-                                vagaClicada.setVoluntarios(listaVoluntario);
+                                if (usuarioCadastrado == false) {
+                                    listaVoluntario.add(voluntario);
 
-                                controleCadastro = new ControleCadastro();
-                                controleCadastro.atualizaVagaVoluntario(vagaClicada, nomeTabelaVaga, getApplicationContext());
+                                    vagaClicada = listaVaga.get(position);
+                                    vagaClicada.setVoluntarios(listaVoluntario);
+
+                                    controleCadastro = new ControleCadastro();
+                                    controleCadastro.atualizaVagaVoluntario(vagaClicada, nomeTabelaVaga, getApplicationContext());
+                                } else {
+                                    Toast.makeText(getApplicationContext(),
+                                            "Usuário já cadastrado ",
+                                            Toast.LENGTH_SHORT).show();
+                                }
 
                             }
 
