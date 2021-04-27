@@ -126,6 +126,13 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                                     listaVoluntario.add(vaga.getVoluntarios());
                                 }*/
                                 listaVoluntario.clear();
+                                Vaga vaga = listaVaga.get(position);
+                                for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
+                                    Voluntario voluntario = vaga.getVoluntarios().get(i);
+                                    listaVoluntario.add(voluntario);
+                                }
+
+
                                 listaVoluntario.add(voluntario);
                                 vagaClicada = listaVaga.get(position);
                                 vagaClicada.setVoluntarios(listaVoluntario);
