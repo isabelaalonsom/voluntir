@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.voluntir.voluntir">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/voluntir_icon2"
@@ -33,6 +38,20 @@
         <activity android:name="br.com.voluntir.ong.CadastroONGActivity" />
         <activity android:name=".VisualizacaoVagaActivity" />
         <activity android:name="br.com.voluntir.ong.AprovacaoCandidatoActivity" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="br.com.voluntir.voluntir"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider"/>
+
+        </provider>
+
+
+
     </application>
 
 </manifest>
