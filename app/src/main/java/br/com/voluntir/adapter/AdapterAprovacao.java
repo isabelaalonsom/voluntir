@@ -32,7 +32,7 @@ public class AdapterAprovacao extends RecyclerView.Adapter<AdapterAprovacao.MyVi
     @Override
     public AdapterAprovacao.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemLista = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.adapter_aprovacao2, parent, false);
+                .inflate(R.layout.adapter_aprovacao, parent, false);
 
         return new AdapterAprovacao.MyViewHolder(itemLista);
     }
