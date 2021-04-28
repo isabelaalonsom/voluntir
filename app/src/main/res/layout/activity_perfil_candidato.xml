@@ -295,6 +295,13 @@
             android:onClick="clicarBotaoAprovar"
             android:text="Aprovar" />
 
+        <Button
+            android:id="@+id/btnReprovar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clicarBotaoReprovar"
+            android:text="REPROVAR" />
+
 
     </LinearLayout>
 

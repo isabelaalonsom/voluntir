@@ -109,16 +109,20 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
 
                                 listaVoluntario.clear();
                                 Vaga vaga = listaVaga.get(position);
-                                for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
-                                    Voluntario voluntario2 = vaga.getVoluntarios().get(i);
-                                    listaVoluntario.add(voluntario2);
-                                    if (voluntario2.getIdVoluntario().equals(voluntario.getIdVoluntario())) {
-                                        usuarioCadastrado = true;
+                                if (vaga.getVoluntarios() != null) {
+
+
+                                    for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
+                                        Voluntario voluntario2 = vaga.getVoluntarios().get(i);
+                                        listaVoluntario.add(voluntario2);
+                                        if (voluntario2.getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                                            usuarioCadastrado = true;
+                                        }
                                     }
                                 }
 
-
                                 if (usuarioCadastrado == false) {
+                                    voluntario.setStatusVaga("EM ANALISE");
                                     listaVoluntario.add(voluntario);
 
                                     vagaClicada = listaVaga.get(position);
