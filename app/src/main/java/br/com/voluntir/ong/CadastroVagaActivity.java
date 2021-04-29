@@ -33,9 +33,9 @@ public class CadastroVagaActivity extends AppCompatActivity {
     private Vaga vaga;
     private TextView nome;
     private EditText dataInicio, dataTermino;
-    private EditText cargaHoraria, periodicidade, especialidade, detalheVaga;
+    private EditText cargaHoraria, periodicidade, especialidade, detalheVaga, qtdCandidatos;
     private ControleCadastro controleCadastro;
-    private String tabelaBanco= "vaga";
+    private String tabelaBanco = "vaga";
     Ong ong;
     Voluntario voluntario;
     String idOng;
@@ -56,6 +56,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
         cargaHoraria = (EditText) findViewById(R.id.edtTextCargaHoraria);
         periodicidade = (EditText) findViewById(R.id.edtTextPeriodicidade);
         detalheVaga = (EditText) findViewById(R.id.edtTextDetalhesVaga);
+        qtdCandidatos = (EditText) findViewById(R.id.edtTextQtdCandidatos);
 
         //Recuperar os dados vindos de outra activity
         Bundle dados = getIntent().getExtras();
@@ -170,6 +171,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
                     vaga.setPeriodicidade(periodicidade.getText().toString());
                     vaga.setDescricaoVaga(detalheVaga.getText().toString());
                     vaga.setCargaHoraria(cargaHoraria.getText().toString());
+                    vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
                     /*Toast.makeText(getApplicationContext(),
                             "Nome Ong "+vaga.getNomeOng(),
                             Toast.LENGTH_SHORT).show();
@@ -198,6 +200,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
         periodicidade.setText("");
         detalheVaga.setText("");
         cargaHoraria.setText("");
+        qtdCandidatos.setText("");
     }
 }
 

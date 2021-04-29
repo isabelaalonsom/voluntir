@@ -36,7 +36,14 @@ public class AdapterVaga extends RecyclerView.Adapter<AdapterVaga.MyViewHolder> 
         Vaga vaga = listaVaga.get(position);
         holder.nomeOng.setText(vaga.getNomeOng());
         holder.areaConhecimento.setText(vaga.getAreaConhecimento());
-        holder.vaga.setText("5");
+        holder.vaga.setText(Integer.toString(vaga.getQtdCandidaturas()));
+
+        if (vaga.getVoluntarios() != null) {
+            holder.vaga.setText(Integer.toString(vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()));
+            if ((vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()) < 0) {
+                holder.vaga.setText("0");
+            }
+        }
 
         holder.txtViewStatus.setVisibility(View.INVISIBLE);
         holder.txtViewStatusVariavel.setVisibility(View.INVISIBLE);
