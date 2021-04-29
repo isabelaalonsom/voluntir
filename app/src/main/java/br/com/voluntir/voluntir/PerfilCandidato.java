@@ -26,6 +26,7 @@ public class PerfilCandidato extends AppCompatActivity {
     private TextView txtEndereco;
     private TextView txtGenero;
     private TextView txtDescricaoTecnica;
+    private String nomeTabelaVaga = "vaga";
     ControleCadastro controleCadastro;
     String tabelaVoluntario = "voluntario";
 
@@ -51,7 +52,6 @@ public class PerfilCandidato extends AppCompatActivity {
 
         if (dados != null) {
             voluntario = (Voluntario) dadosVoluntario.getSerializable("voluntario");
-            ;
             vaga = (Vaga) dados.getSerializable("objeto");
 
             if (voluntario != null) {
@@ -71,6 +71,45 @@ public class PerfilCandidato extends AppCompatActivity {
 
 
     public void clicarBotaoAprovar(View view) {
+        listaVoluntario.clear();
+        if (vaga.getVoluntarios() != null) {
+            for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
+                Voluntario voluntario2 = vaga.getVoluntarios().get(i);
+
+                if (voluntario2.getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                    voluntario2.setStatusVaga("APROVADO");
+                }
+                listaVoluntario.add(voluntario2);
+            }
+        }
+        vaga.setVoluntarios(listaVoluntario);
+        controleCadastro = new ControleCadastro();
+        //voluntario.setStatusVaga("aprovado");
+
+        controleCadastro.atualizaVagaVoluntario(vaga, nomeTabelaVaga, getApplicationContext());
+
+    }
+
+    public void clicarBotaoReprovar(View view) {
+        listaVoluntario.clear();
+        if (vaga.getVoluntarios() != null) {
+            for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
+                Voluntario voluntario2 = vaga.getVoluntarios().get(i);
+
+                if (voluntario2.getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                    voluntario2.setStatusVaga("REPROVADO");
+                }
+                listaVoluntario.add(voluntario2);
+            }
+        } else {
+            listaVoluntario.add(voluntario);
+        }
+
+        vaga.setVoluntarios(listaVoluntario);
+        controleCadastro = new ControleCadastro();
+        //voluntario.setStatusVaga("aprovado");
+
+        controleCadastro.atualizaVagaVoluntario(vaga, nomeTabelaVaga, getApplicationContext());
 
     }
 

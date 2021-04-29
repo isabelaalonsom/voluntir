@@ -16,6 +16,7 @@ public class Voluntario implements Serializable {
     private String genero;
     private String datanasc;
     private String especialidade;
+    private String statusVaga;
 
     public Voluntario() {
     }
@@ -119,5 +120,13 @@ public class Voluntario implements Serializable {
 
     public boolean isVoluntario() {
         return true;
+    }
+
+    public String getStatusVaga() {
+        return statusVaga;
+    }
+
+    public void setStatusVaga(String statusVaga) {
+        this.statusVaga = statusVaga;
     }
 }
