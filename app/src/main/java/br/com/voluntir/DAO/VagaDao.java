@@ -49,21 +49,9 @@ public class VagaDao implements DAO<Vaga> {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    /*ongDao = new OngDao();
-                    ong = new Ong();
-                    
-                    String idDaOng = dado.getIdOng();
-
-                    ong = ongDao.busca(idDaOng, "ong", appContext);*/
-
                     Toast.makeText(appContext,
                             "Vaga cadastrada com sucesso ",
                             Toast.LENGTH_SHORT).show();
-                    /*Intent i = new Intent(appContext.getApplicationContext(), MenuOngActivity.class);
-                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    //i.putExtra("ong", ong1);
-                    i.putExtra("objeto", ong);
-                    appContext.startActivity(i);*/
 
                 }
             }
@@ -86,7 +74,7 @@ public class VagaDao implements DAO<Vaga> {
                 if (task.isSuccessful()) {
                     Toast.makeText(
                             context,
-                            "Candidatura Enviada!",
+                            "Dados Atualizados!",
                             Toast.LENGTH_SHORT
                     ).show();
                 }
