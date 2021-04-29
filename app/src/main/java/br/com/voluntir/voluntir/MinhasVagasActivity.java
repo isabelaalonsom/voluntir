@@ -231,12 +231,14 @@ public class MinhasVagasActivity extends AppCompatActivity {
         //Segunda info
         for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
             Voluntario voluntario = vaga.getVoluntarios().get(i);
-            String nome = "Nome: " + voluntario.getNome() + " " + voluntario.getSobrenome();
-            String telefone = "Telefone: " + voluntario.getTelefone();
-            String cidade = "Endereço: " + voluntario.getEndereco();
-            informacoes = nome + " | " + telefone + " | " + cidade;
-            paragraph = new Paragraph(informacoes, font);
-            document.add(paragraph);
+            if (voluntario.getStatusVaga().equalsIgnoreCase("aprovado")) {
+                String nome = "Nome: " + voluntario.getNome() + " " + voluntario.getSobrenome();
+                String telefone = "Telefone: " + voluntario.getTelefone();
+                String cidade = "Endereço: " + voluntario.getEndereco();
+                informacoes = nome + " | " + telefone + " | " + cidade;
+                paragraph = new Paragraph(informacoes, font);
+                document.add(paragraph);
+            }
         }
         //Segunda info
         /*paragraph = new Paragraph(informacoes, font);
