@@ -25,6 +25,7 @@ import java.util.List;
 import br.com.voluntir.RecyclerItemClickListener;
 import br.com.voluntir.adapter.AdapterVaga;
 import br.com.voluntir.controller.ControleCadastro;
+import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
@@ -40,6 +41,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
     private DatabaseReference tabelaCandidatura = bancoReferencia.child("candidatura");
     private String nomeTabelaVaga = "vaga";
     private boolean usuarioCadastrado = false;
+    private ControleVaga controleVaga;
     Vaga vaga = new Vaga();
     Vaga vagaClicada;
     private FirebaseAuth usuario = FirebaseAuth.getInstance();
@@ -128,8 +130,8 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                                     vagaClicada = listaVaga.get(position);
                                     vagaClicada.setVoluntarios(listaVoluntario);
 
-                                    controleCadastro = new ControleCadastro();
-                                    controleCadastro.atualizaVagaVoluntario(vagaClicada, nomeTabelaVaga, getApplicationContext());
+                                    controleVaga = new ControleVaga();
+                                    controleVaga.atualizaVagaVoluntario(vagaClicada, nomeTabelaVaga, getApplicationContext());
                                 } else {
                                     Toast.makeText(getApplicationContext(),
                                             "Usuário já cadastrado ",

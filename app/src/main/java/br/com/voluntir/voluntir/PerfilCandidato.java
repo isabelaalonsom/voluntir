@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.voluntir.controller.ControleCadastro;
+import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 
@@ -29,6 +30,7 @@ public class PerfilCandidato extends AppCompatActivity {
     private TextView txtStatus;
     private String nomeTabelaVaga = "vaga";
     ControleCadastro controleCadastro;
+    private ControleVaga controleVaga;
     String tabelaVoluntario = "voluntario";
 
     @Override
@@ -89,10 +91,10 @@ public class PerfilCandidato extends AppCompatActivity {
             }
         }
         vaga.setVoluntarios(listaVoluntario);
-        controleCadastro = new ControleCadastro();
+        controleVaga = new ControleVaga();
         //voluntario.setStatusVaga("aprovado");
 
-        controleCadastro.atualizaVagaVoluntario(vaga, nomeTabelaVaga, getApplicationContext());
+        controleVaga.atualizaVagaVoluntario(vaga, nomeTabelaVaga, getApplicationContext());
 
     }
 
@@ -112,10 +114,10 @@ public class PerfilCandidato extends AppCompatActivity {
         }
 
         vaga.setVoluntarios(listaVoluntario);
-        controleCadastro = new ControleCadastro();
+        controleVaga = new ControleVaga();
         //voluntario.setStatusVaga("aprovado");
 
-        controleCadastro.atualizaVagaVoluntario(vaga, nomeTabelaVaga, getApplicationContext());
+        controleVaga.atualizaVagaVoluntario(vaga, nomeTabelaVaga, getApplicationContext());
 
     }
 

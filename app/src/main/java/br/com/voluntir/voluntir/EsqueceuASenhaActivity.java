@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.voluntir.BancoFirebase;
+import br.com.voluntir.controller.ControleLogin;
 
 import static br.com.voluntir.voluntir.R.layout.activity_esqueceu_a_senha;
 
@@ -24,7 +25,7 @@ public class EsqueceuASenhaActivity extends AppCompatActivity {
     private EditText edtTextEmail;
     private String emailEnviar;
     private Button botaoEnviar;
-
+    private ControleLogin controleLogin;
     public EsqueceuASenhaActivity() {
 
     }
@@ -35,7 +36,7 @@ public class EsqueceuASenhaActivity extends AppCompatActivity {
         setContentView(activity_esqueceu_a_senha);
 
         getSupportActionBar().hide();
-        //EditText edtTextEmail = findViewById(R.id.edtTextEmail);
+
         botaoEnviar = (Button) findViewById(R.id.btnEnviar);
         botaoEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,15 +48,17 @@ public class EsqueceuASenhaActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Preencha o campo ",
                             Toast.LENGTH_SHORT).show();
-                }else{
-                    enviarEmail(emailEnviar);
+                }else {
+                    controleLogin = new ControleLogin();
+                    controleLogin.enviarEmailRecuperarSenha(emailEnviar, getApplicationContext());
+                    //enviarEmail(emailEnviar);
                 }
 
             }
         });
     }
 
-    private void enviarEmail(String email){
+    /*private void enviarEmail(String email){
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
         autenticacao.sendPasswordResetEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -74,6 +77,6 @@ public class EsqueceuASenhaActivity extends AppCompatActivity {
                         }
                     }
                 });
-    }
+    }*/
 
 }

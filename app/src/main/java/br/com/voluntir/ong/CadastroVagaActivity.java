@@ -1,6 +1,5 @@
 package br.com.voluntir.ong;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,20 +11,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Calendar;
 
-import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.controller.ControleCadastro;
+import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
-import br.com.voluntir.voluntir.EsqueceuASenhaActivity;
-import br.com.voluntir.voluntir.MenuOngActivity;
 import br.com.voluntir.voluntir.R;
-import br.com.voluntir.voluntir.VagaActivity;
 
 public class CadastroVagaActivity extends AppCompatActivity {
 
@@ -36,6 +30,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
     private EditText cargaHoraria, periodicidade, especialidade, detalheVaga, qtdCandidatos;
     private ControleCadastro controleCadastro;
     private String tabelaBanco = "vaga";
+    private ControleVaga controleVaga;
     Ong ong;
     Voluntario voluntario;
     String idOng;
@@ -183,7 +178,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();*/
 
 
-                    controleCadastro.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
+                    controleVaga.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
                 }
             }
         });

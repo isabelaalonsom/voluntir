@@ -19,6 +19,7 @@ import java.io.Serializable;
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.DAO.OngDao;
 import br.com.voluntir.controller.ControleCadastro;
+import br.com.voluntir.controller.ControleLogin;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.ong.CadastroONGActivity;
 //import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
@@ -35,6 +36,7 @@ public class LoginActivityONG extends AppCompatActivity {
     private EditText senha;
     private String nomeTabela = "ong";
     private ControleCadastro controleCadastro;
+    private ControleLogin controleLogin;
 
     private FirebaseAuth autenticacao;
     private DatabaseReference bancoFirebase;
@@ -66,7 +68,7 @@ public class LoginActivityONG extends AppCompatActivity {
     public void clicarBotaoEntrarOng(View view) {
         ong = new Ong();
 
-        controleCadastro = new ControleCadastro();
+        controleLogin = new ControleLogin();
 
         ong.setEmailOng(email.getText().toString());
         ong.setSenhaOng(senha.getText().toString());
@@ -78,7 +80,7 @@ public class LoginActivityONG extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         } else {
             boolean resposta;
-            controleCadastro.validarLoginOng(ong, nomeTabela, getApplicationContext());
+            controleLogin.validarLoginOng(ong, nomeTabela, getApplicationContext());
 
 
         }

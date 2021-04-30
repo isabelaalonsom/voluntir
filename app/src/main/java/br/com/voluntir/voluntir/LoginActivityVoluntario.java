@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.voluntir.controller.ControleCadastro;
+import br.com.voluntir.controller.ControleLogin;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.CadastroVagaActivity;
@@ -26,6 +27,7 @@ public class LoginActivityVoluntario extends AppCompatActivity {
     private EditText senha;
     private String nomeTabela = "voluntario";
     private ControleCadastro controleCadastro;
+    private ControleLogin controleLogin;
 
 
     @Override
@@ -58,7 +60,7 @@ public class LoginActivityVoluntario extends AppCompatActivity {
     public void clicarBotaoEntrarVoluntario (View view) {
         voluntario = new Voluntario();
 
-        controleCadastro = new ControleCadastro();
+        controleLogin = new ControleLogin();
 
         voluntario.setEmail(email.getText().toString());
         voluntario.setSenha(senha.getText().toString());
@@ -68,7 +70,7 @@ public class LoginActivityVoluntario extends AppCompatActivity {
                     "Preencha todos os campos",
                     Toast.LENGTH_SHORT).show();
         } else {
-            controleCadastro.validarLoginVoluntario(voluntario, nomeTabela, getApplicationContext());
+            controleLogin.validarLoginVoluntario(voluntario, nomeTabela, getApplicationContext());
 
 
         }
