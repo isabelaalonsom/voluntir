@@ -26,6 +26,7 @@ public class PerfilCandidato extends AppCompatActivity {
     private TextView txtEndereco;
     private TextView txtGenero;
     private TextView txtDescricaoTecnica;
+    private TextView txtStatus;
     private String nomeTabelaVaga = "vaga";
     ControleCadastro controleCadastro;
     String tabelaVoluntario = "voluntario";
@@ -44,6 +45,7 @@ public class PerfilCandidato extends AppCompatActivity {
         txtTelefone = (TextView) findViewById(R.id.txtViewTelefoneVoluntarioVaga);
         txtGenero = (TextView) findViewById(R.id.txtViewGeneroVoluntarioVaga);
         txtDescricaoTecnica = (TextView) findViewById(R.id.txtViewDescricaoTecnicaVoluntarioVaga);
+        txtStatus = (TextView) findViewById(R.id.txtViewStatusVoluntarioVaga);
 
         limparCampos();
 
@@ -64,11 +66,15 @@ public class PerfilCandidato extends AppCompatActivity {
                 txtTelefone.setText(voluntario.getTelefone());
                 txtGenero.setText(voluntario.getGenero());
                 txtDescricaoTecnica.setText(voluntario.getEspecialidade());
+                txtStatus.setText(voluntario.getStatusVaga());
             }
         }
 
     }
 
+    public void atualizarPerfil() {
+
+    }
 
     public void clicarBotaoAprovar(View view) {
         listaVoluntario.clear();
@@ -123,5 +129,6 @@ public class PerfilCandidato extends AppCompatActivity {
         txtTelefone.setText("");
         txtGenero.setText("");
         txtDescricaoTecnica.setText("");
+        txtStatus.setText("");
     }
 }

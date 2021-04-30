@@ -36,12 +36,12 @@ public class AdapterVaga extends RecyclerView.Adapter<AdapterVaga.MyViewHolder> 
         Vaga vaga = listaVaga.get(position);
         holder.nomeOng.setText(vaga.getNomeOng());
         holder.areaConhecimento.setText(vaga.getAreaConhecimento());
-        holder.vaga.setText(Integer.toString(vaga.getQtdCandidaturas()));
+        holder.vaga.setText("vagas: " + Integer.toString(vaga.getQtdCandidaturas()));
 
         if (vaga.getVoluntarios() != null) {
-            holder.vaga.setText(Integer.toString(vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()));
+            holder.vaga.setText("vagas: " + Integer.toString(vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()));
             if ((vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()) < 0) {
-                holder.vaga.setText("0");
+                holder.vaga.setText("vagas:0");
             }
         }
 
