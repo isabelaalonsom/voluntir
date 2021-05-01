@@ -47,7 +47,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
     private FirebaseAuth usuario = FirebaseAuth.getInstance();
     Voluntario voluntario;
     ControleCadastro controleCadastro;
-
+    AdapterVaga adapterVaga;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,13 +76,14 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                 listaVaga.clear();
                 //DataSnapshot é o retorno do firebase
                 //Log.i("FIREBASE", snapshot.getValue().toString());
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     vaga = dataSnapshot.getValue(Vaga.class);
                     vaga.setIdVaga(dataSnapshot.getKey());
                     //Log.i("FIREBASE", snapshot.getValue().toString());
                     listaVaga.add(vaga);
                 }
-                AdapterVaga adapterVaga = new AdapterVaga(listaVaga);
+
+                adapterVaga = new AdapterVaga(listaVaga);
                 recyclerView.setAdapter(adapterVaga);
 
 
@@ -117,7 +118,8 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                                     for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
                                         Voluntario voluntario2 = vaga.getVoluntarios().get(i);
                                         listaVoluntario.add(voluntario2);
-                                        if (voluntario2.getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                                        //if (voluntario2.getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                                        if (listaVoluntario.get(i).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
                                             usuarioCadastrado = true;
                                         }
                                     }

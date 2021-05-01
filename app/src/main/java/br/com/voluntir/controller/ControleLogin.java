@@ -68,8 +68,6 @@ public class ControleLogin {
     public void validarLoginOng(final Ong dado, final String nomeTabela, final Context context) {
         ongDao = new OngDao();
 
-        Task taskretorno;
-
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
         autenticacao.signInWithEmailAndPassword(
                 dado.getEmailOng(), dado.getSenhaOng()
@@ -114,7 +112,6 @@ public class ControleLogin {
                                         "Erro: " + erroExcecao,
                                         Toast.LENGTH_SHORT).show();
 
-
                             }
 
                         }
@@ -152,7 +149,6 @@ public class ControleLogin {
 
     public Voluntario validarLoginVoluntario(final Voluntario dado, final String nomeTabela, final Context context) {
         voluntarioDao = new VoluntarioDao();
-
 
         autenticacao = BancoFirebase.getFirebaseAutenticacao();
         autenticacao.signInWithEmailAndPassword(

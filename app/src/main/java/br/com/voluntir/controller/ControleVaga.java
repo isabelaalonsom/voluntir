@@ -8,6 +8,7 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.voluntir.DAO.OngDao;
 import br.com.voluntir.DAO.VagaDao;
 import br.com.voluntir.model.Vaga;
 
@@ -32,5 +33,14 @@ public class ControleVaga {
 
         vagaDao.atualiza(dado, tabela, context);
 
+    }
+
+    public void buscaOng(String id, String tabela, Context context) {
+        vagaDao = new VagaDao();
+        try {
+            vagaDao.busca(id, tabela, context);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
