@@ -48,9 +48,16 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
     Voluntario voluntario;
     ControleCadastro controleCadastro;
     AdapterVaga adapterVaga;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        usuarioCadastrado = false;
         setContentView(R.layout.activity_vaga_voluntario);
 
         getSupportActionBar().hide();
@@ -88,6 +95,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
 
 
             }
+
             //trata o erro se a operação for cancelada
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -150,4 +158,6 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                 )
         );
     }
+
+
 }
