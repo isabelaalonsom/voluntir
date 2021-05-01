@@ -35,7 +35,7 @@ import br.com.voluntir.voluntir.PerfilCandidato;
 import br.com.voluntir.voluntir.R;
 
 public class AprovacaoCandidatoActivity extends AppCompatActivity {
-    TextView txtViewStatusVariavel, txtNomeVoluntario;
+    private TextView txtViewStatusVariavel, txtNomeVoluntario;
     private List<Vaga> listaVaga = new ArrayList<>();
     private RecyclerView recyclerViewCandidato;
     private List<Voluntario> listaVoluntario = new ArrayList<>();
@@ -43,12 +43,14 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
     private DatabaseReference tabelaVoluntario = bancoReferencia.child("voluntario");
     private DatabaseReference refenciaBanco;
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
+    private AdapterAprovacao adapterAprovacao;
     int tamanho = 0;
-    Vaga vaga;
-    Ong ong;
-    Voluntario voluntario;
-    Voluntario voluntario2;
-    Button botaoAprovado;
+    private Vaga vaga;
+    private Ong ong;
+    private Voluntario voluntario;
+    private Voluntario voluntario2;
+    private Button botaoAprovado;
+    Vaga vagaAtualizada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,11 +94,11 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                     vaga1.setIdVaga(dataSnapshot.getKey());
                     //Log.i("Voluntario", vaga.getIdVaga());
                     if (vaga1.getIdVaga().equals(vaga.getIdVaga())) {
-
+                        vagaAtualizada = vaga1;
 
                         if (vaga1.getVoluntarios() != null) {
-                            for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
-                                voluntario = vaga.getVoluntarios().get(i);
+                            for (int i = 0; i < vaga1.getVoluntarios().size(); i++) {
+                                voluntario = vaga1.getVoluntarios().get(i);
 
                                 listaVoluntario.add(voluntario);
                             }
@@ -105,11 +107,11 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
 
 
                     //Log.i("FIREBASE", snapshot.getValue().toString());
-                    listaVaga.add(vaga);
+                    listaVaga.add(vagaAtualizada);
 
                 }
 
-                AdapterAprovacao adapterAprovacao = new AdapterAprovacao(listaVoluntario);
+                adapterAprovacao = new AdapterAprovacao(listaVoluntario);
                 adapterAprovacao.notifyDataSetChanged();
                 recyclerViewCandidato.setAdapter(adapterAprovacao);
 
@@ -144,7 +146,7 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
 
                                 Intent intent = new Intent(getApplicationContext(), PerfilCandidato.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                intent.putExtra("objeto", vaga);
+                                intent.putExtra("objeto", vagaAtualizada);
                                 intent.putExtra("voluntario", voluntario);
                                 startActivity(intent);
 

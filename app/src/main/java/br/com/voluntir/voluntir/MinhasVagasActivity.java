@@ -69,9 +69,17 @@ public class MinhasVagasActivity extends AppCompatActivity {
     private FirebaseAuth usuario = FirebaseAuth.getInstance();
     Ong ong;
     int tamanho = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         setContentView(R.layout.activity_vaga);
 
         getSupportActionBar().hide();
@@ -157,9 +165,7 @@ public class MinhasVagasActivity extends AppCompatActivity {
             Util.validate(this, 17, permissao);
 
         }
-
     }
-
 
     public void gerarPDF(View view, int position, Vaga vaga) throws IOException, DocumentException {
 

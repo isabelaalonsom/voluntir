@@ -134,7 +134,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                                 }
 
                                 if (usuarioCadastrado == false) {
-                                    voluntario.setStatusVaga("EM ANALISE");
+                                    voluntario.setStatusVaga("EM ANÁLISE");
                                     listaVoluntario.add(voluntario);
 
                                     vagaClicada = listaVaga.get(position);
