@@ -38,6 +38,7 @@ public class AdapterAprovacao extends RecyclerView.Adapter<AdapterAprovacao.MyVi
         //Vaga vaga = listaVaga.get(position);
         Voluntario voluntario = listaVoluntario.get(position);
         holder.nome.setText(voluntario.getNome() + " " + voluntario.getSobrenome());
+        holder.status.setText("Status: " + voluntario.getStatusVaga());
     }
 
     @Override
@@ -48,11 +49,13 @@ public class AdapterAprovacao extends RecyclerView.Adapter<AdapterAprovacao.MyVi
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView nome;
+        TextView status;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             nome = itemView.findViewById(R.id.txtCandidato);
+            status = itemView.findViewById(R.id.txtStatusVoluntario);
         }
     }
 }

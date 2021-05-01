@@ -53,6 +53,13 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         setContentView(R.layout.activity_aprovacao_candidato);
 
         getSupportActionBar().hide();
@@ -147,7 +154,6 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                             public void onLongItemClick(View view, int position) {
 
 
-
                             }
 
                             @Override
@@ -157,10 +163,9 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                         }
                 )
         );
-
     }
 
-//    public void trazVagaClicada() {
+    //    public void trazVagaClicada() {
 //        Intent dados = getIntent();
 //
 //        if (dados.hasExtra("vaga")) {
