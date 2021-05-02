@@ -112,7 +112,9 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-
+                                Toast.makeText(getApplicationContext(),
+                                        "Dê um clique longo para se candidatar.",
+                                        Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -120,33 +122,43 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                                 usuarioCadastrado = false;
                                 listaVoluntario.clear();
                                 Vaga vaga = listaVaga.get(position);
-                                if (vaga.getVoluntarios() != null) {
 
+                                    if (vaga.getVoluntarios() != null) {
 
-                                    for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
-                                        Voluntario voluntario2 = vaga.getVoluntarios().get(i);
-                                        listaVoluntario.add(voluntario2);
-                                        //if (voluntario2.getIdVoluntario().equals(voluntario.getIdVoluntario())) {
-                                        if (listaVoluntario.get(i).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
-                                            usuarioCadastrado = true;
+                                        for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
+                                            Voluntario voluntario2 = vaga.getVoluntarios().get(i);
+                                            listaVoluntario.add(voluntario2);
+                                            //if (voluntario2.getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                                            if (listaVoluntario.get(i).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                                                usuarioCadastrado = true;
+                                            }
                                         }
                                     }
-                                }
 
-                                if (usuarioCadastrado == false) {
-                                    voluntario.setStatusVaga("EM ANÁLISE");
-                                    listaVoluntario.add(voluntario);
 
-                                    vagaClicada = listaVaga.get(position);
-                                    vagaClicada.setVoluntarios(listaVoluntario);
+                                 if (!usuarioCadastrado) {
+                                        vagaClicada = listaVaga.get(position);
+                                        vagaClicada.setVoluntarios(listaVoluntario);
 
-                                    controleVaga = new ControleVaga();
-                                    controleVaga.atualizaVagaVoluntario(vagaClicada, nomeTabelaVaga, getApplicationContext());
-                                } else {
+                                     if (vagaClicada.getQtdCandidaturas() <= 0) {
                                     Toast.makeText(getApplicationContext(),
-                                            "Você já se candidatou a essa vaga",
+                                            "Não é possível se candidatar. Essa vaga já excedeu o limite de candidaturas.",
                                             Toast.LENGTH_SHORT).show();
-                                }
+                                        } else {
+
+                                         voluntario.setStatusVaga("EM ANÁLISE");
+                                         listaVoluntario.add(voluntario);
+
+                                         controleVaga = new ControleVaga();
+                                         controleVaga.atualizaVagaVoluntario(vagaClicada, nomeTabelaVaga, getApplicationContext());
+                                     }
+
+                                    } else {
+                                        Toast.makeText(getApplicationContext(),
+                                                "Você já se candidatou a essa vaga",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+
 
                             }
 
