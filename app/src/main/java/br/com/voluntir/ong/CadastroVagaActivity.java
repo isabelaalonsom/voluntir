@@ -177,7 +177,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
                             "Data Inicio "+vaga.getDataInicio(),
                             Toast.LENGTH_SHORT).show();*/
 
-
+                    controleVaga = new ControleVaga();
                     controleVaga.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
                 }
             }

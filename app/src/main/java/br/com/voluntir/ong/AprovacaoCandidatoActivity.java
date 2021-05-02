@@ -142,7 +142,7 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                Voluntario voluntario = vaga.getVoluntarios().get(position);
+                                voluntario = vagaAtualizada.getVoluntarios().get(position);
 
                                 Intent intent = new Intent(getApplicationContext(), PerfilCandidato.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
