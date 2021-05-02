@@ -117,7 +117,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
 
                             @Override
                             public void onLongItemClick(View view, int position) {
-
+                                usuarioCadastrado = false;
                                 listaVoluntario.clear();
                                 Vaga vaga = listaVaga.get(position);
                                 if (vaga.getVoluntarios() != null) {

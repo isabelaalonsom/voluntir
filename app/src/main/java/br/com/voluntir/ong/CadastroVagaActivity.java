@@ -59,9 +59,6 @@ public class CadastroVagaActivity extends AppCompatActivity {
             ong = (Ong) dados.getSerializable("objeto");
             nome.setText(ong.getNome());
             idOng = ong.getIdOng();
-            Toast.makeText(getApplicationContext(),
-                    "Id " + ong.getIdOng(),
-                    Toast.LENGTH_SHORT).show();
         }
 
 
