@@ -144,7 +144,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                                     controleVaga.atualizaVagaVoluntario(vagaClicada, nomeTabelaVaga, getApplicationContext());
                                 } else {
                                     Toast.makeText(getApplicationContext(),
-                                            "Usuário já cadastrado ",
+                                            "Você já se candidatou a essa vaga",
                                             Toast.LENGTH_SHORT).show();
                                 }
 
