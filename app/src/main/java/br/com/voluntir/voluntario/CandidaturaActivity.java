@@ -16,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class CandidaturaActivity extends AppCompatActivity {
     private List<Voluntario> listaVoluntario = new ArrayList<>();
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
+
     Ong ong;
     Voluntario voluntario;
     Vaga vaga = new Vaga();
@@ -48,7 +50,7 @@ public class CandidaturaActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        recyclerViewCandidatura = findViewById(R.id.recyclerViewCandidaturas);
+        /*recyclerViewCandidatura = findViewById(R.id.recyclerViewCandidaturas);
         txtViewStatus = findViewById(R.id.txtStatus);
         txtViewStatusVariavel = findViewById(R.id.txtStatusVariavel);
         Bundle dados = getIntent().getExtras();
@@ -84,6 +86,58 @@ public class CandidaturaActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });*/
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        getSupportActionBar().hide();
+        recyclerViewCandidatura = findViewById(R.id.recyclerViewCandidaturas);
+
+        Bundle dados = getIntent().getExtras();
+        voluntario = (Voluntario) dados.getSerializable("objeto");
+        //Configurar Recyclerview
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerViewCandidatura.setLayoutManager(layoutManager);
+        recyclerViewCandidatura.setHasFixedSize(true);
+        //coloca uma linha para separar
+        recyclerViewCandidatura.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
+        Query teste = tabelaVaga.orderByChild("voluntarios");
+        teste.addValueEventListener(new ValueEventListener() {
+            //recuperar os dados sempre que for mudado no banco
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listaVagaCandidatada.clear();
+                //DataSnapshot é o retorno do firebase
+                //Log.i("FIREBASE", snapshot.getValue().toString());
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    vaga = dataSnapshot.getValue(Vaga.class);
+                    //Log.i("FIREBASE", snapshot.getValue().toString());
+                    if (vaga.getVoluntarios() != null) {
+
+                        for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
+                            if (vaga.getVoluntarios().get(i).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                                listaVagaCandidatada.add(vaga);
+
+                            }
+                        }
+                    }
+
+
+                }
+                AdapterCandidatura adapterCandidatura = new AdapterCandidatura(listaVagaCandidatada, voluntario);
+                recyclerViewCandidatura.setAdapter(adapterCandidatura);
+            }
+
+            //trata o erro se a operação for cancelada
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
         });
     }
 
