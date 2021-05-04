@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,15 +19,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.itextpdf.text.DocumentException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.voluntir.RecyclerItemClickListener;
 import br.com.voluntir.adapter.AdapterCandidatura;
 import br.com.voluntir.adapter.AdapterVaga;
+import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.ong.AprovacaoCandidatoActivity;
 import br.com.voluntir.voluntir.R;
 
 public class CandidaturaActivity extends AppCompatActivity {
@@ -37,7 +43,8 @@ public class CandidaturaActivity extends AppCompatActivity {
     private List<Voluntario> listaVoluntario = new ArrayList<>();
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
-
+    private String nomeTabelaVaga = "vaga";
+    private ControleVaga controleVaga;
     Ong ong;
     Voluntario voluntario;
     Vaga vaga = new Vaga();
@@ -139,6 +146,45 @@ public class CandidaturaActivity extends AppCompatActivity {
             }
 
         });
+        recyclerViewCandidatura.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getApplicationContext(),
+                        recyclerViewCandidatura,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                /*Vaga vaga = listaVagaCandidatada.get(position);
+
+                                Intent intent = new Intent(getApplicationContext(), AprovacaoCandidatoActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.putExtra("objeto", vaga);
+                                intent.putExtra("ong", ong);
+                                startActivity(intent);*/
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) throws IOException, DocumentException {
+                                Vaga vaga = listaVagaCandidatada.get(position);
+                                for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
+                                    if (!vaga.getVoluntarios().get(i).getStatusVaga().equals("EM ANÁLISE")) {
+
+                                    } else {
+                                        vaga.getVoluntarios().remove(i);
+                                        controleVaga = new ControleVaga();
+                                        controleVaga.atualizaVagaVoluntario(vaga, nomeTabelaVaga, getApplicationContext());
+                                    }
+                                }
+
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        }
+                )
+        );
     }
 
     public void trazVagaClicada() {

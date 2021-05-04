@@ -3,6 +3,7 @@ package br.com.voluntir.DAO;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,9 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
+import br.com.voluntir.model.Candidatura;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.voluntario.CandidaturaActivity;
 import br.com.voluntir.voluntir.MenuOngActivity;
 import br.com.voluntir.voluntir.MinhasVagasActivity;
 
@@ -72,11 +75,14 @@ public class VagaDao implements DAO<Vaga> {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
+
                     Toast.makeText(
                             context,
-                            "Dados Atualizados!",
+                            "Dados atualizados!" + context.getClass(),
                             Toast.LENGTH_SHORT
                     ).show();
+
+
                 }
             }
         });

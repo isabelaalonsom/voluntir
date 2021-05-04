@@ -81,7 +81,7 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
 
 //        trazVagaClicada();
 
-        Query teste = tabelaVaga.orderByChild("idOng").equalTo(ong.getIdOng());
+        Query teste = tabelaVaga;
         teste.addValueEventListener(new ValueEventListener() {
             //recuperar os dados sempre que for mudado no banco
             @Override

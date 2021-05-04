@@ -3,13 +3,16 @@ package br.com.voluntir.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
@@ -18,6 +21,7 @@ public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.
     private List<Vaga> listaVaga;
     private Voluntario voluntario;
     private String status;
+    private ControleVaga controleVaga;
 
     public AdapterCandidatura(List<Vaga> lista, Voluntario voluntario) {
         this.listaVaga = lista;
@@ -40,12 +44,14 @@ public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.
             for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
                 if (vaga.getVoluntarios().get(i).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
                     status = vaga.getVoluntarios().get(i).getStatusVaga();
+
                 }
 
 
             }
 
         }
+
         holder.nomeOng.setText(vaga.getNomeOng());
         holder.areaConhecimento.setText(vaga.getAreaConhecimento());
         holder.vaga.setText("Vagas:" + vaga.getQtdCandidaturas());
@@ -61,7 +67,7 @@ public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.
         return listaVaga.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView descricao;
         TextView nomeOng;
         TextView areaConhecimento;
@@ -85,4 +91,5 @@ public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.
 
         }
     }
+
 }
