@@ -31,6 +31,7 @@ import br.com.voluntir.adapter.AdapterAprovacao;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.voluntir.Perfil;
 import br.com.voluntir.voluntir.PerfilCandidato;
 import br.com.voluntir.voluntir.R;
 
@@ -144,9 +145,10 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                             public void onItemClick(View view, int position) {
                                 voluntario = vagaAtualizada.getVoluntarios().get(position);
 
-                                Intent intent = new Intent(getApplicationContext(), PerfilCandidato.class);
+                                Intent intent = new Intent(getApplicationContext(), Perfil.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.putExtra("objeto", vagaAtualizada);
+                                intent.putExtra("ong", ong);
                                 intent.putExtra("voluntario", voluntario);
                                 startActivity(intent);
 
