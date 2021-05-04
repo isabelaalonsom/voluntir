@@ -11,13 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import br.com.voluntir.model.Vaga;
+import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
 
 public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.MyViewHolder> {
     private List<Vaga> listaVaga;
+    private Voluntario voluntario;
+    private String status;
 
-    public AdapterCandidatura(List<Vaga> lista) {
+    public AdapterCandidatura(List<Vaga> lista, Voluntario voluntario) {
         this.listaVaga = lista;
+        this.voluntario = voluntario;
     }
 
     @NonNull
@@ -32,12 +36,23 @@ public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Vaga vaga = listaVaga.get(position);
-        //holder.nomeOng.setText("X");
+        if (vaga.getVoluntarios() != null) {
+            for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
+                if (vaga.getVoluntarios().get(i).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                    status = vaga.getVoluntarios().get(i).getStatusVaga();
+                }
+
+
+            }
+
+        }
+        holder.nomeOng.setText(vaga.getNomeOng());
         holder.areaConhecimento.setText(vaga.getAreaConhecimento());
-        holder.vaga.setText("Vagas:"+"5");
+        holder.vaga.setText("Vagas:" + vaga.getQtdCandidaturas());
 
         holder.txtViewStatus.setVisibility(View.VISIBLE);
-        holder.txtViewStatusVariavel.setVisibility(View.VISIBLE);
+        holder.txtViewStatusVariavel.setText(status);
+
 
     }
 
