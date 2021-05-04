@@ -17,8 +17,6 @@ import br.com.voluntir.voluntir.R;
 
 public class AdapterAprovacao extends RecyclerView.Adapter<AdapterAprovacao.MyViewHolder> {
     private List<Voluntario> listaVoluntario;
-    private List<Vaga> listaVaga;
-    Voluntario voluntario;
 
     public AdapterAprovacao(List<Voluntario> lista) {
         this.listaVoluntario = lista;
@@ -35,7 +33,6 @@ public class AdapterAprovacao extends RecyclerView.Adapter<AdapterAprovacao.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        //Vaga vaga = listaVaga.get(position);
         Voluntario voluntario = listaVoluntario.get(position);
         holder.nome.setText(voluntario.getNome() + " " + voluntario.getSobrenome());
         holder.status.setText("Status: " + voluntario.getStatusVaga());

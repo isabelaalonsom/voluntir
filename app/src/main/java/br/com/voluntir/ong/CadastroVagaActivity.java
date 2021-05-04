@@ -32,7 +32,6 @@ public class CadastroVagaActivity extends AppCompatActivity {
     private String tabelaBanco = "vaga";
     private ControleVaga controleVaga;
     Ong ong;
-    Voluntario voluntario;
     String idOng;
     boolean grava = false;
     boolean mesdiaok = false;
@@ -164,16 +163,6 @@ public class CadastroVagaActivity extends AppCompatActivity {
                     vaga.setDescricaoVaga(detalheVaga.getText().toString());
                     vaga.setCargaHoraria(cargaHoraria.getText().toString());
                     vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
-                    /*Toast.makeText(getApplicationContext(),
-                            "Nome Ong "+vaga.getNomeOng(),
-                            Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(),
-                            "Id Ong "+vaga.getIdOng(),
-                            Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(),
-                            "Data Inicio "+vaga.getDataInicio(),
-                            Toast.LENGTH_SHORT).show();*/
-
                     controleVaga = new ControleVaga();
                     controleVaga.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
                 }

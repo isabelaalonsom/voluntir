@@ -50,15 +50,8 @@ import br.com.voluntir.util.Util;
 
 
 public class MenuOngActivity extends AppCompatActivity {
-    Voluntario voluntario;
     Ong ong;
-    Button botaoCriarVaga;
-    TextView txtEmailOng, txtNomeOng, txtIdOng, txtTituloPDF;
-    private FirebaseAuth autenticacao;
-    ControleCadastro controleCadastro;
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference bancoFirebase;
-
+    TextView txtEmailOng, txtNomeOng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,15 +65,6 @@ public class MenuOngActivity extends AppCompatActivity {
         if (dados != null) {
             ong = (Ong) dados.getSerializable("objeto");
         }
-        /*Toast.makeText(getApplicationContext(),
-                "Id " + ong.getIdOng(),
-                Toast.LENGTH_SHORT).show();*/
-
-
-//        new Thread(() -> {
-//            txtNomeOng = (TextView) findViewById(R.id.txtViewNomeOng);
-//            txtNomeOng.setText(ong.getNome());
-//        });
 
         runOnUiThread(new Thread((Runnable) () -> {
             try {
@@ -91,8 +75,6 @@ public class MenuOngActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "erro: " + e.getCause(), Toast.LENGTH_LONG).show();
             }
         }));
-
-        autenticacao = BancoFirebase.getFirebaseAutenticacao();
 
 
     }

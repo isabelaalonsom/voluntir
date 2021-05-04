@@ -55,14 +55,11 @@ public class OngDao implements DAO<Ong> {
                     //recupera os dados do usuario
                     FirebaseUser ongFirebase = task.getResult().getUser();
 
-                    //recupera o uid do usuario
-                    //ong.setIdOng( ongFirebase.getUid() );
                     dado.setIdOng(ongFirebase.getUid());
-                    //voluntario.salvar();
+
                     DatabaseReference bancoReferencia = BancoFirebase.getBancoReferencia();
-                    //seta o valor do proprio usuario
+
                     bancoReferencia.child(tabela).child(dado.getIdOng()).setValue(dado);
-                    //desloga o usuário
 
                     Toast.makeText(appContext,
                             "Cadastrado com sucesso ",
@@ -113,7 +110,6 @@ public class OngDao implements DAO<Ong> {
     public boolean remove(Ong dado, String tabela, final Context context) throws SQLException {
         final String id = dado.getIdOng();
         final FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
-
         usuario.delete()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

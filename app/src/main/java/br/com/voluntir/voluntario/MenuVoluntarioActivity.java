@@ -19,10 +19,6 @@ import br.com.voluntir.voluntir.VagaActivity;
 
 public class MenuVoluntarioActivity extends AppCompatActivity {
     Voluntario voluntario;
-    Ong ong;
-    Button botaoCriarVaga;
-    TextView txtNomeVoluntario;
-    ControleCadastro controleCadastro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +30,6 @@ public class MenuVoluntarioActivity extends AppCompatActivity {
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
             voluntario = (Voluntario) dados.getSerializable("objeto");
-        } else {
-            /*controleCadastro = new ControleCadastro();
-            controleCadastro.buscaVoluntario();*/
         }
 
 

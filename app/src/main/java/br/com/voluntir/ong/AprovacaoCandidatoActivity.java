@@ -24,15 +24,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.RecyclerItemClickListener;
 import br.com.voluntir.adapter.AdapterAprovacao;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.Perfil;
-import br.com.voluntir.voluntir.PerfilCandidato;
 import br.com.voluntir.voluntir.R;
 
 public class AprovacaoCandidatoActivity extends AppCompatActivity {
@@ -41,22 +38,16 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
     private RecyclerView recyclerViewCandidato;
     private List<Voluntario> listaVoluntario = new ArrayList<>();
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference tabelaVoluntario = bancoReferencia.child("voluntario");
-    private DatabaseReference refenciaBanco;
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     private AdapterAprovacao adapterAprovacao;
-    int tamanho = 0;
     private Vaga vaga;
     private Ong ong;
     private Voluntario voluntario;
-    private Voluntario voluntario2;
-    private Button botaoAprovado;
     Vaga vagaAtualizada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
     }
 
@@ -71,29 +62,26 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
         ong = (Ong) dados.getSerializable("ong");
         recyclerViewCandidato = findViewById(R.id.recyclerViewCandidatos);
         txtNomeVoluntario = findViewById(R.id.txtViewCandidatos);
-        //botaoAprovado = (Button) findViewById(R.id.btnAprovar);
-        //Configurar Recyclerview
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerViewCandidato.setLayoutManager(layoutManager);
         recyclerViewCandidato.setHasFixedSize(true);
-        //coloca uma linha para separar
+
         recyclerViewCandidato.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
 
-//        trazVagaClicada();
 
         Query teste = tabelaVaga;
         teste.addValueEventListener(new ValueEventListener() {
-            //recuperar os dados sempre que for mudado no banco
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listaVaga.clear();
                 listaVoluntario.clear();
-                //DataSnapshot é o retorno do firebase
-                //Log.i("FIREBASE", snapshot.getValue().toString());
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Vaga vaga1 = dataSnapshot.getValue(Vaga.class);
                     vaga1.setIdVaga(dataSnapshot.getKey());
-                    //Log.i("Voluntario", vaga.getIdVaga());
+
                     if (vaga1.getIdVaga().equals(vaga.getIdVaga())) {
                         vagaAtualizada = vaga1;
 
@@ -106,8 +94,6 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                         }
                     }
 
-
-                    //Log.i("FIREBASE", snapshot.getValue().toString());
                     listaVaga.add(vagaAtualizada);
 
                 }
@@ -119,7 +105,6 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
 
             }
 
-            //trata o erro se a operação for cancelada
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -127,15 +112,6 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
 
         });
 
-
-
-
-
-        /*AdapterAprovacao adapterAprovacao = new AdapterAprovacao(listaVoluntarios);
-
-        recyclerViewCandidato.setAdapter(adapterAprovacao);*/
-
-        //evento de click
         recyclerViewCandidato.addOnItemTouchListener(
                 new RecyclerItemClickListener(
                         getApplicationContext(),
@@ -169,33 +145,5 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
         );
     }
 
-    //    public void trazVagaClicada() {
-//        Intent dados = getIntent();
-//
-//        if (dados.hasExtra("vaga")) {
-//            vaga = (Vaga) dados.getSerializableExtra("vaga");
-//
-//            if (dados.hasExtra("vaga")) {
-//
-//                vaga = (Vaga) dados.getSerializableExtra("vaga");
-//
-//            } else {
-//                vaga = new Vaga();
-//            }
-//        }
-//    }
-
-    public void clicarBotaoAprovarCandidato(View view) {
-        /*botaoAprovado = (Button) findViewById(R.id.btnAprovar);
-        botaoAprovado.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Toast.makeText(this, "Candidato aprovado!", Toast.LENGTH_SHORT).show();
-                botaoAprovado.setText("Aprovado");
-                botaoAprovado.setTextColor(Color.GREEN);
-
-            }
-        });*/
-    }
 
 }

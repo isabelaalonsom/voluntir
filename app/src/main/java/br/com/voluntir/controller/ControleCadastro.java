@@ -37,7 +37,6 @@ public class ControleCadastro {
     Voluntario voluntario;
     VoluntarioDao voluntarioDao;
     Ong ong;
-    Ong ongRetorno;
     OngDao ongDao;
 
     DatabaseReference bancoFirebase;
@@ -45,18 +44,15 @@ public class ControleCadastro {
 
     public void excluirDadosVoluntario(Voluntario dado, String tabela, Context context) {
         voluntarioDao = new VoluntarioDao();
-        try {
-            retorno = voluntarioDao.remove(dado, tabela, context);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        voluntarioDao.remove(dado, tabela, context);
+
     }
 
     public void excluirDadosOng(Ong dado, String tabela, Context context) {
         ongDao = new OngDao();
         try {
-            retorno = ongDao.remove(dado, tabela, context);
+            ongDao.remove(dado, tabela, context);
 
         } catch (Exception e) {
             e.printStackTrace();

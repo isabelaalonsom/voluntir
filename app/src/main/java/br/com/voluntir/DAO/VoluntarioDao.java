@@ -171,17 +171,13 @@ public class VoluntarioDao implements DAO<Voluntario> {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     voluntario = dataSnapshot.getValue(Voluntario.class);
 
-
                 }
                 if (voluntario != null) {
                     Intent intent = new Intent(context.getApplicationContext(), MenuVoluntarioActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("objeto", voluntario);
                     context.startActivity(intent);
-                } else {
-
                 }
-
 
             }
 

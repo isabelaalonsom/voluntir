@@ -15,8 +15,6 @@ import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
 
 public class AdapterPerfil extends RecyclerView.Adapter<AdapterPerfil.MyViewHolder> {
-    private List<Voluntario> listaVoluntario;
-    private List<Vaga> listaVaga;
     Voluntario voluntario;
 
     public AdapterPerfil(Voluntario voluntario) {
@@ -34,7 +32,7 @@ public class AdapterPerfil extends RecyclerView.Adapter<AdapterPerfil.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        //Vaga vaga = listaVaga.get(position);
+
         Voluntario voluntario = this.voluntario;
         holder.nome.setText(voluntario.getNome());
         holder.cpf.setText(voluntario.getCpf());

@@ -35,7 +35,6 @@ public class ControleLogin {
     Voluntario voluntario;
     VoluntarioDao voluntarioDao;
     Ong ong;
-    Ong ongRetorno;
     OngDao ongDao;
     DatabaseReference bancoFirebase;
     boolean retorno = false;

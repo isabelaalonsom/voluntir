@@ -1,17 +1,12 @@
 package br.com.voluntir.DAO;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseException;
@@ -23,25 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
-import br.com.voluntir.model.Candidatura;
-import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
-import br.com.voluntir.model.Voluntario;
-import br.com.voluntir.voluntario.CandidaturaActivity;
-import br.com.voluntir.voluntir.MenuOngActivity;
-import br.com.voluntir.voluntir.MinhasVagasActivity;
 
 public class VagaDao implements DAO<Vaga> {
-    //DatabaseReference bancoFirebase ;
-    private DatabaseReference refenciaBanco;
-    private FirebaseAuth autenticacao;
-    private DatabaseReference tabela;
+
     Vaga vaga;
-    OngDao ongDao;
-    Ong ong;
-    //Ong ong = new Ong();
     List<Vaga> listaVaga;
-    private ValueEventListener valueEventListener;
+    private DatabaseReference refenciaBanco;
 
     @Override
     public void adiciona(Vaga dado, String tabela, final Context appContext) throws DatabaseException {
@@ -55,7 +38,6 @@ public class VagaDao implements DAO<Vaga> {
                     Toast.makeText(appContext,
                             "Vaga cadastrada com sucesso ",
                             Toast.LENGTH_SHORT).show();
-
                 }
             }
         });
@@ -78,7 +60,7 @@ public class VagaDao implements DAO<Vaga> {
 
                     Toast.makeText(
                             context,
-                            "Dados atualizados!" + context.getClass(),
+                            "Dados atualizados!",
                             Toast.LENGTH_SHORT
                     ).show();
 
@@ -87,12 +69,11 @@ public class VagaDao implements DAO<Vaga> {
             }
         });
 
-
     }
 
     @Override
     public Vaga busca(String id, String tabela, Context context) throws DatabaseException {
-        //vaga = new Vaga();
+
         refenciaBanco = BancoFirebase.getBancoReferencia();
         Query pesquisa = refenciaBanco.child(tabela).orderByChild("idVaga").equalTo(id);
         pesquisa.addValueEventListener(new ValueEventListener() {
@@ -101,8 +82,6 @@ public class VagaDao implements DAO<Vaga> {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     vaga = dataSnapshot.getValue(Vaga.class);
-
-
                 }
 
             }
@@ -120,19 +99,17 @@ public class VagaDao implements DAO<Vaga> {
     @Override
     public List<Vaga> listar(final String criterio, String tabela) throws DatabaseException {
         listaVaga = new ArrayList<>();
-
         refenciaBanco = BancoFirebase.getBancoReferencia();
         refenciaBanco.child(tabela).addValueEventListener(new ValueEventListener() {
-            //recuperar os dados sempre que for mudado no banco
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listaVaga.clear();
-                //DataSnapshot é o retorno do firebase
-                Log.i("FIREBASE", snapshot.getValue().toString());
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     vaga = dataSnapshot.getValue(Vaga.class);
-                    if (vaga.getNomeOng().equals(criterio)){
+                    if (vaga.getNomeOng().equals(criterio)) {
 
                     }
                     listaVaga.add(vaga);

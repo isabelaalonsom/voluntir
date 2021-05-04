@@ -21,7 +21,6 @@ public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.
     private List<Vaga> listaVaga;
     private Voluntario voluntario;
     private String status;
-    private ControleVaga controleVaga;
 
     public AdapterCandidatura(List<Vaga> lista, Voluntario voluntario) {
         this.listaVaga = lista;
@@ -47,7 +46,6 @@ public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.
 
                 }
 
-
             }
 
         }
@@ -68,13 +66,10 @@ public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView descricao;
+
         TextView nomeOng;
         TextView areaConhecimento;
         TextView vaga;
-        TextView dataFinal;
-        TextView horario;
-        //TextView categoria;
         TextView txtViewStatus, txtViewStatusVariavel;
 
 

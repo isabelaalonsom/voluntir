@@ -21,7 +21,6 @@ import br.com.voluntir.voluntir.MainActivity;
 import br.com.voluntir.voluntir.R;
 
 public class CadastroONGActivity extends AppCompatActivity {
-    private FirebaseAuth autenticacao;
     private Button botaoConfirmar;
     private Ong ong;
     private EditText email, senha, cnpj, resumo, confirmarSenha;
@@ -79,17 +78,13 @@ public class CadastroONGActivity extends AppCompatActivity {
             site.setText(siteOngPreenchido);
             resumo.setText(resumoOngPreenchido);
 
-
-
-            // botaoConfirmar.setEnabled(false);
-
         }
 
             botaoConfirmar = findViewById(R.id.confirmarBtn);
             botaoConfirmar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //clicarBotaoConfirmar();
+
                     controleCadastro = new ControleCadastro();
 
                     //pegas os dados digitados
@@ -120,20 +115,8 @@ public class CadastroONGActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "As senhas não conferem.", Toast.LENGTH_LONG).show();
 
                     } else {
-                        boolean retorno;
-                        retorno = controleCadastro.cadastrarOng(ong, tabelaBanco, getApplicationContext());
 
-//                        if (retorno == true){
-//                            limparDados(null);
-//                            //desloga o usuario e joga pra tela de login
-//                            autenticacao = BancoFirebase.getFirebaseAutenticacao();
-//                            autenticacao.signOut();
-//                            Intent intent = new Intent(null , MainActivity.class);
-//                            startActivity(intent);
-//                        }
-
-//                        Intent intent = new Intent(CadastroONGActivity.this, LoginActivityONG.class);
-//                        startActivity(intent);
+                        controleCadastro.cadastrarOng(ong, tabelaBanco, getApplicationContext());
 
                     }
 

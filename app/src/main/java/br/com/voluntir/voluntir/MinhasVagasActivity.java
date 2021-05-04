@@ -60,15 +60,12 @@ public class MinhasVagasActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<Vaga> listaVaga = new ArrayList<>();
     private List<Voluntario> listaVoluntario = new ArrayList<>();
-    //cria referencia para o banco de dados e getinstance estamos recuperando a instancia do
-    // firebase utilizada para salvar e o getReferecence volta pro nó raiz
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     Vaga vaga = new Vaga();
     String informacoes = "";
     private FirebaseAuth usuario = FirebaseAuth.getInstance();
     Ong ong;
-    int tamanho = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,24 +84,22 @@ public class MinhasVagasActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewVaga);
         Bundle dados = getIntent().getExtras();
         ong = (Ong) dados.getSerializable("objeto");
-        //Configurar Recyclerview
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        //coloca uma linha para separar
+
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
         Query teste = tabelaVaga.orderByChild("idOng").equalTo(ong.getIdOng());
         teste.addValueEventListener(new ValueEventListener() {
-            //recuperar os dados sempre que for mudado no banco
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listaVaga.clear();
-                //DataSnapshot é o retorno do firebase
-                //Log.i("FIREBASE", snapshot.getValue().toString());
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     vaga = dataSnapshot.getValue(Vaga.class);
-                    //Log.i("FIREBASE", snapshot.getValue().toString());
+
                     if (vaga.getIdOng().equals(ong.getIdOng())) {
                         listaVaga.add(vaga);
 
@@ -112,11 +107,9 @@ public class MinhasVagasActivity extends AppCompatActivity {
 
                 }
                 AdapterVaga adapterVaga = new AdapterVaga(listaVaga);
-                //AdapterAprovacao adapterAprovacao = new AdapterAprovacao(listaVoluntario);
                 recyclerView.setAdapter(adapterVaga);
             }
 
-            //trata o erro se a operação for cancelada
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -124,7 +117,6 @@ public class MinhasVagasActivity extends AppCompatActivity {
 
         });
 
-        //evento de click
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(
                         getApplicationContext(),

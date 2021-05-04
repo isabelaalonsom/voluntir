@@ -19,7 +19,6 @@ public class VisualizacaoVagaActivity extends AppCompatActivity {
         vaga = new Vaga();
         getSupportActionBar().hide();
 
-        //Recuperar os dados enviados
         Bundle dados = getIntent().getExtras();
         vaga = (Vaga) dados.getSerializable("vaga");
 
@@ -38,14 +37,5 @@ public class VisualizacaoVagaActivity extends AppCompatActivity {
         textDescricao.setText(vaga.getDescricaoVaga());
 
     }
-
-//    public void clicarBotaoEditar(View view) {
-//
-//
-//        //nao sei se é aqui que configura os edit text alimentados
-//        Intent intent = new Intent(this, CadastroVaga.class);
-//        startActivity(intent);
-//
-//    }
 
 }

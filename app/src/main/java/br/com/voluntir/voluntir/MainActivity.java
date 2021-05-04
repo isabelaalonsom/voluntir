@@ -19,13 +19,7 @@ import br.com.voluntir.model.Voluntario;
 
 
 public class MainActivity extends AppCompatActivity {
-    FirebaseAuth autenticacao;
-    Voluntario voluntario = new Voluntario();
-    Ong ong = new Ong();
-    public String isVoluntario;
-    public String isOng;
     ControleCadastro controleCadastro;
-    OngDao ongDao;
     final String tabelaOng = "ong";
     final String tabelaVoluntario = "voluntario";
     @Override
@@ -46,13 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 controleCadastro.buscaVoluntario(preferencias.getEmailUsuarioLogado(), tabelaVoluntario, getApplicationContext());
             }
 
-
-
-            /*Toast.makeText(getApplicationContext(),
-                    "email:"+preferencias.getEmailUsuarioLogado(),
-                    Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(getApplicationContext(), MenuOngActivity.class);
-            startActivity(i);*/
         }
 
         btnONG.setOnClickListener(new View.OnClickListener() {
@@ -72,45 +59,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /*
 
-    na MainActivity, não adianta ter o getCurrentUser() pq aqui ainda não tem nenhum usuario logado
-    daria pra usar só após a tela de Login, ou seja, nas telas de Menu em diante
-
-     */
-
-//    protected void onStart() {
-//
-//        super.onStart();
-//        autenticacao = BancoFirebase.getFirebaseAutenticacao();
-//        FirebaseUser currentUser = autenticacao.getCurrentUser();
-//    }
-
-//    private void verificarUsuarioLogado(){
-//        String id;
-//        autenticacao = BancoFirebase.getFirebaseAutenticacao();
-//        if( autenticacao.getCurrentUser() != null){
-//            id=autenticacao.getUid();
-//            if (autenticacao.getUid().equals(ongDao.busca(id, "ong"))){
-//                ong = new Ong();
-//                ong.setIdOng(id);
-//                menuOng();
-//            }else{
-//                voluntario = new Voluntario();
-//                voluntario.setIdVoluntario(id);
-//                menuVoluntario();
-//            }
-//        }
-//    }
-
-//    public void menuOng () {
-//        Intent intent = new Intent(this, MenuOngActivity.class);
-//        startActivity(intent);
-//    }
-//
-//    public void menuVoluntario(){
-//        Intent intent = new Intent(this, MenuVoluntarioActivity.class);
-//        startActivity(intent);
-//    }
 
 }

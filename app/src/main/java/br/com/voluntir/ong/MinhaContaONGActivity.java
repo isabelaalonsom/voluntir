@@ -21,9 +21,6 @@ import br.com.voluntir.model.Ong;
 import br.com.voluntir.voluntir.R;
 
 public class MinhaContaONGActivity extends AppCompatActivity implements ValueEventListener {
-    private Button botaoEditar;
-    private Button botaoExcluir;
-    private Button botaoSair;
 
     TextView txtNomeOng;
     TextView txtCnpj;
@@ -175,10 +172,5 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
         super.onStart();
         nomeOngDatabase.addValueEventListener(this);
         cnpjOngDatabase.addValueEventListener(this);
-    }
-
-    public void esconderBotao() {
-        botaoEditar = findViewById(R.id.btnEditar);
-        botaoEditar.setVisibility(View.INVISIBLE);
     }
 }

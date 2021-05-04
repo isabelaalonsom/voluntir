@@ -61,25 +61,17 @@ public class VagaActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
 
         tabelaVaga.addValueEventListener(new ValueEventListener() {
-            //recuperar os dados sempre que for mudado no banco
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listaVaga.clear();
-                //DataSnapshot é o retorno do firebase
-                //Log.i("FIREBASE", snapshot.getValue().toString());
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     vaga = dataSnapshot.getValue(Vaga.class);
-                    Log.i("FIREBASE", dataSnapshot.getValue().toString());
-                    //if (vaga.getIdOng().equals(ong.getIdOng())) {
                         listaVaga.add(vaga);
-                    //}
-
 
                 }
 
                 AdapterVaga adapterVaga = new AdapterVaga(listaVaga);
-                //AdapterAprovacao adapterAprovacao = new AdapterAprovacao(listaVoluntario);
                 recyclerView.setAdapter(adapterVaga);
             }
             //trata o erro se a operação for cancelada
@@ -98,25 +90,11 @@ public class VagaActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-/*                                Vaga vaga = listaVaga.get(position);
-                                Toast.makeText(
-                                        getApplicationContext(),
-                                        "Item pressionado: " ,
-                                        Toast.LENGTH_SHORT
-                                ).show();
-                                //Intent intent = new Intent(getApplicationContext(), VoluntarioVisualizarVaga.class);
-                                Intent intent = new Intent(getApplicationContext(), AprovacaoCandidatoActivity.class);
-                                intent.putExtra("vaga",vaga);
-                                startActivity(intent);*/
                             }
 
                             @Override
                             public void onLongItemClick(View view, int position) {
                                 Intent i = new Intent(VagaActivity.this, AprovacaoCandidatoActivity.class);
-
-                                //i.putExtra("nome_voluntario", vaga);
-                                //i.putExtra("nome_voluntario", voluntario.getNome());
-
                                 startActivity(i);
 
                             }

@@ -27,19 +27,12 @@ import br.com.voluntir.ong.CadastroONGActivity;
 
 public class LoginActivityONG extends AppCompatActivity {
 
-    private Button botaoEntrar;
-    private Button botaoCriarConta;
-    private Button botaoEsqueciSenha;
-    public Ong ongPegaDados;
     private Ong ong;
     private EditText email;
     private EditText senha;
     private String nomeTabela = "ong";
-    private ControleCadastro controleCadastro;
     private ControleLogin controleLogin;
 
-    private FirebaseAuth autenticacao;
-    private DatabaseReference bancoFirebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

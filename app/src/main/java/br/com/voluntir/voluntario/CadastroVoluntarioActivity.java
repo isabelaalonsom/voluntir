@@ -25,12 +25,11 @@ import br.com.voluntir.voluntir.R;
 
 
 public class CadastroVoluntarioActivity extends AppCompatActivity {
-    private FirebaseAuth autenticacao;
+
     private Button botaoConfirmar;
     private Voluntario voluntario;
     private EditText email, senha,cpf,data,nome,telefone, confirmarSenha;
     private EditText endereco,especialidade,sobrenome;
-    private Spinner generoSelecionado;
     private ControleCadastro controleCadastro;
     private String tabelaBanco= "voluntario";
     private RadioGroup radioGroup;
@@ -100,8 +99,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
             especialidade.setText(descricaoTecnicaPreenchido);
 
 
-
-
             if (generoPreenchido.equals("Masculino")) {
                 botaoMasculino.setChecked(true);
             } else if (generoPreenchido.equals("Feminino")) {
@@ -116,16 +113,13 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         botaoConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //clicarBotaoConfirmar();
+
                 voluntario = new Voluntario();
                 controleCadastro = new ControleCadastro();
                 int radioId = radioGroup.getCheckedRadioButtonId();
 
                 radioButton = findViewById(radioId);
 
-
-
-                //pegas os dados digitados
                 voluntario.setEmail(email.getText().toString());
                 voluntario.setSenha(senha.getText().toString());
                 voluntario.setCpf(cpf.getText().toString());
@@ -202,9 +196,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                     voluntario.setGenero((String) radioButton.getText());
                     Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario, tabelaBanco, getApplicationContext());
                 }
-
-                /*Intent i = new Intent(CadastroVoluntarioActivity.this, LoginActivityVoluntario.class);
-                startActivity(i);*/
 
             }
         });

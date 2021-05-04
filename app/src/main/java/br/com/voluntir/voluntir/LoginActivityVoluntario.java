@@ -17,7 +17,6 @@ import br.com.voluntir.ong.CadastroVagaActivity;
 import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
 import br.com.voluntir.voluntario.MenuVoluntarioActivity;
 import br.com.voluntir.voluntario.MinhaContaVoluntarioActivity;
-//import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
 
 
 public class LoginActivityVoluntario extends AppCompatActivity {
@@ -26,7 +25,6 @@ public class LoginActivityVoluntario extends AppCompatActivity {
     private EditText email;
     private EditText senha;
     private String nomeTabela = "voluntario";
-    private ControleCadastro controleCadastro;
     private ControleLogin controleLogin;
 
 
@@ -40,11 +38,6 @@ public class LoginActivityVoluntario extends AppCompatActivity {
         email = (EditText) findViewById(R.id.edtTextEmailLogin);
         senha = (EditText) findViewById(R.id.edtTextSenhaLogin);
 
-
-    }
-
-    public void mensagemLogin(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
     public void clicarCriarConta(View view) {

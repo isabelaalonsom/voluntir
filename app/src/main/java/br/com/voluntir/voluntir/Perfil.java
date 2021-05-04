@@ -34,7 +34,6 @@ public class Perfil extends AppCompatActivity {
     private RecyclerView recyclerViewPerfil;
     private String nomeTabelaVoluntario = "voluntario";
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference tabelaVoluntario = bancoReferencia.child("voluntario");
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     private Voluntario voluntario;
     private AdapterPerfil adapterPerfil;
@@ -65,20 +64,17 @@ public class Perfil extends AppCompatActivity {
             voluntarioAtualizado = voluntario;
         }
         recyclerViewPerfil = findViewById(R.id.recyclerViewPerfil);
-        //Configurar Recyclerview
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerViewPerfil.setLayoutManager(layoutManager);
         recyclerViewPerfil.setHasFixedSize(true);
-        //coloca uma linha para separar
+
         recyclerViewPerfil.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
 
         Query teste = tabelaVaga.orderByChild("idOng").equalTo(ong.getIdOng());
         teste.addValueEventListener(new ValueEventListener() {
-            //recuperar os dados sempre que for mudado no banco
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //DataSnapshot é o retorno do firebase
-                //Log.i("FIREBASE", snapshot.getValue().toString());
                 listaVoluntario.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
@@ -107,7 +103,6 @@ public class Perfil extends AppCompatActivity {
 
             }
 
-            //trata o erro se a operação for cancelada
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -115,7 +110,6 @@ public class Perfil extends AppCompatActivity {
 
         });
 
-        //evento de click
         recyclerViewPerfil.addOnItemTouchListener(
                 new RecyclerItemClickListener(
                         getApplicationContext(),
@@ -158,10 +152,10 @@ public class Perfil extends AppCompatActivity {
             } else {
                 listaVoluntario.add(voluntarioAtualizado);
             }
-            //listaVoluntario.add(voluntarioAtualizado);
+
             vagaAtualizada.setVoluntarios(listaVoluntario);
             controleVaga = new ControleVaga();
-            //voluntario.setStatusVaga("aprovado");
+
 
             controleVaga.atualizaVagaVoluntario(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
         }
@@ -182,10 +176,10 @@ public class Perfil extends AppCompatActivity {
             } else {
                 listaVoluntario.add(voluntarioAtualizado);
             }
-            //listaVoluntario.add(voluntarioAtualizado);
+
             vagaAtualizada.setVoluntarios(listaVoluntario);
             controleVaga = new ControleVaga();
-            //voluntario.setStatusVaga("aprovado");
+
 
             controleVaga.atualizaVagaVoluntario(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
         }

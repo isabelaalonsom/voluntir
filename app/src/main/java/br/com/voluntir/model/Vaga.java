@@ -17,7 +17,6 @@ public class Vaga implements Serializable {
     private String idOng;
     private String cargaHoraria;
     private String idVoluntario;
-    //Voluntario voluntario;
     private List<Voluntario> voluntarios;
 
 

@@ -34,8 +34,6 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<Vaga> listaVaga = new ArrayList<>();
     private List<Voluntario> listaVoluntario = new ArrayList<>();
-    //cria referencia para o banco de dados e getinstance estamos recuperando a instancia do
-    // firebase utilizada para salvar e o getReferecence volta pro nó raiz
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     private DatabaseReference tabelaCandidatura = bancoReferencia.child("candidatura");
@@ -44,9 +42,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
     private ControleVaga controleVaga;
     Vaga vaga = new Vaga();
     Vaga vagaClicada;
-    private FirebaseAuth usuario = FirebaseAuth.getInstance();
     Voluntario voluntario;
-    ControleCadastro controleCadastro;
     AdapterVaga adapterVaga;
 
     @Override
@@ -68,25 +64,22 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
             voluntario = (Voluntario) dados.getSerializable("objeto");
         }
 
-
-        //Configurar Recyclerview
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        //coloca uma linha para separar
+
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
 
         tabelaVaga.addValueEventListener(new ValueEventListener() {
-            //recuperar os dados sempre que for mudado no banco
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listaVaga.clear();
-                //DataSnapshot é o retorno do firebase
-                //Log.i("FIREBASE", snapshot.getValue().toString());
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     vaga = dataSnapshot.getValue(Vaga.class);
                     vaga.setIdVaga(dataSnapshot.getKey());
-                    //Log.i("FIREBASE", snapshot.getValue().toString());
+
                     listaVaga.add(vaga);
                 }
 
@@ -96,7 +89,6 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
 
             }
 
-            //trata o erro se a operação for cancelada
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -128,7 +120,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                                         for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
                                             Voluntario voluntario2 = vaga.getVoluntarios().get(i);
                                             listaVoluntario.add(voluntario2);
-                                            //if (voluntario2.getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+
                                             if (listaVoluntario.get(i).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
                                                 usuarioCadastrado = true;
                                             }

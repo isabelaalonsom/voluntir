@@ -1,11 +1,11 @@
 package br.com.voluntir.voluntir;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
@@ -27,11 +27,11 @@ public class MenuActivity extends AppCompatActivity {
         Bundle dados = getIntent().getExtras();
         String email = dados.getString("email");
 
-        if ( dados.getSerializable("ong") instanceof Ong){
+        if (dados.getSerializable("ong") instanceof Ong) {
             ong = new Ong();
-            ong = (Ong)  dados.getSerializable("ong");
+            ong = (Ong) dados.getSerializable("ong");
 
-        }else{
+        } else {
             voluntario = (Voluntario) dados.getSerializable("voluntario");
             botaoCriarVaga.setEnabled(false);
         }
@@ -39,10 +39,10 @@ public class MenuActivity extends AppCompatActivity {
 
     public void clicarCriarVaga(View view) {
         Intent intent = new Intent(this, CadastroVagaActivity.class);
-        if (ong !=null){
-            intent.putExtra("ong",ong);
-        }else{
-            intent.putExtra("voluntario",voluntario);
+        if (ong != null) {
+            intent.putExtra("ong", ong);
+        } else {
+            intent.putExtra("voluntario", voluntario);
         }
         startActivity(intent);
     }
@@ -51,6 +51,7 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MinhaContaONGActivity.class);
         startActivity(intent);
     }
+
     public void clicarVagas(View view) {
         Intent intent = new Intent(this, VagaActivity.class);
         startActivity(intent);

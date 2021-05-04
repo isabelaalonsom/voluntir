@@ -34,9 +34,7 @@ public class AdapterVaga extends RecyclerView.Adapter<AdapterVaga.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Vaga vaga = listaVaga.get(position);
-        holder.nomeOng.setText(vaga.getNomeOng());
-        holder.areaConhecimento.setText(vaga.getAreaConhecimento());
-        holder.vaga.setText("vagas: " + Integer.toString(vaga.getQtdCandidaturas()));
+
 
         if (vaga.getVoluntarios() != null) {
             holder.vaga.setText("vagas: " + Integer.toString(vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()));
@@ -44,7 +42,9 @@ public class AdapterVaga extends RecyclerView.Adapter<AdapterVaga.MyViewHolder> 
                 holder.vaga.setText("vagas:0");
             }
         }
-
+        holder.nomeOng.setText(vaga.getNomeOng());
+        holder.areaConhecimento.setText(vaga.getAreaConhecimento());
+        holder.vaga.setText("vagas: " + Integer.toString(vaga.getQtdCandidaturas()));
         holder.txtViewStatus.setVisibility(View.INVISIBLE);
         holder.txtViewStatusVariavel.setVisibility(View.INVISIBLE);
 
@@ -56,13 +56,10 @@ public class AdapterVaga extends RecyclerView.Adapter<AdapterVaga.MyViewHolder> 
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView descricao;
+
         TextView nomeOng;
         TextView areaConhecimento;
         TextView vaga;
-        TextView dataFinal;
-        TextView horario;
-        //TextView categoria;
         TextView txtViewStatus, txtViewStatusVariavel;
 
 
@@ -73,7 +70,6 @@ public class AdapterVaga extends RecyclerView.Adapter<AdapterVaga.MyViewHolder> 
             nomeOng = itemView.findViewById(R.id.textNomeOng);
             vaga = itemView.findViewById(R.id.txtVagas);
             areaConhecimento = itemView.findViewById(R.id.textAreaConhecimento);
-
             txtViewStatus = itemView.findViewById(R.id.txtStatus);
             txtViewStatusVariavel = itemView.findViewById(R.id.txtStatusVariavel);
 
