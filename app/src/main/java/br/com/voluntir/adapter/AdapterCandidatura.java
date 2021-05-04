@@ -38,8 +38,10 @@ public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.
         Vaga vaga = listaVaga.get(position);
         if (vaga.getVoluntarios() != null) {
             for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
-                //if (vaga.getVoluntarios().get(i).equals(voluntario.getIdVoluntario())){
-                status = vaga.getVoluntarios().get(i).getStatusVaga();
+                if (vaga.getVoluntarios().get(i).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                    status = vaga.getVoluntarios().get(i).getStatusVaga();
+                }
+
 
             }
 
