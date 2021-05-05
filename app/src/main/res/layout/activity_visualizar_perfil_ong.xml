@@ -5,24 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="br.com.voluntir.voluntario.MinhaContaVoluntarioActivity">
+    tools:context=".VisualizarPerfilOng">
 
     <ScrollView
-        android:id="@+id/scrollViewMinhaContaVoluntario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/scrollViewContaPerfilOng"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtViewMinhaConta"
+                android:id="@+id/txtViewPerfilOng"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
@@ -33,278 +33,229 @@
                 tools:layout_editor_absoluteY="8dp" />
 
             <LinearLayout
-                android:id="@+id/LinearCpf"
+                android:id="@+id/LinearNomePerfilOng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtViewCpf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="CPF: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/txtViewCpfVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearNome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewNomeDoVoluntario"
+                    android:id="@+id/txtViewONGPerfil"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:text="Nome: "
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
 
                 <EditText
-                    android:id="@+id/txtViewNomeDoVoluntarioVariavel"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtViewNomePerfilOng"
+                    android:layout_width="291dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/LinearSobrenome"
+                android:id="@+id/LinearCnpjPerfilOng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtViewSobrenome"
+                    android:id="@+id/txtViewCnpjPerfilOng"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:gravity="center"
-                    android:text="Sobrenome: "
-                    android:textSize="18sp" />
+                    android:text="CNPJ: "
+                    android:textSize="24sp" />
 
                 <EditText
-                    android:id="@+id/txtViewSobrenomeVariavel"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtViewCpnjVariavelPerfilOng"
+                    android:layout_width="291dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/LinearDataNasc"
+                android:id="@+id/LinearLocalizacaoPerfilOng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtViewDataNasc"
+                    android:id="@+id/txtViewLocalizacaoPerfilOng"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:gravity="center"
-                    android:text="Data de Nascimento: "
-                    android:textSize="18sp" />
+                    android:text="Localização: "
+                    android:textSize="24sp" />
 
                 <EditText
-                    android:id="@+id/txtViewDataNascVariavel"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtViewLocalizaoVariavelPerfilOng"
+                    android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/LinearGenero"
+                android:id="@+id/LinearCausasPerfilOng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtViewGenero"
+                    android:id="@+id/txtViewCausasPerfilOng"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:gravity="center"
-                    android:text="Gênero: "
-                    android:textSize="18sp" />
+                    android:text="Causas: "
+                    android:textSize="24sp" />
 
-                <!-- txtViewGeneroVariavel = aqui tem que receber o conteudo do Radio Button -->
                 <EditText
-                    android:id="@+id/txtViewGeneroVariavel"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtViewCausasVariavelPerfilOng"
+                    android:layout_width="277dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/LinearTelefone"
+                android:id="@+id/LinearTelefonePerfilOng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtViewTelefone"
+                    android:id="@+id/txtViewTelefonePerfilOng"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:text="Telefone: "
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
 
                 <EditText
-                    android:id="@+id/txtViewTelefoneVariavel"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtViewTelefoneVariavelPerfilOng"
+                    android:layout_width="273dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
+                    android:inputType="phone"
                     android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/LinearEmail"
+                android:id="@+id/LinearSitePerfilOng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtViewEmail"
+                    android:id="@+id/txtViewSitePerfilOng"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="Site: "
+                    android:textSize="24sp" />
+
+                <!-- esse campo não pode ser obrigatorio pq nem todas as ongs tem site -->
+                <EditText
+                    android:id="@+id/txtViewSiteVariavelPerfilOng"
+                    android:layout_width="325dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="#AA0B0B"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearEmailPerfilOng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtViewEmailPerfilOng"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:text="E-mail: "
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
 
                 <EditText
-                    android:id="@+id/txtViewEmailVariavel"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/txtViewEmailVariavelPerfilOng"
+                    android:layout_width="291dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/LinearEndereco"
+                android:id="@+id/LinearResumoOngPerfilOng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/txtViewEndereco"
+                    android:id="@+id/txtViewResumoOngPerfilOng"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:gravity="center"
-                    android:text="Endereço: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/txtViewEnderecoVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
+                    android:text="Resumo da ONG:"
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/txtViewDescricaoTecnica"
+            <EditText
+                android:id="@+id/txtViewResumoOngVariavelPerfilOng"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:text="Descrição Técnica: "
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/txtViewDescricaoTecnicaVariavel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:gravity="center"
                 android:textColor="#AA0B0B"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
 
-            <LinearLayout
-                android:id="@+id/LinearBotoes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btnEditar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="clicarBotaoEditar"
-                    android:text="Editar" />
-
-                <Button
-                    android:id="@+id/btnSair"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="clicarBotaoSair"
-                    android:text="Sair" />
-
-                <Button
-                    android:id="@+id/btnEcluirConta"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="clicarBotaoExcluir"
-                    android:text="EXCLUIR" />
-
-
-            </LinearLayout>
         </LinearLayout>
         <!-- btnSair - Deve ser substituido por um botão com o ícone de portinha, veja o figma de telas (tela 12) -->
     </ScrollView>

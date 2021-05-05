@@ -1,5 +1,6 @@
 package br.com.voluntir.voluntario;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,7 +13,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,11 +24,11 @@ import java.util.List;
 
 import br.com.voluntir.RecyclerItemClickListener;
 import br.com.voluntir.adapter.AdapterVaga;
-import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
+import br.com.voluntir.voluntir.VisualizarPerfilOng;
 
 public class VagaVoluntarioActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -104,9 +104,11 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                Toast.makeText(getApplicationContext(),
-                                        "Dê um clique longo para se candidatar.",
-                                        Toast.LENGTH_SHORT).show();
+                                Vaga vaga = listaVaga.get(position);
+                                Intent intent = new Intent(getApplicationContext(), VisualizarPerfilOng.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.putExtra("vaga", vaga);
+                                startActivity(intent);
                             }
 
                             @Override

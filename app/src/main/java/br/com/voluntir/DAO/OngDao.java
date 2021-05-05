@@ -38,6 +38,17 @@ public class OngDao implements DAO<Ong> {
     private final static List<Ong> ongList = new ArrayList<>();
     boolean cadastrado;
 
+
+    /*public void entrar(){
+        buscarOngTeste(new FirebaseCallback() {
+            @Override
+            public void onCallback(Ong ong) {
+                Log.i("Ong",ong.getEmailOng());
+
+            }
+        },);
+    }*/
+
     @Override
     public void adiciona(final Ong dado, final String tabela, final Context appContext) {
         ong = dado;
@@ -169,14 +180,16 @@ public class OngDao implements DAO<Ong> {
         bancoFirebase = BancoFirebase.getBancoReferencia();
         Query pesquisa = bancoFirebase.child(tabela).orderByChild("emailOng").equalTo(email);
         pesquisa.addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ong = dataSnapshot.getValue(Ong.class);
 
-
                 }
                 if (ong != null) {
+
                     Intent intent = new Intent(context.getApplicationContext(), MenuOngActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("objeto", ong);
@@ -203,4 +216,44 @@ public class OngDao implements DAO<Ong> {
     public List<Ong> listar(String criterio, String tabela) throws SQLException {
         return null;
     }
+
+
+    public void buscarOngTeste(FirebaseCallback firebaseCallback, String id) {
+
+        bancoFirebase = BancoFirebase.getBancoReferencia();
+        Query pesquisa = bancoFirebase.child("ong").orderByChild("idOng").equalTo(id);
+        pesquisa.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    ong = dataSnapshot.getValue(Ong.class);
+
+                }
+
+                firebaseCallback.onCallback(ong);
+
+                    /*Intent intent = new Intent(context.getApplicationContext(), MenuOngActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("objeto", ong);
+                    context.startActivity(intent);*/
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    public interface FirebaseCallback {
+        void onCallback(Ong ong);
+
+    }
+
+
 }

@@ -13,8 +13,8 @@
         android:roundIcon="@mipmap/voluntir_icon2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Perfil"></activity>
-        <activity android:name=".PerfilCandidato" />
+        <activity android:name=".VisualizarPerfilOng"></activity>
+        <activity android:name=".Perfil" />
         <activity android:name=".MinhasVagasActivity" />
         <activity android:name="br.com.voluntir.voluntario.VagaVoluntarioActivity" />
         <activity android:name="br.com.voluntir.voluntario.CandidaturaActivity" />

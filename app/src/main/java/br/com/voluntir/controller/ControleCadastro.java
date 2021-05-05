@@ -1,36 +1,14 @@
 package br.com.voluntir.controller;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.Objects;
-
-import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.DAO.OngDao;
-import br.com.voluntir.DAO.VagaDao;
 import br.com.voluntir.DAO.VoluntarioDao;
-import br.com.voluntir.Preferencias;
 import br.com.voluntir.model.Ong;
-import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
-import br.com.voluntir.voluntario.MenuVoluntarioActivity;
-import br.com.voluntir.voluntir.MenuOngActivity;
 
 public class ControleCadastro {
     private FirebaseAuth autenticacao;
@@ -67,6 +45,30 @@ public class ControleCadastro {
             e.printStackTrace();
         }
     }
+    /*public void buscaOngTeste(Context context) {
+
+        ongDao = new OngDao();
+        ongDao.buscarOngTeste(new OngDao.FirebaseCallback() {
+            @Override
+            public void onCallback(Ong ong) {
+                *//*Ong ongRetorno = new Ong();
+                if (ongRetorno != ong){
+                    ongRetorno = ong;
+                    Intent intent = new Intent(context, VisualizarPerfilOng.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("ong",ongRetorno);
+                    context.startActivity(intent);
+
+                }*//*
+                Log.i("Ong",ong.getNome());
+
+
+
+            }
+        },);
+
+    }*/
+
 
     public void buscaVoluntario(String email, String tabela, Context context) {
         voluntarioDao = new VoluntarioDao();

@@ -2,25 +2,20 @@ package br.com.voluntir.ong;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.voluntir.R;
 
-public class MinhaContaONGActivity extends AppCompatActivity implements ValueEventListener {
+public class MinhaContaONGActivity extends AppCompatActivity {
 
     TextView txtNomeOng;
     TextView txtCnpj;
@@ -143,34 +138,5 @@ public class MinhaContaONGActivity extends AppCompatActivity implements ValueEve
     }
 
 
-    @Override
-    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        if (dataSnapshot.getValue(String.class) != null) {
-
-            String key = dataSnapshot.getKey();
-            if (key.equals("nome")) {
-                String txtViewONGVariavel = dataSnapshot.getValue(String.class);
-                txtNomeOng.setText(txtViewONGVariavel);
-            }
-            if (key.equals("cnpj")) {
-                String txtViewCnpjVariavel = dataSnapshot.getValue(String.class);
-                txtCnpj.setText(txtViewCnpjVariavel);
-            }
-
-        }
-
-    }
-
-    @Override
-    public void onCancelled(@NonNull DatabaseError error) {
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        nomeOngDatabase.addValueEventListener(this);
-        cnpjOngDatabase.addValueEventListener(this);
-    }
 }

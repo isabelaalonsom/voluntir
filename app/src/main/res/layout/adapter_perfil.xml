@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/txtViewMinhaContaAdapter"
@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:gravity="center"
-        android:text="Minha Conta"
+        android:text="Perfil Voluntário"
         android:textSize="30sp" />
 
     <LinearLayout
@@ -28,17 +28,16 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="CPF: "
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/txtViewCpfVariavelAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="125.856.586-85"
             android:textColor="#AA0B0B"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -57,17 +56,16 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="Nome: "
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/txtViewNomeDoVoluntarioVariavelAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="Victor"
             android:textColor="#AA0B0B"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -86,7 +84,7 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="Sobrenome: "
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/txtViewSobrenomeVariavelAdapter"
@@ -94,9 +92,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="Capel"
             android:textColor="#AA0B0B"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -115,17 +112,16 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="Data de Nascimento: "
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/txtViewDataNascVariavelAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="09/12/1999"
             android:textColor="#AA0B0B"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -144,18 +140,16 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="Gênero: "
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <!-- txtViewGeneroVariavel = aqui tem que receber o conteudo do Radio Button -->
         <EditText
             android:id="@+id/txtViewGeneroVariavelAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="Masculino"
             android:textColor="#AA0B0B"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -174,17 +168,16 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="Telefone: "
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/txtViewTelefoneVariavelAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="(11)12345-6798"
             android:textColor="#AA0B0B"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -203,18 +196,17 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="E-mail: "
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/txtViewEmailVariavelAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:text="voluntirvoluntario@gmail.com"
             android:textColor="#AA0B0B"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -233,18 +225,17 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="Endereço: "
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/txtViewEnderecoVariavelAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:text="Rua Bell Aliance, 70"
             android:textColor="#AA0B0B"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -262,7 +253,7 @@
             android:layout_marginRight="10dp"
             android:gravity="center"
             android:text="Status:"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/txtViewStatusVoluntarioVagaAdapter"
@@ -271,9 +262,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:text="TextView"
             android:textColor="#AA0B0B"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <TextView
@@ -283,15 +273,15 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:text="Descrição Técnica: "
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/txtViewDescricaoTecnicaVariavelAdapter"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:textColor="#AA0B0B"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
     <LinearLayout
         android:id="@+id/LinearBotoesAdapter"

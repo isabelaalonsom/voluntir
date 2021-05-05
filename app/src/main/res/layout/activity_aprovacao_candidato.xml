@@ -22,7 +22,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCandidatos"
-        android:layout_width="411dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="62dp"
         app:layout_constraintBottom_toBottomOf="parent"
