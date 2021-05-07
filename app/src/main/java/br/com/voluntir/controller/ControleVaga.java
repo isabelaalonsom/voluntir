@@ -25,6 +25,11 @@ public class ControleVaga {
         return retorno;
     }
 
+    public void deletarVaga(Vaga dado, String tabela, Context context) {
+        vagaDao = new VagaDao();
+        vagaDao.remove(dado, tabela, context);
+    }
+
     public void atualizaVagaVoluntario(Vaga dado, String tabela, Context context) {
         vagaDao = new VagaDao();
 

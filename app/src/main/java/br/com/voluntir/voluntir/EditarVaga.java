@@ -193,4 +193,12 @@ public class EditarVaga extends AppCompatActivity {
         cargaHoraria.setText("");
         qtdCandidatos.setText("");
     }
+
+    public void excluirVaga(View view) {
+        if (vaga != null) {
+            controleVaga = new ControleVaga();
+            controleVaga.deletarVaga(vaga, tabelaBanco, getApplicationContext());
+        }
+
+    }
 }

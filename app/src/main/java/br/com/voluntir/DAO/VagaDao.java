@@ -1,11 +1,13 @@
 package br.com.voluntir.DAO;
 
 import android.content.Context;
+import android.content.Intent;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,6 +21,7 @@ import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Vaga;
+import br.com.voluntir.voluntir.MainActivity;
 
 public class VagaDao implements DAO<Vaga> {
 
@@ -61,6 +64,18 @@ public class VagaDao implements DAO<Vaga> {
 
     @Override
     public boolean remove(Vaga dado, String tabela, Context context) throws DatabaseException {
+        refenciaBanco = BancoFirebase.getBancoReferencia();
+        refenciaBanco.child(tabela).child(dado.getIdVaga()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(context,
+                        "Vaga excluída com sucesso ",
+                        Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
         return false;
     }
 

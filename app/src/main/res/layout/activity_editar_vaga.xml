@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="excluirVaga"
     tools:context=".EditarVaga">
 
     <ScrollView
@@ -257,10 +258,17 @@
                     android:text="Limpar" />
 
                 <Button
+                    android:id="@+id/btnExcluirVaga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="excluirVaga"
+                    android:text="EXCLUIR" />
+
+                <Button
                     android:id="@+id/btnConfirmarVagaEditarVaga"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="72dp"
                     android:text="Confirmar" />
 
             </LinearLayout>
