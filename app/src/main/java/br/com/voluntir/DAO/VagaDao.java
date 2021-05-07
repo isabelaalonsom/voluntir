@@ -26,6 +26,20 @@ public class VagaDao implements DAO<Vaga> {
     List<Vaga> listaVaga;
     private DatabaseReference refenciaBanco;
 
+    public void atualizaVaga(Vaga dado, String tabela, Context context, final OnGetDataListener listener) {
+        listener.onStart();
+        refenciaBanco = BancoFirebase.getBancoReferencia();
+        refenciaBanco.child(tabela).child(dado.getIdVaga()).setValue(dado).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    listener.onSucess();
+
+                }
+            }
+        });
+    }
+
     @Override
     public void adiciona(Vaga dado, String tabela, final Context appContext) throws DatabaseException {
         refenciaBanco = BancoFirebase.getBancoReferencia();
@@ -71,6 +85,12 @@ public class VagaDao implements DAO<Vaga> {
 
     }
 
+    public interface OnGetDataListener {
+        void onSucess();
+
+        void onStart();
+    }
+
     public void cadastrarVoluntarioVaga(Vaga dado, String tabela, Context context, final OnGetDataListener listener) {
         listener.onStart();
         refenciaBanco = BancoFirebase.getBancoReferencia();
@@ -85,11 +105,7 @@ public class VagaDao implements DAO<Vaga> {
         });
     }
 
-    public interface OnGetDataListener {
-        void onSucess();
 
-        void onStart();
-    }
 
     @Override
     public Vaga busca(String id, String tabela, Context context) throws DatabaseException {

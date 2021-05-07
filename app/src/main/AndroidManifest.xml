@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/voluntir_icon2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VisualizarPerfilOng"></activity>
+        <activity android:name=".EditarMinhasVagas"></activity>
+        <activity android:name=".EditarVaga" />
+        <activity android:name=".VisualizarPerfilOng" />
         <activity android:name=".Perfil" />
         <activity android:name=".MinhasVagasActivity" />
         <activity android:name="br.com.voluntir.voluntario.VagaVoluntarioActivity" />

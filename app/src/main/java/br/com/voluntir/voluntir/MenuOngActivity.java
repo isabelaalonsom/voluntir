@@ -73,13 +73,20 @@ public class MenuOngActivity extends AppCompatActivity {
     public void clicarCriarVaga(View view) {
         Intent intent = new Intent(getApplicationContext(), CadastroVagaActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("objeto",ong);
+        intent.putExtra("objeto", ong);
         startActivity(intent);
 
     }
 
     public void clicarMinhasVagas(View view) {
         Intent intent = new Intent(getApplicationContext(), MinhasVagasActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("objeto", ong);
+        startActivity(intent);
+    }
+
+    public void clicarEditarVagas(View view) {
+        Intent intent = new Intent(getApplicationContext(), EditarMinhasVagas.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("objeto", ong);
         startActivity(intent);

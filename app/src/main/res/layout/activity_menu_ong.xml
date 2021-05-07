@@ -68,6 +68,13 @@
                 android:onClick="clicarCriarVaga"
                 android:text="CRIAR VAGA" />
 
+            <Button
+                android:id="@+id/btnEditarVagaMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clicarEditarVagas"
+                android:text="EDITAR VAGA" />
+
         </LinearLayout>
 
     </ScrollView>

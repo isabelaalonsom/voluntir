@@ -30,7 +30,30 @@ public class ControleVaga {
 
         vagaDao.atualiza(dado, tabela, context);
 
+
     }
+
+    public void atualizaVagaOng(Vaga dado, String tabela, Context context) {
+
+        vagaDao = new VagaDao();
+        vagaDao.atualizaVaga(dado, tabela, context, new VagaDao.OnGetDataListener() {
+            @Override
+            public void onSucess() {
+                Toast.makeText(
+                        context,
+                        "Vaga editada com sucesso!",
+                        Toast.LENGTH_SHORT
+                ).show();
+            }
+
+            @Override
+            public void onStart() {
+
+            }
+        });
+
+    }
+
 
     public void buscaOng(String id, String tabela, Context context) {
         vagaDao = new VagaDao();
