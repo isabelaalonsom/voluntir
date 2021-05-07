@@ -31,6 +31,11 @@ import br.com.voluntir.voluntir.R;
 import br.com.voluntir.voluntir.VisualizarPerfilOng;
 
 public class VagaVoluntarioActivity extends AppCompatActivity {
+    Vaga vaga = new Vaga();
+    Vaga vagaClicada;
+    Voluntario voluntario;
+    AdapterVaga adapterVaga;
+    int qtdCanddidatos;
     private RecyclerView recyclerView;
     private List<Vaga> listaVaga = new ArrayList<>();
     private List<Voluntario> listaVoluntario = new ArrayList<>();
@@ -40,10 +45,6 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
     private String nomeTabelaVaga = "vaga";
     private boolean usuarioCadastrado = false;
     private ControleVaga controleVaga;
-    Vaga vaga = new Vaga();
-    Vaga vagaClicada;
-    Voluntario voluntario;
-    AdapterVaga adapterVaga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,42 +118,48 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                                 listaVoluntario.clear();
                                 Vaga vaga = listaVaga.get(position);
 
-                                    if (vaga.getVoluntarios() != null) {
+                                if (vaga.getVoluntarios() != null) {
 
-                                        for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
-                                            Voluntario voluntario2 = vaga.getVoluntarios().get(i);
-                                            listaVoluntario.add(voluntario2);
+                                    for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
+                                        Voluntario voluntario2 = vaga.getVoluntarios().get(i);
+                                        listaVoluntario.add(voluntario2);
 
-                                            if (listaVoluntario.get(i).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
-                                                usuarioCadastrado = true;
-                                            }
+                                        if (listaVoluntario.get(i).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                                            usuarioCadastrado = true;
                                         }
                                     }
+                                }
 
 
-                                    if (!usuarioCadastrado) {
-                                        vagaClicada = listaVaga.get(position);
-                                        vagaClicada.setVoluntarios(listaVoluntario);
+                                if (!usuarioCadastrado) {
+                                    vagaClicada = listaVaga.get(position);
 
-                                        if (vagaClicada.getQtdCandidaturas() <= 0) {
-                                            Toast.makeText(getApplicationContext(),
-                                                    "Não é possível se candidatar. Essa vaga já excedeu o limite de candidaturas.",
-                                                    Toast.LENGTH_SHORT).show();
-                                        } else {
-
-                                            voluntario.setStatusVaga("EM ANÁLISE");
-                                            listaVoluntario.add(voluntario);
-
-                                            controleVaga = new ControleVaga();
-                                            //controleVaga.atualizaVagaVoluntario(vagaClicada, nomeTabelaVaga, getApplicationContext());
-                                            controleVaga.cadastrarVoluntarioVaga(vagaClicada, nomeTabelaVaga, getApplicationContext());
-                                        }
-
+                                    if (vagaClicada.getVoluntarios() != null) {
+                                        qtdCanddidatos = (vagaClicada.getQtdCandidaturas() - vagaClicada.getVoluntarios().size());
                                     } else {
-                                        Toast.makeText(getApplicationContext(),
-                                                "Você já se candidatou a essa vaga",
-                                                Toast.LENGTH_SHORT).show();
+                                        qtdCanddidatos = vagaClicada.getQtdCandidaturas();
                                     }
+
+
+                                    if (qtdCanddidatos <= 0) {
+                                        Toast.makeText(getApplicationContext(),
+                                                "Não é possível se candidatar. Essa vaga já excedeu o limite de candidaturas.",
+                                                Toast.LENGTH_SHORT).show();
+                                    } else {
+
+                                        voluntario.setStatusVaga("EM ANÁLISE");
+                                        listaVoluntario.add(voluntario);
+                                        vagaClicada.setVoluntarios(listaVoluntario);
+                                        controleVaga = new ControleVaga();
+
+                                        controleVaga.cadastrarVoluntarioVaga(vagaClicada, nomeTabelaVaga, getApplicationContext());
+                                    }
+
+                                } else {
+                                    Toast.makeText(getApplicationContext(),
+                                            "Você já se candidatou a essa vaga",
+                                            Toast.LENGTH_SHORT).show();
+                                }
 
 
                             }

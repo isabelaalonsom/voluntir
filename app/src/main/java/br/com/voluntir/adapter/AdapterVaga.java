@@ -1,10 +1,8 @@
 package br.com.voluntir.adapter;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,7 +42,12 @@ public class AdapterVaga extends RecyclerView.Adapter<AdapterVaga.MyViewHolder> 
         }
         holder.nomeOng.setText(vaga.getNomeOng());
         holder.areaConhecimento.setText(vaga.getAreaConhecimento());
-        holder.vaga.setText("vagas: " + Integer.toString(vaga.getQtdCandidaturas()));
+        if (vaga.getVoluntarios() != null) {
+            holder.vaga.setText("vagas: " + (vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()));
+        } else {
+            holder.vaga.setText("vagas: " + vaga.getQtdCandidaturas());
+        }
+
         holder.txtViewStatus.setVisibility(View.INVISIBLE);
         holder.txtViewStatusVariavel.setVisibility(View.INVISIBLE);
 

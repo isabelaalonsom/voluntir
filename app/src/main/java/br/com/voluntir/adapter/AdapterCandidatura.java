@@ -3,16 +3,13 @@ package br.com.voluntir.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
@@ -52,7 +49,7 @@ public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.
 
         holder.nomeOng.setText(vaga.getNomeOng());
         holder.areaConhecimento.setText(vaga.getAreaConhecimento());
-        holder.vaga.setText("Vagas:" + vaga.getQtdCandidaturas());
+        holder.vaga.setText("Vagas:" + (vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()));
 
         holder.txtViewStatus.setVisibility(View.VISIBLE);
         holder.txtViewStatusVariavel.setText(status);
