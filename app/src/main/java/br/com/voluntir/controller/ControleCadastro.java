@@ -8,7 +8,9 @@ import com.google.firebase.database.DatabaseReference;
 import br.com.voluntir.DAO.OngDao;
 import br.com.voluntir.DAO.VoluntarioDao;
 import br.com.voluntir.model.Ong;
+import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.voluntir.VisualizarPerfilOng;
 
 public class ControleCadastro {
     private FirebaseAuth autenticacao;
@@ -16,9 +18,36 @@ public class ControleCadastro {
     VoluntarioDao voluntarioDao;
     Ong ong;
     OngDao ongDao;
-
+    VisualizarPerfilOng visualizarPerfilOng = new VisualizarPerfilOng();
     DatabaseReference bancoFirebase;
     boolean retorno = false;
+
+
+    public void buscarOngTeste(Vaga vaga) {
+        ongDao = new OngDao();
+        /*ongDao.buscarOngTeste(new OngDao.FirebaseCallback() {
+            @Override
+            public void onCallback(Ong ong) {
+                *//*VisualizarPerfilOng visualizarPerfilOng = new VisualizarPerfilOng();
+                visualizarPerfilOng.exibirPerfil(ong);*//*
+                retornaOng(ong);
+
+            }
+        }, vaga.getIdOng());*/
+
+        ongDao.lerDados(vaga.getIdOng(), new OngDao.OnGetDataListener() {
+            @Override
+            public void onSucess(Ong ong) {
+
+            }
+
+            @Override
+            public void onStart() {
+
+            }
+        });
+    }
+
 
     public void excluirDadosVoluntario(Voluntario dado, String tabela, Context context) {
         voluntarioDao = new VoluntarioDao();
@@ -45,29 +74,33 @@ public class ControleCadastro {
             e.printStackTrace();
         }
     }
-    /*public void buscaOngTeste(Context context) {
 
-        ongDao = new OngDao();
-        ongDao.buscarOngTeste(new OngDao.FirebaseCallback() {
-            @Override
-            public void onCallback(Ong ong) {
-                *//*Ong ongRetorno = new Ong();
-                if (ongRetorno != ong){
-                    ongRetorno = ong;
-                    Intent intent = new Intent(context, VisualizarPerfilOng.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("ong",ongRetorno);
-                    context.startActivity(intent);
+    /*   public void buscaOngTeste(Context context, String id) {
 
-                }*//*
-                Log.i("Ong",ong.getNome());
+            ongDao = new OngDao();
+            ongDao.buscarOngTeste(new OngDao.FirebaseCallback() {
+                @Override
+                public void onCallback(Ong ong) {
+
+                            Intent intent = new Intent(context, VisualizarPerfilOng.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra("ong",ong);
+                            context.startActivity(intent);
 
 
+                        return;
 
-            }
-        },);
 
-    }*/
+
+
+
+                }
+            },id);
+
+        }*/
+    public void buscaCompleta(Ong ong) {
+
+    }
 
 
     public void buscaVoluntario(String email, String tabela, Context context) {

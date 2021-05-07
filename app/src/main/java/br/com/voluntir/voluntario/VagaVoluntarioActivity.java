@@ -130,22 +130,23 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                                     }
 
 
-                                 if (!usuarioCadastrado) {
+                                    if (!usuarioCadastrado) {
                                         vagaClicada = listaVaga.get(position);
                                         vagaClicada.setVoluntarios(listaVoluntario);
 
-                                     if (vagaClicada.getQtdCandidaturas() <= 0) {
-                                    Toast.makeText(getApplicationContext(),
-                                            "Não é possível se candidatar. Essa vaga já excedeu o limite de candidaturas.",
-                                            Toast.LENGTH_SHORT).show();
+                                        if (vagaClicada.getQtdCandidaturas() <= 0) {
+                                            Toast.makeText(getApplicationContext(),
+                                                    "Não é possível se candidatar. Essa vaga já excedeu o limite de candidaturas.",
+                                                    Toast.LENGTH_SHORT).show();
                                         } else {
 
-                                         voluntario.setStatusVaga("EM ANÁLISE");
-                                         listaVoluntario.add(voluntario);
+                                            voluntario.setStatusVaga("EM ANÁLISE");
+                                            listaVoluntario.add(voluntario);
 
-                                         controleVaga = new ControleVaga();
-                                         controleVaga.atualizaVagaVoluntario(vagaClicada, nomeTabelaVaga, getApplicationContext());
-                                     }
+                                            controleVaga = new ControleVaga();
+                                            //controleVaga.atualizaVagaVoluntario(vagaClicada, nomeTabelaVaga, getApplicationContext());
+                                            controleVaga.cadastrarVoluntarioVaga(vagaClicada, nomeTabelaVaga, getApplicationContext());
+                                        }
 
                                     } else {
                                         Toast.makeText(getApplicationContext(),

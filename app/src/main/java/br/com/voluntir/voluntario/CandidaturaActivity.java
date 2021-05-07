@@ -1,18 +1,17 @@
 package br.com.voluntir.voluntario;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,12 +27,10 @@ import java.util.List;
 
 import br.com.voluntir.RecyclerItemClickListener;
 import br.com.voluntir.adapter.AdapterCandidatura;
-import br.com.voluntir.adapter.AdapterVaga;
 import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
-import br.com.voluntir.ong.AprovacaoCandidatoActivity;
 import br.com.voluntir.voluntir.R;
 
 public class CandidaturaActivity extends AppCompatActivity {
@@ -172,7 +169,8 @@ public class CandidaturaActivity extends AppCompatActivity {
                                     } else {
                                         vaga.getVoluntarios().remove(i);
                                         controleVaga = new ControleVaga();
-                                        controleVaga.atualizaVagaVoluntario(vaga, nomeTabelaVaga, getApplicationContext());
+                                        //controleVaga.atualizaVagaVoluntario(vaga, nomeTabelaVaga, getApplicationContext());
+                                        controleVaga.cancelarCandidatura(vaga, nomeTabelaVaga, getApplicationContext());
                                     }
                                 }
 

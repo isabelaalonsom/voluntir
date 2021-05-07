@@ -20,6 +20,7 @@ public class VisualizarPerfilOng extends AppCompatActivity {
     private TextView txtEmail;
     private TextView txtResumoOng;
     private Ong ong;
+    private Ong ong2;
     private ControleCadastro controleCadastro;
     private Vaga vaga;
     private OngDao ongDao;
@@ -45,6 +46,9 @@ public class VisualizarPerfilOng extends AppCompatActivity {
             vaga = (Vaga) dados.getSerializable("vaga");
         }
 
+        /*ControleCadastro controleCadastro = new ControleCadastro();
+        controleCadastro.buscarOngTeste(vaga);*/
+
         ongDao = new OngDao();
         ongDao.buscarOngTeste(new OngDao.FirebaseCallback() {
             @Override
@@ -62,4 +66,6 @@ public class VisualizarPerfilOng extends AppCompatActivity {
             }
         }, vaga.getIdOng());
     }
+
+
 }

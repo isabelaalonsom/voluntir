@@ -1,16 +1,15 @@
 package br.com.voluntir.voluntir;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,7 +23,6 @@ import java.util.List;
 
 import br.com.voluntir.RecyclerItemClickListener;
 import br.com.voluntir.adapter.AdapterPerfil;
-import br.com.voluntir.adapter.AdapterVaga;
 import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
@@ -157,7 +155,8 @@ public class Perfil extends AppCompatActivity {
             controleVaga = new ControleVaga();
 
 
-            controleVaga.atualizaVagaVoluntario(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
+            //controleVaga.atualizaVagaVoluntario(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
+            controleVaga.aprovarCandidato(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
         }
     }
 
@@ -181,7 +180,8 @@ public class Perfil extends AppCompatActivity {
             controleVaga = new ControleVaga();
 
 
-            controleVaga.atualizaVagaVoluntario(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
+            //controleVaga.atualizaVagaVoluntario(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
+            controleVaga.reprovarCandidato(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
         }
     }
 }

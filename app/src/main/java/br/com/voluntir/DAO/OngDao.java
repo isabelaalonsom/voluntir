@@ -8,6 +8,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,22 +34,11 @@ import br.com.voluntir.voluntir.MainActivity;
 import br.com.voluntir.voluntir.MenuOngActivity;
 
 public class OngDao implements DAO<Ong> {
+    private final static List<Ong> ongList = new ArrayList<>();
+    DatabaseReference bancoFirebase;
+    boolean cadastrado;
     private Ong ong;
     private FirebaseAuth autenticacao;
-    DatabaseReference bancoFirebase;
-    private final static List<Ong> ongList = new ArrayList<>();
-    boolean cadastrado;
-
-
-    /*public void entrar(){
-        buscarOngTeste(new FirebaseCallback() {
-            @Override
-            public void onCallback(Ong ong) {
-                Log.i("Ong",ong.getEmailOng());
-
-            }
-        },);
-    }*/
 
     @Override
     public void adiciona(final Ong dado, final String tabela, final Context appContext) {
@@ -83,13 +74,13 @@ public class OngDao implements DAO<Ong> {
                     appContext.startActivity(intent);
 
 
-                }else{
+                } else {
 
                     cadastrado = false;
                     String erroExcecao = "";
                     try {
                         throw task.getException();
-                    }catch (FirebaseAuthWeakPasswordException e) {
+                    } catch (FirebaseAuthWeakPasswordException e) {
                         erroExcecao = "Digite uma senha mais forte, contendo mais caracteres e com letras e números";
                     } catch (FirebaseAuthInvalidCredentialsException e) {
                         erroExcecao = "O e-mail digitado é inválido, digite um novo e-mail";
@@ -101,9 +92,9 @@ public class OngDao implements DAO<Ong> {
                     }
 
                     Toast.makeText(appContext,
-                            "Erro: "+erroExcecao,
+                            "Erro: " + erroExcecao,
                             Toast.LENGTH_SHORT).show();
-                    Log.w("CADASTRO ONG", "signInWithEmail:erro"+erroExcecao, task.getException());
+                    Log.w("CADASTRO ONG", "signInWithEmail:erro" + erroExcecao, task.getException());
 
 
                 }
@@ -111,7 +102,6 @@ public class OngDao implements DAO<Ong> {
             }
 
         });
-
 
 
     }
@@ -157,6 +147,19 @@ public class OngDao implements DAO<Ong> {
     @Override
     public void atualiza(Ong dado, String tabela, final Context appContext) {
         bancoFirebase = BancoFirebase.getBancoReferencia();
+        bancoFirebase.child("ong").child(dado.getIdOng()).setValue(dado).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
         bancoFirebase.child("ong").child(dado.getIdOng()).setValue(dado).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -234,12 +237,6 @@ public class OngDao implements DAO<Ong> {
 
                 firebaseCallback.onCallback(ong);
 
-                    /*Intent intent = new Intent(context.getApplicationContext(), MenuOngActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("objeto", ong);
-                    context.startActivity(intent);*/
-
-
             }
 
             @Override
@@ -250,9 +247,39 @@ public class OngDao implements DAO<Ong> {
 
     }
 
+    public void lerDados(String id, final OnGetDataListener listener) {
+        listener.onStart();
+        bancoFirebase = BancoFirebase.getBancoReferencia();
+        Query pesquisa = bancoFirebase.child("ong").orderByChild("idOng").equalTo(id);
+        pesquisa.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    ong = dataSnapshot.getValue(Ong.class);
+
+                }
+
+                listener.onSucess(ong);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     public interface FirebaseCallback {
         void onCallback(Ong ong);
 
+    }
+
+    public interface OnGetDataListener {
+        void onSucess(Ong ong);
+
+        void onStart();
     }
 
 
