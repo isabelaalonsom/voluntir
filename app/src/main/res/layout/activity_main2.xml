@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Perfil">
 
+    
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPerfil"
         android:layout_width="0dp"
@@ -14,4 +15,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

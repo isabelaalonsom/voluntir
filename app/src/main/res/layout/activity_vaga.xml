@@ -18,6 +18,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    
+
+    <Button
+        android:id="@+id/btnMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="mostrarPopUp"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView12"
@@ -26,7 +36,7 @@
         android:layout_marginStart="176dp"
         android:layout_marginEnd="177dp"
         android:text="Dê um clique longo na vaga que deseja gerar pdf dos candidatos aprovados"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewVaga"
+        app:layout_constraintTop_toBottomOf="@+id/btnMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -34,10 +44,11 @@
         android:id="@+id/recyclerViewVaga"
         android:layout_width="411dp"
         android:layout_height="0dp"
-        android:layout_marginTop="62dp"
+        android:layout_marginTop="122dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:layout_constraintTop_toTopOf="parent"  />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

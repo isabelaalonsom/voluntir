@@ -7,20 +7,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
 
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Voluntario;
-import br.com.voluntir.voluntir.LoginActivityVoluntario;
 import br.com.voluntir.voluntir.R;
 
 
@@ -59,7 +56,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         confirmarSenha = findViewById(R.id.edtTextConfirmarSenha);
 
         radioGroup = findViewById(R.id.rdBtnGrpGenero);
-        clicarBotaoLimpar();
+        //clicarBotaoLimpar();
         //mascara para o Cpf
         SimpleMaskFormatter simpleMaskCpf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
         MaskTextWatcher maskCpf = new MaskTextWatcher(cpf,simpleMaskCpf);
@@ -202,7 +199,8 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     }
 
 
-    public void clicarBotaoLimpar() {
+    public void clicarBotaoLimpar(View view) {
+
         nome.setText("");
         sobrenome.setText("");
         cpf.setText("");
@@ -215,6 +213,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         endereco.setText("");
         telefone.setText("");
         confirmarSenha.setText("");
+
     }
 
     public void radioButtonApertado(View view){

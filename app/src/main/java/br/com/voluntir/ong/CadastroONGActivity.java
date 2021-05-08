@@ -11,13 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
-import com.google.firebase.auth.FirebaseAuth;
 
-import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
-import br.com.voluntir.voluntir.LoginActivityONG;
-import br.com.voluntir.voluntir.MainActivity;
 import br.com.voluntir.voluntir.R;
 
 public class CadastroONGActivity extends AppCompatActivity {
@@ -45,7 +41,7 @@ public class CadastroONGActivity extends AppCompatActivity {
         site = (EditText) findViewById(R.id.edtTextSite);
         resumo = (EditText) findViewById(R.id.edtTextResumoOng);
         confirmarSenha = findViewById(R.id.edtTextConfirmarSenhaOng);
-        limparDados();
+        //limparDados();
         //mascara para o Cnpj
         SimpleMaskFormatter simpleMaskCnpj = new SimpleMaskFormatter("NN.NNN.NNN/NNNN-NN");
         MaskTextWatcher maskCnpj = new MaskTextWatcher(cnpj, simpleMaskCnpj);
@@ -130,7 +126,7 @@ public class CadastroONGActivity extends AppCompatActivity {
             //aqui tem que jogar pro banco de dados os edit text preenchidos
         }
 
-    public void limparDados() {
+    public void limparDados(View v) {
         nome.setText("");
         cnpj.setText("");
         localizacao.setText("");
