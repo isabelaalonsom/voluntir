@@ -2,9 +2,10 @@ package br.com.voluntir.voluntir;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -30,7 +31,7 @@ import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.AprovacaoCandidatoActivity;
 
-public class VagaActivity extends AppCompatActivity {
+public class VagaActivity extends AppCompatActivity  {
     private RecyclerView recyclerView;
     private List<Vaga> listaVaga = new ArrayList<>();
     private List<Vaga> listaVagaOng = new ArrayList<>();
@@ -41,13 +42,22 @@ public class VagaActivity extends AppCompatActivity {
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     Vaga vaga = new Vaga();
     private FirebaseAuth usuario = FirebaseAuth.getInstance();
+    Button btnEditarVaga;
+    Button btnExcluirVaga;
     Ong ong;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vaga);
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
+
+        btnEditarVaga = findViewById(R.id.btnEditarVaga);
+        btnExcluirVaga = findViewById(R.id.btnExcluirVaga);
+
 
         recyclerView = findViewById(R.id.recyclerViewVaga);
         Bundle dados = getIntent().getExtras();
@@ -107,5 +117,14 @@ public class VagaActivity extends AppCompatActivity {
                 )
         );
 
+
     }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actions, menu);
+        return true;
+    }
+
+
+
 }

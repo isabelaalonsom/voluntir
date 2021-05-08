@@ -36,7 +36,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     String genero;
     boolean grava = false;
     boolean mesdiaok = false;
-    boolean semgenero = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +102,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
             } else if (generoPreenchido.equals("Feminino")) {
                 botaoFeminino.setChecked(true);
             } else {
-                semgenero = true;
                 Toast.makeText(CadastroVoluntarioActivity.this, "Sem gênero", Toast.LENGTH_LONG).show();
             }
 
@@ -150,7 +149,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Preencha todos os campos ",
                             Toast.LENGTH_SHORT).show();
-                } else if (semgenero) {
+                } else if (radioButton == null) {
                     Toast.makeText(getApplicationContext(),"Preencha o gênero ", Toast.LENGTH_SHORT).show();
                 } else if (!senha.getText().toString().equals(confirmarSenha.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "As senhas não conferem.", Toast.LENGTH_LONG).show();
