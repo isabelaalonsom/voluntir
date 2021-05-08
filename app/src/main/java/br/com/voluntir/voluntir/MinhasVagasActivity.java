@@ -137,7 +137,6 @@ public class MinhasVagasActivity extends AppCompatActivity {
                             public void onLongItemClick(View view, int position) throws IOException, DocumentException {
                                 Vaga vaga = listaVaga.get(position);
                                 gerarPDF(view, position, vaga);
-
                             }
 
                             @Override
@@ -227,15 +226,20 @@ public class MinhasVagasActivity extends AppCompatActivity {
 
         //listaVoluntario = vaga.getVoluntarios();
         //Segunda info
-        for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
-            Voluntario voluntario = vaga.getVoluntarios().get(i);
-            if (voluntario.getStatusVaga().equalsIgnoreCase("aprovado")) {
-                String nome = "Nome: " + voluntario.getNome() + " " + voluntario.getSobrenome();
-                String telefone = "Telefone: " + voluntario.getTelefone();
-                String cidade = "Endereço: " + voluntario.getEndereco();
-                informacoes = nome + " | " + telefone + " | " + cidade;
-                paragraph = new Paragraph(informacoes, font);
-                document.add(paragraph);
+
+        if (vaga.getVoluntarios() == null) {
+            Toast.makeText(getBaseContext(), "Não há nenhum candidato cadastrado nesta vaga", Toast.LENGTH_LONG).show();
+        } else {
+            for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
+                Voluntario voluntario = vaga.getVoluntarios().get(i);
+                if (voluntario.getStatusVaga().equalsIgnoreCase("aprovado")) {
+                    String nome = "Nome: " + voluntario.getNome() + " " + voluntario.getSobrenome();
+                    String telefone = "Telefone: " + voluntario.getTelefone();
+                    String cidade = "Endereço: " + voluntario.getEndereco();
+                    informacoes = nome + " | " + telefone + " | " + cidade;
+                    paragraph = new Paragraph(informacoes, font);
+                    document.add(paragraph);
+                }
             }
         }
         //Segunda info
@@ -246,15 +250,20 @@ public class MinhasVagasActivity extends AppCompatActivity {
         outputStream.close();
 
         //Se o celular utilizado for da versão 10 do android ou superior
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-
-            descriptor.close();
-            visualizarPdfUri(uri);
-
+        if (vaga.getVoluntarios() == null) {
+            Toast.makeText(getBaseContext(), "Não há nenhum candidato cadastrado nesta vaga", Toast.LENGTH_LONG).show();
         } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
-            visualizarPdfFile(pdf);
+                descriptor.close();
+                visualizarPdfUri(uri);
+
+            } else {
+
+                visualizarPdfFile(pdf);
+            }
         }
+
 
 
     }
