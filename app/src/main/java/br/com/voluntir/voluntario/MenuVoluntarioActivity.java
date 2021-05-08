@@ -3,22 +3,17 @@ package br.com.voluntir.voluntario;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import br.com.voluntir.controller.ControleCadastro;
-import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
-import br.com.voluntir.ong.CadastroVagaActivity;
-import br.com.voluntir.voluntir.MenuOngActivity;
 import br.com.voluntir.voluntir.R;
-import br.com.voluntir.voluntir.VagaActivity;
 
 public class MenuVoluntarioActivity extends AppCompatActivity {
     Voluntario voluntario;
+    TextView txtNomeVoluntario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +26,16 @@ public class MenuVoluntarioActivity extends AppCompatActivity {
         if (dados != null) {
             voluntario = (Voluntario) dados.getSerializable("objeto");
         }
+
+        runOnUiThread(new Thread((Runnable) () -> {
+            try {
+                txtNomeVoluntario = (TextView) findViewById(R.id.txtViewNomeVoluntario);
+                txtNomeVoluntario.setText(voluntario.getNome());
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "erro: " + e.getCause(), Toast.LENGTH_LONG).show();
+            }
+        }));
 
 
     }

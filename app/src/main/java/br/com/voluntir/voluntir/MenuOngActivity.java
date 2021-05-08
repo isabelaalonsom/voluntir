@@ -50,18 +50,18 @@ public class MenuOngActivity extends AppCompatActivity {
 
     }
 
-    private void preencheTextViewEmail() {
-        txtEmailOng.setText(ong.getEmailOng());
-        txtNomeOng.setText(ong.getNome());
-    }
-
-    private void preencheOng() {
-        String email = txtEmailOng.getText().toString();
-        String nome = txtNomeOng.getText().toString();
-        ong.setEmailOng(email);
-        ong.setNome(nome);
-
-    }
+//    private void preencheTextViewEmail() {
+//        txtEmailOng.setText(ong.getEmailOng());
+//        txtNomeOng.setText(ong.getNome());
+//    }
+//
+//    private void preencheOng() {
+//        String email = txtEmailOng.getText().toString();
+//        String nome = txtNomeOng.getText().toString();
+//        ong.setEmailOng(email);
+//        ong.setNome(nome);
+//
+//    }
 
     public void clicarMinhaConta(View view) {
         Intent intent = new Intent(getApplicationContext(), MinhaContaONGActivity.class);
