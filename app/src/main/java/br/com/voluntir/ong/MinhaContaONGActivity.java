@@ -109,9 +109,10 @@ public class MinhaContaONGActivity extends AppCompatActivity {
 
     public void clicarBotaoExcluirOng(View view) {
         Ong dados = new Ong();
-
+        if (ong != null) {
             dados.setIdOng(ong.getIdOng());
-            dados.setCausas(txtCausas.getText().toString());
+        }
+        dados.setCausas(txtCausas.getText().toString());
         dados.setCpnj(txtCnpj.getText().toString());
         dados.setEmailOng(txtEmail.getText().toString());
         dados.setNome(txtNomeOng.getText().toString());
@@ -121,7 +122,9 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         dados.setSite(txtSite.getText().toString());
 
         controleCadastro = new ControleCadastro();
-        controleCadastro.excluirDadosOng(dados, tabelaOng, getApplicationContext());
+        if (dados != null) {
+            controleCadastro.excluirDadosOng(dados, tabelaOng, getApplicationContext());
+        }
 
 
     }

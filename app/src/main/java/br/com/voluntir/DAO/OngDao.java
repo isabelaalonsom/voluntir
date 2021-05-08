@@ -111,6 +111,7 @@ public class OngDao implements DAO<Ong> {
     public boolean remove(Ong dado, String tabela, final Context context) throws SQLException {
         final String id = dado.getIdOng();
         final FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+        assert usuario != null;
         usuario.delete()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
