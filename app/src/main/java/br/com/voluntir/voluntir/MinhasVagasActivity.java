@@ -126,11 +126,19 @@ public class MinhasVagasActivity extends AppCompatActivity {
                             public void onItemClick(View view, int position) {
                                 Vaga vaga = listaVaga.get(position);
 
-                                Intent intent = new Intent(getApplicationContext(), AprovacaoCandidatoActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                intent.putExtra("objeto", vaga);
-                                intent.putExtra("ong", ong);
-                                startActivity(intent);
+                                if (vaga.getVoluntarios() == null) {
+                                    Toast.makeText(getApplicationContext(),
+                                            "Nenhum candidato cadastrado ",
+                                            Toast.LENGTH_LONG).show();
+                                } else {
+                                    Intent intent = new Intent(getApplicationContext(), AprovacaoCandidatoActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.putExtra("objeto", vaga);
+                                    intent.putExtra("ong", ong);
+                                    startActivity(intent);
+                                }
+
+
                             }
 
                             @Override

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -100,6 +101,11 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                 adapterAprovacao = new AdapterAprovacao(listaVoluntario);
                 adapterAprovacao.notifyDataSetChanged();
                 recyclerViewCandidato.setAdapter(adapterAprovacao);
+                if (listaVoluntario.isEmpty()) {
+                    Toast.makeText(getApplicationContext(),
+                            "Nenhum candidato cadastrado ",
+                            Toast.LENGTH_LONG).show();
+                }
 
 
             }
