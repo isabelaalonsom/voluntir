@@ -36,6 +36,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     String genero;
     boolean grava = false;
     boolean mesdiaok = false;
+    boolean semgenero = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +102,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
             } else if (generoPreenchido.equals("Feminino")) {
                 botaoFeminino.setChecked(true);
             } else {
+                semgenero = true;
                 Toast.makeText(CadastroVoluntarioActivity.this, "Sem gênero", Toast.LENGTH_LONG).show();
             }
 
@@ -144,11 +146,12 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty() ||
                         cpf.getText().toString().isEmpty() || nome.getText().toString().isEmpty() ||
                         especialidade.getText().toString().isEmpty() || telefone.getText().toString().isEmpty() ||
-                        endereco.getText().toString().isEmpty() || data.getText().toString().isEmpty() || radioButton.getText().toString().isEmpty()) {
+                        endereco.getText().toString().isEmpty() || data.getText().toString().isEmpty())  {
                     Toast.makeText(getApplicationContext(),
                             "Preencha todos os campos ",
                             Toast.LENGTH_SHORT).show();
-
+                } else if (semgenero) {
+                    Toast.makeText(getApplicationContext(),"Preencha o gênero ", Toast.LENGTH_SHORT).show();
                 } else if (!senha.getText().toString().equals(confirmarSenha.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "As senhas não conferem.", Toast.LENGTH_LONG).show();
                 } else if (mes < 1 || mes > 12) {
