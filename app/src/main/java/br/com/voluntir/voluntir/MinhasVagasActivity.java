@@ -143,8 +143,14 @@ public class MinhasVagasActivity extends AppCompatActivity {
 
                             @Override
                             public void onLongItemClick(View view, int position) throws IOException, DocumentException {
-                                Vaga vaga = listaVaga.get(position);
-                                gerarPDF(view, position, vaga);
+                                if (vaga.getVoluntarios() == null) {
+                                    Toast.makeText(getApplicationContext(),
+                                            "Nenhum candidato cadastrado ",
+                                            Toast.LENGTH_LONG).show();
+                                } else {
+                                    Vaga vaga = listaVaga.get(position);
+                                    gerarPDF(view, position, vaga);
+                                }
                             }
 
                             @Override
@@ -240,7 +246,7 @@ public class MinhasVagasActivity extends AppCompatActivity {
         } else {
             for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
                 Voluntario voluntario = vaga.getVoluntarios().get(i);
-                if (voluntario.getStatusVaga().equalsIgnoreCase("aprovado")) {
+                if (voluntario.getStatusVaga().equalsIgnoreCase("APROVADO")) {
                     String nome = "Nome: " + voluntario.getNome() + " " + voluntario.getSobrenome();
                     String telefone = "Telefone: " + voluntario.getTelefone();
                     String cidade = "Endereço: " + voluntario.getEndereco();
@@ -256,6 +262,8 @@ public class MinhasVagasActivity extends AppCompatActivity {
 
         document.close();
         outputStream.close();
+
+
 
         //Se o celular utilizado for da versão 10 do android ou superior
         if (vaga.getVoluntarios() == null) {

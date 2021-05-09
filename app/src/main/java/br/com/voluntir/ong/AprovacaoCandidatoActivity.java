@@ -62,6 +62,7 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
         ong = (Ong) dados.getSerializable("ong");
         recyclerViewCandidato = findViewById(R.id.recyclerViewCandidatos);
         txtNomeVoluntario = findViewById(R.id.txtViewCandidatos);
+        txtViewStatusVariavel = findViewById(R.id.txtStatusVariavel);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerViewCandidato.setLayoutManager(layoutManager);
@@ -91,7 +92,12 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
 
                                 listaVoluntario.add(voluntario);
                             }
+
                         }
+
+
+
+
                     }
 
                     listaVaga.add(vagaAtualizada);

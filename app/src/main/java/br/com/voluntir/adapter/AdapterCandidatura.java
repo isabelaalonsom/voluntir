@@ -53,6 +53,9 @@ public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.
 
         holder.txtViewStatus.setVisibility(View.VISIBLE);
         holder.txtViewStatusVariavel.setText(status);
+//        if (holder.txtViewStatusVariavel.getText() == "APROVADO") {
+//            holder.txtViewStatusVariavel.setTextColor(Integer.parseInt("GREEN"));
+//        }
 
 
     }
