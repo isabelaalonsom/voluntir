@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:gravity="center"
-                android:text="Minha Conta"
+                android:text="Perfil ONG"
                 android:textSize="30sp"
                 tools:layout_editor_absoluteX="173dp"
                 tools:layout_editor_absoluteY="8dp" />
@@ -45,11 +45,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:clickable="false"
                     android:gravity="center"
                     android:text="Nome: "
                     android:textSize="24sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/txtViewNomePerfilOng"
                     android:layout_width="291dp"
                     android:layout_height="wrap_content"
@@ -77,7 +78,7 @@
                     android:text="CNPJ: "
                     android:textSize="24sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/txtViewCpnjVariavelPerfilOng"
                     android:layout_width="291dp"
                     android:layout_height="wrap_content"
@@ -105,7 +106,7 @@
                     android:text="Localização: "
                     android:textSize="24sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/txtViewLocalizaoVariavelPerfilOng"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
@@ -133,7 +134,7 @@
                     android:text="Causas: "
                     android:textSize="24sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/txtViewCausasVariavelPerfilOng"
                     android:layout_width="277dp"
                     android:layout_height="wrap_content"
@@ -160,7 +161,7 @@
                     android:text="Telefone: "
                     android:textSize="24sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/txtViewTelefoneVariavelPerfilOng"
                     android:layout_width="273dp"
                     android:layout_height="wrap_content"
@@ -190,7 +191,7 @@
                     android:textSize="24sp" />
 
                 <!-- esse campo não pode ser obrigatorio pq nem todas as ongs tem site -->
-                <EditText
+                <TextView
                     android:id="@+id/txtViewSiteVariavelPerfilOng"
                     android:layout_width="325dp"
                     android:layout_height="wrap_content"
@@ -217,7 +218,7 @@
                     android:text="E-mail: "
                     android:textSize="24sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/txtViewEmailVariavelPerfilOng"
                     android:layout_width="291dp"
                     android:layout_height="wrap_content"
@@ -247,7 +248,7 @@
 
             </LinearLayout>
 
-            <EditText
+            <TextView
                 android:id="@+id/txtViewResumoOngVariavelPerfilOng"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
