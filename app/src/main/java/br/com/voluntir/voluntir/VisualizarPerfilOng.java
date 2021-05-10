@@ -19,6 +19,7 @@ public class VisualizarPerfilOng extends AppCompatActivity {
     private TextView txtSite;
     private TextView txtEmail;
     private TextView txtResumoOng;
+    private TextView txtViewTituloTopo;
     private Ong ong;
     private Ong ong2;
     private ControleCadastro controleCadastro;
@@ -39,6 +40,9 @@ public class VisualizarPerfilOng extends AppCompatActivity {
         txtSite = (TextView) findViewById(R.id.txtViewSiteVariavelPerfilOng);
         txtEmail = (TextView) findViewById(R.id.txtViewEmailVariavelPerfilOng);
         txtResumoOng = (TextView) findViewById(R.id.txtViewResumoOngVariavelPerfilOng);
+        txtViewTituloTopo = (TextView) findViewById(R.id.txtViewPerfilOng);
+
+        txtViewTituloTopo.setText("Descrição da ONG");
 
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
