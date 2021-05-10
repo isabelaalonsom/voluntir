@@ -28,7 +28,7 @@ import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
-import br.com.voluntir.voluntir.VisualizarPerfilOng;
+import br.com.voluntir.voluntir.VoluntarioVisualizarVaga;
 
 public class VagaVoluntarioActivity extends AppCompatActivity {
     Vaga vaga = new Vaga();
@@ -106,7 +106,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                             @Override
                             public void onItemClick(View view, int position) {
                                 Vaga vaga = listaVaga.get(position);
-                                Intent intent = new Intent(getApplicationContext(), VisualizarPerfilOng.class);
+                                Intent intent = new Intent(getApplicationContext(), VoluntarioVisualizarVaga.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.putExtra("vaga", vaga);
                                 startActivity(intent);
