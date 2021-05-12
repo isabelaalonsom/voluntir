@@ -43,7 +43,7 @@ public class VagaDao implements DAO<Vaga> {
         });
     }
 
-    public Vaga buscaVaga(String informacao, String tabela, Context context, final OnGetDataListener listener) {
+    public Vaga buscaVaga(String informacao, String idOng, String tabela, Context context, final OnGetDataListener listener) {
         listener.onStart();
         refenciaBanco = BancoFirebase.getBancoReferencia();
         //Query pesquisa = refenciaBanco.child(tabela).orderByChild("idVaga").equalTo(id).orderByChild("idOng").equalTo();
@@ -69,7 +69,8 @@ public class VagaDao implements DAO<Vaga> {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         vaga = dataSnapshot.getValue(Vaga.class);
                         if (vaga != null) {
-                            listener.onSucess(vaga);
+                            if (vaga.getIdOng().equals(idOng))
+                                listener.onSucess(vaga);
                         }
                     }
                 }
@@ -85,6 +86,10 @@ public class VagaDao implements DAO<Vaga> {
 
         });
         return vaga;
+
+    }
+
+    public void buscaVagaNome(String informacao, String idOng, String tabela, Context context) {
 
     }
 

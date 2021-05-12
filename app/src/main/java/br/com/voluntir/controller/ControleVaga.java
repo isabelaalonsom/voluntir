@@ -64,10 +64,10 @@ public class ControleVaga {
 
     }
 
-    public void buscarVagaNome(String informacao, String tabela, Context context, final VagaDao.OnGetDataListener listener) {
+    public void buscarVagaNome(String informacao, String idOng, String tabela, Context context, final VagaDao.OnGetDataListener listener) {
 
         vagaDao = new VagaDao();
-        vagaDao.buscaVaga(informacao, tabela, context, new VagaDao.OnGetDataListener() {
+        vagaDao.buscaVaga(informacao, idOng, tabela, context, new VagaDao.OnGetDataListener() {
             @Override
             public void onSucess(Vaga vagas) {
                 if (vagas != null) {
