@@ -27,7 +27,7 @@ public class EditarVaga extends AppCompatActivity {
     boolean mesdiaok = false;
     private Button botaoConfirmar;
     private Vaga vaga;
-    private TextView nome;
+    private TextView nome, txtTituloNovaVagaEditarVaga;
     private EditText dataInicio, dataTermino;
     private EditText cargaHoraria, periodicidade, especialidade, detalheVaga, qtdCandidatos;
     private ControleCadastro controleCadastro;
@@ -49,6 +49,11 @@ public class EditarVaga extends AppCompatActivity {
         periodicidade = (EditText) findViewById(R.id.edtTextPeriodicidadeEditarVaga);
         detalheVaga = (EditText) findViewById(R.id.edtTextDetalhesVagaEditarVaga);
         qtdCandidatos = (EditText) findViewById(R.id.edtTextQtdCandidatosEditarVaga);
+        txtTituloNovaVagaEditarVaga = findViewById(R.id.txtViewTituloNovaVagaEditarVaga);
+
+        txtTituloNovaVagaEditarVaga.setText("Editar Vaga");
+
+
 
         //Recuperar os dados vindos de outra activity
         Bundle dados = getIntent().getExtras();
