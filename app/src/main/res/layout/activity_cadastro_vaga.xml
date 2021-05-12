@@ -49,11 +49,10 @@
 
                 <TextView
                     android:id="@+id/txtViewNomeDaONG"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:editable="false"
                     android:gravity="center"
-                    android:text="ONG Ajuda Certa!"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -94,7 +93,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:inputType="number"
+                    android:inputType="none"
                     android:text="Data de início: "
                     android:textSize="18sp" />
 
@@ -121,6 +120,7 @@
                     android:layout_height="wrap_content"
                     android:editable="false"
                     android:gravity="center"
+                    android:inputType="none"
                     android:text="Data de término: "
                     android:textSize="18sp" />
 
@@ -147,6 +147,7 @@
                     android:layout_height="wrap_content"
                     android:editable="false"
                     android:gravity="center"
+                    android:inputType="none"
                     android:text="Carga Horária:"
                     android:textSize="18sp" />
 
@@ -164,21 +165,20 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <EditText
+                <TextView
                     android:id="@+id/editTextTextPersonName"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Quantidade de candidatos:" />
+                    android:inputType="none"
+                    android:text="Quantidade de candidatos:"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/edtTextQtdCandidatos"
-                    android:layout_width="311dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:ems="10"
                     android:inputType="number" />
             </LinearLayout>
 

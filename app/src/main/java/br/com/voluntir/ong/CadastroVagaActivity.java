@@ -12,13 +12,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
-import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
 
 public class CadastroVagaActivity extends AppCompatActivity {
@@ -34,7 +36,13 @@ public class CadastroVagaActivity extends AppCompatActivity {
     Ong ong;
     String idOng;
     boolean grava = false;
+    boolean gravaTermino = false;
     boolean mesdiaok = false;
+    boolean mesdiaokTermino = false;
+    boolean diaok = false;
+    boolean anook = false;
+    boolean dataInicioValida = false;
+    boolean dataTerminoValida = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,29 +91,9 @@ public class CadastroVagaActivity extends AppCompatActivity {
                 vaga = new Vaga();
                 controleCadastro = new ControleCadastro();
 
-                int diaInicio = 0;
-                int mesInicio = 0;
-                int anoInicio = 0;
 
-                int diaTermino = 0;
-                int mesTermino = 0;
-                int anoTermino = 0;
 
-                String dataInicioConfig = dataInicio.getText().toString();
-                if (dataInicioConfig != null) {
-                    diaInicio = Integer.parseInt(dataInicioConfig.substring(0, 2));
-                    mesInicio = Integer.parseInt(dataInicioConfig.substring(3, 5));
-                    anoInicio = Integer.parseInt(dataInicioConfig.substring(6, 10));
-                }
 
-                String dataTerminoConfig = dataTermino.getText().toString();
-                if (dataTerminoConfig != null) {
-                    diaTermino = Integer.parseInt(dataTerminoConfig.substring(0, 2));
-                    mesTermino = Integer.parseInt(dataTerminoConfig.substring(3, 5));
-                    anoTermino = Integer.parseInt(dataTerminoConfig.substring(6, 10));
-                }
-
-                int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
 
                 //verifica se todos os campos foram preenchidos
                 if (especialidade.getText().toString().isEmpty() ||
@@ -115,62 +103,78 @@ public class CadastroVagaActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Preencha todos os campos ",
                             Toast.LENGTH_SHORT).show();
-                } else if (anoInicio > anoTermino) {
-                    Toast.makeText(getApplicationContext(), "A data de início deve ser menor do que a data de término da Vaga", Toast.LENGTH_SHORT).show();
-                } else if ((mesInicio < 1 || mesInicio > 12) || (mesTermino < 1 || mesTermino > 12)) {
-                    Toast.makeText(getApplicationContext(),"Mês inválido ", Toast.LENGTH_SHORT).show();
-                } else if ((mesInicio == 4 || mesInicio == 6 || mesInicio == 9 || mesInicio == 11) ||
-                        (mesTermino == 4 || mesTermino == 6 || mesTermino == 9 || mesTermino == 11)) {
-                    if ((diaInicio > 30 || diaInicio < 1) || (diaTermino > 30 || diaTermino < 1)) {
-                        Toast.makeText(getApplicationContext(),"Dia inválido ",Toast.LENGTH_SHORT).show();
-                    } else {
-                        mesdiaok = true;
-                    }
-                } else if ((mesInicio == 2) || (mesTermino == 2)) {
-                    if ((diaInicio > 28 || diaInicio < 1) || (diaTermino > 28 || diaTermino < 1)) {
-                        Toast.makeText(getApplicationContext(), "Dia inválido ", Toast.LENGTH_SHORT).show();
-                    } else {
-                        mesdiaok = true;
-                    }
-                } else if ((mesInicio == 1 || mesInicio == 3 || mesInicio == 5 || mesInicio == 7 || mesInicio == 8 || mesInicio == 10 || mesInicio == 12) ||
-                        (mesTermino == 1 || mesTermino == 3 ||mesTermino == 5 || mesTermino == 7 || mesTermino == 8 || mesTermino == 10 || mesTermino == 12)) {
-                    if ((diaInicio > 31 || diaInicio < 1) || (diaTermino > 31 || diaTermino < 1)) {
-                        Toast.makeText(getApplicationContext(), "Dia inválido ", Toast.LENGTH_SHORT).show();
-                    } else {
-                        mesdiaok = true;
-                    }
                 } else {
-                    mesdiaok = true;
-                }
 
-                if (mesdiaok) {
-//                    if (anoInicio > anoTermino) {
-//                        Toast.makeText(getApplicationContext(), "A data de início deve ser menor do que a data de término da Vaga", Toast.LENGTH_SHORT).show();
-//                    } else {
-                        grava = true;
-                    //}
-                }
-
-                if (grava) {
-                    if (ong != null) {
-                        vaga.setNomeOng(ong.getNome());
-                        vaga.setIdOng(ong.getIdOng());
+                    if (!validarData(dataInicio.getText().toString())) {
+                        Toast.makeText(getApplicationContext(),
+                                "Data início inválida ",
+                                Toast.LENGTH_SHORT).show();
+                        dataInicioValida = false;
+                    } else {
+                        dataInicioValida = true;
                     }
-                    vaga.setAreaConhecimento(especialidade.getText().toString());
-                    vaga.setDataInicio(dataInicio.getText().toString());
-                    vaga.setDataTermino(dataTermino.getText().toString());
-                    vaga.setPeriodicidade(periodicidade.getText().toString());
-                    vaga.setDescricaoVaga(detalheVaga.getText().toString());
-                    vaga.setCargaHoraria(cargaHoraria.getText().toString());
-                    vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
-                    controleVaga = new ControleVaga();
-                    controleVaga.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
+                    if (!validarData(dataTermino.getText().toString())) {
+                        Toast.makeText(getApplicationContext(),
+                                "Data termino inválida ",
+                                Toast.LENGTH_SHORT).show();
+                        dataTerminoValida = false;
+                    } else {
+                        dataTerminoValida = true;
+                    }
+
+
+                    if (dataInicioValida == true && dataTerminoValida == true) {
+                        if (ong != null) {
+                            vaga.setNomeOng(ong.getNome());
+                            vaga.setIdOng(ong.getIdOng());
+                        }
+                        vaga.setAreaConhecimento(especialidade.getText().toString());
+                        vaga.setDataInicio(dataInicio.getText().toString());
+                        vaga.setDataTermino(dataTermino.getText().toString());
+                        vaga.setPeriodicidade(periodicidade.getText().toString());
+                        vaga.setDescricaoVaga(detalheVaga.getText().toString());
+                        vaga.setCargaHoraria(cargaHoraria.getText().toString());
+                        vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
+                        controleVaga = new ControleVaga();
+                        controleVaga.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
+                    }
                 }
             }
         });
     }
 
     public void CadastrarVaga() {
+
+    }
+
+
+    public boolean validarData(String data) {
+        int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
+        int ano = 0;
+        String dataConfig = data;
+        if (dataConfig.length() == 10) {
+            ano = Integer.parseInt(dataConfig.substring(6, 10));
+        }
+
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        df.setLenient(false);
+        try {
+            df.parse(data);
+            if (ano < anoAtual) {
+                Toast.makeText(getApplicationContext(),
+                        "ano inválido",
+                        Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            return true;
+        } catch (ParseException ex) {
+            Toast.makeText(getApplicationContext(),
+                    "exception" + ex.getMessage(),
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
     }
 
@@ -182,6 +186,115 @@ public class CadastroVagaActivity extends AppCompatActivity {
         detalheVaga.setText("");
         cargaHoraria.setText("");
         qtdCandidatos.setText("");
+    }
+
+    public void verificarMesInicio() {
+        mesdiaok = false;
+        int diaInicio = 0;
+        int mesInicio = 0;
+        int anoInicio = 0;
+
+        String dataInicioConfig = dataInicio.getText().toString();
+        if (dataInicioConfig.length() == 10) {
+            diaInicio = Integer.parseInt(dataInicioConfig.substring(0, 2));
+            mesInicio = Integer.parseInt(dataInicioConfig.substring(3, 5));
+            anoInicio = Integer.parseInt(dataInicioConfig.substring(6, 10));
+
+            int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
+
+            if (mesInicio < 1 || mesInicio > 12) {
+                Toast.makeText(getApplicationContext(), "Mês início inválido ", Toast.LENGTH_SHORT).show();
+                mesdiaok = false;
+            } else if (mesInicio == 4 || mesInicio == 6 || mesInicio == 9 || mesInicio == 11) {
+                if (diaInicio > 30 || diaInicio < 1) {
+                    Toast.makeText(getApplicationContext(), "Dia início inválido ", Toast.LENGTH_SHORT).show();
+                    mesdiaok = false;
+                } else {
+                    mesdiaok = true;
+                }
+            } else if (mesInicio == 2) {
+                if (diaInicio > 28 || diaInicio < 1) {
+                    Toast.makeText(getApplicationContext(), "Dia início inválido ", Toast.LENGTH_SHORT).show();
+                    mesdiaok = false;
+                } else {
+                    mesdiaok = true;
+                }
+            } else if (mesInicio == 1 || mesInicio == 3 || mesInicio == 5 || mesInicio == 7 || mesInicio == 8 || mesInicio == 10 || mesInicio == 12) {
+                if (diaInicio > 31 || diaInicio < 1) {
+                    Toast.makeText(getApplicationContext(), "Dia início inválido ", Toast.LENGTH_SHORT).show();
+                    mesdiaok = false;
+                } else {
+                    mesdiaok = true;
+                }
+            } else if (anoInicio < anoAtual) {
+                Toast.makeText(getApplicationContext(), "Ano início inválido ", Toast.LENGTH_SHORT).show();
+                mesdiaok = false;
+            } else {
+                mesdiaok = true;
+            }
+
+            if (mesdiaok) {
+                if (anoInicio < anoAtual) {
+                    Toast.makeText(getApplicationContext(), "Ano início inválido ", Toast.LENGTH_SHORT).show();
+                    mesdiaok = false;
+                } else {
+                    grava = true;
+                }
+            }
+        }
+    }
+
+    public void verificarMesFinal() {
+        mesdiaokTermino = false;
+        int diaTermino = 0;
+        int mesTermino = 0;
+        int anoTermino = 0;
+
+        String dataTerminoConfig = dataTermino.getText().toString();
+        if (dataTerminoConfig.length() == 10) {
+            diaTermino = Integer.parseInt(dataTerminoConfig.substring(0, 2));
+            mesTermino = Integer.parseInt(dataTerminoConfig.substring(3, 5));
+            anoTermino = Integer.parseInt(dataTerminoConfig.substring(6, 10));
+
+            int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
+
+            if (mesTermino < 1 || mesTermino > 12) {
+                Toast.makeText(getApplicationContext(), "Mês termino inválido ", Toast.LENGTH_SHORT).show();
+                mesdiaokTermino = false;
+            } else if (mesTermino == 4 || mesTermino == 6 || mesTermino == 9 || mesTermino == 11) {
+                if (diaTermino > 30 || diaTermino < 1) {
+                    Toast.makeText(getApplicationContext(), "Dia termino inválido ", Toast.LENGTH_SHORT).show();
+                    mesdiaokTermino = false;
+                } else {
+                    mesdiaokTermino = true;
+                }
+            } else if (mesTermino == 2) {
+                if (diaTermino > 28 || diaTermino < 1) {
+                    Toast.makeText(getApplicationContext(), "Dia termino inválido ", Toast.LENGTH_SHORT).show();
+                    mesdiaokTermino = false;
+                } else {
+                    mesdiaokTermino = true;
+                }
+            } else if (mesTermino == 1 || mesTermino == 3 || mesTermino == 5 || mesTermino == 7 || mesTermino == 8 || mesTermino == 10 || mesTermino == 12) {
+                if (diaTermino > 31 || diaTermino < 1) {
+                    Toast.makeText(getApplicationContext(), "Dia termino inválido ", Toast.LENGTH_SHORT).show();
+                    mesdiaokTermino = false;
+                } else {
+                    mesdiaokTermino = true;
+                }
+            } else if (anoTermino < anoAtual) {
+                Toast.makeText(getApplicationContext(), "Ano termino inválido ", Toast.LENGTH_SHORT).show();
+                mesdiaokTermino = false;
+            } else {
+                mesdiaokTermino = true;
+            }
+
+            if (mesdiaokTermino = true) {
+
+                gravaTermino = true;
+
+            }
+        }
     }
 }
 

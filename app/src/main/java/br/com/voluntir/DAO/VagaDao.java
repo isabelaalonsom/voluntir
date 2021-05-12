@@ -36,11 +36,39 @@ public class VagaDao implements DAO<Vaga> {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    listener.onSucess();
+                    listener.onSucess(dado);
 
                 }
             }
         });
+    }
+
+    public Vaga buscaVaga(String informacao, String tabela, Context context, final OnGetDataListener listener) {
+        listener.onStart();
+        refenciaBanco = BancoFirebase.getBancoReferencia();
+        //Query pesquisa = refenciaBanco.child(tabela).orderByChild("idVaga").equalTo(id).orderByChild("idOng").equalTo();
+        Query pesquisa = refenciaBanco.child(tabela).orderByChild("areaConhecimento").equalTo(informacao);
+        pesquisa.addValueEventListener(new ValueEventListener() {
+            //recuperar os dados sempre que for mudado no banco
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    vaga = dataSnapshot.getValue(Vaga.class);
+                    if (vaga != null) {
+                        listener.onSucess(vaga);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+        return vaga;
+
     }
 
     @Override
@@ -100,12 +128,6 @@ public class VagaDao implements DAO<Vaga> {
 
     }
 
-    public interface OnGetDataListener {
-        void onSucess();
-
-        void onStart();
-    }
-
     public void cadastrarVoluntarioVaga(Vaga dado, String tabela, Context context, final OnGetDataListener listener) {
         listener.onStart();
         refenciaBanco = BancoFirebase.getBancoReferencia();
@@ -113,13 +135,18 @@ public class VagaDao implements DAO<Vaga> {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    listener.onSucess();
+                    listener.onSucess(dado);
 
                 }
             }
         });
     }
 
+    public interface OnGetDataListener {
+        void onSucess(Vaga vaga);
+
+        void onStart();
+    }
 
 
     @Override
