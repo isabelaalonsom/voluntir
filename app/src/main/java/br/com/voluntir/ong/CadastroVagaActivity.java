@@ -7,16 +7,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Ong;
@@ -24,7 +31,7 @@ import br.com.voluntir.model.Vaga;
 import br.com.voluntir.voluntir.R;
 
 public class CadastroVagaActivity extends AppCompatActivity {
-
+    private DatabaseReference refenciaBanco;
     private Button botaoConfirmar;
     private Vaga vaga;
     private TextView nome;
@@ -127,19 +134,68 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
                     if (dataInicioValida == true && dataTerminoValida == true && podeGravar == true) {
                         verificarDataMenor();
-                        if (ong != null) {
-                            vaga.setNomeOng(ong.getNome());
-                            vaga.setIdOng(ong.getIdOng());
-                        }
-                        vaga.setAreaConhecimento(especialidade.getText().toString());
-                        vaga.setDataInicio(dataInicio.getText().toString());
-                        vaga.setDataTermino(dataTermino.getText().toString());
-                        vaga.setPeriodicidade(periodicidade.getText().toString());
-                        vaga.setDescricaoVaga(detalheVaga.getText().toString());
-                        vaga.setCargaHoraria(cargaHoraria.getText().toString());
-                        vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
-                        controleVaga = new ControleVaga();
-                        controleVaga.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
+
+                        refenciaBanco = BancoFirebase.getBancoReferencia();
+                        Query pesquisa = refenciaBanco.child(tabelaBanco).orderByChild("areaConhecimento").equalTo(especialidade.getText().toString());
+                        pesquisa.addListenerForSingleValueEvent(new ValueEventListener() {
+                            //recuperar os dados sempre que for mudado no banco
+                            @Override
+                            public void onDataChange(DataSnapshot snapshot) {
+                                if (!snapshot.exists()) {
+                                    if (ong != null) {
+                                        vaga.setNomeOng(ong.getNome());
+                                        vaga.setIdOng(ong.getIdOng());
+                                    }
+                                    vaga.setAreaConhecimento(especialidade.getText().toString());
+                                    vaga.setDataInicio(dataInicio.getText().toString());
+                                    vaga.setDataTermino(dataTermino.getText().toString());
+                                    vaga.setPeriodicidade(periodicidade.getText().toString());
+                                    vaga.setDescricaoVaga(detalheVaga.getText().toString());
+                                    vaga.setCargaHoraria(cargaHoraria.getText().toString());
+                                    vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
+                                    controleVaga = new ControleVaga();
+                                    controleVaga.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
+
+                                } else {
+                                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                        vaga = dataSnapshot.getValue(Vaga.class);
+                                        if (vaga != null) {
+                                            if (vaga.getIdOng().equals(idOng)) {
+                                                Toast.makeText(getApplicationContext(),
+                                                        "Nome da vaga ja existente ",
+                                                        Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                if (ong != null) {
+                                                    vaga.setNomeOng(ong.getNome());
+                                                    vaga.setIdOng(ong.getIdOng());
+                                                }
+                                                vaga.setAreaConhecimento(especialidade.getText().toString());
+                                                vaga.setDataInicio(dataInicio.getText().toString());
+                                                vaga.setDataTermino(dataTermino.getText().toString());
+                                                vaga.setPeriodicidade(periodicidade.getText().toString());
+                                                vaga.setDescricaoVaga(detalheVaga.getText().toString());
+                                                vaga.setCargaHoraria(cargaHoraria.getText().toString());
+                                                vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
+                                                controleVaga = new ControleVaga();
+                                                controleVaga.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
+
+                                            }
+
+                                        }
+                                    }
+                                }
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+
+
+                        });
+
                     }
                 }
             }
