@@ -47,17 +47,9 @@ public class VagaDao implements DAO<Vaga> {
         listener.onStart();
         refenciaBanco = BancoFirebase.getBancoReferencia();
         //Query pesquisa = refenciaBanco.child(tabela).orderByChild("idVaga").equalTo(id).orderByChild("idOng").equalTo();
-        Query pesquisa = refenciaBanco.child(tabela).orderByChild("areaConhecimento").equalTo(informacao);
-        pesquisa.addValueEventListener(new ValueEventListener() {
-            //recuperar os dados sempre que for mudado no banco
+        refenciaBanco.child(tabela).orderByChild("areaConhecimento").equalTo(informacao).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    vaga = dataSnapshot.getValue(Vaga.class);
-                    if (vaga != null) {
-                        listener.onSucess(vaga);
-                    }
-                }
 
             }
 
@@ -65,6 +57,31 @@ public class VagaDao implements DAO<Vaga> {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });
+        Query pesquisa = refenciaBanco.child(tabela).orderByChild("areaConhecimento").equalTo(informacao);
+        pesquisa.addValueEventListener(new ValueEventListener() {
+            //recuperar os dados sempre que for mudado no banco
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (!snapshot.exists()) {
+                    listener.onSucess(null);
+                } else {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        vaga = dataSnapshot.getValue(Vaga.class);
+                        if (vaga != null) {
+                            listener.onSucess(vaga);
+                        }
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
 
         });
         return vaga;
@@ -146,6 +163,7 @@ public class VagaDao implements DAO<Vaga> {
         void onSucess(Vaga vaga);
 
         void onStart();
+
     }
 
 

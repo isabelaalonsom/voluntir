@@ -17,6 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import br.com.voluntir.DAO.VagaDao;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Ong;
@@ -91,7 +92,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 vaga = new Vaga();
-                controleCadastro = new ControleCadastro();
+
 
 
 
@@ -127,28 +128,43 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
                     if (dataInicioValida == true && dataTerminoValida == true && podeGravar == true) {
                         verificarDataMenor();
-                        if (ong != null) {
-                            vaga.setNomeOng(ong.getNome());
-                            vaga.setIdOng(ong.getIdOng());
-                        }
-                        vaga.setAreaConhecimento(especialidade.getText().toString());
-                        vaga.setDataInicio(dataInicio.getText().toString());
-                        vaga.setDataTermino(dataTermino.getText().toString());
-                        vaga.setPeriodicidade(periodicidade.getText().toString());
-                        vaga.setDescricaoVaga(detalheVaga.getText().toString());
-                        vaga.setCargaHoraria(cargaHoraria.getText().toString());
-                        vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
-                        controleVaga = new ControleVaga();
-                        controleVaga.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
+
+                        VagaDao vagaDao = new VagaDao();
+                        vagaDao.buscaVaga(especialidade.getText().toString(), tabelaBanco, getApplicationContext(), new VagaDao.OnGetDataListener() {
+                            @Override
+                            public void onSucess(Vaga vaga2) {
+                                if (vaga2 != null) {
+                                    Toast.makeText(getApplicationContext(),
+                                            "já existe uma vaga com essa area de conhecimento ",
+                                            Toast.LENGTH_SHORT).show();
+                                } else {
+                                    if (ong != null) {
+                                        vaga.setNomeOng(ong.getNome());
+                                        vaga.setIdOng(ong.getIdOng());
+                                    }
+                                    vaga.setAreaConhecimento(especialidade.getText().toString());
+                                    vaga.setDataInicio(dataInicio.getText().toString());
+                                    vaga.setDataTermino(dataTermino.getText().toString());
+                                    vaga.setPeriodicidade(periodicidade.getText().toString());
+                                    vaga.setDescricaoVaga(detalheVaga.getText().toString());
+                                    vaga.setCargaHoraria(cargaHoraria.getText().toString());
+                                    vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
+                                    controleVaga = new ControleVaga();
+                                    controleVaga.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
+                                }
+                            }
+
+                            @Override
+                            public void onStart() {
+
+                            }
+                        });
                     }
                 }
             }
         });
     }
 
-    public void CadastrarVaga() {
-
-    }
 
 
     public boolean validarData(String data) {
@@ -232,7 +248,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
         return podeGravar;
     }
 
-    public void verificarMesInicio() {
+    /*public void verificarMesInicio() {
         mesdiaok = false;
         int diaInicio = 0;
         int mesInicio = 0;
@@ -339,7 +355,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
             }
         }
-    }
+    }*/
 }
 
 
