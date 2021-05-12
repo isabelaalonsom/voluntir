@@ -43,6 +43,8 @@ public class CadastroVagaActivity extends AppCompatActivity {
     boolean anook = false;
     boolean dataInicioValida = false;
     boolean dataTerminoValida = false;
+    int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
+    boolean podeGravar = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,9 +123,10 @@ public class CadastroVagaActivity extends AppCompatActivity {
                     } else {
                         dataTerminoValida = true;
                     }
+                    podeGravar = verificarDataMenor();
 
-
-                    if (dataInicioValida == true && dataTerminoValida == true) {
+                    if (dataInicioValida == true && dataTerminoValida == true && podeGravar == true) {
+                        verificarDataMenor();
                         if (ong != null) {
                             vaga.setNomeOng(ong.getNome());
                             vaga.setIdOng(ong.getIdOng());
@@ -186,6 +189,47 @@ public class CadastroVagaActivity extends AppCompatActivity {
         detalheVaga.setText("");
         cargaHoraria.setText("");
         qtdCandidatos.setText("");
+    }
+
+    public boolean verificarDataMenor() {
+        boolean podeGravar = false;
+        int diaInicio = 0;
+        int mesInicio = 0;
+        int anoInicio = 0;
+        String dataInicioConfig = dataInicio.getText().toString();
+        if (dataInicioConfig.length() == 10) {
+            diaInicio = Integer.parseInt(dataInicioConfig.substring(0, 2));
+            mesInicio = Integer.parseInt(dataInicioConfig.substring(3, 5));
+            anoInicio = Integer.parseInt(dataInicioConfig.substring(6, 10));
+        }
+        int diaTermino = 0;
+        int mesTermino = 0;
+        int anoTermino = 0;
+
+        String dataTerminoConfig = dataTermino.getText().toString();
+        if (dataTerminoConfig.length() == 10) {
+            diaTermino = Integer.parseInt(dataTerminoConfig.substring(0, 2));
+            mesTermino = Integer.parseInt(dataTerminoConfig.substring(3, 5));
+            anoTermino = Integer.parseInt(dataTerminoConfig.substring(6, 10));
+        }
+
+        if (anoInicio > anoTermino) {
+            Toast.makeText(getApplicationContext(), "Ano início não pode ser maior que ano término ", Toast.LENGTH_SHORT).show();
+        } else if (anoInicio == anoTermino) {
+            if (mesInicio > mesTermino) {
+                Toast.makeText(getApplicationContext(), "mês início não pode ser maior que mês término ", Toast.LENGTH_SHORT).show();
+            } else if (mesInicio == mesTermino) {
+                if (diaInicio > diaTermino) {
+                    Toast.makeText(getApplicationContext(), "dia início não pode ser maior que dia término ", Toast.LENGTH_SHORT).show();
+                } else {
+                    podeGravar = true;
+                }
+            } else
+                podeGravar = true;
+        } else {
+            podeGravar = true;
+        }
+        return podeGravar;
     }
 
     public void verificarMesInicio() {
