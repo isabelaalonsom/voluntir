@@ -21,7 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.controller.ControleCadastro;
@@ -43,7 +45,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
     Ong ong;
     String idOng;
     boolean grava = false;
-    boolean gravaTermino = false;
+    boolean entrou = false;
     boolean mesdiaok = false;
     boolean mesdiaokTermino = false;
     boolean diaok = false;
@@ -52,6 +54,8 @@ public class CadastroVagaActivity extends AppCompatActivity {
     boolean dataTerminoValida = false;
     int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
     boolean podeGravar = false;
+    boolean existe = false;
+    private List<Vaga> listaVaga = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +80,30 @@ public class CadastroVagaActivity extends AppCompatActivity {
             nome.setText(ong.getNome());
             idOng = ong.getIdOng();
         }
+        refenciaBanco = BancoFirebase.getBancoReferencia();
+        Query pesquisa = refenciaBanco.child(tabelaBanco).orderByChild("idOng").equalTo(ong.getIdOng());
+        pesquisa.addValueEventListener(new ValueEventListener() {
+            //recuperar os dados sempre que for mudado no banco
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                listaVaga.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    vaga = dataSnapshot.getValue(Vaga.class);
+                    if (vaga.getIdOng().equals(ong.getIdOng())) {
+                        listaVaga.add(vaga);
+                    }
 
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+
+        });
 
 
         SimpleMaskFormatter simpleMaskDataInicio = new SimpleMaskFormatter("NN/NN/NNNN");
@@ -98,11 +125,6 @@ public class CadastroVagaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 vaga = new Vaga();
-
-
-
-
-
 
                 //verifica se todos os campos foram preenchidos
                 if (especialidade.getText().toString().isEmpty() ||
@@ -134,67 +156,53 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
                     if (dataInicioValida == true && dataTerminoValida == true && podeGravar == true) {
                         verificarDataMenor();
+                        entrou = false;
 
-                        refenciaBanco = BancoFirebase.getBancoReferencia();
-                        Query pesquisa = refenciaBanco.child(tabelaBanco).orderByChild("areaConhecimento").equalTo(especialidade.getText().toString());
-                        pesquisa.addListenerForSingleValueEvent(new ValueEventListener() {
-                            //recuperar os dados sempre que for mudado no banco
-                            @Override
-                            public void onDataChange(DataSnapshot snapshot) {
-                                if (!snapshot.exists()) {
-                                    if (ong != null) {
-                                        vaga.setNomeOng(ong.getNome());
-                                        vaga.setIdOng(ong.getIdOng());
-                                    }
-                                    vaga.setAreaConhecimento(especialidade.getText().toString());
-                                    vaga.setDataInicio(dataInicio.getText().toString());
-                                    vaga.setDataTermino(dataTermino.getText().toString());
-                                    vaga.setPeriodicidade(periodicidade.getText().toString());
-                                    vaga.setDescricaoVaga(detalheVaga.getText().toString());
-                                    vaga.setCargaHoraria(cargaHoraria.getText().toString());
-                                    vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
-                                    controleVaga = new ControleVaga();
-                                    controleVaga.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
-
-                                } else {
-                                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                                        vaga = dataSnapshot.getValue(Vaga.class);
-                                        if (vaga != null) {
-                                            if (vaga.getIdOng().equals(idOng)) {
-                                                Toast.makeText(getApplicationContext(),
-                                                        "Nome da vaga ja existente ",
-                                                        Toast.LENGTH_SHORT).show();
-                                            } else {
-                                                if (ong != null) {
-                                                    vaga.setNomeOng(ong.getNome());
-                                                    vaga.setIdOng(ong.getIdOng());
-                                                }
-                                                vaga.setAreaConhecimento(especialidade.getText().toString());
-                                                vaga.setDataInicio(dataInicio.getText().toString());
-                                                vaga.setDataTermino(dataTermino.getText().toString());
-                                                vaga.setPeriodicidade(periodicidade.getText().toString());
-                                                vaga.setDescricaoVaga(detalheVaga.getText().toString());
-                                                vaga.setCargaHoraria(cargaHoraria.getText().toString());
-                                                vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
-                                                controleVaga = new ControleVaga();
-                                                controleVaga.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
-
-                                            }
-
-                                        }
-                                    }
+                        if (listaVaga != null) {
+                            entrou = true;
+                            existe = false;
+                            for (int i = 0; i < listaVaga.size(); i++) {
+                                if (listaVaga.get(i).getAreaConhecimento().equalsIgnoreCase(especialidade.getText().toString())) {
+                                    existe = true;
                                 }
-
-
                             }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
+                        } else {
+                            if (ong != null) {
+                                vaga.setNomeOng(ong.getNome());
+                                vaga.setIdOng(ong.getIdOng());
                             }
+                            vaga.setAreaConhecimento(especialidade.getText().toString());
+                            vaga.setDataInicio(dataInicio.getText().toString());
+                            vaga.setDataTermino(dataTermino.getText().toString());
+                            vaga.setPeriodicidade(periodicidade.getText().toString());
+                            vaga.setDescricaoVaga(detalheVaga.getText().toString());
+                            vaga.setCargaHoraria(cargaHoraria.getText().toString());
+                            vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
+                            controleVaga = new ControleVaga();
+                            controleVaga.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
+
+                        }
+                        if (existe == true && entrou == true) {
+                            Toast.makeText(getApplicationContext(),
+                                    "Nome da vaga ja existente ",
+                                    Toast.LENGTH_SHORT).show();
+                        } else if (entrou == true && existe == false) {
+                            if (ong != null) {
+                                vaga.setNomeOng(ong.getNome());
+                                vaga.setIdOng(ong.getIdOng());
+                            }
+                            vaga.setAreaConhecimento(especialidade.getText().toString());
+                            vaga.setDataInicio(dataInicio.getText().toString());
+                            vaga.setDataTermino(dataTermino.getText().toString());
+                            vaga.setPeriodicidade(periodicidade.getText().toString());
+                            vaga.setDescricaoVaga(detalheVaga.getText().toString());
+                            vaga.setCargaHoraria(cargaHoraria.getText().toString());
+                            vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
+                            controleVaga = new ControleVaga();
+                            controleVaga.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
 
 
-                        });
+                        }
 
                     }
                 }
