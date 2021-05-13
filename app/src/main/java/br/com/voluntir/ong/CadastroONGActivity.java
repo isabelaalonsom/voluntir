@@ -7,11 +7,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.voluntir.R;
@@ -24,6 +34,9 @@ public class CadastroONGActivity extends AppCompatActivity {
     private EditText causa, localizacao, site;
     private ControleCadastro controleCadastro;
     private String tabelaBanco = "ong";
+    private DatabaseReference refenciaBanco;
+    private boolean cnpjCadastrado = false;
+    private List<String> listaCnpj = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +54,31 @@ public class CadastroONGActivity extends AppCompatActivity {
         site = (EditText) findViewById(R.id.edtTextSite);
         resumo = (EditText) findViewById(R.id.edtTextResumoOng);
         confirmarSenha = findViewById(R.id.edtTextConfirmarSenhaOng);
+
+        refenciaBanco = BancoFirebase.getBancoReferencia();
+        Query pesquisa = refenciaBanco.child(tabelaBanco).orderByChild("cnpj");
+        pesquisa.addValueEventListener(new ValueEventListener() {
+            //recuperar os dados sempre que for mudado no banco
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                listaCnpj.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String cnpj;
+                    cnpj = dataSnapshot.getValue(Ong.class).getCpnj();
+                    listaCnpj.add(cnpj);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+
+        });
+
         //limparDados();
         //mascara para o Cnpj
         SimpleMaskFormatter simpleMaskCnpj = new SimpleMaskFormatter("NN.NNN.NNN/NNNN-NN");
@@ -100,7 +138,8 @@ public class CadastroONGActivity extends AppCompatActivity {
                     if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty() ||
                             cnpj.getText().toString().isEmpty() || nome.getText().toString().isEmpty() ||
                             causa.getText().toString().isEmpty() || telefone.getText().toString().isEmpty() ||
-                            localizacao.getText().toString().isEmpty() || resumo.getText().toString().isEmpty()) {
+                            localizacao.getText().toString().isEmpty() || resumo.getText().toString().isEmpty() ||
+                            site.getText().toString().isEmpty()) {
 
                         //exibe mensagem na tela
                         Toast.makeText(getApplicationContext(),
@@ -111,8 +150,22 @@ public class CadastroONGActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "As senhas não conferem.", Toast.LENGTH_LONG).show();
 
                     } else {
+                        if (listaCnpj != null) {
+                            cnpjCadastrado = false;
+                            for (int i = 0; i < listaCnpj.size(); i++) {
+                                if (listaCnpj.get(i).equals(cnpj.getText().toString())) {
+                                    cnpjCadastrado = true;
+                                }
+                            }
+                        }
+                        if (cnpjCadastrado == false) {
+                            controleCadastro.cadastrarOng(ong, tabelaBanco, getApplicationContext());
+                        } else {
+                            Toast.makeText(getApplicationContext(),
+                                    "Cnpj já cadastrado ",
+                                    Toast.LENGTH_SHORT).show();
+                        }
 
-                        controleCadastro.cadastrarOng(ong, tabelaBanco, getApplicationContext());
 
                     }
 
