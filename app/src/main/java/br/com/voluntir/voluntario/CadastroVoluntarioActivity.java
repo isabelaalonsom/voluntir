@@ -9,13 +9,22 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
@@ -26,9 +35,9 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     private Button botaoConfirmar;
     private Voluntario voluntario;
     private EditText email, senha,cpf,data,nome,telefone, confirmarSenha;
-    private EditText endereco,especialidade,sobrenome;
+    private EditText endereco, especialidade, sobrenome;
     private ControleCadastro controleCadastro;
-    private String tabelaBanco= "voluntario";
+    private String tabelaBanco = "voluntario";
     private RadioGroup radioGroup;
     RadioButton radioButton;
     private RadioButton botaoFeminino;
@@ -36,6 +45,9 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     String genero;
     boolean grava = false;
     boolean mesdiaok = false;
+    private DatabaseReference refenciaBanco;
+    private List<String> listaCpf = new ArrayList<>();
+    private boolean cpfCadastrado = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,15 +69,39 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         confirmarSenha = findViewById(R.id.edtTextConfirmarSenha);
 
         radioGroup = findViewById(R.id.rdBtnGrpGenero);
+
+        refenciaBanco = BancoFirebase.getBancoReferencia();
+        Query pesquisa = refenciaBanco.child(tabelaBanco).orderByChild("cpf");
+        pesquisa.addValueEventListener(new ValueEventListener() {
+            //recuperar os dados sempre que for mudado no banco
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                listaCpf.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String cpf;
+                    cpf = dataSnapshot.getValue(Voluntario.class).getCpf();
+                    listaCpf.add(cpf);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+
+        });
         //clicarBotaoLimpar();
         //mascara para o Cpf
         SimpleMaskFormatter simpleMaskCpf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
-        MaskTextWatcher maskCpf = new MaskTextWatcher(cpf,simpleMaskCpf);
+        MaskTextWatcher maskCpf = new MaskTextWatcher(cpf, simpleMaskCpf);
         cpf.addTextChangedListener(maskCpf);
 
         //mascara para a Data
         SimpleMaskFormatter simpleMaskData = new SimpleMaskFormatter("NN/NN/NNNN");
-        MaskTextWatcher maskData = new MaskTextWatcher(data,simpleMaskData);
+        MaskTextWatcher maskData = new MaskTextWatcher(data, simpleMaskData);
         data.addTextChangedListener(maskData);
 
         //mascara para o Telefone
@@ -192,8 +228,21 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 }
 
                 if (grava) {
-                    voluntario.setGenero((String) radioButton.getText());
-                    Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario, tabelaBanco, getApplicationContext());
+                    if (listaCpf != null) {
+                        cpfCadastrado = false;
+                        for (int i = 0; i < listaCpf.size(); i++) {
+                            if (listaCpf.get(i).equals(cpf.getText().toString())) {
+                                cpfCadastrado = true;
+                            }
+                        }
+                    }
+                    if (cpfCadastrado == false) {
+                        voluntario.setGenero((String) radioButton.getText());
+                        Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario, tabelaBanco, getApplicationContext());
+                    } else {
+                        Toast.makeText(getApplicationContext(), "CPF já cadastrado ", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
 
             }
