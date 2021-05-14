@@ -324,6 +324,7 @@
                 android:layout_marginLeft="15dp"
                 android:ems="10"
                 android:hint="Resumo da ONG"
+                android:inputType="text"
                 tools:layout_editor_absoluteX="163dp"
                 tools:layout_editor_absoluteY="395dp" />
 
