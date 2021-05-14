@@ -35,12 +35,12 @@
 
         <TextView
             android:id="@+id/txtViewVoluntarioVisualizarVaga"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="ONG X"
             android:textColor="#AA0B0B"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -57,16 +57,16 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Área de conhecimento: "
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/txtViewAreaConhecimentoVoluntarioVisualizarVaga"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Pacote Office"
             android:textColor="#AA0B0B"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -83,16 +83,16 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Data de início: "
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/txtViewDataInicioVoluntarioVisualizarVaga"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="23/12/2020"
             android:textColor="#AA0B0B"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -112,11 +112,11 @@
 
         <TextView
             android:id="@+id/txtViewDataTeminoVoluntarioVisualizarVaga"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="05/01/2021"
             android:textColor="#AA0B0B"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -133,15 +133,15 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Carga Horária: "
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/txtViewCargaHorariaVoluntarioVisualizarVaga"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10:00"
             android:textColor="#AA0B0B"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -157,7 +157,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Periodicidade: "
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/txtViewPeriodicidadeVoluntarioVisualizarVaga"
@@ -165,7 +165,7 @@
             android:layout_height="wrap_content"
             android:text="2 "
             android:textColor="#AA0B0B"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/txtViewVezesPorSemana"
@@ -173,7 +173,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="vezes por semana"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -189,17 +189,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Descrição: "
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/txtViewDescricaoVoluntarioVisualizarVaga"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ensinar as pessoas que estão aprendendo a utilizar o Pacote Office, especialmente Excel e Word. "
         android:textColor="#AA0B0B"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
     <LinearLayout
         android:id="@+id/LinearBotoesVoluntarioVisualizarVaga"

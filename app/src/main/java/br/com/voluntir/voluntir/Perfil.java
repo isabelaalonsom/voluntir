@@ -3,6 +3,7 @@ package br.com.voluntir.voluntir;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -42,17 +43,79 @@ public class Perfil extends AppCompatActivity {
     private ControleVaga controleVaga;
     private String nomeTabelaVaga = "vaga";
     private List<Voluntario> listaVoluntario = new ArrayList<>();
+    private Button botaoAprovar;
+    private Button botaoReprovar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_perfil_voluntario);
+
+        botaoAprovar = findViewById(R.id.button2);
+        botaoAprovar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!voluntarioAtualizado.getStatusVaga().equals("APROVADO")) {
+
+
+                    if (vagaAtualizada.getVoluntarios() != null) {
+                        listaVoluntario.clear();
+                        for (int i = 0; i < vagaAtualizada.getVoluntarios().size(); i++) {
+                            Voluntario voluntario2 = vagaAtualizada.getVoluntarios().get(i);
+                            if (vagaAtualizada.getVoluntarios().get(i).getIdVoluntario().equals(voluntarioAtualizado.getIdVoluntario())) {
+                                voluntario2.setStatusVaga("APROVADO");
+                            }
+                            listaVoluntario.add(voluntario2);
+
+                        }
+                    } else {
+                        listaVoluntario.add(voluntarioAtualizado);
+                    }
+
+                    vagaAtualizada.setVoluntarios(listaVoluntario);
+                    controleVaga = new ControleVaga();
+
+
+                    //controleVaga.atualizaVagaVoluntario(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
+                    controleVaga.aprovarCandidato(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
+                }
+            }
+        });
+        botaoReprovar = findViewById(R.id.button3);
+        botaoReprovar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!voluntarioAtualizado.getStatusVaga().equals("REPROVADO")) {
+                    if (vagaAtualizada.getVoluntarios() != null) {
+                        listaVoluntario.clear();
+                        for (int i = 0; i < vagaAtualizada.getVoluntarios().size(); i++) {
+                            Voluntario voluntario2 = vagaAtualizada.getVoluntarios().get(i);
+                            if (vagaAtualizada.getVoluntarios().get(i).getIdVoluntario().equals(voluntarioAtualizado.getIdVoluntario())) {
+                                voluntario2.setStatusVaga("REPROVADO");
+                            }
+                            listaVoluntario.add(voluntario2);
+
+                        }
+                    } else {
+                        listaVoluntario.add(voluntarioAtualizado);
+                    }
+
+                    vagaAtualizada.setVoluntarios(listaVoluntario);
+                    controleVaga = new ControleVaga();
+
+
+                    //controleVaga.atualizaVagaVoluntario(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
+                    controleVaga.reprovarCandidato(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
+                }
+            }
+        });
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        setContentView(R.layout.activity_main2);
+
         getSupportActionBar().hide();
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
@@ -131,9 +194,11 @@ public class Perfil extends AppCompatActivity {
                         }
                 )
         );
+
+
     }
 
-    public void clicarBotaoAprovar(View view) {
+    /*public void clicarBotaoAprovar(View view) {
         if (!voluntarioAtualizado.getStatusVaga().equals("APROVADO")) {
 
 
@@ -183,5 +248,5 @@ public class Perfil extends AppCompatActivity {
             //controleVaga.atualizaVagaVoluntario(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
             controleVaga.reprovarCandidato(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
         }
-    }
+    }*/
 }
