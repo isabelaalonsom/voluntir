@@ -36,11 +36,61 @@ public class VagaDao implements DAO<Vaga> {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    listener.onSucess();
+                    listener.onSucess(dado);
 
                 }
             }
         });
+    }
+
+    public Vaga buscaVaga(String informacao, String idOng, String tabela, Context context, final OnGetDataListener listener) {
+        listener.onStart();
+        refenciaBanco = BancoFirebase.getBancoReferencia();
+        //Query pesquisa = refenciaBanco.child(tabela).orderByChild("idVaga").equalTo(id).orderByChild("idOng").equalTo();
+        refenciaBanco.child(tabela).orderByChild("areaConhecimento").equalTo(informacao).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        Query pesquisa = refenciaBanco.child(tabela).orderByChild("areaConhecimento").equalTo(informacao);
+        pesquisa.addValueEventListener(new ValueEventListener() {
+            //recuperar os dados sempre que for mudado no banco
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if (!snapshot.exists()) {
+                    listener.onSucess(null);
+                } else {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        vaga = dataSnapshot.getValue(Vaga.class);
+                        if (vaga != null) {
+                            if (vaga.getIdOng().equals(idOng))
+                                listener.onSucess(vaga);
+                        }
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+
+        });
+        return vaga;
+
+    }
+
+    public void buscaVagaNome(String informacao, String idOng, String tabela, Context context) {
+
     }
 
     @Override
@@ -100,12 +150,6 @@ public class VagaDao implements DAO<Vaga> {
 
     }
 
-    public interface OnGetDataListener {
-        void onSucess();
-
-        void onStart();
-    }
-
     public void cadastrarVoluntarioVaga(Vaga dado, String tabela, Context context, final OnGetDataListener listener) {
         listener.onStart();
         refenciaBanco = BancoFirebase.getBancoReferencia();
@@ -113,13 +157,19 @@ public class VagaDao implements DAO<Vaga> {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    listener.onSucess();
+                    listener.onSucess(dado);
 
                 }
             }
         });
     }
 
+    public interface OnGetDataListener {
+        void onSucess(Vaga vaga);
+
+        void onStart();
+
+    }
 
 
     @Override

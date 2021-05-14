@@ -15,6 +15,11 @@ public class ControleVaga {
     VagaDao vagaDao;
     DatabaseReference bancoFirebase;
     boolean retorno = false;
+    boolean nomeVaga = false;
+
+    public boolean existeVaga() {
+        return nomeVaga;
+    }
 
     public boolean cadastrarVaga(Vaga dado, String tabela, Context context) {
 
@@ -43,12 +48,36 @@ public class ControleVaga {
         vagaDao = new VagaDao();
         vagaDao.atualizaVaga(dado, tabela, context, new VagaDao.OnGetDataListener() {
             @Override
-            public void onSucess() {
+            public void onSucess(Vaga vaga) {
                 Toast.makeText(
                         context,
                         "Vaga editada com sucesso!",
                         Toast.LENGTH_SHORT
                 ).show();
+            }
+
+            @Override
+            public void onStart() {
+
+            }
+        });
+
+    }
+
+    public void buscarVagaNome(String informacao, String idOng, String tabela, Context context, final VagaDao.OnGetDataListener listener) {
+
+        vagaDao = new VagaDao();
+        vagaDao.buscaVaga(informacao, idOng, tabela, context, new VagaDao.OnGetDataListener() {
+            @Override
+            public void onSucess(Vaga vagas) {
+                if (vagas != null) {
+                    nomeVaga = true;
+                    listener.onSucess(vagas);
+                }
+
+
+                //Toast.makeText(context, "vaga: "+ vagas.getAreaConhecimento(), Toast.LENGTH_LONG).show();
+
             }
 
             @Override
@@ -74,7 +103,7 @@ public class ControleVaga {
 
         vagaDao.cadastrarVoluntarioVaga(dado, tabela, context, new VagaDao.OnGetDataListener() {
             @Override
-            public void onSucess() {
+            public void onSucess(Vaga vaga) {
                 Toast.makeText(
                         context,
                         "Candidatado com sucesso!",
@@ -93,7 +122,7 @@ public class ControleVaga {
         vagaDao = new VagaDao();
         vagaDao.cadastrarVoluntarioVaga(dado, tabela, context, new VagaDao.OnGetDataListener() {
             @Override
-            public void onSucess() {
+            public void onSucess(Vaga vaga) {
                 Toast.makeText(
                         context,
                         "Candidatura cancelada!",
@@ -112,7 +141,7 @@ public class ControleVaga {
         vagaDao = new VagaDao();
         vagaDao.cadastrarVoluntarioVaga(dado, tabela, context, new VagaDao.OnGetDataListener() {
             @Override
-            public void onSucess() {
+            public void onSucess(Vaga vaga) {
                 Toast.makeText(
                         context,
                         "Candidato reprovado!",
@@ -132,7 +161,7 @@ public class ControleVaga {
         vagaDao = new VagaDao();
         vagaDao.cadastrarVoluntarioVaga(dado, tabela, context, new VagaDao.OnGetDataListener() {
             @Override
-            public void onSucess() {
+            public void onSucess(Vaga vaga) {
                 Toast.makeText(
                         context,
                         "Candidato aprovado!",
@@ -146,5 +175,11 @@ public class ControleVaga {
             }
         });
 
+    }
+
+    public interface OnGetDataListener {
+        void onSucess(Vaga vaga);
+
+        void onStart();
     }
 }

@@ -48,7 +48,7 @@
                     android:clickable="false"
                     android:gravity="center"
                     android:text="Nome: "
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtViewNomePerfilOng"
@@ -57,7 +57,7 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:textColor="#AA0B0B"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -76,7 +76,7 @@
                     android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:text="CNPJ: "
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtViewCpnjVariavelPerfilOng"
@@ -85,7 +85,7 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:textColor="#AA0B0B"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -104,7 +104,7 @@
                     android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:text="Localização: "
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtViewLocalizaoVariavelPerfilOng"
@@ -113,7 +113,7 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:textColor="#AA0B0B"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -132,7 +132,7 @@
                     android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:text="Causas: "
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtViewCausasVariavelPerfilOng"
@@ -141,7 +141,7 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:textColor="#AA0B0B"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -156,10 +156,11 @@
                     android:id="@+id/txtViewTelefonePerfilOng"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:text="Telefone: "
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtViewTelefoneVariavelPerfilOng"
@@ -169,7 +170,7 @@
                     android:gravity="center"
                     android:inputType="phone"
                     android:textColor="#AA0B0B"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -188,7 +189,7 @@
                     android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:text="Site: "
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <!-- esse campo não pode ser obrigatorio pq nem todas as ongs tem site -->
                 <TextView
@@ -197,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textColor="#AA0B0B"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -216,7 +217,7 @@
                     android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:text="E-mail: "
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/txtViewEmailVariavelPerfilOng"
@@ -225,7 +226,7 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
                     android:textColor="#AA0B0B"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -244,7 +245,7 @@
                     android:layout_marginRight="10dp"
                     android:gravity="center"
                     android:text="Resumo da ONG:"
-                    android:textSize="24sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -255,7 +256,7 @@
                 android:layout_marginLeft="10dp"
                 android:gravity="center"
                 android:textColor="#AA0B0B"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
         <!-- btnSair - Deve ser substituido por um botão com o ícone de portinha, veja o figma de telas (tela 12) -->
