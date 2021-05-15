@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
@@ -28,6 +29,7 @@ import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Ong;
+import br.com.voluntir.model.Vaga;
 import br.com.voluntir.voluntir.LoginActivityONG;
 import br.com.voluntir.voluntir.MainActivity;
 import br.com.voluntir.voluntir.MenuOngActivity;
@@ -36,7 +38,10 @@ public class OngDao implements DAO<Ong> {
     boolean cadastrado;
     private DatabaseReference bancoFirebase;
     private Ong ong;
+    private final DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth autenticacao;
+    private final DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
+    Vaga vaga;
 
     @Override
     public void adiciona(final Ong dado, final String tabela, final Context appContext) {
