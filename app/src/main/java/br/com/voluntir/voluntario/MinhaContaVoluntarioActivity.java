@@ -60,18 +60,14 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         if (dados != null) {
             voluntario = (Voluntario) dados.getSerializable("objeto");
 
-            Query teste = tabelaVaga.orderByChild("voluntarios");
-            teste.addValueEventListener(new ValueEventListener() {
+            Query teste = tabelaVaga;
+            teste.orderByKey().addValueEventListener(new ValueEventListener() {
                 //recuperar os dados sempre que for mudado no banco
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     listaVaga.clear();
-                    //DataSnapshot é o retorno do firebase
-                    //Log.i("FIREBASE", snapshot.getValue().toString());
-
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         vaga = dataSnapshot.getValue(Vaga.class);
-                        //Log.i("FIREBASE", snapshot.getValue().toString());
                         if (vaga.getVoluntarios() != null) {
 
                             for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
@@ -149,9 +145,9 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                 Vaga vaga;
                 vaga = listaVaga.get(i);
 
-                for (int j = 0; i < vaga.getVoluntarios().size(); j++) {
-                    if (vaga.getVoluntarios().get(i).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
-                        vaga.getVoluntarios().remove(i);
+                for (int j = 0; j < vaga.getVoluntarios().size(); j++) {
+                    if (vaga.getVoluntarios().get(j).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                        vaga.getVoluntarios().remove(j);
                         listaVagaSemVoluntario.add(vaga);
                     }
 
