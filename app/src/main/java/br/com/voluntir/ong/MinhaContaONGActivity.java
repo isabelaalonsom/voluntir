@@ -140,7 +140,7 @@ public class MinhaContaONGActivity extends AppCompatActivity {
 
         if (listaVaga != null) {
             VagaDao vagaDao = new VagaDao();
-            vagaDao.removeListaVaga(listaVaga, ong, getApplicationContext());
+            vagaDao.removeListaVagaOng(listaVaga, ong, getApplicationContext());
         } else {
             controleCadastro = new ControleCadastro();
             controleCadastro.excluirDadosOng(ong, tabelaOng, getApplicationContext());
