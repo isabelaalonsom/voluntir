@@ -25,8 +25,16 @@ public class EditarVaga extends AppCompatActivity {
     private boolean grava = false, mesdiaok = false;
     private Button botaoConfirmar;
     private Vaga vaga;
+
     private TextView nome;
     private EditText cargaHoraria, periodicidade, especialidade, detalheVaga, qtdCandidatos, dataInicio, dataTermino;
+
+    private TextView nome, txtTituloNovaVagaEditarVaga;
+    private EditText dataInicio, dataTermino;
+    private EditText cargaHoraria, periodicidade, especialidade, detalheVaga, qtdCandidatos;
+    private ControleCadastro controleCadastro;
+    private String tabelaBanco = "vaga";
+
     private ControleVaga controleVaga;
 
     @Override
@@ -44,6 +52,11 @@ public class EditarVaga extends AppCompatActivity {
         periodicidade = (EditText) findViewById(R.id.edtTextPeriodicidadeEditarVaga);
         detalheVaga = (EditText) findViewById(R.id.edtTextDetalhesVagaEditarVaga);
         qtdCandidatos = (EditText) findViewById(R.id.edtTextQtdCandidatosEditarVaga);
+        txtTituloNovaVagaEditarVaga = findViewById(R.id.txtViewTituloNovaVagaEditarVaga);
+
+        txtTituloNovaVagaEditarVaga.setText("Editar Vaga");
+
+
 
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
