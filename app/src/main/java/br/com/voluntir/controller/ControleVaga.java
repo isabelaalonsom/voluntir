@@ -5,17 +5,16 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 
-import br.com.voluntir.DAO.OngDao;
 import br.com.voluntir.DAO.VagaDao;
 import br.com.voluntir.model.Vaga;
 
 public class ControleVaga {
 
-    Vaga vaga;
-    VagaDao vagaDao;
-    DatabaseReference bancoFirebase;
-    boolean retorno = false;
-    boolean nomeVaga = false;
+    private final boolean retorno = false;
+    private VagaDao vagaDao;
+    private DatabaseReference bancoFirebase;
+    private boolean nomeVaga = false;
+
 
     public boolean existeVaga() {
         return nomeVaga;
@@ -64,6 +63,7 @@ public class ControleVaga {
 
     }
 
+
     public void buscarVagaNome(String informacao, String idOng, String tabela, Context context, final VagaDao.OnGetDataListener listener) {
 
         vagaDao = new VagaDao();
@@ -75,9 +75,6 @@ public class ControleVaga {
                     listener.onSucess(vagas);
                 }
 
-
-                //Toast.makeText(context, "vaga: "+ vagas.getAreaConhecimento(), Toast.LENGTH_LONG).show();
-
             }
 
             @Override
@@ -86,16 +83,6 @@ public class ControleVaga {
             }
         });
 
-    }
-
-
-    public void buscaOng(String id, String tabela, Context context) {
-        vagaDao = new VagaDao();
-        try {
-            vagaDao.busca(id, tabela, context);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void cadastrarVoluntarioVaga(Vaga dado, String tabela, Context context) {

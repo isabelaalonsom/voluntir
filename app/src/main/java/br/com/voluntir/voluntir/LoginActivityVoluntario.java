@@ -3,20 +3,14 @@ package br.com.voluntir.voluntir;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.controller.ControleLogin;
-import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
-import br.com.voluntir.ong.CadastroVagaActivity;
 import br.com.voluntir.voluntario.CadastroVoluntarioActivity;
-import br.com.voluntir.voluntario.MenuVoluntarioActivity;
-import br.com.voluntir.voluntario.MinhaContaVoluntarioActivity;
 
 
 public class LoginActivityVoluntario extends AppCompatActivity {
@@ -24,7 +18,7 @@ public class LoginActivityVoluntario extends AppCompatActivity {
     private Voluntario voluntario;
     private EditText email;
     private EditText senha;
-    private String nomeTabela = "voluntario";
+    private final String nomeTabela = "voluntario";
     private ControleLogin controleLogin;
 
 
@@ -50,7 +44,7 @@ public class LoginActivityVoluntario extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void clicarBotaoEntrarVoluntario (View view) {
+    public void clicarBotaoEntrarVoluntario(View view) {
         voluntario = new Voluntario();
 
         controleLogin = new ControleLogin();

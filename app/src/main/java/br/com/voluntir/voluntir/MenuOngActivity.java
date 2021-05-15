@@ -14,14 +14,13 @@ import br.com.voluntir.ong.MinhaContaONGActivity;
 
 
 public class MenuOngActivity extends AppCompatActivity {
-    Ong ong;
-    TextView txtEmailOng, txtNomeOng;
+    private Ong ong;
+    private TextView txtNomeOng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_ong);
-
 
         getSupportActionBar().hide();
 
@@ -41,7 +40,6 @@ public class MenuOngActivity extends AppCompatActivity {
             }
         }));
 
-
     }
 
     @Override
@@ -50,23 +48,10 @@ public class MenuOngActivity extends AppCompatActivity {
 
     }
 
-//    private void preencheTextViewEmail() {
-//        txtEmailOng.setText(ong.getEmailOng());
-//        txtNomeOng.setText(ong.getNome());
-//    }
-//
-//    private void preencheOng() {
-//        String email = txtEmailOng.getText().toString();
-//        String nome = txtNomeOng.getText().toString();
-//        ong.setEmailOng(email);
-//        ong.setNome(nome);
-//
-//    }
-
     public void clicarMinhaConta(View view) {
         Intent intent = new Intent(getApplicationContext(), MinhaContaONGActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("objeto",ong);
+        intent.putExtra("objeto", ong);
         startActivity(intent);
     }
 

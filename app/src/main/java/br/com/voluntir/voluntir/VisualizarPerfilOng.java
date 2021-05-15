@@ -11,17 +11,8 @@ import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 
 public class VisualizarPerfilOng extends AppCompatActivity {
-    private TextView txtNomeOng;
-    private TextView txtCnpj;
-    private TextView txtLocalizacao;
-    private TextView txtCausas;
-    private TextView txtTelefone;
-    private TextView txtSite;
-    private TextView txtEmail;
-    private TextView txtResumoOng;
-    private TextView txtViewTituloTopo;
+    private TextView txtNomeOng, txtCnpj, txtLocalizacao, txtCausas, txtTelefone, txtSite, txtEmail, txtResumoOng, txtViewTituloTopo;
     private Ong ong;
-    private Ong ong2;
     private ControleCadastro controleCadastro;
     private Vaga vaga;
     private OngDao ongDao;
@@ -50,8 +41,6 @@ public class VisualizarPerfilOng extends AppCompatActivity {
             vaga = (Vaga) dados.getSerializable("vaga");
         }
 
-        /*ControleCadastro controleCadastro = new ControleCadastro();
-        controleCadastro.buscarOngTeste(vaga);*/
 
         ongDao = new OngDao();
         ongDao.buscarOngTeste(new OngDao.FirebaseCallback() {

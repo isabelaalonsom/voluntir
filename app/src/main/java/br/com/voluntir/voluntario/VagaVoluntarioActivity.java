@@ -31,18 +31,17 @@ import br.com.voluntir.voluntir.R;
 import br.com.voluntir.voluntir.VoluntarioVisualizarVaga;
 
 public class VagaVoluntarioActivity extends AppCompatActivity {
-    Vaga vaga = new Vaga();
-    Vaga vagaClicada;
-    Voluntario voluntario;
-    AdapterVaga adapterVaga;
-    int qtdCanddidatos;
+
+    private final List<Vaga> listaVaga = new ArrayList<>();
+    private final List<Voluntario> listaVoluntario = new ArrayList<>();
+    private final DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
+    private final DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     private RecyclerView recyclerView;
-    private List<Vaga> listaVaga = new ArrayList<>();
-    private List<Voluntario> listaVoluntario = new ArrayList<>();
-    private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
-    private DatabaseReference tabelaCandidatura = bancoReferencia.child("candidatura");
-    private String nomeTabelaVaga = "vaga";
+    private final String nomeTabelaVaga = "vaga";
+    private Vaga vagaClicada, vaga;
+    private Voluntario voluntario;
+    private AdapterVaga adapterVaga;
+    private int qtdCanddidatos;
     private boolean usuarioCadastrado = false;
     private ControleVaga controleVaga;
 
@@ -97,7 +96,6 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
 
         });
 
-        //evento de click
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(
                         getApplicationContext(),

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -27,24 +26,16 @@ import br.com.voluntir.RecyclerItemClickListener;
 import br.com.voluntir.adapter.AdapterVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
-import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.ong.AprovacaoCandidatoActivity;
 
-public class VagaActivity extends AppCompatActivity  {
+public class VagaActivity extends AppCompatActivity {
+    private final List<Vaga> listaVaga = new ArrayList<>();
+    private final DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
+    private final DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
+    private final FirebaseAuth usuario = FirebaseAuth.getInstance();
     private RecyclerView recyclerView;
-    private List<Vaga> listaVaga = new ArrayList<>();
-    private List<Vaga> listaVagaOng = new ArrayList<>();
-    private List<Voluntario> listaVoluntario = new ArrayList<>();
-    //cria referencia para o banco de dados e getinstance estamos recuperando a instancia do
-    // firebase utilizada para salvar e o getReferecence volta pro nó raiz
-    private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
-    Vaga vaga = new Vaga();
-    private FirebaseAuth usuario = FirebaseAuth.getInstance();
-    Button btnEditarVaga;
-    Button btnExcluirVaga;
-    Ong ong;
-
+    private Vaga vaga = new Vaga();
+    private Ong ong;
 
 
     @Override
@@ -52,21 +43,18 @@ public class VagaActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vaga);
 
-        //getSupportActionBar().hide();
-
-        btnEditarVaga = findViewById(R.id.btnEditarVaga);
-        btnExcluirVaga = findViewById(R.id.btnExcluirVaga);
-
+        getSupportActionBar().hide();
 
         recyclerView = findViewById(R.id.recyclerViewVaga);
         Bundle dados = getIntent().getExtras();
-        ong = (Ong) dados.getSerializable("objeto");
+        if (dados != null) {
+            ong = (Ong) dados.getSerializable("objeto");
+        }
 
-        //Configurar Recyclerview
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
-        //coloca uma linha para separar
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
 
         tabelaVaga.addValueEventListener(new ValueEventListener() {
@@ -76,14 +64,14 @@ public class VagaActivity extends AppCompatActivity  {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                     vaga = dataSnapshot.getValue(Vaga.class);
-                        listaVaga.add(vaga);
+                    listaVaga.add(vaga);
 
                 }
 
                 AdapterVaga adapterVaga = new AdapterVaga(listaVaga);
                 recyclerView.setAdapter(adapterVaga);
             }
-            //trata o erro se a operação for cancelada
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -91,7 +79,6 @@ public class VagaActivity extends AppCompatActivity  {
 
         });
 
-        //evento de click
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(
                         getApplicationContext(),
@@ -118,8 +105,6 @@ public class VagaActivity extends AppCompatActivity  {
 
 
     }
-
-
 
 
 }

@@ -15,8 +15,8 @@ import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
 
 public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.MyViewHolder> {
-    private List<Vaga> listaVaga;
-    private Voluntario voluntario;
+    private final List<Vaga> listaVaga;
+    private final Voluntario voluntario;
     private String status;
 
     public AdapterCandidatura(List<Vaga> lista, Voluntario voluntario) {

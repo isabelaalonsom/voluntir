@@ -10,9 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import br.com.voluntir.model.Vaga;
 
 public class VoluntarioVisualizarVaga extends AppCompatActivity {
-    Vaga vaga;
-    TextView textNome, textAreaConhecimento, textDataInicio, textDataFim;
-    TextView textCargaHoraria, textDescricao;
+    private Vaga vaga;
+    private TextView textNome, textAreaConhecimento, textDataInicio, textDataFim, textCargaHoraria, textDescricao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +21,10 @@ public class VoluntarioVisualizarVaga extends AppCompatActivity {
         getSupportActionBar().hide();
 
         Bundle dados = getIntent().getExtras();
-        vaga = (Vaga) dados.getSerializable("vaga");
+        if (dados != null) {
+            vaga = (Vaga) dados.getSerializable("vaga");
+        }
+
 
         textNome = findViewById(R.id.txtViewVoluntarioVisualizarVaga);
         textAreaConhecimento = findViewById(R.id.txtViewAreaConhecimentoVoluntarioVisualizarVaga);
@@ -30,7 +32,6 @@ public class VoluntarioVisualizarVaga extends AppCompatActivity {
         textDataFim = findViewById(R.id.txtViewDataTeminoVoluntarioVisualizarVaga);
         textCargaHoraria = findViewById(R.id.txtViewCargaHorariaVoluntarioVisualizarVaga);
         textDescricao = findViewById(R.id.txtViewDescricaoVoluntarioVisualizarVaga);
-
         textNome.setText(vaga.getNomeOng());
         textAreaConhecimento.setText(vaga.getAreaConhecimento());
         textDataInicio.setText(vaga.getDataInicio());

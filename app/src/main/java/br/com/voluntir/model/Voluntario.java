@@ -4,19 +4,8 @@ import java.io.Serializable;
 
 public class Voluntario implements Serializable {
 
-    private String idVoluntario;
-    private String email;
-    private String senha;
-    private String confirmarSenha;
-    private String cpf;
-    private String nome;
-    private String sobrenome;
-    private String endereco;
-    private String telefone;
-    private String genero;
-    private String datanasc;
-    private String especialidade;
-    private String statusVaga;
+    private String idVoluntario, email, senha, confirmarSenha, cpf, nome, sobrenome;
+    private String endereco, telefone, genero, datanasc, especialidade, statusVaga;
 
     public Voluntario() {
     }

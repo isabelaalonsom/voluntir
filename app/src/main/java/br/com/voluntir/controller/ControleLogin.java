@@ -32,12 +32,12 @@ import br.com.voluntir.voluntir.MainActivity;
 import br.com.voluntir.voluntir.MenuOngActivity;
 
 public class ControleLogin {
-    Voluntario voluntario;
-    VoluntarioDao voluntarioDao;
-    Ong ong;
-    OngDao ongDao;
-    DatabaseReference bancoFirebase;
-    boolean retorno = false;
+    private Voluntario voluntario;
+    private VoluntarioDao voluntarioDao;
+    private Ong ong;
+    private OngDao ongDao;
+    private DatabaseReference bancoFirebase;
+    private boolean retorno = false;
     private FirebaseAuth autenticacao;
 
     public void enviarEmailRecuperarSenha(String email, final Context context) {
@@ -79,7 +79,7 @@ public class ControleLogin {
                     FirebaseUser ongFirebase = autenticacao.getCurrentUser();
 
                     bancoFirebase = BancoFirebase.getBancoReferencia();
-                    bancoFirebase.child("ong").orderByKey().equalTo(ongFirebase.getUid().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    bancoFirebase.child("ong").orderByKey().equalTo(ongFirebase.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
@@ -160,7 +160,7 @@ public class ControleLogin {
                     FirebaseUser voluntarioFirebase = autenticacao.getCurrentUser();
 
                     bancoFirebase = BancoFirebase.getBancoReferencia();
-                    bancoFirebase.child("voluntario").orderByKey().equalTo(voluntarioFirebase.getUid().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    bancoFirebase.child("voluntario").orderByKey().equalTo(voluntarioFirebase.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {

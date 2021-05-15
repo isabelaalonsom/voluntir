@@ -55,7 +55,7 @@ public class MenuVoluntarioActivity extends AppCompatActivity {
     }
 
     public void clicarBotaoCandidaturas(View view) {
-        Intent intent = new Intent(getApplicationContext(), CandidaturaActivity.class);
+        Intent intent = new Intent(getApplicationContext(), MinhaCandidaturaActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("objeto", voluntario);
         startActivity(intent);
