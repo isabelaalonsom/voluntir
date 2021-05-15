@@ -24,8 +24,7 @@ import br.com.voluntir.voluntario.MenuVoluntarioActivity;
 
 
 public class MainActivity extends AppCompatActivity {
-    private final String tabelaOng = "ong";
-    private final String tabelaVoluntario = "voluntario";
+    private final String tabelaOng = "ong", tabelaVoluntario = "voluntario";
     private ControleCadastro controleCadastro;
     private DatabaseReference bancoFirebase;
     private Ong ong;
@@ -44,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         if (preferencias.getEmailUsuarioLogado() != null || preferencias.getSenhaUsuarioLogado() != null) {
             controleCadastro = new ControleCadastro();
             if ((preferencias.getUsuarioLogado().equals("ong"))) {
-                /*controleCadastro.buscaOng(preferencias.getEmailUsuarioLogado(), tabelaOng, getApplicationContext());*/
                 bancoFirebase = BancoFirebase.getBancoReferencia();
                 Query pesquisa = bancoFirebase.child(tabelaOng).orderByChild("emailOng").equalTo(preferencias.getEmailUsuarioLogado());
                 pesquisa.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -75,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             } else if ((preferencias.getUsuarioLogado().equals("voluntario"))) {
-                //controleCadastro.buscaVoluntario(preferencias.getEmailUsuarioLogado(), tabelaVoluntario, getApplicationContext());
                 bancoFirebase = BancoFirebase.getBancoReferencia();
                 Query pesquisa = bancoFirebase.child(tabelaVoluntario).orderByChild("email").equalTo(preferencias.getEmailUsuarioLogado());
                 pesquisa.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -119,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
 
 }

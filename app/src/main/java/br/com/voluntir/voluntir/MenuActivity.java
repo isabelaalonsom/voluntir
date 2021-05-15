@@ -13,9 +13,9 @@ import br.com.voluntir.ong.CadastroVagaActivity;
 import br.com.voluntir.ong.MinhaContaONGActivity;
 
 public class MenuActivity extends AppCompatActivity {
-    Voluntario voluntario;
-    Ong ong;
-    Button botaoCriarVaga;
+    private Voluntario voluntario;
+    private Ong ong;
+    private Button botaoCriarVaga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +23,8 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         botaoCriarVaga = findViewById(R.id.btnCriarVaga);
-        //Recuperar os dados vindos de outra activity
+
         Bundle dados = getIntent().getExtras();
-        String email = dados.getString("email");
 
         if (dados.getSerializable("ong") instanceof Ong) {
             ong = new Ong();

@@ -1,6 +1,5 @@
 package br.com.voluntir.voluntario;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -8,29 +7,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
-
 import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
-import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
-import br.com.voluntir.ong.CadastroONGActivity;
 import br.com.voluntir.voluntir.R;
 
 
 public class MinhaContaVoluntarioActivity extends AppCompatActivity {
-    Voluntario voluntario;
-    private TextView txtNome;
-    private TextView txtSobrenome;
-    private TextView txtCpf;
-    private TextView txtDataNasc;
-    private TextView txtEmail;
-    private TextView txtTelefone;
-    private TextView txtEndereco;
-    private TextView txtGenero;
-    private TextView txtDescricaoTecnica;
-    ControleCadastro controleCadastro;
-    String tabelaVoluntario = "voluntario";
+
+    private final String tabelaVoluntario = "voluntario";
+    private Voluntario voluntario;
+    private TextView txtSobrenome, txtNome, txtCpf, txtDataNasc, txtEmail, txtTelefone, txtEndereco, txtGenero, txtDescricaoTecnica;
+    private ControleCadastro controleCadastro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +52,6 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                 txtDescricaoTecnica.setText(voluntario.getEspecialidade());
             }
         }
-
 
     }
 

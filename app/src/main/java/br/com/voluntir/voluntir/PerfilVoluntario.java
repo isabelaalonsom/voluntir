@@ -29,22 +29,19 @@ import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 
-public class Perfil extends AppCompatActivity {
+public class PerfilVoluntario extends AppCompatActivity {
     private RecyclerView recyclerViewPerfil;
-    private String nomeTabelaVoluntario = "voluntario";
     private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     private Voluntario voluntario;
     private AdapterPerfil adapterPerfil;
     private Voluntario voluntarioAtualizado;
-    private Vaga vaga;
+    private Vaga vaga, vagaAtualizada;
     private Ong ong;
-    private Vaga vagaAtualizada;
     private ControleVaga controleVaga;
     private String nomeTabelaVaga = "vaga";
     private List<Voluntario> listaVoluntario = new ArrayList<>();
-    private Button botaoAprovar;
-    private Button botaoReprovar;
+    private Button botaoAprovar, botaoReprovar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +72,6 @@ public class Perfil extends AppCompatActivity {
                     vagaAtualizada.setVoluntarios(listaVoluntario);
                     controleVaga = new ControleVaga();
 
-
-                    //controleVaga.atualizaVagaVoluntario(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
                     controleVaga.aprovarCandidato(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
                 }
             }
@@ -103,8 +98,6 @@ public class Perfil extends AppCompatActivity {
                     vagaAtualizada.setVoluntarios(listaVoluntario);
                     controleVaga = new ControleVaga();
 
-
-                    //controleVaga.atualizaVagaVoluntario(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
                     controleVaga.reprovarCandidato(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
                 }
             }
@@ -198,55 +191,5 @@ public class Perfil extends AppCompatActivity {
 
     }
 
-    /*public void clicarBotaoAprovar(View view) {
-        if (!voluntarioAtualizado.getStatusVaga().equals("APROVADO")) {
 
-
-            if (vagaAtualizada.getVoluntarios() != null) {
-                listaVoluntario.clear();
-                for (int i = 0; i < vagaAtualizada.getVoluntarios().size(); i++) {
-                    Voluntario voluntario2 = vagaAtualizada.getVoluntarios().get(i);
-                    if (vagaAtualizada.getVoluntarios().get(i).getIdVoluntario().equals(voluntarioAtualizado.getIdVoluntario())) {
-                        voluntario2.setStatusVaga("APROVADO");
-                    }
-                    listaVoluntario.add(voluntario2);
-
-                }
-            } else {
-                listaVoluntario.add(voluntarioAtualizado);
-            }
-
-            vagaAtualizada.setVoluntarios(listaVoluntario);
-            controleVaga = new ControleVaga();
-
-
-            //controleVaga.atualizaVagaVoluntario(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
-            controleVaga.aprovarCandidato(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
-        }
-    }
-
-    public void clicarBotaoReprovar(View view) {
-        if (!voluntarioAtualizado.getStatusVaga().equals("REPROVADO")) {
-            if (vagaAtualizada.getVoluntarios() != null) {
-                listaVoluntario.clear();
-                for (int i = 0; i < vagaAtualizada.getVoluntarios().size(); i++) {
-                    Voluntario voluntario2 = vagaAtualizada.getVoluntarios().get(i);
-                    if (vagaAtualizada.getVoluntarios().get(i).getIdVoluntario().equals(voluntarioAtualizado.getIdVoluntario())) {
-                        voluntario2.setStatusVaga("REPROVADO");
-                    }
-                    listaVoluntario.add(voluntario2);
-
-                }
-            } else {
-                listaVoluntario.add(voluntarioAtualizado);
-            }
-
-            vagaAtualizada.setVoluntarios(listaVoluntario);
-            controleVaga = new ControleVaga();
-
-
-            //controleVaga.atualizaVagaVoluntario(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
-            controleVaga.reprovarCandidato(vagaAtualizada, nomeTabelaVaga, getApplicationContext());
-        }
-    }*/
 }

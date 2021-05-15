@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,31 +28,26 @@ import br.com.voluntir.RecyclerItemClickListener;
 import br.com.voluntir.adapter.AdapterVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
-import br.com.voluntir.model.Voluntario;
 
 public class EditarMinhasVagas extends AppCompatActivity {
 
-    Vaga vaga = new Vaga();
-    String informacoes = "";
-    Ong ong;
+    private final List<Vaga> listaVaga = new ArrayList<>();
+    private final DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private RecyclerView recyclerViewEditarVaga;
-    private List<Vaga> listaVaga = new ArrayList<>();
-    private List<Voluntario> listaVoluntario = new ArrayList<>();
-    private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
-    private FirebaseAuth usuario = FirebaseAuth.getInstance();
+    private final DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
+    private Vaga vaga = new Vaga();
+    private Ong ong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_editar_minhas_vagas);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        setContentView(R.layout.activity_editar_minhas_vagas);
 
         getSupportActionBar().hide();
 
@@ -112,7 +106,6 @@ public class EditarMinhasVagas extends AppCompatActivity {
                             @Override
                             public void onLongItemClick(View view, int position) throws IOException, DocumentException {
                                 Vaga vaga = listaVaga.get(position);
-
 
                             }
 

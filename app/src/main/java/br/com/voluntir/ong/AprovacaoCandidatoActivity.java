@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,21 +28,20 @@ import br.com.voluntir.adapter.AdapterAprovacao;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
-import br.com.voluntir.voluntir.Perfil;
+import br.com.voluntir.voluntir.PerfilVoluntario;
 import br.com.voluntir.voluntir.R;
 
 public class AprovacaoCandidatoActivity extends AppCompatActivity {
-    private TextView txtViewStatusVariavel, txtNomeVoluntario;
-    private List<Vaga> listaVaga = new ArrayList<>();
+    private final List<Vaga> listaVaga = new ArrayList<>();
+    private final List<Voluntario> listaVoluntario = new ArrayList<>();
     private RecyclerView recyclerViewCandidato;
-    private List<Voluntario> listaVoluntario = new ArrayList<>();
-    private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
+    private final DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
+    private final DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
+    Vaga vagaAtualizada;
     private AdapterAprovacao adapterAprovacao;
     private Vaga vaga;
     private Ong ong;
     private Voluntario voluntario;
-    Vaga vagaAtualizada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +59,12 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
         vaga = (Vaga) dados.getSerializable("objeto");
         ong = (Ong) dados.getSerializable("ong");
         recyclerViewCandidato = findViewById(R.id.recyclerViewCandidatos);
-        txtNomeVoluntario = findViewById(R.id.txtViewCandidatos);
-        txtViewStatusVariavel = findViewById(R.id.txtStatusVariavel);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerViewCandidato.setLayoutManager(layoutManager);
         recyclerViewCandidato.setHasFixedSize(true);
 
         recyclerViewCandidato.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
-
 
         Query teste = tabelaVaga;
         teste.addValueEventListener(new ValueEventListener() {
@@ -94,9 +89,6 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                             }
 
                         }
-
-
-
 
                     }
 
@@ -132,7 +124,7 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                             public void onItemClick(View view, int position) {
                                 voluntario = vagaAtualizada.getVoluntarios().get(position);
 
-                                Intent intent = new Intent(getApplicationContext(), Perfil.class);
+                                Intent intent = new Intent(getApplicationContext(), PerfilVoluntario.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.putExtra("objeto", vagaAtualizada);
                                 intent.putExtra("ong", ong);

@@ -5,20 +5,14 @@ import java.util.List;
 
 public class Vaga implements Serializable {
 
-    //private String idVaga;
-    private String idVaga;
     private int qtdCandidaturas;
-    private String areaConhecimento;
-    private String descricaoVaga;
-    private String dataInicio;
-    private String dataTermino;
-    private String periodicidade;
-    private String nomeOng;
-    private String idOng;
-    private String cargaHoraria;
-    private String idVoluntario;
+    private String descricaoVaga, areaConhecimento, dataInicio, dataTermino, periodicidade, nomeOng;
+    private String idOng, cargaHoraria, idVoluntario, idVaga;
     private List<Voluntario> voluntarios;
 
+
+    public Vaga() {
+    }
 
     public String getCargaHoraria() {
         return cargaHoraria;
@@ -26,10 +20,6 @@ public class Vaga implements Serializable {
 
     public void setCargaHoraria(String cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
-    }
-
-
-    public Vaga() {
     }
 
     public String getIdVaga() {
@@ -90,8 +80,6 @@ public class Vaga implements Serializable {
     }
 
     public List<Voluntario> getVoluntarios() {
-        //voluntario.getSobrenome();
-        //voluntario.getNome();
         return voluntarios;
     }
 

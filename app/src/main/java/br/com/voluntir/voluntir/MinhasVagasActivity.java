@@ -24,7 +24,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,27 +56,25 @@ import br.com.voluntir.util.PdfCreator;
 import br.com.voluntir.util.Util;
 
 public class MinhasVagasActivity extends AppCompatActivity {
+    private final List<Vaga> listaVaga = new ArrayList<>();
+    private final List<Voluntario> listaVoluntario = new ArrayList<>();
+    private final DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
+    private final DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     private RecyclerView recyclerView;
-    private List<Vaga> listaVaga = new ArrayList<>();
-    private List<Voluntario> listaVoluntario = new ArrayList<>();
-    private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
-    Vaga vaga = new Vaga();
-    String informacoes = "";
-    private FirebaseAuth usuario = FirebaseAuth.getInstance();
-    Ong ong;
+    private Vaga vaga = new Vaga();
+    private String informacoes = "";
+    private Ong ong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_vaga);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        setContentView(R.layout.activity_vaga);
 
         getSupportActionBar().hide();
 
@@ -162,7 +159,7 @@ public class MinhasVagasActivity extends AppCompatActivity {
         );
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
 
-            String permissao[] = new String[]{
+            String[] permissao = new String[]{
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.READ_EXTERNAL_STORAGE,
             };
@@ -238,7 +235,6 @@ public class MinhasVagasActivity extends AppCompatActivity {
         document.add(paragraph);
         listaVoluntario.clear();
 
-        //listaVoluntario = vaga.getVoluntarios();
         //Segunda info
 
         if (vaga.getVoluntarios() == null) {
@@ -257,13 +253,9 @@ public class MinhasVagasActivity extends AppCompatActivity {
             }
         }
         //Segunda info
-        /*paragraph = new Paragraph(informacoes, font);
-        document.add(paragraph);*/
 
         document.close();
         outputStream.close();
-
-
 
         //Se o celular utilizado for da versão 10 do android ou superior
         if (vaga.getVoluntarios() == null) {
@@ -279,7 +271,6 @@ public class MinhasVagasActivity extends AppCompatActivity {
                 visualizarPdfFile(pdf);
             }
         }
-
 
 
     }

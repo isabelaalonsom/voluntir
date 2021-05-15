@@ -2,38 +2,21 @@ package br.com.voluntir.controller;
 
 import android.content.Context;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-
 import br.com.voluntir.DAO.OngDao;
 import br.com.voluntir.DAO.VoluntarioDao;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
-import br.com.voluntir.voluntir.VisualizarPerfilOng;
 
 public class ControleCadastro {
-    private FirebaseAuth autenticacao;
-    Voluntario voluntario;
-    VoluntarioDao voluntarioDao;
-    Ong ong;
-    OngDao ongDao;
-    VisualizarPerfilOng visualizarPerfilOng = new VisualizarPerfilOng();
-    DatabaseReference bancoFirebase;
     boolean retorno = false;
-
+    private Voluntario voluntario;
+    private VoluntarioDao voluntarioDao;
+    private Ong ong;
+    private OngDao ongDao;
 
     public void buscarOngTeste(Vaga vaga) {
         ongDao = new OngDao();
-        /*ongDao.buscarOngTeste(new OngDao.FirebaseCallback() {
-            @Override
-            public void onCallback(Ong ong) {
-                *//*VisualizarPerfilOng visualizarPerfilOng = new VisualizarPerfilOng();
-                visualizarPerfilOng.exibirPerfil(ong);*//*
-                retornaOng(ong);
-
-            }
-        }, vaga.getIdOng());*/
 
         ongDao.lerDados(vaga.getIdOng(), new OngDao.OnGetDataListener() {
             @Override
@@ -73,33 +56,6 @@ public class ControleCadastro {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    /*   public void buscaOngTeste(Context context, String id) {
-
-            ongDao = new OngDao();
-            ongDao.buscarOngTeste(new OngDao.FirebaseCallback() {
-                @Override
-                public void onCallback(Ong ong) {
-
-                            Intent intent = new Intent(context, VisualizarPerfilOng.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.putExtra("ong",ong);
-                            context.startActivity(intent);
-
-
-                        return;
-
-
-
-
-
-                }
-            },id);
-
-        }*/
-    public void buscaCompleta(Ong ong) {
-
     }
 
 

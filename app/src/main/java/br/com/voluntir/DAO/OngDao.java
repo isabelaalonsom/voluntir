@@ -24,7 +24,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
@@ -34,9 +33,8 @@ import br.com.voluntir.voluntir.MainActivity;
 import br.com.voluntir.voluntir.MenuOngActivity;
 
 public class OngDao implements DAO<Ong> {
-    private final static List<Ong> ongList = new ArrayList<>();
-    DatabaseReference bancoFirebase;
     boolean cadastrado;
+    private DatabaseReference bancoFirebase;
     private Ong ong;
     private FirebaseAuth autenticacao;
 

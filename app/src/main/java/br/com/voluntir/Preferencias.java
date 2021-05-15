@@ -5,15 +5,12 @@ import android.content.SharedPreferences;
 
 public class Preferencias {
 
-    private Context context;
-    private SharedPreferences preferences;
     private static final String NOME_ARQUIVO = "app.preferencias";
-    private int mode = 0;
-    private SharedPreferences.Editor editor;
-
-    private final String EMAIL_USUARIO_LOGADO = "email_usuario_logado";
-    private final String SENHA_USUARIO_LOGADO = "senha_usuario_logado";
-    private final String USUARIO_LOGADO = "usuario_logado";
+    private final String EMAIL_USUARIO_LOGADO = "email_usuario_logado", SENHA_USUARIO_LOGADO = "senha_usuario_logado", USUARIO_LOGADO = "usuario_logado";
+    private final Context context;
+    private final SharedPreferences preferences;
+    private final int mode = 0;
+    private final SharedPreferences.Editor editor;
 
     public Preferencias(Context contextoParametro) {
         context = contextoParametro;

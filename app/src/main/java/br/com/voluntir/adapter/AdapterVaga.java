@@ -14,7 +14,7 @@ import br.com.voluntir.model.Vaga;
 import br.com.voluntir.voluntir.R;
 
 public class AdapterVaga extends RecyclerView.Adapter<AdapterVaga.MyViewHolder> {
-    private List<Vaga> listaVaga;
+    private final List<Vaga> listaVaga;
 
     public AdapterVaga(List<Vaga> lista) {
         this.listaVaga = lista;
@@ -35,7 +35,7 @@ public class AdapterVaga extends RecyclerView.Adapter<AdapterVaga.MyViewHolder> 
 
 
         if (vaga.getVoluntarios() != null) {
-            holder.vaga.setText("vagas: " + Integer.toString(vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()));
+            holder.vaga.setText("vagas: " + (vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()));
             if ((vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()) < 0) {
                 holder.vaga.setText("vagas:0");
             }

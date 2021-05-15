@@ -17,10 +17,10 @@
         <activity android:name=".EditarMinhasVagas" />
         <activity android:name=".EditarVaga" />
         <activity android:name=".VisualizarPerfilOng" />
-        <activity android:name=".Perfil" />
+        <activity android:name=".PerfilVoluntario" />
         <activity android:name=".MinhasVagasActivity" />
         <activity android:name="br.com.voluntir.voluntario.VagaVoluntarioActivity" />
-        <activity android:name="br.com.voluntir.voluntario.CandidaturaActivity" />
+        <activity android:name="br.com.voluntir.voluntario.MinhaCandidaturaActivity" />
         <activity android:name=".VagaActivity" />
         <activity android:name=".MenuOngActivity" />
         <activity android:name=".MainActivity">

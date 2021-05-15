@@ -33,15 +33,15 @@ import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
 
-public class CandidaturaActivity extends AppCompatActivity {
+public class MinhaCandidaturaActivity extends AppCompatActivity {
 
     private TextView txtViewStatus, txtViewStatusVariavel;
     private RecyclerView recyclerViewCandidatura;
-    private List<Vaga> listaVagaCandidatada = new ArrayList<>();
-    private List<Voluntario> listaVoluntario = new ArrayList<>();
-    private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
-    private String nomeTabelaVaga = "vaga";
+    private final List<Vaga> listaVagaCandidatada = new ArrayList<>();
+    private final List<Voluntario> listaVoluntario = new ArrayList<>();
+    private final DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
+    private final DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
+    private final String nomeTabelaVaga = "vaga";
     private ControleVaga controleVaga;
     Ong ong;
     Voluntario voluntario;
@@ -51,7 +51,7 @@ public class CandidaturaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_candidatura);
+        setContentView(R.layout.activity_minha_candidatura);
 
         getSupportActionBar().hide();
 

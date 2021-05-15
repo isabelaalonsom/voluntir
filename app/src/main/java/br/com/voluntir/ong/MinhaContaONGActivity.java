@@ -7,9 +7,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
@@ -17,29 +14,18 @@ import br.com.voluntir.voluntir.R;
 
 public class MinhaContaONGActivity extends AppCompatActivity {
 
-    TextView txtNomeOng;
-    TextView txtCnpj;
-    private TextView txtLocalizacao;
-    private TextView txtCausas;
-    private TextView txtTelefone;
-    private TextView txtSite;
-    private TextView txtEmail;
-    private TextView txtResumoOng;
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getInstance().getReference();
-    private DatabaseReference tabelaVaga = databaseReference.child("ong");
-    private DatabaseReference nomeOngDatabase = tabelaVaga.child("nome");
-    private DatabaseReference cnpjOngDatabase = tabelaVaga.child("cnpj");
-    String tabelaOng = "ong";
-    Ong ong;
-    ControleCadastro controleCadastro;
+    private final String tabelaOng = "ong";
+    private TextView txtLocalizacao, txtNomeOng, txtCausas, txtCnpj;
+    private TextView txtTelefone, txtSite, txtEmail, txtResumoOng;
+    private Ong ong;
+    private ControleCadastro controleCadastro;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_minha_conta_ong);
 
         getSupportActionBar().hide();
-
 
         txtNomeOng = (TextView) findViewById(R.id.txtViewONGVariavel);
         txtCnpj = (TextView) findViewById(R.id.txtViewCpnjVariavel);
@@ -49,6 +35,7 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         txtSite = (TextView) findViewById(R.id.txtViewSiteVariavel);
         txtEmail = (TextView) findViewById(R.id.txtViewEmailVariavel);
         txtResumoOng = (TextView) findViewById(R.id.txtViewResumoOngVariavel);
+
         limparCampos();
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
@@ -139,7 +126,6 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         txtEmail.setText("");
         txtResumoOng.setText("");
     }
-
 
 
 }

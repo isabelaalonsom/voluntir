@@ -14,7 +14,7 @@ import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
 
 public class AdapterAprovacao extends RecyclerView.Adapter<AdapterAprovacao.MyViewHolder> {
-    private List<Voluntario> listaVoluntario;
+    private final List<Voluntario> listaVoluntario;
 
     public AdapterAprovacao(List<Voluntario> lista) {
         this.listaVoluntario = lista;

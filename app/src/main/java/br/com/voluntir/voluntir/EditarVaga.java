@@ -14,24 +14,27 @@ import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 
 import java.util.Calendar;
 
-import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 
 public class EditarVaga extends AppCompatActivity {
 
-    Ong ong;
-    String idOng;
-    boolean grava = false;
-    boolean mesdiaok = false;
+    private final String tabelaBanco = "vaga";
+    private Ong ong;
+    private boolean grava = false, mesdiaok = false;
     private Button botaoConfirmar;
     private Vaga vaga;
+
+    private TextView nome;
+    private EditText cargaHoraria, periodicidade, especialidade, detalheVaga, qtdCandidatos, dataInicio, dataTermino;
+
     private TextView nome, txtTituloNovaVagaEditarVaga;
     private EditText dataInicio, dataTermino;
     private EditText cargaHoraria, periodicidade, especialidade, detalheVaga, qtdCandidatos;
     private ControleCadastro controleCadastro;
     private String tabelaBanco = "vaga";
+
     private ControleVaga controleVaga;
 
     @Override
@@ -55,7 +58,6 @@ public class EditarVaga extends AppCompatActivity {
 
 
 
-        //Recuperar os dados vindos de outra activity
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
             ong = (Ong) dados.getSerializable("ong");
@@ -154,11 +156,7 @@ public class EditarVaga extends AppCompatActivity {
                 }
 
                 if (mesdiaok) {
-//                    if (anoInicio > anoTermino) {
-//                        Toast.makeText(getApplicationContext(), "A data de início deve ser menor do que a data de término da Vaga", Toast.LENGTH_SHORT).show();
-//                    } else {
                     grava = true;
-                    //}
                 }
 
                 if (grava) {
@@ -177,7 +175,6 @@ public class EditarVaga extends AppCompatActivity {
                             vaga2.setVoluntarios(vaga.getVoluntarios());
                         controleVaga = new ControleVaga();
                         controleVaga.atualizaVagaOng(vaga2, tabelaBanco, getApplicationContext());
-                        //controleVaga.atualizaVagaVoluntario(vaga2, tabelaBanco, getApplicationContext());
                     }
 
                 }
@@ -185,9 +182,6 @@ public class EditarVaga extends AppCompatActivity {
         });
     }
 
-    public void CadastrarVaga() {
-
-    }
 
     public void limparDadosDoCadastroVaga(View view) {
         especialidade.setText("");

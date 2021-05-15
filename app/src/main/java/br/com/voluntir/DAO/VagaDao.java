@@ -25,8 +25,8 @@ import br.com.voluntir.voluntir.MainActivity;
 
 public class VagaDao implements DAO<Vaga> {
 
-    Vaga vaga;
-    List<Vaga> listaVaga;
+    private Vaga vaga;
+    private List<Vaga> listaVaga;
     private DatabaseReference refenciaBanco;
 
     public void atualizaVaga(Vaga dado, String tabela, Context context, final OnGetDataListener listener) {
@@ -109,7 +109,6 @@ public class VagaDao implements DAO<Vaga> {
             }
         });
 
-        return;
     }
 
     @Override

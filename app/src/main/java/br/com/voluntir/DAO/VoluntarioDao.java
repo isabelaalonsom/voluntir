@@ -24,19 +24,16 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
-import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntario.MenuVoluntarioActivity;
-import br.com.voluntir.voluntir.LoginActivityONG;
 import br.com.voluntir.voluntir.LoginActivityVoluntario;
 import br.com.voluntir.voluntir.MainActivity;
-import br.com.voluntir.voluntir.MenuOngActivity;
 
 public class VoluntarioDao implements DAO<Voluntario> {
     private Voluntario voluntario;
     private FirebaseAuth autenticacao;
-    Boolean cadastrado=false;
-    DatabaseReference bancoFirebase;
+    private Boolean cadastrado = false;
+    private DatabaseReference bancoFirebase;
 
     @Override
     public void adiciona(Voluntario dado, final String tabela, final Context appContext) {
@@ -50,12 +47,12 @@ public class VoluntarioDao implements DAO<Voluntario> {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
 
-                    cadastrado=true;
+                    cadastrado = true;
                     //recupera os dados do usuario
                     FirebaseUser voluntarioFirebase = task.getResult().getUser();
 
                     //recupera o uid do usuario
-                    voluntario.setIdVoluntario( voluntarioFirebase.getUid() );
+                    voluntario.setIdVoluntario(voluntarioFirebase.getUid());
 
                     DatabaseReference bancoReferencia = BancoFirebase.getBancoReferencia();
                     //seta o valor do proprio usuario
@@ -65,8 +62,6 @@ public class VoluntarioDao implements DAO<Voluntario> {
                     Toast.makeText(appContext,
                             "Cadastrado com sucesso ",
                             Toast.LENGTH_SHORT).show();
-                    //encerra a activity
-                    //finish();
 
                     Intent intent = new Intent(appContext, LoginActivityVoluntario.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -74,13 +69,13 @@ public class VoluntarioDao implements DAO<Voluntario> {
                     appContext.startActivity(intent);
 
 
-                }else{
+                } else {
 
                     cadastrado = false;
                     String erroExcecao = "";
                     try {
                         throw task.getException();
-                    }catch (FirebaseAuthWeakPasswordException e) {
+                    } catch (FirebaseAuthWeakPasswordException e) {
                         erroExcecao = "Digite uma senha mais forte, contendo mais caracteres e com letras e números";
                     } catch (FirebaseAuthInvalidCredentialsException e) {
                         erroExcecao = "O e-mail digitado é inválido, digite um novo e-mail";
@@ -92,16 +87,15 @@ public class VoluntarioDao implements DAO<Voluntario> {
                     }
 
                     Toast.makeText(appContext,
-                            "Erro: "+erroExcecao,
+                            "Erro: " + erroExcecao,
                             Toast.LENGTH_SHORT).show();
-                    Log.w("CADASTRO", "signInWithEmail:erro"+erroExcecao, task.getException());
+                    Log.w("CADASTRO", "signInWithEmail:erro" + erroExcecao, task.getException());
 
                 }
 
             }
         });
 
-        return;
     }
 
     @Override
