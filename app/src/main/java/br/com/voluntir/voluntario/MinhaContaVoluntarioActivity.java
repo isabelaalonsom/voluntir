@@ -1,11 +1,13 @@
 package br.com.voluntir.voluntario;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -135,10 +137,10 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
     }
 
     public void clicarBotaoExcluir(View view) {
-
+        abrirDialog(view);
 
         //Vaga vaga = listaVaga;
-        if (listaVaga != null) {
+        /*if (listaVaga != null) {
             listaVagaSemVoluntario.clear();
             acabou = false;
             for (int i = 0; i < listaVaga.size(); i++) {
@@ -165,7 +167,7 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         } else if (listaVagaSemVoluntario == null && acabou == true) {
             controleCadastro = new ControleCadastro();
             controleCadastro.excluirDadosVoluntario(voluntario, tabelaVoluntario, getApplicationContext());
-        }
+        }*/
 
 
     }
@@ -187,6 +189,59 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         txtTelefone.setText("");
         txtGenero.setText("");
         txtDescricaoTecnica.setText("");
+    }
+
+    public void abrirDialog(View view) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+
+        dialog.setTitle("Excluir Conta");
+        dialog.setMessage("Deseja excluir conta?");
+
+        dialog.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (listaVaga != null) {
+                    listaVagaSemVoluntario.clear();
+                    acabou = false;
+                    for (int i = 0; i < listaVaga.size(); i++) {
+                        Vaga vaga;
+                        vaga = listaVaga.get(i);
+
+                        for (int j = 0; j < vaga.getVoluntarios().size(); j++) {
+                            if (vaga.getVoluntarios().get(j).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                                vaga.getVoluntarios().remove(j);
+                                listaVagaSemVoluntario.add(vaga);
+                            }
+
+                        }
+
+
+                    }
+                    acabou = true;
+                }
+
+
+                if (listaVagaSemVoluntario != null && acabou == true) {
+                    VagaDao vagaDao = new VagaDao();
+                    vagaDao.removeListaVagaCandidaturas(listaVagaSemVoluntario, voluntario, getApplicationContext());
+                } else if (listaVagaSemVoluntario == null && acabou == true) {
+                    controleCadastro = new ControleCadastro();
+                    controleCadastro.excluirDadosVoluntario(voluntario, tabelaVoluntario, getApplicationContext());
+                }
+
+            }
+        });
+
+        dialog.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "Exclusão cancelada", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.create();
+        dialog.show();
+
     }
 
 

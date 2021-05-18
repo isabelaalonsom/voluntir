@@ -14,6 +14,7 @@ import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 
 import java.util.Calendar;
 
+import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
@@ -25,8 +26,13 @@ public class EditarVaga extends AppCompatActivity {
     private boolean grava = false, mesdiaok = false;
     private Button botaoConfirmar;
     private Vaga vaga;
+
     private TextView nome;
     private EditText cargaHoraria, periodicidade, especialidade, detalheVaga, qtdCandidatos, dataInicio, dataTermino;
+
+    private TextView txtTituloNovaVagaEditarVaga;
+    private ControleCadastro controleCadastro;
+
     private ControleVaga controleVaga;
 
     @Override
@@ -44,6 +50,10 @@ public class EditarVaga extends AppCompatActivity {
         periodicidade = (EditText) findViewById(R.id.edtTextPeriodicidadeEditarVaga);
         detalheVaga = (EditText) findViewById(R.id.edtTextDetalhesVagaEditarVaga);
         qtdCandidatos = (EditText) findViewById(R.id.edtTextQtdCandidatosEditarVaga);
+        txtTituloNovaVagaEditarVaga = findViewById(R.id.txtViewTituloNovaVagaEditarVaga);
+
+        txtTituloNovaVagaEditarVaga.setText("Editar Vaga");
+
 
         Bundle dados = getIntent().getExtras();
         if (dados != null) {

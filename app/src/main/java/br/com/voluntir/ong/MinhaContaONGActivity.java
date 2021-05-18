@@ -1,11 +1,13 @@
 package br.com.voluntir.ong;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -136,15 +138,7 @@ public class MinhaContaONGActivity extends AppCompatActivity {
     }
 
     public void clicarBotaoExcluirOng(View view) {
-
-
-        if (listaVaga != null) {
-            VagaDao vagaDao = new VagaDao();
-            vagaDao.removeListaVagaOng(listaVaga, ong, getApplicationContext());
-        } else {
-            controleCadastro = new ControleCadastro();
-            controleCadastro.excluirDadosOng(ong, tabelaOng, getApplicationContext());
-        }
+        abrirDialog(view);
 
     }
 
@@ -157,6 +151,38 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         txtSite.setText("");
         txtEmail.setText("");
         txtResumoOng.setText("");
+    }
+
+    public void abrirDialog(View view) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+
+        dialog.setTitle("Excluir Conta");
+        dialog.setMessage("Deseja excluir conta?");
+
+        dialog.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (listaVaga != null) {
+                    VagaDao vagaDao = new VagaDao();
+                    vagaDao.removeListaVagaOng(listaVaga, ong, getApplicationContext());
+                } else {
+                    controleCadastro = new ControleCadastro();
+                    controleCadastro.excluirDadosOng(ong, tabelaOng, getApplicationContext());
+                }
+
+            }
+        });
+
+        dialog.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "Exclusão cancelada", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.create();
+        dialog.show();
+
     }
 
 
