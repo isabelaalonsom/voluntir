@@ -70,7 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Título da vaga:"
+                    android:text="Área de conhecimento: "
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -79,7 +79,7 @@
                 android:id="@+id/edtTextAreaConhecimentoEditarVaga"
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
-                android:hint="Escreva o título da vaga" />
+                android:hint="Escreva a área de conhecimento" />
 
             <LinearLayout
                 android:id="@+id/LinearDataInicioEditarVaga"
@@ -163,15 +163,14 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <TextView
+                <EditText
                     android:id="@+id/editTextTextPersonNameEditarVaga"
-                    android:layout_width="236dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Quantidade de candidatos:"
-                    android:textSize="18sp" />
+                    android:text="Quantidade de candidatos:" />
 
                 <EditText
                     android:id="@+id/edtTextQtdCandidatosEditarVaga"
