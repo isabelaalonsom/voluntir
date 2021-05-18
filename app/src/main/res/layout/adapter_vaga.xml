@@ -30,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="start"
             android:text="ONG Ajuda Certa!"
             android:textColor="@android:color/secondary_text_light" />
 
@@ -46,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Area Conhecimento"
+            android:text="Título da vaga:"
             android:textColor="@android:color/secondary_text_light" />
 
         <TextView
@@ -54,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="start"
             android:text="Vagas:"
             android:textColor="@android:color/secondary_text_light" />
 
@@ -78,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="start"
             android:text="Em aprovação."
             android:textColor="#FF5722" />
 

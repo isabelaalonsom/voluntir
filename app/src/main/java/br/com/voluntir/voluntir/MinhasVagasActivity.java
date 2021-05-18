@@ -140,12 +140,12 @@ public class MinhasVagasActivity extends AppCompatActivity {
 
                             @Override
                             public void onLongItemClick(View view, int position) throws IOException, DocumentException {
+                                Vaga vaga = listaVaga.get(position);
                                 if (vaga.getVoluntarios() == null) {
                                     Toast.makeText(getApplicationContext(),
                                             "Nenhum candidato cadastrado ",
                                             Toast.LENGTH_LONG).show();
                                 } else {
-                                    Vaga vaga = listaVaga.get(position);
                                     gerarPDF(view, position, vaga);
                                 }
                             }

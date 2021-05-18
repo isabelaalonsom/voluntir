@@ -30,12 +30,12 @@
             android:text="CPF: "
             android:textSize="18sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/txtViewCpfVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -58,12 +58,12 @@
             android:text="Nome: "
             android:textSize="18sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/txtViewNomeDoVoluntarioVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -86,12 +86,12 @@
             android:text="Sobrenome: "
             android:textSize="18sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/txtViewSobrenomeVariavelAdapter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -114,12 +114,12 @@
             android:text="Data de Nascimento: "
             android:textSize="18sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/txtViewDataNascVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -143,11 +143,11 @@
             android:textSize="18sp" />
 
         <!-- txtViewGeneroVariavel = aqui tem que receber o conteudo do Radio Button -->
-        <EditText
+        <TextView
             android:id="@+id/txtViewGeneroVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -170,12 +170,12 @@
             android:text="Telefone: "
             android:textSize="18sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/txtViewTelefoneVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -198,13 +198,13 @@
             android:text="E-mail: "
             android:textSize="18sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/txtViewEmailVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -227,13 +227,13 @@
             android:text="Endereço: "
             android:textSize="18sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/txtViewEnderecoVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -262,6 +262,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
     </LinearLayout>
@@ -275,18 +276,13 @@
         android:text="Descrição Técnica: "
         android:textSize="18sp" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtViewDescricaoTecnicaVariavelAdapter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:gravity="start"
         android:textColor="#AA0B0B"
         android:textSize="18sp" />
-
-    <LinearLayout
-        android:id="@+id/LinearBotoesAdapter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" />
 
 </LinearLayout>

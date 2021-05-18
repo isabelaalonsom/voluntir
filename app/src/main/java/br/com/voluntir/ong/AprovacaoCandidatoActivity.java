@@ -46,13 +46,13 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_aprovacao_candidato);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        setContentView(R.layout.activity_aprovacao_candidato);
+
 
         getSupportActionBar().hide();
         Bundle dados = getIntent().getExtras();
