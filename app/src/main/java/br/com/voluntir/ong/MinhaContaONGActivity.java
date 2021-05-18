@@ -138,22 +138,6 @@ public class MinhaContaONGActivity extends AppCompatActivity {
     }
 
     public void clicarBotaoExcluirOng(View view) {
-        abrirDialog(view);
-
-    }
-
-    public void limparCampos() {
-        txtNomeOng.setText("");
-        txtCnpj.setText("");
-        txtLocalizacao.setText("");
-        txtCausas.setText("");
-        txtTelefone.setText("");
-        txtSite.setText("");
-        txtEmail.setText("");
-        txtResumoOng.setText("");
-    }
-
-    public void abrirDialog(View view) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 
         dialog.setTitle("Excluir Conta");
@@ -184,6 +168,18 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         dialog.show();
 
     }
+
+    public void limparCampos() {
+        txtNomeOng.setText("");
+        txtCnpj.setText("");
+        txtLocalizacao.setText("");
+        txtCausas.setText("");
+        txtTelefone.setText("");
+        txtSite.setText("");
+        txtEmail.setText("");
+        txtResumoOng.setText("");
+    }
+
 
 
 }

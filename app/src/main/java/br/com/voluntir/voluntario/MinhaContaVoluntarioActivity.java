@@ -137,61 +137,6 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
     }
 
     public void clicarBotaoExcluir(View view) {
-        abrirDialog(view);
-
-        //Vaga vaga = listaVaga;
-        /*if (listaVaga != null) {
-            listaVagaSemVoluntario.clear();
-            acabou = false;
-            for (int i = 0; i < listaVaga.size(); i++) {
-                Vaga vaga;
-                vaga = listaVaga.get(i);
-
-                for (int j = 0; j < vaga.getVoluntarios().size(); j++) {
-                    if (vaga.getVoluntarios().get(j).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
-                        vaga.getVoluntarios().remove(j);
-                        listaVagaSemVoluntario.add(vaga);
-                    }
-
-                }
-
-
-            }
-            acabou = true;
-        }
-
-
-        if (listaVagaSemVoluntario != null && acabou == true) {
-            VagaDao vagaDao = new VagaDao();
-            vagaDao.removeListaVagaCandidaturas(listaVagaSemVoluntario, voluntario, getApplicationContext());
-        } else if (listaVagaSemVoluntario == null && acabou == true) {
-            controleCadastro = new ControleCadastro();
-            controleCadastro.excluirDadosVoluntario(voluntario, tabelaVoluntario, getApplicationContext());
-        }*/
-
-
-    }
-
-    public void clicarBotaoSair(View view) {
-        Preferencias preferencias = new Preferencias(getApplicationContext());
-        preferencias.salvarUsuarioPreferencias(null, null, null);
-        this.finishAffinity();
-
-    }
-
-    public void limparCampos() {
-        txtNome.setText("");
-        txtSobrenome.setText("");
-        txtCpf.setText("");
-        txtDataNasc.setText("");
-        txtEmail.setText("");
-        txtEndereco.setText("");
-        txtTelefone.setText("");
-        txtGenero.setText("");
-        txtDescricaoTecnica.setText("");
-    }
-
-    public void abrirDialog(View view) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 
         dialog.setTitle("Excluir Conta");
@@ -242,7 +187,28 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         dialog.create();
         dialog.show();
 
+
     }
+
+    public void clicarBotaoSair(View view) {
+        Preferencias preferencias = new Preferencias(getApplicationContext());
+        preferencias.salvarUsuarioPreferencias(null, null, null);
+        this.finishAffinity();
+
+    }
+
+    public void limparCampos() {
+        txtNome.setText("");
+        txtSobrenome.setText("");
+        txtCpf.setText("");
+        txtDataNasc.setText("");
+        txtEmail.setText("");
+        txtEndereco.setText("");
+        txtTelefone.setText("");
+        txtGenero.setText("");
+        txtDescricaoTecnica.setText("");
+    }
+
 
 
 }
