@@ -98,17 +98,6 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
         });
 
-//        String dataDeHoje = java.text.DateFormat.getDateTimeInstance().format(new Date());
-////        Log.e("DATADEHOJE: ", " " + dataDeHoje);
-////
-////        int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
-////        int mesAtual = Calendar.getInstance().get(Calendar.MONTH);
-////        int diaAtual = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-////
-////        Log.e("ANO: ", " " + anoAtual);
-////        Log.e("MES: ", " " + mesAtual);
-////        Log.e("DIA: ", " " + diaAtual);
-
 
         SimpleMaskFormatter simpleMaskDataInicio = new SimpleMaskFormatter("NN/NN/NNNN");
         MaskTextWatcher maskDataInicio = new MaskTextWatcher(dataInicio, simpleMaskDataInicio);

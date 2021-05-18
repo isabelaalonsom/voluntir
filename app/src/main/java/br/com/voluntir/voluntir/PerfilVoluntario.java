@@ -31,16 +31,16 @@ import br.com.voluntir.model.Voluntario;
 
 public class PerfilVoluntario extends AppCompatActivity {
     private RecyclerView recyclerViewPerfil;
-    private final DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
-    private final DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
+    private DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     private Voluntario voluntario;
     private AdapterPerfil adapterPerfil;
     private Voluntario voluntarioAtualizado;
     private Vaga vaga, vagaAtualizada;
     private Ong ong;
     private ControleVaga controleVaga;
-    private final String nomeTabelaVaga = "vaga";
-    private final List<Voluntario> listaVoluntario = new ArrayList<>();
+    private String nomeTabelaVaga = "vaga";
+    private List<Voluntario> listaVoluntario = new ArrayList<>();
     private Button botaoAprovar, botaoReprovar;
 
     @Override
