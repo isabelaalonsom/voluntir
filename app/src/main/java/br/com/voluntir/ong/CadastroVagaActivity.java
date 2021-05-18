@@ -148,7 +148,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
                     podeGravar = verificarDataMenor();
 
                     if (dataInicioValida == true && dataTerminoValida == true && podeGravar == true) {
-                        verificarDataMenor();
+
                         entrou = false;
 
                         if (listaVaga != null) {

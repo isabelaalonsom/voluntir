@@ -1,5 +1,6 @@
 package br.com.voluntir.voluntir;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
@@ -14,6 +16,7 @@ import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 
 import java.util.Calendar;
 
+import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
@@ -29,11 +32,16 @@ public class EditarVaga extends AppCompatActivity {
     private TextView nome;
     private EditText cargaHoraria, periodicidade, especialidade, detalheVaga, qtdCandidatos, dataInicio, dataTermino;
 
+
+    private TextView txtTituloNovaVagaEditarVaga;
+    private ControleCadastro controleCadastro;
+
     private TextView nome, txtTituloNovaVagaEditarVaga;
     private EditText dataInicio, dataTermino;
     private EditText cargaHoraria, periodicidade, especialidade, detalheVaga, qtdCandidatos;
     private ControleCadastro controleCadastro;
     private String tabelaBanco = "vaga";
+
 
     private ControleVaga controleVaga;
 
@@ -55,7 +63,6 @@ public class EditarVaga extends AppCompatActivity {
         txtTituloNovaVagaEditarVaga = findViewById(R.id.txtViewTituloNovaVagaEditarVaga);
 
         txtTituloNovaVagaEditarVaga.setText("Editar Vaga");
-
 
 
         Bundle dados = getIntent().getExtras();
@@ -194,10 +201,33 @@ public class EditarVaga extends AppCompatActivity {
     }
 
     public void excluirVaga(View view) {
-        if (vaga != null) {
-            controleVaga = new ControleVaga();
-            controleVaga.deletarVaga(vaga, tabelaBanco, getApplicationContext());
-        }
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+
+        dialog.setTitle("Excluir Vaga");
+        dialog.setMessage("Deseja excluir vaga?");
+
+        dialog.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (vaga != null) {
+                    controleVaga = new ControleVaga();
+                    controleVaga.deletarVaga(vaga, tabelaBanco, getApplicationContext());
+                }
+
+            }
+        });
+
+        dialog.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "Exclusão cancelada", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.create();
+        dialog.show();
 
     }
+
+
 }

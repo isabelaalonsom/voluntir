@@ -1,10 +1,13 @@
 package br.com.voluntir.ong;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.voluntir.Preferencias;
@@ -95,6 +98,36 @@ public class MinhaContaONGActivity extends AppCompatActivity {
     }
 
     public void clicarBotaoExcluirOng(View view) {
+
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+
+        dialog.setTitle("Excluir Conta");
+        dialog.setMessage("Deseja excluir conta?");
+
+        dialog.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (listaVaga != null) {
+                    VagaDao vagaDao = new VagaDao();
+                    vagaDao.removeListaVagaOng(listaVaga, ong, getApplicationContext());
+                } else {
+                    controleCadastro = new ControleCadastro();
+                    controleCadastro.excluirDadosOng(ong, tabelaOng, getApplicationContext());
+                }
+
+            }
+        });
+
+        dialog.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "Exclusão cancelada", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.create();
+        dialog.show();
+
         Ong dados = new Ong();
         if (ong != null) {
             dados.setIdOng(ong.getIdOng());
@@ -114,6 +147,7 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         }
 
 
+
     }
 
     public void limparCampos() {
@@ -126,6 +160,7 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         txtEmail.setText("");
         txtResumoOng.setText("");
     }
+
 
 
 }
