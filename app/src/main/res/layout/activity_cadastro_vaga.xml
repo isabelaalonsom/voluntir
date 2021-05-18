@@ -70,7 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Título da vaga:"
+                    android:text="Área de conhecimento: "
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -79,7 +79,7 @@
                 android:id="@+id/edtTextAreaConhecimento"
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
-                android:hint="Escreva o título da vaga" />
+                android:hint="Escreva a área de conhecimento" />
 
             <LinearLayout
                 android:id="@+id/LinearDataInicio"

@@ -20,10 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
-import br.com.voluntir.controller.ControleCadastro;
-import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
-import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.MainActivity;
 
 public class VagaDao implements DAO<Vaga> {
@@ -31,7 +28,6 @@ public class VagaDao implements DAO<Vaga> {
     private Vaga vaga;
     private List<Vaga> listaVaga;
     private DatabaseReference refenciaBanco;
-    private ControleCadastro controleCadastro;
 
     public void atualizaVaga(Vaga dado, String tabela, Context context, final OnGetDataListener listener) {
         listener.onStart();
@@ -130,35 +126,6 @@ public class VagaDao implements DAO<Vaga> {
             }
         });
         return false;
-    }
-
-    public void removeListaVagaOng(List<Vaga> listaVaga, Ong ong, Context context) {
-        refenciaBanco = BancoFirebase.getBancoReferencia();
-        if (listaVaga != null) {
-            for (int i = 0; i < listaVaga.size(); i++) {
-                vaga = listaVaga.get(i);
-                refenciaBanco.child("vaga").child(vaga.getIdVaga()).removeValue();
-            }
-            controleCadastro = new ControleCadastro();
-            controleCadastro.excluirDadosOng(ong, "ong", context);
-        }
-        return;
-
-    }
-
-    public void removeListaVagaCandidaturas(List<Vaga> listaVaga, Voluntario voluntario, Context context) {
-        refenciaBanco = BancoFirebase.getBancoReferencia();
-        if (listaVaga != null) {
-            for (int i = 0; i < listaVaga.size(); i++) {
-                vaga = listaVaga.get(i);
-                refenciaBanco.child("vaga").child(vaga.getIdVaga()).setValue(vaga);
-            }
-            controleCadastro = new ControleCadastro();
-            //controleCadastro.excluirDadosOng(ong, "ong", context);
-            controleCadastro.excluirDadosVoluntario(voluntario, "voluntario", context);
-        }
-        return;
-
     }
 
     @Override
