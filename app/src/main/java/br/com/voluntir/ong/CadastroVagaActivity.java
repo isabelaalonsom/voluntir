@@ -1,7 +1,6 @@
 package br.com.voluntir.ong;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +23,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
@@ -161,7 +159,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
                     podeGravar = verificarDataMenor();
 
                     if (dataInicioValida == true && dataTerminoValida == true && podeGravar == true) {
-                        verificarDataMenor();
+
                         entrou = false;
 
                         if (listaVaga != null) {
@@ -259,14 +257,10 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
     public boolean verificarDataMenor() {
         boolean podeGravar = false;
-        boolean fazOutraVerificacao = false;
-        boolean agoraVerificaDataTermino = false;
         int diaInicio = 0;
         int mesInicio = 0;
         int anoInicio = 0;
-
         String dataInicioConfig = dataInicio.getText().toString();
-
         if (dataInicioConfig.length() == 10) {
             diaInicio = Integer.parseInt(dataInicioConfig.substring(0, 2));
             mesInicio = Integer.parseInt(dataInicioConfig.substring(3, 5));
@@ -283,76 +277,22 @@ public class CadastroVagaActivity extends AppCompatActivity {
             anoTermino = Integer.parseInt(dataTerminoConfig.substring(6, 10));
         }
 
-        int diaHoje = 0;
-        int mesHoje = 0;
-        int anoHoje = 0;
-
-        // CONFIGURANDO DATA ATUAL PARA DATA DE INICIO
-        SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
-        Date data = new Date();
-        String dataFormatadaHoje = formataData.format(data);
-        Log.e("DATADEHOJE2: ", " " + dataFormatadaHoje);
-
-        String dataAtualConfig = dataFormatadaHoje;
-
-        if (dataAtualConfig.length() == 10) {
-            diaHoje = Integer.parseInt(dataAtualConfig.substring(0, 2));
-            mesHoje = Integer.parseInt(dataAtualConfig.substring(3, 5));
-            anoHoje = Integer.parseInt(dataAtualConfig.substring(6, 10));
-        }
-
-        if (anoInicio < anoHoje) {
-            Toast.makeText(getApplicationContext(), "O ano da data de início da vaga é muito antigo. Coloque um ano mais atual.", Toast.LENGTH_SHORT).show();
-        } else if (anoInicio == anoHoje) {
-            if (mesInicio < mesHoje) {
-                Toast.makeText(getApplicationContext(), "O mês da data de início da vaga é muito antigo. Coloque um mês mais atual.", Toast.LENGTH_SHORT).show();
-            } else if (mesInicio == mesHoje) {
-                if (diaInicio < diaHoje) {
-                    Toast.makeText(getApplicationContext(), "O dia da data de início da vaga é muito antigo. Coloque um dia mais atual.", Toast.LENGTH_SHORT).show();
+        if (anoInicio > anoTermino) {
+            Toast.makeText(getApplicationContext(), "Ano início não pode ser maior que ano término ", Toast.LENGTH_SHORT).show();
+        } else if (anoInicio == anoTermino) {
+            if (mesInicio > mesTermino) {
+                Toast.makeText(getApplicationContext(), "mês início não pode ser maior que mês término ", Toast.LENGTH_SHORT).show();
+            } else if (mesInicio == mesTermino) {
+                if (diaInicio > diaTermino) {
+                    Toast.makeText(getApplicationContext(), "dia início não pode ser maior que dia término ", Toast.LENGTH_SHORT).show();
                 } else {
-                    agoraVerificaDataTermino = true;
-                }
-            }
-        }
-
-        // CONFIGURANDO DATA ATUAL PARA DATA DE INICIO
-
-        if (agoraVerificaDataTermino) {
-            if (anoTermino < anoHoje) {
-                Toast.makeText(getApplicationContext(), "O ano da data de término da vaga é muito antigo. Coloque um ano mais atual.", Toast.LENGTH_SHORT).show();
-            } else if (anoTermino == anoHoje) {
-                if (mesTermino < mesHoje) {
-                    Toast.makeText(getApplicationContext(), "O mês da data de término da vaga é muito antigo. Coloque um mês mais atual.", Toast.LENGTH_SHORT).show();
-                } else if (mesTermino == mesHoje) {
-                    if (diaTermino < diaHoje) {
-                        Toast.makeText(getApplicationContext(), "O dia da data de término da vaga é muito antigo. Coloque um dia mais atual.", Toast.LENGTH_SHORT).show();
-                    } else {
-                        fazOutraVerificacao = true;
-                    }
-                }
-            }
-        }
-
-
-        if (fazOutraVerificacao) {
-            if (anoInicio > anoTermino) {
-                Toast.makeText(getApplicationContext(), "Ano início não pode ser maior que ano término ", Toast.LENGTH_SHORT).show();
-            } else if (anoInicio == anoTermino) {
-                if (mesInicio > mesTermino) {
-                    Toast.makeText(getApplicationContext(), "mês início não pode ser maior que mês término ", Toast.LENGTH_SHORT).show();
-                } else if (mesInicio == mesTermino) {
-                    if (diaInicio > diaTermino) {
-                        Toast.makeText(getApplicationContext(), "dia início não pode ser maior que dia término ", Toast.LENGTH_SHORT).show();
-                    } else {
-                        podeGravar = true;
-                    }
-                } else
                     podeGravar = true;
-            } else {
+                }
+            } else
                 podeGravar = true;
-            }
+        } else {
+            podeGravar = true;
         }
-
         return podeGravar;
     }
 
