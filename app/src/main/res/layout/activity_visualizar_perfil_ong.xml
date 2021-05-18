@@ -55,7 +55,7 @@
                     android:layout_width="291dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:textColor="#AA0B0B"
                     android:textSize="18sp" />
 
@@ -83,7 +83,7 @@
                     android:layout_width="291dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:textColor="#AA0B0B"
                     android:textSize="18sp" />
 
@@ -111,7 +111,7 @@
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:textColor="#AA0B0B"
                     android:textSize="18sp" />
 
@@ -139,7 +139,7 @@
                     android:layout_width="277dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:textColor="#AA0B0B"
                     android:textSize="18sp" />
 
@@ -167,7 +167,7 @@
                     android:layout_width="273dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:inputType="phone"
                     android:textColor="#AA0B0B"
                     android:textSize="18sp" />
@@ -196,7 +196,7 @@
                     android:id="@+id/txtViewSiteVariavelPerfilOng"
                     android:layout_width="325dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:textColor="#AA0B0B"
                     android:textSize="18sp" />
 
@@ -224,7 +224,7 @@
                     android:layout_width="291dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:textColor="#AA0B0B"
                     android:textSize="18sp" />
 
@@ -254,7 +254,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:gravity="center"
+                android:gravity="start"
                 android:textColor="#AA0B0B"
                 android:textSize="18sp" />
 

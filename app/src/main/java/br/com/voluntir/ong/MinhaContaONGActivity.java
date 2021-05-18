@@ -178,9 +178,6 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         dialog.show();
 
 
-
-
-
     }
 
     public void limparCampos() {
