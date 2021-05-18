@@ -36,11 +36,6 @@ public class EditarVaga extends AppCompatActivity {
     private TextView txtTituloNovaVagaEditarVaga;
     private ControleCadastro controleCadastro;
 
-    private TextView nome, txtTituloNovaVagaEditarVaga;
-    private EditText dataInicio, dataTermino;
-    private EditText cargaHoraria, periodicidade, especialidade, detalheVaga, qtdCandidatos;
-    private ControleCadastro controleCadastro;
-    private String tabelaBanco = "vaga";
 
 
     private ControleVaga controleVaga;

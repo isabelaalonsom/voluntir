@@ -6,13 +6,24 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.voluntir.DAO.VagaDao;
 import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
+import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
 
@@ -23,6 +34,12 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
     private Voluntario voluntario;
     private TextView txtSobrenome, txtNome, txtCpf, txtDataNasc, txtEmail, txtTelefone, txtEndereco, txtGenero, txtDescricaoTecnica;
     private ControleCadastro controleCadastro;
+    private final DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
+    private final DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
+    private List<Vaga> listaVaga = new ArrayList<>();
+    private List<Vaga> listaVagaSemVoluntario = new ArrayList<>();
+    private Vaga vaga;
+    private boolean acabou = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +57,37 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         txtTelefone = (TextView) findViewById(R.id.txtViewTelefoneVariavel);
         txtGenero = (TextView) findViewById(R.id.txtViewGeneroVariavel);
         txtDescricaoTecnica = (TextView) findViewById(R.id.txtViewDescricaoTecnicaVariavel);
-        limparCampos();
+
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
             voluntario = (Voluntario) dados.getSerializable("objeto");
+
+            Query teste = tabelaVaga;
+            teste.orderByKey().addValueEventListener(new ValueEventListener() {
+                //recuperar os dados sempre que for mudado no banco
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    listaVaga.clear();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        vaga = dataSnapshot.getValue(Vaga.class);
+                        //Log.i("FIREBASE", snapshot.getValue().toString());
+                        if (vaga.getVoluntarios() != null) {
+
+                            for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
+                                if (vaga.getVoluntarios().get(i).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                                    listaVaga.add(vaga);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //trata o erro se a operação for cancelada
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+
             if (voluntario != null) {
                 txtNome.setText(voluntario.getNome());
                 txtSobrenome.setText(voluntario.getSobrenome());
@@ -140,27 +184,6 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
 
         dialog.create();
         dialog.show();
-
-        Voluntario dados = new Voluntario();
-        if (voluntario != null) {
-            dados.setIdVoluntario(voluntario.getIdVoluntario());
-        }
-        dados.setNome(txtNome.getText().toString());
-        dados.setSobrenome(txtSobrenome.getText().toString());
-        dados.setCpf(txtCpf.getText().toString());
-        dados.setDatanasc(txtDataNasc.getText().toString());
-        dados.setEmail(txtEmail.getText().toString());
-        dados.setEndereco(txtEndereco.getText().toString());
-        dados.setTelefone(txtTelefone.getText().toString());
-        dados.setGenero(txtGenero.getText().toString());
-        dados.setEspecialidade(txtDescricaoTecnica.getText().toString());
-
-        controleCadastro = new ControleCadastro();
-        if (dados != null) {
-            controleCadastro.excluirDadosVoluntario(dados, tabelaVoluntario, getApplicationContext());
-        }
-
-
 
     }
 

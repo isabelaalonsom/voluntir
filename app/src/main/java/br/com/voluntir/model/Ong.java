@@ -1,6 +1,8 @@
 package br.com.voluntir.model;
 
 
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
 
 public class Ong implements Serializable {
@@ -52,6 +54,7 @@ public class Ong implements Serializable {
         this.senhaOng = senhaOng;
     }
 
+    @Exclude
     public String getConfirmarSenhaOng() {
         return senhaOng;
     }

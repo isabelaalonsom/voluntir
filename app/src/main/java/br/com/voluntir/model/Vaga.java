@@ -1,5 +1,7 @@
 package br.com.voluntir.model;
 
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -87,6 +89,7 @@ public class Vaga implements Serializable {
         this.voluntarios = voluntarios;
     }
 
+    @Exclude
     public String getIdVoluntario() {
         return idVoluntario;
     }
