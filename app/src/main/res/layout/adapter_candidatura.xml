@@ -30,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="start"
             android:text="ONG Ajuda Certa!"
             android:textColor="@android:color/secondary_text_light" />
 
@@ -54,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="start"
             android:text="Vagas:"
             android:textColor="@android:color/secondary_text_light" />
 
@@ -78,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="start"
             android:text="Em análise."
             android:textColor="#FF5722" />
 

@@ -163,14 +163,15 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <EditText
+                <TextView
                     android:id="@+id/editTextTextPersonNameEditarVaga"
-                    android:layout_width="wrap_content"
+                    android:layout_width="236dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Quantidade de candidatos:" />
+                    android:text="Quantidade de candidatos:"
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/edtTextQtdCandidatosEditarVaga"
