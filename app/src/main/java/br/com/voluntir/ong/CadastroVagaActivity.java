@@ -108,10 +108,10 @@ public class CadastroVagaActivity extends AppCompatActivity {
         MaskTextWatcher maskDataTermino = new MaskTextWatcher(dataTermino, simpleMaskDataTermino);
         dataTermino.addTextChangedListener(maskDataTermino);
 
-        //mascara para o Horario
-        SimpleMaskFormatter simpleMaskHorario = new SimpleMaskFormatter("NN:NN");
+        /*//mascara para o Horario
+        SimpleMaskFormatter simpleMaskHorario = new SimpleMaskFormatter("NNN:NN");
         MaskTextWatcher maskHorario = new MaskTextWatcher(cargaHoraria, simpleMaskHorario);
-        cargaHoraria.addTextChangedListener(maskHorario);
+        cargaHoraria.addTextChangedListener(maskHorario);*/
 
         botaoConfirmar = findViewById(R.id.btnConfirmarVaga);
         botaoConfirmar.setOnClickListener(new View.OnClickListener() {
@@ -277,9 +277,12 @@ public class CadastroVagaActivity extends AppCompatActivity {
                 } else {
                     podeGravar = true;
                 }
-            } else
+            } else if (mesInicio < mesTermino) {
                 podeGravar = true;
-        } else {
+            }
+
+        } else if (anoInicio < anoTermino) {
+
             podeGravar = true;
         }
         return podeGravar;

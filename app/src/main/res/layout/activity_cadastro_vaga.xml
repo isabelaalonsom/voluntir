@@ -10,15 +10,15 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -78,7 +78,8 @@
             <EditText
                 android:id="@+id/edtTextAreaConhecimento"
                 android:layout_width="match_parent"
-                android:layout_height="84dp"
+                android:layout_height="wrap_content"
+                android:gravity="start"
                 android:hint="Escreva o título da vaga" />
 
             <LinearLayout
@@ -90,18 +91,19 @@
 
                 <TextView
                     android:id="@+id/txtViewDataInicio"
-                    android:layout_width="match_parent"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:inputType="none"
                     android:text="Data de início: "
                     android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/edtTextDataInicio"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:gravity="start"
                     android:hint="__/__/____"
                     android:inputType="number" />
 
@@ -116,19 +118,20 @@
 
                 <TextView
                     android:id="@+id/txtViewDataTermino"
-                    android:layout_width="match_parent"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:editable="false"
-                    android:gravity="center"
+                    android:gravity="center|start"
                     android:inputType="none"
                     android:text="Data de término: "
                     android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/edtTextDataTermino"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:gravity="start"
                     android:hint="__/__/____"
                     android:inputType="number" />
 
@@ -143,10 +146,10 @@
 
                 <TextView
                     android:id="@+id/txtViewCargaHoraria"
-                    android:layout_width="match_parent"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:editable="false"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:inputType="none"
                     android:text="Carga Horária:"
                     android:textSize="18sp" />
@@ -156,13 +159,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:gravity="start"
                     android:inputType="number" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -170,6 +175,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="start"
                     android:inputType="none"
                     android:text="Quantidade de candidatos:"
                     android:textSize="18sp" />
@@ -179,6 +185,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="start"
                     android:inputType="number" />
             </LinearLayout>
 
@@ -194,7 +201,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:editable="false"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:text="Periodicidade: "
                     android:textSize="18sp" />
 
@@ -203,6 +210,7 @@
                     android:layout_width="38dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:gravity="start"
                     android:hint="X"
                     android:inputType="number" />
 
@@ -211,7 +219,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:editable="false"
-                    android:gravity="center"
+                    android:gravity="center|right"
                     android:text="vezes por semana"
                     android:textSize="18sp" />
 
@@ -229,7 +237,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:editable="false"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:text="Detalhes Sobre a Vaga: "
                     android:textSize="18sp" />
 
@@ -239,8 +247,9 @@
             <EditText
                 android:id="@+id/edtTextDetalhesVaga"
                 android:layout_width="match_parent"
-                android:layout_height="124dp"
+                android:layout_height="wrap_content"
                 android:ems="10"
+                android:gravity="start"
                 android:hint="Escreva os detalhes sobre a vaga" />
 
             <LinearLayout

@@ -9,15 +9,15 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -43,9 +43,9 @@
 
                 <TextView
                     android:id="@+id/txtViewNome"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="10dp"
                     android:text="Nome:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
@@ -55,8 +55,9 @@
                     android:id="@+id/edtTextNome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="5dp"
                     android:ems="10"
+                    android:gravity="start"
                     android:hint="Nome"
                     android:inputType="textPersonName"
                     tools:layout_editor_absoluteX="81dp"
@@ -73,20 +74,21 @@
 
                 <TextView
                     android:id="@+id/txtViewCnpj"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:text="CNPJ:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="136dp"
-                    android:layout_marginLeft="15dp" />
+                    tools:layout_editor_absoluteY="136dp" />
 
                 <EditText
                     android:id="@+id/edtTextCpnj"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="5dp"
                     android:ems="10"
+                    android:gravity="start"
                     android:hint="CNPJ"
                     android:inputType="number"
                     tools:layout_editor_absoluteX="81dp"
@@ -103,9 +105,9 @@
 
                 <TextView
                     android:id="@+id/txtViewLocalizacao"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="10dp"
                     android:text="Localização:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
@@ -115,8 +117,9 @@
                     android:id="@+id/edtTextLocalizacao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="5dp"
                     android:ems="10"
+                    android:gravity="start"
                     android:hint="Localização"
                     tools:layout_editor_absoluteX="135dp"
                     tools:layout_editor_absoluteY="170dp" />
@@ -132,9 +135,9 @@
 
                 <TextView
                     android:id="@+id/txtViewCausas"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="10dp"
                     android:text="Causas:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
@@ -144,8 +147,9 @@
                     android:id="@+id/edtTextCausas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="5dp"
                     android:ems="10"
+                    android:gravity="start"
                     android:hint="Causas"
                     android:inputType="textPersonName"
                     tools:layout_editor_absoluteX="100dp"
@@ -162,9 +166,9 @@
 
                 <TextView
                     android:id="@+id/txtViewTelefone"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="10dp"
                     android:text="Telefone:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
@@ -174,10 +178,11 @@
                     android:id="@+id/edtTextTelefone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="5dp"
                     android:ems="10"
-                    android:inputType="number"
+                    android:gravity="start"
                     android:hint="(  )____-_____"
+                    android:inputType="number"
                     tools:layout_editor_absoluteX="100dp"
                     tools:layout_editor_absoluteY="458dp" />
 
@@ -192,9 +197,9 @@
 
                 <TextView
                     android:id="@+id/txtViewSite"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="10dp"
                     android:text="Site:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
@@ -202,10 +207,11 @@
 
                 <EditText
                     android:id="@+id/edtTextSite"
-                    android:layout_width="306dp"
-                    android:layout_height="44dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
                     android:ems="10"
+                    android:gravity="start"
                     android:hint="Site"
                     tools:layout_editor_absoluteX="70dp"
                     tools:layout_editor_absoluteY="519dp" />
@@ -221,9 +227,9 @@
 
                 <TextView
                     android:id="@+id/txtViewEmail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="10dp"
                     android:text="E-mail:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
@@ -233,8 +239,9 @@
                     android:id="@+id/edtTextEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="5dp"
                     android:ems="10"
+                    android:gravity="start"
                     android:hint="E-mail"
                     android:inputType="textEmailAddress"
                     tools:layout_editor_absoluteX="100dp"
@@ -251,9 +258,9 @@
 
                 <TextView
                     android:id="@+id/txtViewSenha"
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="10dp"
                     android:text="Senha:"
                     android:textSize="18sp"
                     tools:layout_editor_absoluteX="16dp"
@@ -263,8 +270,9 @@
                     android:id="@+id/edtTextSenha"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="5dp"
                     android:ems="10"
+                    android:gravity="start"
                     android:hint="Senha"
                     android:inputType="textPassword"
                     tools:layout_editor_absoluteX="100dp"
@@ -281,62 +289,63 @@
 
                 <TextView
                     android:id="@+id/txtViewConfirmarSenhaOng"
-                    android:layout_width="wrap_content"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Confirmar Senha:"
+                    android:layout_marginStart="10dp"
+                    android:text="Repetir Senha:"
                     android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/edtTextConfirmarSenhaOng"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="5dp"
                     android:ems="10"
-                    android:hint="Confirmar Senha"
+                    android:gravity="start"
+                    android:hint="Repetir Senha"
                     android:inputType="textPassword"
                     tools:layout_editor_absoluteX="84dp"
                     tools:layout_editor_absoluteY="484dp" />
 
             </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/LinearResumoOng"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtViewResumoOng"
+            <LinearLayout
+                android:id="@+id/LinearResumoOng"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="Resumo da ONG:"
-                android:textSize="18sp"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="416dp" />
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/edtTextResumoOng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:ems="10"
-                android:hint="Resumo da ONG"
-                android:inputType="text"
-                tools:layout_editor_absoluteX="163dp"
-                tools:layout_editor_absoluteY="395dp" />
+                <TextView
+                    android:id="@+id/txtViewResumoOng"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Resumo da ONG:"
+                    android:textSize="18sp"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="416dp" />
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/edtTextResumoOng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:ems="10"
+                    android:gravity="start"
+                    android:hint="Resumo da ONG"
+                    android:inputType="text"
+                    tools:layout_editor_absoluteX="163dp"
+                    tools:layout_editor_absoluteY="395dp" />
+
+            </LinearLayout>
 
 
             <LinearLayout
-            android:id="@+id/LinearBotoes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="55dp"
+                android:id="@+id/LinearBotoes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
                 android:layout_marginBottom="5dp"
                 android:orientation="horizontal">
 

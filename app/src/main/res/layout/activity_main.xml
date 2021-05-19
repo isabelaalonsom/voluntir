@@ -24,20 +24,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:baselineAligned="false"
+                android:gravity="center"
                 android:orientation="horizontal"
                 android:textAlignment="center">
 
                 <Button
                     android:id="@+id/btnONG"
-                    android:layout_width="wrap_content"
+                    android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:text="ONG"
                     android:textSize="24sp" />
 
                 <Button
                     android:id="@+id/btnVoluntario"
-                    android:layout_width="wrap_content"
+                    android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:text="Voluntário"
                     android:textSize="24sp" />
