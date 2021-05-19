@@ -8,27 +8,39 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 
 public class EditarVaga extends AppCompatActivity {
-
+    boolean entrou = false;
     private final String tabelaBanco = "vaga";
     private Ong ong;
     private boolean grava = false, mesdiaok = false;
     private Button botaoConfirmar;
     private Vaga vaga;
-
+    boolean dataInicioValida = false;
     private TextView nome;
     private EditText cargaHoraria, periodicidade, especialidade, detalheVaga, qtdCandidatos, dataInicio, dataTermino;
 
@@ -36,9 +48,15 @@ public class EditarVaga extends AppCompatActivity {
     private TextView txtTituloNovaVagaEditarVaga;
     private ControleCadastro controleCadastro;
 
-
-
     private ControleVaga controleVaga;
+    boolean dataTerminoValida = false;
+    int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
+    boolean podeGravar = false;
+    boolean existe = false;
+    private DatabaseReference refenciaBanco;
+    private Vaga vaga2;
+    private String idOng;
+    private List<Vaga> listaVaga = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +83,31 @@ public class EditarVaga extends AppCompatActivity {
             ong = (Ong) dados.getSerializable("ong");
             vaga = (Vaga) dados.getSerializable("vaga");
         }
+
+        refenciaBanco = BancoFirebase.getBancoReferencia();
+        Query pesquisa = refenciaBanco.child(tabelaBanco).orderByChild("idOng").equalTo(ong.getIdOng());
+        pesquisa.addValueEventListener(new ValueEventListener() {
+            //recuperar os dados sempre que for mudado no banco
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                listaVaga.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    vaga = dataSnapshot.getValue(Vaga.class);
+                    if (vaga.getIdOng().equals(ong.getIdOng())) {
+                        listaVaga.add(vaga);
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+
+        });
 
         if (vaga != null) {
             nome.setText(vaga.getNomeOng());
@@ -96,30 +139,7 @@ public class EditarVaga extends AppCompatActivity {
         botaoConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                int diaInicio = 0;
-                int mesInicio = 0;
-                int anoInicio = 0;
-
-                int diaTermino = 0;
-                int mesTermino = 0;
-                int anoTermino = 0;
-
-                String dataInicioConfig = dataInicio.getText().toString();
-                if (dataInicioConfig != null) {
-                    diaInicio = Integer.parseInt(dataInicioConfig.substring(0, 2));
-                    mesInicio = Integer.parseInt(dataInicioConfig.substring(3, 5));
-                    anoInicio = Integer.parseInt(dataInicioConfig.substring(6, 10));
-                }
-
-                String dataTerminoConfig = dataTermino.getText().toString();
-                if (dataTerminoConfig != null) {
-                    diaTermino = Integer.parseInt(dataTerminoConfig.substring(0, 2));
-                    mesTermino = Integer.parseInt(dataTerminoConfig.substring(3, 5));
-                    anoTermino = Integer.parseInt(dataTerminoConfig.substring(6, 10));
-                }
-
-                int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
+                vaga = new Vaga();
 
                 //verifica se todos os campos foram preenchidos
                 if (especialidade.getText().toString().isEmpty() ||
@@ -129,56 +149,74 @@ public class EditarVaga extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Preencha todos os campos ",
                             Toast.LENGTH_SHORT).show();
-                } else if (anoInicio > anoTermino) {
-                    Toast.makeText(getApplicationContext(), "A data de início deve ser menor do que a data de término da Vaga", Toast.LENGTH_SHORT).show();
-                } else if ((mesInicio < 1 || mesInicio > 12) || (mesTermino < 1 || mesTermino > 12)) {
-                    Toast.makeText(getApplicationContext(), "Mês inválido ", Toast.LENGTH_SHORT).show();
-                } else if ((mesInicio == 4 || mesInicio == 6 || mesInicio == 9 || mesInicio == 11) ||
-                        (mesTermino == 4 || mesTermino == 6 || mesTermino == 9 || mesTermino == 11)) {
-                    if ((diaInicio > 30 || diaInicio < 1) || (diaTermino > 30 || diaTermino < 1)) {
-                        Toast.makeText(getApplicationContext(), "Dia inválido ", Toast.LENGTH_SHORT).show();
-                    } else {
-                        mesdiaok = true;
-                    }
-                } else if ((mesInicio == 2) || (mesTermino == 2)) {
-                    if ((diaInicio > 28 || diaInicio < 1) || (diaTermino > 28 || diaTermino < 1)) {
-                        Toast.makeText(getApplicationContext(), "Dia inválido ", Toast.LENGTH_SHORT).show();
-                    } else {
-                        mesdiaok = true;
-                    }
-                } else if ((mesInicio == 1 || mesInicio == 3 || mesInicio == 5 || mesInicio == 7 || mesInicio == 8 || mesInicio == 10 || mesInicio == 12) ||
-                        (mesTermino == 1 || mesTermino == 3 || mesTermino == 5 || mesTermino == 7 || mesTermino == 8 || mesTermino == 10 || mesTermino == 12)) {
-                    if ((diaInicio > 31 || diaInicio < 1) || (diaTermino > 31 || diaTermino < 1)) {
-                        Toast.makeText(getApplicationContext(), "Dia inválido ", Toast.LENGTH_SHORT).show();
-                    } else {
-                        mesdiaok = true;
-                    }
                 } else {
-                    mesdiaok = true;
-                }
 
-                if (mesdiaok) {
-                    grava = true;
-                }
-
-                if (grava) {
-                    if (ong != null) {
-                        Vaga vaga2 = vaga;
-                        vaga2.setNomeOng(ong.getNome());
-                        vaga2.setIdOng(ong.getIdOng());
-                        vaga2.setAreaConhecimento(especialidade.getText().toString());
-                        vaga2.setDataInicio(dataInicio.getText().toString());
-                        vaga2.setDataTermino(dataTermino.getText().toString());
-                        vaga2.setPeriodicidade(periodicidade.getText().toString());
-                        vaga2.setDescricaoVaga(detalheVaga.getText().toString());
-                        vaga2.setCargaHoraria(cargaHoraria.getText().toString());
-                        vaga2.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
-                        if (vaga2.getVoluntarios() != null)
-                            vaga2.setVoluntarios(vaga.getVoluntarios());
-                        controleVaga = new ControleVaga();
-                        controleVaga.atualizaVagaOng(vaga2, tabelaBanco, getApplicationContext());
+                    if (!validarData(dataInicio.getText().toString())) {
+                        Toast.makeText(getApplicationContext(),
+                                "Data início inválida ",
+                                Toast.LENGTH_SHORT).show();
+                        dataInicioValida = false;
+                    } else {
+                        dataInicioValida = true;
                     }
+                    if (!validarData(dataTermino.getText().toString())) {
+                        Toast.makeText(getApplicationContext(),
+                                "Data termino inválida ",
+                                Toast.LENGTH_SHORT).show();
+                        dataTerminoValida = false;
+                    } else {
+                        dataTerminoValida = true;
+                    }
+                    podeGravar = verificarDataMenor();
 
+                    if (dataInicioValida == true && dataTerminoValida == true && podeGravar == true) {
+
+                        entrou = false;
+
+                        if (listaVaga != null) {
+                            entrou = true;
+                            existe = false;
+                            for (int i = 0; i < listaVaga.size(); i++) {
+                                if (listaVaga.get(i).getAreaConhecimento().equalsIgnoreCase(especialidade.getText().toString())) {
+                                    vaga2 = listaVaga.get(i);
+                                    existe = true;
+                                }
+                            }
+                        } else {
+                            if (ong != null) {
+                                vaga.setNomeOng(ong.getNome());
+                                vaga.setIdOng(ong.getIdOng());
+                            }
+                            vaga.setAreaConhecimento(especialidade.getText().toString());
+                            vaga.setDataInicio(dataInicio.getText().toString());
+                            vaga.setDataTermino(dataTermino.getText().toString());
+                            vaga.setPeriodicidade(periodicidade.getText().toString());
+                            vaga.setDescricaoVaga(detalheVaga.getText().toString());
+                            vaga.setCargaHoraria(cargaHoraria.getText().toString());
+                            vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
+                            controleVaga = new ControleVaga();
+                            controleVaga.atualizaVagaOng(vaga, tabelaBanco, getApplicationContext());
+
+                        }
+                        if (entrou == true && existe == true) {
+                            if (ong != null) {
+                                vaga2.setNomeOng(ong.getNome());
+                                vaga2.setIdOng(ong.getIdOng());
+                            }
+                            vaga2.setAreaConhecimento(especialidade.getText().toString());
+                            vaga2.setDataInicio(dataInicio.getText().toString());
+                            vaga2.setDataTermino(dataTermino.getText().toString());
+                            vaga2.setPeriodicidade(periodicidade.getText().toString());
+                            vaga2.setDescricaoVaga(detalheVaga.getText().toString());
+                            vaga2.setCargaHoraria(cargaHoraria.getText().toString());
+                            vaga2.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
+                            controleVaga = new ControleVaga();
+                            controleVaga.atualizaVagaOng(vaga2, tabelaBanco, getApplicationContext());
+
+
+                        }
+
+                    }
                 }
             }
         });
@@ -222,6 +260,80 @@ public class EditarVaga extends AppCompatActivity {
         dialog.create();
         dialog.show();
 
+    }
+
+    public boolean validarData(String data) {
+        int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
+        int ano = 0;
+        String dataConfig = data;
+        if (dataConfig.length() == 10) {
+            ano = Integer.parseInt(dataConfig.substring(6, 10));
+        }
+
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        df.setLenient(false);
+        try {
+            df.parse(data);
+            if (ano < anoAtual) {
+                Toast.makeText(getApplicationContext(),
+                        "ano inválido",
+                        Toast.LENGTH_SHORT).show();
+                return false;
+            }
+
+            return true;
+        } catch (ParseException ex) {
+            /*Toast.makeText(getApplicationContext(),
+                    "exception" + ex.getMessage(),
+                    Toast.LENGTH_SHORT).show();*/
+            return false;
+        }
+
+    }
+
+    public boolean verificarDataMenor() {
+        boolean podeGravar = false;
+        int diaInicio = 0;
+        int mesInicio = 0;
+        int anoInicio = 0;
+        String dataInicioConfig = dataInicio.getText().toString();
+        if (dataInicioConfig.length() == 10) {
+            diaInicio = Integer.parseInt(dataInicioConfig.substring(0, 2));
+            mesInicio = Integer.parseInt(dataInicioConfig.substring(3, 5));
+            anoInicio = Integer.parseInt(dataInicioConfig.substring(6, 10));
+        }
+        int diaTermino = 0;
+        int mesTermino = 0;
+        int anoTermino = 0;
+
+        String dataTerminoConfig = dataTermino.getText().toString();
+        if (dataTerminoConfig.length() == 10) {
+            diaTermino = Integer.parseInt(dataTerminoConfig.substring(0, 2));
+            mesTermino = Integer.parseInt(dataTerminoConfig.substring(3, 5));
+            anoTermino = Integer.parseInt(dataTerminoConfig.substring(6, 10));
+        }
+
+        if (anoInicio > anoTermino) {
+            Toast.makeText(getApplicationContext(), "Ano início não pode ser maior que ano término ", Toast.LENGTH_SHORT).show();
+        } else if (anoInicio == anoTermino) {
+            if (mesInicio > mesTermino) {
+                Toast.makeText(getApplicationContext(), "mês início não pode ser maior que mês término ", Toast.LENGTH_SHORT).show();
+            } else if (mesInicio == mesTermino) {
+                if (diaInicio > diaTermino) {
+                    Toast.makeText(getApplicationContext(), "dia início não pode ser maior que dia término ", Toast.LENGTH_SHORT).show();
+                } else {
+                    podeGravar = true;
+                }
+            } else if (mesInicio < mesTermino) {
+                podeGravar = true;
+            }
+
+        } else if (anoInicio < anoTermino) {
+
+            podeGravar = true;
+        }
+        return podeGravar;
     }
 
 
