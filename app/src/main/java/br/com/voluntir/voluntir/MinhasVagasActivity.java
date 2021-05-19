@@ -140,13 +140,14 @@ public class MinhasVagasActivity extends AppCompatActivity {
 
                             @Override
                             public void onLongItemClick(View view, int position) throws IOException, DocumentException {
+                                Vaga vaga = listaVaga.get(position);
                                 if (vaga.getVoluntarios() == null) {
                                     Toast.makeText(getApplicationContext(),
                                             "Nenhum candidato cadastrado ",
                                             Toast.LENGTH_LONG).show();
                                 } else {
-                                    Vaga vaga = listaVaga.get(position);
-                                    gerarPDF(view, position, vaga);
+                                    Vaga vaga2 = listaVaga.get(position);
+                                    gerarPDF(view, position, vaga2);
                                 }
                             }
 
@@ -228,6 +229,7 @@ public class MinhasVagasActivity extends AppCompatActivity {
 
         Font font = new Font(Font.FontFamily.TIMES_ROMAN, 10, Font.NORMAL);
 
+
         //Primeira info
         Paragraph paragraph = new Paragraph("Candidatos Aprovados", font);
         paragraph.setAlignment(Element.ALIGN_CENTER);
@@ -236,13 +238,14 @@ public class MinhasVagasActivity extends AppCompatActivity {
         listaVoluntario.clear();
 
         //Segunda info
-
+        int qtdAprovados = 0;
         if (vaga.getVoluntarios() == null) {
             Toast.makeText(getBaseContext(), "Não há nenhum candidato cadastrado nesta vaga", Toast.LENGTH_LONG).show();
         } else {
             for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
                 Voluntario voluntario = vaga.getVoluntarios().get(i);
                 if (voluntario.getStatusVaga().equalsIgnoreCase("APROVADO")) {
+                    qtdAprovados++;
                     String nome = "Nome: " + voluntario.getNome() + " " + voluntario.getSobrenome();
                     String telefone = "Telefone: " + voluntario.getTelefone();
                     String cidade = "Endereço: " + voluntario.getEndereco();
@@ -252,6 +255,18 @@ public class MinhasVagasActivity extends AppCompatActivity {
                 }
             }
         }
+        Font font2 = new Font(Font.FontFamily.TIMES_ROMAN, 8, Font.NORMAL);
+        Paragraph paragraph1 = new Paragraph("Quantidade de candidatos definidos pela ONG:" + vaga.getQtdCandidaturas(), font2);
+        paragraph1.setAlignment(Element.ALIGN_CENTER);
+
+        document.add(paragraph1);
+        listaVoluntario.clear();
+
+        Paragraph paragraph2 = new Paragraph("Quantidade de candidatos aprovados pela ONG:" + qtdAprovados, font2);
+        paragraph2.setAlignment(Element.ALIGN_CENTER);
+
+        document.add(paragraph2);
+        listaVoluntario.clear();
         //Segunda info
 
         document.close();
