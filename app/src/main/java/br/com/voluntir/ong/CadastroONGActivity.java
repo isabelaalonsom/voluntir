@@ -162,7 +162,7 @@ public class CadastroONGActivity extends AppCompatActivity {
                             controleCadastro.cadastrarOng(ong, tabelaBanco, getApplicationContext());
                         } else {
                             Toast.makeText(getApplicationContext(),
-                                    "Cnpj já cadastrado ",
+                                    "CNPJ já cadastrado",
                                     Toast.LENGTH_SHORT).show();
                         }
 
