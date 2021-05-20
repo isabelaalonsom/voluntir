@@ -62,9 +62,11 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
 
         MaskEditTextChangedListener maskCpf = new MaskEditTextChangedListener("###.###.###-##", (EditText) txtCpf);
         MaskEditTextChangedListener maskTEL = new MaskEditTextChangedListener("(##)#####-####", (EditText) txtTelefone);
+        MaskEditTextChangedListener maskData = new MaskEditTextChangedListener("##/##/####", (EditText) txtDataNasc);
 
         txtCpf.addTextChangedListener(maskCpf);
         txtTelefone.addTextChangedListener(maskTEL);
+        txtDataNasc.addTextChangedListener(maskData);
 
 
         Bundle dados = getIntent().getExtras();
