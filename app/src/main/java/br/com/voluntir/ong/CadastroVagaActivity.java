@@ -1,5 +1,6 @@
 package br.com.voluntir.ong;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
@@ -21,8 +23,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
@@ -31,6 +35,7 @@ import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.voluntir.R;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class CadastroVagaActivity extends AppCompatActivity {
     private DatabaseReference refenciaBanco;
     private Button botaoConfirmar;
@@ -43,9 +48,14 @@ public class CadastroVagaActivity extends AppCompatActivity {
     private Ong ong;
     private String idOng;
     boolean entrou = false;
+    Date date = new Date();
+
     boolean dataInicioValida = false;
     boolean dataTerminoValida = false;
-    int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
+    int anoAtual = LocalDate.now().getYear();
+    int mesAtual = LocalDate.now().getMonth().getValue();
+    //int diaAtual = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+    int diaAtual = LocalDate.now().getDayOfMonth();
     boolean podeGravar = false;
     boolean existe = false;
     private List<Vaga> listaVaga = new ArrayList<>();
@@ -147,6 +157,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
                     }
                     podeGravar = verificarDataMenor();
 
+
                     if (dataInicioValida == true && dataTerminoValida == true && podeGravar == true) {
 
                         entrou = false;
@@ -246,6 +257,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
     public boolean verificarDataMenor() {
         boolean podeGravar = false;
+        boolean podeGravar2 = false;
         int diaInicio = 0;
         int mesInicio = 0;
         int anoInicio = 0;
@@ -285,7 +297,27 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
             podeGravar = true;
         }
-        return podeGravar;
+
+
+        if (podeGravar == true) {
+            if (mesInicio < mesAtual) {
+                Toast.makeText(getApplicationContext(), "mês início não pode ser menor que mês atual ", Toast.LENGTH_SHORT).show();
+            } else if (mesInicio == mesAtual) {
+                if (diaInicio < diaAtual) {
+                    Toast.makeText(getApplicationContext(), "dia início não pode ser menor que dia atual ", Toast.LENGTH_SHORT).show();
+                } else {
+                    podeGravar2 = true;
+                }
+            } else if (mesInicio > mesAtual) {
+
+                podeGravar2 = true;
+            }
+
+        }
+
+
+        return podeGravar2;
     }
+
 
 }

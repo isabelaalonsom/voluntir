@@ -100,7 +100,7 @@
 
                 <EditText
                     android:id="@+id/edtTextDataInicio"
-                    android:layout_width="wrap_content"
+                    android:layout_width="105dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="start"
@@ -128,7 +128,7 @@
 
                 <EditText
                     android:id="@+id/edtTextDataTermino"
-                    android:layout_width="wrap_content"
+                    android:layout_width="105dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="start"
