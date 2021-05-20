@@ -1,5 +1,6 @@
 package br.com.voluntir.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,11 @@ public class AdapterPerfil extends RecyclerView.Adapter<AdapterPerfil.MyViewHold
         holder.endereco.setText(voluntario.getEndereco());
         holder.descricao.setText(voluntario.getEspecialidade());
         holder.status.setText(voluntario.getStatusVaga());
+        if (voluntario.getStatusVaga().equalsIgnoreCase("aprovado")) {
+            holder.status.setTextColor(Color.GREEN);
+        } else if (voluntario.getStatusVaga().equalsIgnoreCase("reprovado")) {
+            holder.status.setTextColor(Color.RED);
+        }
     }
 
 

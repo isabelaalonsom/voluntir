@@ -1,5 +1,6 @@
 package br.com.voluntir.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,11 @@ public class AdapterCandidatura extends RecyclerView.Adapter<AdapterCandidatura.
         holder.nomeOng.setText(vaga.getNomeOng());
         holder.areaConhecimento.setText(vaga.getAreaConhecimento());
         holder.vaga.setText("Vagas:" + (vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()));
-
+        if (status.equalsIgnoreCase("aprovado")) {
+            holder.txtViewStatusVariavel.setTextColor(Color.GREEN);
+        } else if (status.equalsIgnoreCase("reprovado")) {
+            holder.txtViewStatusVariavel.setTextColor(Color.RED);
+        }
         holder.txtViewStatus.setVisibility(View.VISIBLE);
         holder.txtViewStatusVariavel.setText(status);
 //        if (holder.txtViewStatusVariavel.getText() == "APROVADO") {
