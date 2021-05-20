@@ -151,10 +151,17 @@
 
                 <EditText
                     android:id="@+id/edtTextCargaHorariaEditarVaga"
-                    android:layout_width="match_parent"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="number" />
+
+                <TextView
+                    android:id="@+id/txtHoras"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="horas"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -267,6 +274,7 @@
                     android:text="Confirmar" />
 
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 
