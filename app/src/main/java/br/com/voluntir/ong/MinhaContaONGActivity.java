@@ -62,7 +62,7 @@ public class MinhaContaONGActivity extends AppCompatActivity {
 
        // MaskEditTextChangedListener maskCnpj = new MaskEditTextChangedListener("###.###.###-##", (EditText) txtCnpj);
         MaskEditTextChangedListener maskCnpj = new MaskEditTextChangedListener("##.###.###/####-##", (EditText) txtCnpj);
-        MaskEditTextChangedListener maskTEL = new MaskEditTextChangedListener("(##)####-####", (EditText) txtTelefone);
+        MaskEditTextChangedListener maskTEL = new MaskEditTextChangedListener("(##)#####-####", (EditText) txtTelefone);
 
         txtCnpj.addTextChangedListener(maskCnpj);
         txtTelefone.addTextChangedListener(maskTEL);
