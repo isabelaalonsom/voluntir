@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="br.com.voluntir.voluntir">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,6 +12,7 @@
         android:icon="@mipmap/voluntir_icon2"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/voluntir_icon2"
+        tools:replace="android:label"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".VoluntarioVisualizarVaga"></activity>

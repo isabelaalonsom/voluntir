@@ -3,6 +3,7 @@ package br.com.voluntir.ong;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -10,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 import br.com.voluntir.DAO.VagaDao;
 import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
@@ -54,7 +58,15 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         txtSite = (TextView) findViewById(R.id.txtViewSiteVariavel);
         txtEmail = (TextView) findViewById(R.id.txtViewEmailVariavel);
         txtResumoOng = (TextView) findViewById(R.id.txtViewResumoOngVariavel);
-        limparCampos();
+        //limparCampos();
+
+       // MaskEditTextChangedListener maskCnpj = new MaskEditTextChangedListener("###.###.###-##", (EditText) txtCnpj);
+        MaskEditTextChangedListener maskCnpj = new MaskEditTextChangedListener("##.###.###/####-##", (EditText) txtCnpj);
+        MaskEditTextChangedListener maskTEL = new MaskEditTextChangedListener("(##)####-####", (EditText) txtTelefone);
+
+        txtCnpj.addTextChangedListener(maskCnpj);
+        txtTelefone.addTextChangedListener(maskTEL);
+
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
             ong = (Ong) dados.getSerializable("objeto");
@@ -180,16 +192,16 @@ public class MinhaContaONGActivity extends AppCompatActivity {
 
     }
 
-    public void limparCampos() {
-        txtNomeOng.setText("");
-        txtCnpj.setText("");
-        txtLocalizacao.setText("");
-        txtCausas.setText("");
-        txtTelefone.setText("");
-        txtSite.setText("");
-        txtEmail.setText("");
-        txtResumoOng.setText("");
-    }
+//    public void limparCampos() {
+//        txtNomeOng.setText("");
+//        txtCnpj.setText("");
+//        txtLocalizacao.setText("");
+//        txtCausas.setText("");
+//        txtTelefone.setText("");
+//        txtSite.setText("");
+//        txtEmail.setText("");
+//        txtResumoOng.setText("");
+//    }
 
 
 
