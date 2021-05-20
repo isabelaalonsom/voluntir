@@ -26,7 +26,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
@@ -48,13 +47,9 @@ public class CadastroVagaActivity extends AppCompatActivity {
     private Ong ong;
     private String idOng;
     boolean entrou = false;
-    Date date = new Date();
-
     boolean dataInicioValida = false;
     boolean dataTerminoValida = false;
-    int anoAtual = LocalDate.now().getYear();
     int mesAtual = LocalDate.now().getMonth().getValue();
-    //int diaAtual = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
     int diaAtual = LocalDate.now().getDayOfMonth();
     boolean podeGravar = false;
     boolean existe = false;

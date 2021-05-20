@@ -1,6 +1,7 @@
 package br.com.voluntir.voluntir;
 
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -33,6 +36,7 @@ import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class EditarVaga extends AppCompatActivity {
     boolean entrou = false;
     private final String tabelaBanco = "vaga";
@@ -43,7 +47,8 @@ public class EditarVaga extends AppCompatActivity {
     boolean dataInicioValida = false;
     private TextView nome;
     private EditText cargaHoraria, periodicidade, especialidade, detalheVaga, qtdCandidatos, dataInicio, dataTermino;
-
+    int mesAtual = LocalDate.now().getMonth().getValue();
+    int diaAtual = LocalDate.now().getDayOfMonth();
 
     private TextView txtTituloNovaVagaEditarVaga;
     private ControleCadastro controleCadastro;
@@ -294,6 +299,7 @@ public class EditarVaga extends AppCompatActivity {
 
     public boolean verificarDataMenor() {
         boolean podeGravar = false;
+        boolean podeGravar2 = false;
         int diaInicio = 0;
         int mesInicio = 0;
         int anoInicio = 0;
@@ -333,7 +339,26 @@ public class EditarVaga extends AppCompatActivity {
 
             podeGravar = true;
         }
-        return podeGravar;
+
+
+        if (podeGravar == true) {
+            if (mesInicio < mesAtual) {
+                Toast.makeText(getApplicationContext(), "mês início não pode ser menor que mês atual ", Toast.LENGTH_SHORT).show();
+            } else if (mesInicio == mesAtual) {
+                if (diaInicio < diaAtual) {
+                    Toast.makeText(getApplicationContext(), "dia início não pode ser menor que dia atual ", Toast.LENGTH_SHORT).show();
+                } else {
+                    podeGravar2 = true;
+                }
+            } else if (mesInicio > mesAtual) {
+
+                podeGravar2 = true;
+            }
+
+        }
+
+
+        return podeGravar2;
     }
 
 
