@@ -3,7 +3,6 @@ package br.com.voluntir.voluntario;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,7 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 import br.com.voluntir.DAO.VagaDao;
 import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
@@ -60,13 +60,20 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         txtGenero = (TextView) findViewById(R.id.txtViewGeneroVariavel);
         txtDescricaoTecnica = (TextView) findViewById(R.id.txtViewDescricaoTecnicaVariavel);
 
-        MaskEditTextChangedListener maskCpf = new MaskEditTextChangedListener("###.###.###-##", (EditText) txtCpf);
-        MaskEditTextChangedListener maskTEL = new MaskEditTextChangedListener("(##)#####-####", (EditText) txtTelefone);
-        MaskEditTextChangedListener maskData = new MaskEditTextChangedListener("##/##/####", (EditText) txtDataNasc);
-
+        //mascara para o Cpf
+        SimpleMaskFormatter simpleMaskCpf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
+        MaskTextWatcher maskCpf = new MaskTextWatcher(txtCpf, simpleMaskCpf);
         txtCpf.addTextChangedListener(maskCpf);
-        txtTelefone.addTextChangedListener(maskTEL);
+
+        //mascara para a Data
+        SimpleMaskFormatter simpleMaskData = new SimpleMaskFormatter("NN/NN/NNNN");
+        MaskTextWatcher maskData = new MaskTextWatcher(txtDataNasc, simpleMaskData);
         txtDataNasc.addTextChangedListener(maskData);
+
+        //mascara para o Telefone
+        SimpleMaskFormatter simpleMaskTelefone = new SimpleMaskFormatter("(NN) NNNNN-NNNN");
+        MaskTextWatcher maskTelefone = new MaskTextWatcher(txtTelefone, simpleMaskTelefone);
+        txtTelefone.addTextChangedListener(maskTelefone);
 
 
         Bundle dados = getIntent().getExtras();

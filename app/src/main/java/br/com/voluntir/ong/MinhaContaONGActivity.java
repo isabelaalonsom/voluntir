@@ -3,7 +3,6 @@ package br.com.voluntir.ong;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +22,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 import br.com.voluntir.DAO.VagaDao;
 import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
@@ -60,12 +58,15 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         txtResumoOng = (TextView) findViewById(R.id.txtViewResumoOngVariavel);
         //limparCampos();
 
-       // MaskEditTextChangedListener maskCnpj = new MaskEditTextChangedListener("###.###.###-##", (EditText) txtCnpj);
-        MaskEditTextChangedListener maskCnpj = new MaskEditTextChangedListener("##.###.###/####-##", (EditText) txtCnpj);
-        MaskEditTextChangedListener maskTEL = new MaskEditTextChangedListener("(##)#####-####", (EditText) txtTelefone);
-
+        //mascara para o Cnpj
+        SimpleMaskFormatter simpleMaskCnpj = new SimpleMaskFormatter("NN.NNN.NNN/NNNN-NN");
+        MaskTextWatcher maskCnpj = new MaskTextWatcher(txtCnpj, simpleMaskCnpj);
         txtCnpj.addTextChangedListener(maskCnpj);
-        txtTelefone.addTextChangedListener(maskTEL);
+
+        //mascara para o Telefone
+        SimpleMaskFormatter simpleMaskTelefone = new SimpleMaskFormatter("(NN) NNNNN-NNNN");
+        MaskTextWatcher maskTelefone = new MaskTextWatcher(txtTelefone, simpleMaskTelefone);
+        txtTelefone.addTextChangedListener(maskTelefone);
 
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
