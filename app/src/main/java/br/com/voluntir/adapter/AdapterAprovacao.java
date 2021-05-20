@@ -1,5 +1,6 @@
 package br.com.voluntir.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,12 @@ public class AdapterAprovacao extends RecyclerView.Adapter<AdapterAprovacao.MyVi
         Voluntario voluntario = listaVoluntario.get(position);
         if (voluntario != null) {
             holder.nome.setText(voluntario.getNome() + " " + voluntario.getSobrenome());
-            holder.status.setText("Status: " + voluntario.getStatusVaga());
+            holder.status.setText(voluntario.getStatusVaga());
+            if (voluntario.getStatusVaga().equalsIgnoreCase("aprovado")) {
+                holder.status.setTextColor(Color.GREEN);
+            } else if (voluntario.getStatusVaga().equalsIgnoreCase("reprovado")) {
+                holder.status.setTextColor(Color.RED);
+            }
         }
 
     }
@@ -53,7 +59,7 @@ public class AdapterAprovacao extends RecyclerView.Adapter<AdapterAprovacao.MyVi
             super(itemView);
 
             nome = itemView.findViewById(R.id.txtCandidato);
-            status = itemView.findViewById(R.id.txtStatusVoluntario);
+            status = itemView.findViewById(R.id.txtStatusVoluntarioVariavel);
         }
     }
 }

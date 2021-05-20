@@ -70,12 +70,6 @@ public class MinhasVagasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vaga);
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
         getSupportActionBar().hide();
 
         recyclerView = findViewById(R.id.recyclerViewVaga);
@@ -168,6 +162,14 @@ public class MinhasVagasActivity extends AppCompatActivity {
             Util.validate(this, 17, permissao);
 
         }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
     }
 
     public void gerarPDF(View view, int position, Vaga vaga) throws IOException, DocumentException {
@@ -273,10 +275,8 @@ public class MinhasVagasActivity extends AppCompatActivity {
         outputStream.close();
 
         //Se o celular utilizado for da versão 10 do android ou superior
-        if (vaga.getVoluntarios() == null) {
-            Toast.makeText(getBaseContext(), "Não há nenhum candidato cadastrado nesta vaga", Toast.LENGTH_LONG).show();
-        } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
                 descriptor.close();
                 visualizarPdfUri(uri);
@@ -285,7 +285,6 @@ public class MinhasVagasActivity extends AppCompatActivity {
 
                 visualizarPdfFile(pdf);
             }
-        }
 
 
     }

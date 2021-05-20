@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:orientation="vertical">
 
     <TextView
@@ -22,11 +23,11 @@
 
         <TextView
             android:id="@+id/txtViewCpfAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:text="CPF: "
             android:textSize="18sp" />
 
@@ -35,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -50,11 +51,11 @@
 
         <TextView
             android:id="@+id/txtViewNomeDoVoluntarioAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:text="Nome: "
             android:textSize="18sp" />
 
@@ -63,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -78,7 +79,7 @@
 
         <TextView
             android:id="@+id/txtViewSobrenomeAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -88,10 +89,10 @@
 
         <EditText
             android:id="@+id/txtViewSobrenomeVariavelAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -119,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -134,11 +135,11 @@
 
         <TextView
             android:id="@+id/txtViewGeneroAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:text="Gênero: "
             android:textSize="18sp" />
 
@@ -147,7 +148,8 @@
             android:id="@+id/txtViewGeneroVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -162,11 +164,11 @@
 
         <TextView
             android:id="@+id/txtViewTelefoneAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:text="Telefone: "
             android:textSize="18sp" />
 
@@ -175,7 +177,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -190,11 +192,11 @@
 
         <TextView
             android:id="@+id/txtViewEmailAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:text="E-mail: "
             android:textSize="18sp" />
 
@@ -203,8 +205,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -219,11 +220,11 @@
 
         <TextView
             android:id="@+id/txtViewEnderecoAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:text="Endereço: "
             android:textSize="18sp" />
 
@@ -232,8 +233,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -247,11 +247,11 @@
 
         <TextView
             android:id="@+id/textViewAdapter"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:gravity="center"
+            android:gravity="start"
             android:text="Status:"
             android:textSize="18sp" />
 
