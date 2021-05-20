@@ -3,6 +3,7 @@ package br.com.voluntir.voluntario;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.jansenfelipe.androidmask.MaskEditTextChangedListener;
 import br.com.voluntir.DAO.VagaDao;
 import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
@@ -57,6 +59,13 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         txtTelefone = (TextView) findViewById(R.id.txtViewTelefoneVariavel);
         txtGenero = (TextView) findViewById(R.id.txtViewGeneroVariavel);
         txtDescricaoTecnica = (TextView) findViewById(R.id.txtViewDescricaoTecnicaVariavel);
+
+        MaskEditTextChangedListener maskCpf = new MaskEditTextChangedListener("###.###.###-##", (EditText) txtCpf);
+        MaskEditTextChangedListener maskTEL = new MaskEditTextChangedListener("(##)#####-####", (EditText) txtTelefone);
+
+        txtCpf.addTextChangedListener(maskCpf);
+        txtTelefone.addTextChangedListener(maskTEL);
+
 
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
