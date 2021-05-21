@@ -128,7 +128,8 @@ public class CadastroVagaActivity extends AppCompatActivity {
                 if (especialidade.getText().toString().isEmpty() ||
                         dataInicio.getText().toString().isEmpty() || dataTermino.getText().toString().isEmpty() ||
                         cargaHoraria.getText().toString().isEmpty() ||
-                        detalheVaga.getText().toString().isEmpty() || periodicidade.getText().toString().isEmpty()) {
+                        detalheVaga.getText().toString().isEmpty() || periodicidade.getText().toString().isEmpty() ||
+                        qtdCandidatos.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(),
                             "Preencha todos os campos ",
                             Toast.LENGTH_SHORT).show();
@@ -199,7 +200,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
                             vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
                             controleVaga = new ControleVaga();
                             controleVaga.cadastrarVaga(vaga, tabelaBanco, getApplicationContext());
-
+                            limparDadosDoCadastroVaga(getCurrentFocus());
 
                         }
 
