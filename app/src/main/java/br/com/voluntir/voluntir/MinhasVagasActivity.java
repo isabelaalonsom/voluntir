@@ -258,13 +258,13 @@ public class MinhasVagasActivity extends AppCompatActivity {
             }
         }
         Font font2 = new Font(Font.FontFamily.TIMES_ROMAN, 8, Font.NORMAL);
-        Paragraph paragraph1 = new Paragraph("Quantidade de candidatos definidos pela ONG:" + vaga.getQtdCandidaturas(), font2);
+        Paragraph paragraph1 = new Paragraph("Quantidade de vagas oferecidas pela ONG:" + vaga.getQtdCandidaturas(), font2);
         paragraph1.setAlignment(Element.ALIGN_CENTER);
 
         document.add(paragraph1);
         listaVoluntario.clear();
 
-        Paragraph paragraph2 = new Paragraph("Quantidade de candidatos aprovados pela ONG:" + qtdAprovados, font2);
+        Paragraph paragraph2 = new Paragraph("Quantidade de vagas preenchidas:" + qtdAprovados, font2);
         paragraph2.setAlignment(Element.ALIGN_CENTER);
 
         document.add(paragraph2);
