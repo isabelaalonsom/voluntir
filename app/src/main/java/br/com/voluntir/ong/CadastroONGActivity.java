@@ -1,6 +1,5 @@
 package br.com.voluntir.ong;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -90,29 +89,6 @@ public class CadastroONGActivity extends AppCompatActivity {
         MaskTextWatcher maskTelefone = new MaskTextWatcher(telefone, simpleMaskTelefone);
         telefone.addTextChangedListener(maskTelefone);
 
-        Intent i = getIntent();
-        Bundle parametros = i.getExtras();
-
-        if (parametros != null) {
-            String nomeOngPreenchido = parametros.getString("chave_nome_ong");
-            String cnpjOngPreenchido = parametros.getString("chave_cnpj_ong");
-            String localizacaoOngPreenchido = parametros.getString("chave_localizacao_ong");
-            String causasOngPreenchido = parametros.getString("chave_causas_ong");
-            String emailOngPreenchido = parametros.getString("chave_email_ong");
-            String telefoneOngPreenchido = parametros.getString("chave_telefone_ong");
-            String siteOngPreenchido = parametros.getString("chave_site_ong");
-            String resumoOngPreenchido = parametros.getString("chave_resumo_ong");
-
-            nome.setText(nomeOngPreenchido);
-            cnpj.setText(cnpjOngPreenchido);
-            localizacao.setText(localizacaoOngPreenchido);
-            causa.setText(causasOngPreenchido);
-            email.setText(emailOngPreenchido);
-            telefone.setText(telefoneOngPreenchido);
-            site.setText(siteOngPreenchido);
-            resumo.setText(resumoOngPreenchido);
-
-        }
 
             botaoConfirmar = findViewById(R.id.confirmarBtn);
             botaoConfirmar.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +115,7 @@ public class CadastroONGActivity extends AppCompatActivity {
                             cnpj.getText().toString().isEmpty() || nome.getText().toString().isEmpty() ||
                             causa.getText().toString().isEmpty() || telefone.getText().toString().isEmpty() ||
                             localizacao.getText().toString().isEmpty() || resumo.getText().toString().isEmpty() ||
-                            site.getText().toString().isEmpty()) {
+                            site.getText().toString().isEmpty() || confirmarSenha.getText().toString().isEmpty()) {
 
                         //exibe mensagem na tela
                         Toast.makeText(getApplicationContext(),
@@ -160,6 +136,7 @@ public class CadastroONGActivity extends AppCompatActivity {
                         }
                         if (cnpjCadastrado == false) {
                             controleCadastro.cadastrarOng(ong, tabelaBanco, getApplicationContext());
+
                         } else {
                             Toast.makeText(getApplicationContext(),
                                     "CNPJ já cadastrado",
@@ -174,10 +151,6 @@ public class CadastroONGActivity extends AppCompatActivity {
             });
         }
 
-        public void clicarBotaoConfirmar (View view){
-            Toast.makeText(this, "Cadastro Criado!", Toast.LENGTH_SHORT).show();
-            //aqui tem que jogar pro banco de dados os edit text preenchidos
-        }
 
     public void limparDados(View v) {
         nome.setText("");
