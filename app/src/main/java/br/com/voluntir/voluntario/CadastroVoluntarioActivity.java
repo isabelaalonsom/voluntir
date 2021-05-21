@@ -27,7 +27,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
@@ -58,7 +57,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     private DatabaseReference refenciaBanco;
     private List<String> listaCpf = new ArrayList<>();
     private boolean cpfCadastrado = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -174,18 +172,8 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 voluntario.setDatanasc(data.getText().toString());
                 voluntario.setSobrenome(sobrenome.getText().toString());
 
-                int dia = 0;
-                int mes = 0;
-                int ano = 0;
 
-                String data2 = data.getText().toString();
-                if (data2 != null) {
-                    dia = Integer.parseInt(data2.substring(0, 2));
-                    mes = Integer.parseInt(data2.substring(3, 5));
-                    ano = Integer.parseInt(data2.substring(6, 10));
-                }
 
-                int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
 
                 //verifica se todos os campos foram preenchidos
                 if (email.getText().toString().isEmpty() || senha.getText().toString().isEmpty() ||
@@ -200,13 +188,15 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 } else if (!senha.getText().toString().equals(confirmarSenha.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "As senhas não conferem.", Toast.LENGTH_LONG).show();
                 }
-                if (!validarData(data.getText().toString())) {
-                    Toast.makeText(getApplicationContext(),
-                            "Data de nascimento inválida",
-                            Toast.LENGTH_SHORT).show();
-                    dataValida = false;
-                } else {
-                    dataValida = true;
+                if (!data.getText().toString().isEmpty()) {
+                    if (!validarData(data.getText().toString())) {
+                        Toast.makeText(getApplicationContext(),
+                                "Data de nascimento inválida",
+                                Toast.LENGTH_SHORT).show();
+                        dataValida = false;
+                    } else {
+                        dataValida = true;
+                    }
                 }
                 boolean podeGravar = verificarDataMenor();
                 if (podeGravar == true && dataValida == true) {
@@ -258,7 +248,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
 
 
     public boolean validarData(String data) {
-        int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
         int ano = 0;
         String dataConfig = data;
         if (dataConfig.length() == 10) {
