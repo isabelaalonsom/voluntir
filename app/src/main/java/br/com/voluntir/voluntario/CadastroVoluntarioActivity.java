@@ -236,6 +236,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         endereco.setText("");
         telefone.setText("");
         confirmarSenha.setText("");
+        radioGroup.clearCheck();
 
     }
 
