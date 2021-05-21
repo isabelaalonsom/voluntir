@@ -202,7 +202,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 }
                 if (!validarData(data.getText().toString())) {
                     Toast.makeText(getApplicationContext(),
-                            "Data termino inválida ",
+                            "Data de nascimento inválida",
                             Toast.LENGTH_SHORT).show();
                     dataValida = false;
                 } else {
