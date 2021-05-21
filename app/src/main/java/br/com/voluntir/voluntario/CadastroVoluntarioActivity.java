@@ -304,6 +304,12 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
 
             podeGravar = true;
         }
+        if (podeGravar == true) {
+            if (anoNascimento < 1900) {
+                Toast.makeText(getApplicationContext(), "Ano inválido ", Toast.LENGTH_SHORT).show();
+                podeGravar = false;
+            }
+        }
 
         return podeGravar;
     }
