@@ -1,12 +1,14 @@
 package br.com.voluntir.voluntario;
 
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +21,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +36,7 @@ import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
 
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class MinhaContaVoluntarioActivity extends AppCompatActivity {
 
     private final String tabelaVoluntario = "voluntario";
@@ -42,6 +49,10 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
     private List<Vaga> listaVagaSemVoluntario = new ArrayList<>();
     private Vaga vaga;
     private boolean acabou = false;
+    int mesAtual = LocalDate.now().getMonth().getValue();
+    int diaAtual = LocalDate.now().getDayOfMonth();
+    int anoAtual = LocalDate.now().getYear();
+    boolean dataValida = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,23 +142,39 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                     "Preencha todos os campos ",
                     Toast.LENGTH_SHORT).show();
         } else {
-            Voluntario dados = new Voluntario();
-            if (voluntario != null) {
-                dados.setIdVoluntario(voluntario.getIdVoluntario());
+            if (!txtDataNasc.getText().toString().isEmpty()) {
+                if (!validarData(txtDataNasc.getText().toString())) {
+                    Toast.makeText(getApplicationContext(),
+                            "Data de nascimento inválida",
+                            Toast.LENGTH_SHORT).show();
+                    dataValida = false;
+                } else {
+                    dataValida = true;
+                }
             }
 
-            dados.setNome(txtNome.getText().toString());
-            dados.setSobrenome(txtSobrenome.getText().toString());
-            dados.setCpf(txtCpf.getText().toString());
-            dados.setDatanasc(txtDataNasc.getText().toString());
-            dados.setEmail(txtEmail.getText().toString());
-            dados.setEndereco(txtEndereco.getText().toString());
-            dados.setTelefone(txtTelefone.getText().toString());
-            dados.setGenero(txtGenero.getText().toString());
-            dados.setEspecialidade(txtDescricaoTecnica.getText().toString());
+            boolean podeGravar = verificarDataMenor();
+            if (podeGravar == true && dataValida == true) {
+                Voluntario dados = new Voluntario();
+                if (voluntario != null) {
+                    dados.setIdVoluntario(voluntario.getIdVoluntario());
+                }
 
-            controleCadastro = new ControleCadastro();
-            controleCadastro.atualizarDadosVoluntario(dados, tabelaVoluntario, getApplicationContext());
+                dados.setNome(txtNome.getText().toString());
+                dados.setSobrenome(txtSobrenome.getText().toString());
+                dados.setCpf(txtCpf.getText().toString());
+                dados.setDatanasc(txtDataNasc.getText().toString());
+                dados.setEmail(txtEmail.getText().toString());
+                dados.setEndereco(txtEndereco.getText().toString());
+                dados.setTelefone(txtTelefone.getText().toString());
+                dados.setGenero(txtGenero.getText().toString());
+                dados.setEspecialidade(txtDescricaoTecnica.getText().toString());
+
+                controleCadastro = new ControleCadastro();
+                controleCadastro.atualizarDadosVoluntario(dados, tabelaVoluntario, getApplicationContext());
+
+            }
+
         }
     }
 
@@ -224,6 +251,71 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         txtDescricaoTecnica.setText("");
     }
 
+    public boolean validarData(String data) {
+        int ano = 0;
+        String dataConfig = data;
+        if (dataConfig.length() == 10) {
+            ano = Integer.parseInt(dataConfig.substring(6, 10));
+        }
+
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        df.setLenient(false);
+        try {
+            df.parse(data);
+
+            return true;
+        } catch (ParseException ex) {
+            return false;
+        }
+
+    }
+
+    public boolean verificarDataMenor() {
+        boolean podeGravar = false;
+        boolean podeGravar2 = false;
+        int diaNascimento = 0;
+        int mesNascimento = 0;
+        int anoNascimento = 0;
+
+        String dataInicioConfig = txtDataNasc.getText().toString();
+        if (dataInicioConfig.length() == 10) {
+            diaNascimento = Integer.parseInt(dataInicioConfig.substring(0, 2));
+            mesNascimento = Integer.parseInt(dataInicioConfig.substring(3, 5));
+            anoNascimento = Integer.parseInt(dataInicioConfig.substring(6, 10));
+        }
+
+        if ((anoAtual - anoNascimento) < 18) {
+            Toast.makeText(getApplicationContext(), "Proibido menor de idade ", Toast.LENGTH_SHORT).show();
+            podeGravar = false;
+        } else if ((anoAtual - anoNascimento) == 18) {
+            if (mesNascimento > mesAtual) {
+                Toast.makeText(getApplicationContext(), "Proibido menor de idade ", Toast.LENGTH_SHORT).show();
+                podeGravar = false;
+            } else if (mesNascimento == mesAtual) {
+                if (diaNascimento > diaAtual) {
+                    Toast.makeText(getApplicationContext(), "Proibido menor de idade ", Toast.LENGTH_SHORT).show();
+                    podeGravar = false;
+                } else {
+                    podeGravar = true;
+                }
+            } else if (mesNascimento < mesAtual) {
+                podeGravar = true;
+            }
+
+        } else if (anoNascimento < anoAtual) {
+
+            podeGravar = true;
+        }
+        if (podeGravar == true) {
+            if (anoNascimento < 1900) {
+                Toast.makeText(getApplicationContext(), "Ano inválido ", Toast.LENGTH_SHORT).show();
+                podeGravar = false;
+            }
+        }
+
+        return podeGravar;
+    }
 
 
 }
