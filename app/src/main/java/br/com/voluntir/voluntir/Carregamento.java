@@ -49,7 +49,7 @@ public class Carregamento extends AppCompatActivity {
             if ((preferencias.getUsuarioLogado().equals("ong"))) {
                 bancoFirebase = BancoFirebase.getBancoReferencia();
                 Query pesquisa = bancoFirebase.child(tabelaOng).orderByChild("emailOng").equalTo(preferencias.getEmailUsuarioLogado());
-                pesquisa.addListenerForSingleValueEvent(new ValueEventListener() {
+                pesquisa.addValueEventListener(new ValueEventListener() {
 
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -80,7 +80,7 @@ public class Carregamento extends AppCompatActivity {
             } else if ((preferencias.getUsuarioLogado().equals("voluntario"))) {
                 bancoFirebase = BancoFirebase.getBancoReferencia();
                 Query pesquisa = bancoFirebase.child(tabelaVoluntario).orderByChild("email").equalTo(preferencias.getEmailUsuarioLogado());
-                pesquisa.addListenerForSingleValueEvent(new ValueEventListener() {
+                pesquisa.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {

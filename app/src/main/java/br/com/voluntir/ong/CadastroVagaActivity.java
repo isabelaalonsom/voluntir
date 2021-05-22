@@ -51,6 +51,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
     boolean dataTerminoValida = false;
     int mesAtual = LocalDate.now().getMonth().getValue();
     int diaAtual = LocalDate.now().getDayOfMonth();
+    int anoAtual = LocalDate.now().getYear();
     boolean podeGravar = false;
     boolean existe = false;
     private List<Vaga> listaVaga = new ArrayList<>();
@@ -296,16 +297,20 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
 
         if (podeGravar == true) {
-            if (mesInicio < mesAtual) {
-                Toast.makeText(getApplicationContext(), "mês início não pode ser menor que mês atual ", Toast.LENGTH_SHORT).show();
-            } else if (mesInicio == mesAtual) {
-                if (diaInicio < diaAtual) {
-                    Toast.makeText(getApplicationContext(), "dia início não pode ser menor que dia atual ", Toast.LENGTH_SHORT).show();
-                } else {
+            if (anoInicio == anoAtual) {
+                if (mesInicio < mesAtual) {
+                    Toast.makeText(getApplicationContext(), "mês início não pode ser menor que mês atual ", Toast.LENGTH_SHORT).show();
+                } else if (mesInicio == mesAtual) {
+                    if (diaInicio < diaAtual) {
+                        Toast.makeText(getApplicationContext(), "dia início não pode ser menor que dia atual ", Toast.LENGTH_SHORT).show();
+                    } else {
+                        podeGravar2 = true;
+                    }
+                } else if (mesInicio > mesAtual) {
+
                     podeGravar2 = true;
                 }
-            } else if (mesInicio > mesAtual) {
-
+            } else {
                 podeGravar2 = true;
             }
 

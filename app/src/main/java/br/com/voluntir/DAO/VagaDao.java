@@ -24,7 +24,7 @@ import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
-import br.com.voluntir.voluntir.MainActivity;
+import br.com.voluntir.voluntir.Carregamento;
 
 public class VagaDao implements DAO<Vaga> {
 
@@ -137,6 +137,9 @@ public class VagaDao implements DAO<Vaga> {
                     Toast.makeText(appContext,
                             "Vaga cadastrada com sucesso ",
                             Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(appContext, Carregamento.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    appContext.startActivity(intent);
                 }
             }
         });
@@ -152,7 +155,7 @@ public class VagaDao implements DAO<Vaga> {
                 Toast.makeText(context,
                         "Vaga excluída com sucesso ",
                         Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, MainActivity.class);
+                Intent intent = new Intent(context, Carregamento.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
