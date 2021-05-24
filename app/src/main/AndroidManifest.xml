@@ -42,7 +42,6 @@
         <activity android:name="br.com.voluntir.ong.MinhaContaONGActivity" />
         <activity android:name="br.com.voluntir.ong.CadastroVagaActivity" />
         <activity android:name="br.com.voluntir.ong.CadastroONGActivity" />
-        <activity android:name=".VisualizacaoVagaActivity" />
         <activity android:name="br.com.voluntir.ong.AprovacaoCandidatoActivity" />
 
         <provider

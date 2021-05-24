@@ -1,224 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".VoluntarioVisualizarVaga">
 
-    <TextView
-        android:id="@+id/txtViewDescriçãoVaga"
-        android:layout_width="match_parent"
+    <ScrollView
+        android:id="@+id/scrollViewVoluntarioVisualizarVaga"
+        android:layout_width="314dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:gravity="center"
-        android:text="Descrição da Vaga"
-        android:textSize="30sp"
-        tools:layout_editor_absoluteX="173dp"
-        tools:layout_editor_absoluteY="8dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:id="@+id/LinearNome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txtViewONG"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:gravity="center"
-            android:text="Nome: "
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txtViewVoluntarioVisualizarVaga"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="ONG X"
-            android:textColor="#AA0B0B"
-            android:textSize="18sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/LinearAreaConhecimento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txtViewAreaConhecimento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Título da vaga:"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txtViewAreaConhecimentoVoluntarioVisualizarVaga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Pacote Office"
-            android:textColor="#AA0B0B"
-            android:textSize="18sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/LinearDataInicio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txtViewDataInicio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Data de início: "
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txtViewDataInicioVoluntarioVisualizarVaga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="23/12/2020"
-            android:textColor="#AA0B0B"
-            android:textSize="18sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/LinearDataTermino"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txtViewDataTermino"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Data de término: "
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txtViewDataTeminoVoluntarioVisualizarVaga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="05/01/2021"
-            android:textColor="#AA0B0B"
-            android:textSize="18sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/LinearHorario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txtViewCargaHoraria"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Carga Horária: "
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txtViewCargaHorariaVoluntarioVisualizarVaga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10:00"
-            android:textColor="#AA0B0B"
-            android:textSize="18sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/LinearPeriodicidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txtViewPeriodicidade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Periodicidade: "
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txtViewPeriodicidadeVoluntarioVisualizarVaga"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="2 "
-            android:textColor="#AA0B0B"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txtViewVezesPorSemana"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="vezes por semana"
-            android:textSize="18sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/LinearDescricao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txtViewDescricao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Descrição: "
-            android:textSize="18sp" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/txtViewDescricaoVoluntarioVisualizarVaga"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ensinar as pessoas que estão aprendendo a utilizar o Pacote Office, especialmente Excel e Word. "
-        android:textColor="#AA0B0B"
-        android:textSize="18sp" />
-
-    <LinearLayout
-        android:id="@+id/LinearBotoesVoluntarioVisualizarVaga"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal">
-
-        <!-- Esse botão volta para a activity Nova VagaActivity com os editText preenchidos para alteração posterior -->
-        <Button
-            android:id="@+id/btnEditarVoluntarioVisualizarVaga"
-            android:layout_width="197dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
-            android:layout_marginRight="110dp"
-            android:onClick="visualizarPerfilOng"
-            android:text="PERFIL DA ONG" />
+            android:orientation="vertical">
 
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/txtViewDescriçãoVaga"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:text="Descrição da Vaga"
+                android:textSize="30sp"
+                tools:layout_editor_absoluteX="173dp"
+                tools:layout_editor_absoluteY="8dp" />
 
-</LinearLayout>
+            <LinearLayout
+                android:id="@+id/LinearNome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtViewONG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="Nome: "
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtViewVoluntarioVisualizarVaga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="ONG X"
+                    android:textColor="#AA0B0B"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearAreaConhecimento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtViewAreaConhecimento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Título da vaga:"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtViewAreaConhecimentoVoluntarioVisualizarVaga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Pacote Office"
+                    android:textColor="#AA0B0B"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearDataInicio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtViewDataInicio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Data de início: "
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtViewDataInicioVoluntarioVisualizarVaga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="23/12/2020"
+                    android:textColor="#AA0B0B"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearDataTermino"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtViewDataTermino"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data de término: "
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtViewDataTeminoVoluntarioVisualizarVaga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="05/01/2021"
+                    android:textColor="#AA0B0B"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearHorario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtViewCargaHoraria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Carga Horária: "
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtViewCargaHorariaVoluntarioVisualizarVaga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10:00"
+                    android:textColor="#AA0B0B"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearPeriodicidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtViewPeriodicidade"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Periodicidade: "
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtViewPeriodicidadeVoluntarioVisualizarVaga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2 "
+                    android:textColor="#AA0B0B"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/txtViewVezesPorSemana"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="vezes por semana"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearDescricao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtViewDescricao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Descrição: "
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtViewDescricaoVoluntarioVisualizarVaga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ensinar as pessoas que estão aprendendo a utilizar o Pacote Office, especialmente Excel e Word. "
+                android:textColor="#AA0B0B"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/LinearBotoesVoluntarioVisualizarVaga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!-- Esse botão volta para a activity Nova VagaActivity com os editText preenchidos para alteração posterior -->
+                <Button
+                    android:id="@+id/btnEditarVoluntarioVisualizarVaga"
+                    android:layout_width="197dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="110dp"
+                    android:layout_marginRight="110dp"
+                    android:onClick="visualizarPerfilOng"
+                    android:text="PERFIL DA ONG" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
