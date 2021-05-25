@@ -1,57 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="br.com.voluntir.ong.MinhaContaONGActivity">
-    <include layout="@layout/toolbar" />
 
-    <ScrollView
-        android:id="@+id/scrollViewMinhaContaONG"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <include
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:id="@+id/scrollViewMinhaContaONG"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_gravity="center">
 
-            <TextView
-                android:id="@+id/txtViewMinhaConta"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:gravity="center"
-                android:text="Minha Conta"
-                android:textSize="30sp"
-                tools:layout_editor_absoluteX="173dp"
-                tools:layout_editor_absoluteY="8dp" />
-
-            <LinearLayout
-                android:id="@+id/LinearNome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtViewONG"
+                    android:id="@+id/txtViewMinhaConta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
                     android:gravity="center"
-                    android:text="Nome: "
-                    android:textSize="18sp" />
+                    android:text="Minha Conta"
+                    android:textSize="30sp"
+                    tools:layout_editor_absoluteX="173dp"
+                    tools:layout_editor_absoluteY="8dp" />
+
+                <LinearLayout
+                    android:id="@+id/LinearNome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewONG"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Nome: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/txtViewONGVariavel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearCnpj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewCnpj"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="CNPJ: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/txtViewCpnjVariavel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearLocalizacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewLocalizacao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Localização: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/txtViewLocalizaoVariavel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearCausas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewCausas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Causas: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/txtViewCausasVariavel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearTelefone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewTelefone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Telefone: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/txtViewTelefoneVariavel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:inputType="phone"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearSite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewSite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Site: "
+                        android:textSize="18sp" />
+
+                    <!-- esse campo não pode ser obrigatorio pq nem todas as ongs tem site -->
+                    <EditText
+                        android:id="@+id/txtViewSiteVariavel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="E-mail: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/txtViewEmailVariavel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearResumoOng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewResumoOng"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Resumo da ONG:"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
 
                 <EditText
-                    android:id="@+id/txtViewONGVariavel"
+                    android:id="@+id/txtViewResumoOngVariavel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -59,236 +263,40 @@
                     android:textColor="#AA0B0B"
                     android:textSize="18sp" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearCnpj"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewCnpj"
+                <LinearLayout
+                    android:id="@+id/LinearBotoes"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_height="76dp"
                     android:gravity="center"
-                    android:text="CNPJ: "
-                    android:textSize="18sp" />
+                    android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/txtViewCpnjVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
+                    <!-- Esse botão volta para a activity CadastroONGActivity com os editText preenchidos para alteração posterior -->
+                    <Button
+                        android:id="@+id/btnEditar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="clicarBotaoEditarOng"
+                        android:text="Editar" />
 
+                    <Button
+                        android:id="@+id/btnSair"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="clicarBotaoSairOng"
+                        android:text="Sair" />
+
+                    <Button
+                        android:id="@+id/btnExcluirContaOng"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="clicarBotaoExcluirOng"
+                        android:text="EXCLUIR" />
+
+
+                </LinearLayout>
             </LinearLayout>
+            <!-- btnSair - Deve ser substituido por um botão com o ícone de portinha, veja o figma de telas (tela 12) -->
+        </ScrollView>
+    </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/LinearLocalizacao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewLocalizacao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Localização: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/txtViewLocalizaoVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearCausas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewCausas"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Causas: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/txtViewCausasVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearTelefone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewTelefone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Telefone: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/txtViewTelefoneVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:inputType="phone"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearSite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewSite"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Site: "
-                    android:textSize="18sp" />
-
-                <!-- esse campo não pode ser obrigatorio pq nem todas as ongs tem site -->
-                <EditText
-                    android:id="@+id/txtViewSiteVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="E-mail: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/txtViewEmailVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearResumoOng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewResumoOng"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Resumo da ONG:"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/txtViewResumoOngVariavel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="center"
-                android:textColor="#AA0B0B"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:id="@+id/LinearBotoes"
-                android:layout_width="match_parent"
-                android:layout_height="76dp"
-                android:orientation="horizontal">
-
-                <!-- Esse botão volta para a activity CadastroONGActivity com os editText preenchidos para alteração posterior -->
-                <Button
-                    android:id="@+id/btnEditar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="clicarBotaoEditarOng"
-                    android:text="Editar" />
-
-                <Button
-                    android:id="@+id/btnSair"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="clicarBotaoSairOng"
-                    android:text="Sair" />
-
-                <Button
-                    android:id="@+id/btnExcluirContaOng"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="clicarBotaoExcluirOng"
-                    android:text="EXCLUIR" />
-
-
-            </LinearLayout>
-        </LinearLayout>
-        <!-- btnSair - Deve ser substituido por um botão com o ícone de portinha, veja o figma de telas (tela 12) -->
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
