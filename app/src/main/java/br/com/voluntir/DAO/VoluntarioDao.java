@@ -76,7 +76,7 @@ public class VoluntarioDao implements DAO<Voluntario> {
                     try {
                         throw task.getException();
                     } catch (FirebaseAuthWeakPasswordException e) {
-                        erroExcecao = "Digite uma senha mais forte, contendo mais caracteres e com letras e números";
+                        erroExcecao = "Digite uma senha mais forte, contendo mais caracteres.";
                     } catch (FirebaseAuthInvalidCredentialsException e) {
                         erroExcecao = "O e-mail digitado é inválido, digite um novo e-mail";
                     } catch (FirebaseAuthUserCollisionException e) {
