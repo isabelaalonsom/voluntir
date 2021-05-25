@@ -138,7 +138,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
                     if (!validarData(dataInicio.getText().toString())) {
                         Toast.makeText(getApplicationContext(),
-                                "Data início inválida ",
+                                "A data de início da vaga é inválida",
                                 Toast.LENGTH_SHORT).show();
                         dataInicioValida = false;
                     } else {
@@ -146,7 +146,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
                     }
                     if (!validarData(dataTermino.getText().toString())) {
                         Toast.makeText(getApplicationContext(),
-                                "Data termino inválida ",
+                                "A data de término da vaga é inválida",
                                 Toast.LENGTH_SHORT).show();
                         dataTerminoValida = false;
                     } else {
@@ -227,7 +227,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
             df.parse(data);
             if (ano < anoAtual) {
                 Toast.makeText(getApplicationContext(),
-                        "ano inválido",
+                        "Ano inválido",
                         Toast.LENGTH_SHORT).show();
                 return false;
             }
@@ -276,13 +276,13 @@ public class CadastroVagaActivity extends AppCompatActivity {
         }
 
         if (anoInicio > anoTermino) {
-            Toast.makeText(getApplicationContext(), "Ano início não pode ser maior que ano término ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Ano da data de início não pode ser maior que o ano da data de término da vaga", Toast.LENGTH_SHORT).show();
         } else if (anoInicio == anoTermino) {
             if (mesInicio > mesTermino) {
-                Toast.makeText(getApplicationContext(), "mês início não pode ser maior que mês término ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Mês da data de início não pode ser maior que o mês da data de término da vaga", Toast.LENGTH_SHORT).show();
             } else if (mesInicio == mesTermino) {
                 if (diaInicio > diaTermino) {
-                    Toast.makeText(getApplicationContext(), "dia início não pode ser maior que dia término ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Dia da data de início não pode ser maior que o dia da data de término da vaga", Toast.LENGTH_SHORT).show();
                 } else {
                     podeGravar = true;
                 }
