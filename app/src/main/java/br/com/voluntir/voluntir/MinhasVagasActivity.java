@@ -70,7 +70,6 @@ public class MinhasVagasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vaga);
 
-        getSupportActionBar().hide();
 
         recyclerView = findViewById(R.id.recyclerViewVaga);
         Bundle dados = getIntent().getExtras();
