@@ -26,8 +26,8 @@ import java.util.List;
 import br.com.voluntir.BancoFirebase;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntario.MenuVoluntarioActivity;
+import br.com.voluntir.voluntir.Carregamento;
 import br.com.voluntir.voluntir.LoginActivityVoluntario;
-import br.com.voluntir.voluntir.MainActivity;
 
 public class VoluntarioDao implements DAO<Voluntario> {
     private Voluntario voluntario;
@@ -117,7 +117,7 @@ public class VoluntarioDao implements DAO<Voluntario> {
                                                 "Conta excluida com sucesso ",
                                                 Toast.LENGTH_SHORT).show();
 
-                                        Intent intent = new Intent(context, MainActivity.class);
+                                        Intent intent = new Intent(context, Carregamento.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         context.startActivity(intent);
 

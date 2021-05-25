@@ -27,9 +27,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
+import br.com.voluntir.Preferencias;
 import br.com.voluntir.model.Ong;
+import br.com.voluntir.voluntir.Carregamento;
 import br.com.voluntir.voluntir.LoginActivityONG;
-import br.com.voluntir.voluntir.MainActivity;
 import br.com.voluntir.voluntir.MenuOngActivity;
 
 public class OngDao implements DAO<Ong> {
@@ -123,8 +124,9 @@ public class OngDao implements DAO<Ong> {
                                         Toast.makeText(context,
                                                 "Conta excluida com sucesso ",
                                                 Toast.LENGTH_SHORT).show();
-
-                                        Intent intent = new Intent(context, MainActivity.class);
+                                        Preferencias preferencias = new Preferencias(context);
+                                        preferencias.salvarUsuarioPreferencias(null, null, null);
+                                        Intent intent = new Intent(context, Carregamento.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         context.startActivity(intent);
 
