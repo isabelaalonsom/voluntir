@@ -7,284 +7,296 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="br.com.voluntir.ong.CadastroVagaActivity">
-    <include layout="@layout/toolbar" />
 
-    <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <include
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/txtViewTituloNovaVaga"
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:gravity="center"
-                android:text="Cadastrar nova vaga"
-                android:textSize="24sp" />
-
-            <LinearLayout
-                android:id="@+id/LinearNomeONG"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
+                android:baselineAligned="false"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtViewONG"
+                    android:id="@+id/txtViewTituloNovaVaga"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:editable="false"
+                    android:layout_marginBottom="20dp"
                     android:gravity="center"
-                    android:text="Nome: "
-                    android:textSize="18sp" />
+                    android:text="Cadastrar nova vaga"
+                    android:textSize="24sp" />
 
-                <TextView
-                    android:id="@+id/txtViewNomeDaONG"
+                <LinearLayout
+                    android:id="@+id/LinearNomeONG"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:gravity="center"
-                    android:textSize="18sp" />
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/txtViewONG"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:gravity="center"
+                        android:text="Nome: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtViewNomeDaONG"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:gravity="center"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
 
 
-            <LinearLayout
-                android:id="@+id/LinearAreaConhecimento"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewAreaConhecimento"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:id="@+id/LinearAreaConhecimento"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Título da vaga:"
-                    android:textSize="18sp" />
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/txtViewAreaConhecimento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Título da vaga:"
+                        android:textSize="18sp" />
 
-            <EditText
-                android:id="@+id/edtTextAreaConhecimento"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:hint="Escreva o título da vaga" />
-
-            <LinearLayout
-                android:id="@+id/LinearDataInicio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewDataInicio"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:inputType="none"
-                    android:text="Data de início: "
-                    android:textSize="18sp" />
+                </LinearLayout>
 
                 <EditText
-                    android:id="@+id/edtTextDataInicio"
-                    android:layout_width="105dp"
+                    android:id="@+id/edtTextAreaConhecimento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:hint="Escreva o título da vaga" />
+
+                <LinearLayout
+                    android:id="@+id/LinearDataInicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewDataInicio"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:inputType="none"
+                        android:text="Data de início: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edtTextDataInicio"
+                        android:layout_width="105dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="__/__/____"
+                        android:inputType="number" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearDataTermino"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewDataTermino"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:gravity="center|start"
+                        android:inputType="none"
+                        android:text="Data de término: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edtTextDataTermino"
+                        android:layout_width="105dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="__/__/____"
+                        android:inputType="number" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearHorario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewCargaHoraria"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:gravity="start"
+                        android:inputType="none"
+                        android:text="Carga Horária:"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edtTextCargaHoraria"
+                        android:layout_width="43dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:inputType="number" />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="horas"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/editTextTextPersonName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:inputType="none"
+                        android:text="Quantidade de candidatos:"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edtTextQtdCandidatos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:inputType="number" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearPeriodicidade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewPeriodicidade"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:gravity="start"
+                        android:text="Periodicidade: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edtTextPeriodicidade"
+                        android:layout_width="38dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="X"
+                        android:inputType="number" />
+
+                    <TextView
+                        android:id="@+id/txtViewVezesPorSemana"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:gravity="center|right"
+                        android:text="vezes por semana"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearDetalhesVaga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewDetalhesVaga"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                        android:gravity="start"
+                        android:text="Detalhes Sobre a Vaga: "
+                        android:textSize="18sp" />
+
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edtTextDetalhesVaga"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:gravity="start"
-                    android:hint="__/__/____"
-                    android:inputType="number" />
+                    android:hint="Escreva os detalhes sobre a vaga" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearDataTermino"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewDataTermino"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:gravity="center|start"
-                    android:inputType="none"
-                    android:text="Data de término: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/edtTextDataTermino"
-                    android:layout_width="105dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:gravity="start"
-                    android:hint="__/__/____"
-                    android:inputType="number" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearHorario"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewCargaHoraria"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:gravity="start"
-                    android:inputType="none"
-                    android:text="Carga Horária:"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/edtTextCargaHoraria"
-                    android:layout_width="43dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:gravity="start"
-                    android:inputType="number" />
-
-                <TextView
-                    android:id="@+id/textView7"
+                <LinearLayout
+                    android:id="@+id/LinearBotoes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="horas"
-                    android:textSize="18sp" />
+                    android:layout_marginTop="50dp"
+                    android:orientation="horizontal">
 
+                    <Button
+                        android:id="@+id/btnLimpar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="68dp"
+                        android:onClick="limparDadosDoCadastroVaga"
+                        android:text="Limpar" />
+
+                    <Button
+                        android:id="@+id/btnConfirmarVaga"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="72dp"
+                        android:text="Confirmar" />
+
+                </LinearLayout>
             </LinearLayout>
+        </ScrollView>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/editTextTextPersonName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:inputType="none"
-                    android:text="Quantidade de candidatos:"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/edtTextQtdCandidatos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:inputType="number" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearPeriodicidade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewPeriodicidade"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:gravity="start"
-                    android:text="Periodicidade: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/edtTextPeriodicidade"
-                    android:layout_width="38dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:gravity="start"
-                    android:hint="X"
-                    android:inputType="number" />
-
-                <TextView
-                    android:id="@+id/txtViewVezesPorSemana"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:gravity="center|right"
-                    android:text="vezes por semana"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearDetalhesVaga"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewDetalhesVaga"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:gravity="start"
-                    android:text="Detalhes Sobre a Vaga: "
-                    android:textSize="18sp" />
-
-
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/edtTextDetalhesVaga"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:gravity="start"
-                android:hint="Escreva os detalhes sobre a vaga" />
-
-            <LinearLayout
-                android:id="@+id/LinearBotoes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btnLimpar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="68dp"
-                    android:onClick="limparDadosDoCadastroVaga"
-                    android:text="Limpar" />
-
-                <Button
-                    android:id="@+id/btnConfirmarVaga"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="72dp"
-                    android:text="Confirmar" />
-
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
