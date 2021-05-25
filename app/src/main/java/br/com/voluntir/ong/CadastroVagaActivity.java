@@ -299,10 +299,10 @@ public class CadastroVagaActivity extends AppCompatActivity {
         if (podeGravar == true) {
             if (anoInicio == anoAtual) {
                 if (mesInicio < mesAtual) {
-                    Toast.makeText(getApplicationContext(), "mês início não pode ser menor que mês atual ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Mês da data de início não pode ser menor do que o mês atual", Toast.LENGTH_SHORT).show();
                 } else if (mesInicio == mesAtual) {
                     if (diaInicio < diaAtual) {
-                        Toast.makeText(getApplicationContext(), "dia início não pode ser menor que dia atual ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Dia da data de início não pode ser menor do que o dia atual", Toast.LENGTH_SHORT).show();
                     } else {
                         podeGravar2 = true;
                     }
