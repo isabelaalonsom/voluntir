@@ -28,7 +28,7 @@ import br.com.voluntir.Preferencias;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntario.MenuVoluntarioActivity;
-import br.com.voluntir.voluntir.MainActivity;
+import br.com.voluntir.voluntir.Carregamento;
 import br.com.voluntir.voluntir.MenuOngActivity;
 
 public class ControleLogin {
@@ -51,7 +51,7 @@ public class ControleLogin {
                                     "Sucesso ao enviar email ",
                                     Toast.LENGTH_SHORT).show();
                             Log.d("EMAIL ENVIADO", "Email enviado.");
-                            Intent intent = new Intent(context, MainActivity.class);
+                            Intent intent = new Intent(context, Carregamento.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             context.startActivity(intent);
                         } else {
