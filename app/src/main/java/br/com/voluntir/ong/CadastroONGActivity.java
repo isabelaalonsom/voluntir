@@ -114,7 +114,7 @@ public class CadastroONGActivity extends AppCompatActivity {
                             cnpj.getText().toString().isEmpty() || nome.getText().toString().isEmpty() ||
                             causa.getText().toString().isEmpty() || telefone.getText().toString().isEmpty() ||
                             localizacao.getText().toString().isEmpty() || resumo.getText().toString().isEmpty() ||
-                            site.getText().toString().isEmpty() || confirmarSenha.getText().toString().isEmpty()) {
+                            confirmarSenha.getText().toString().isEmpty()) {
 
                         //exibe mensagem na tela
                         Toast.makeText(getApplicationContext(),

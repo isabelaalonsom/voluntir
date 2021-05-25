@@ -31,13 +31,14 @@
             android:text="CPF: "
             android:textSize="18sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/txtViewCpfVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="start"
             android:textColor="#AA0B0B"
+            android:hint="CPF"
             android:textSize="18sp" />
 
     </LinearLayout>
@@ -59,13 +60,14 @@
             android:text="Nome: "
             android:textSize="18sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/txtViewNomeDoVoluntarioVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="start"
             android:textColor="#AA0B0B"
+            android:hint="Nome"
             android:textSize="18sp" />
 
     </LinearLayout>
@@ -87,12 +89,13 @@
             android:text="Sobrenome: "
             android:textSize="18sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/txtViewSobrenomeVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="start"
+            android:hint="Sobrenome"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -115,12 +118,13 @@
             android:text="Data de Nascimento: "
             android:textSize="18sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/txtViewDataNascVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="start"
+            android:hint="__/__/____"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -144,12 +148,13 @@
             android:textSize="18sp" />
 
         <!-- txtViewGeneroVariavel = aqui tem que receber o conteudo do Radio Button -->
-        <EditText
+        <TextView
             android:id="@+id/txtViewGeneroVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="start"
+            android:hint="Gênero"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -172,12 +177,13 @@
             android:text="Telefone: "
             android:textSize="18sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/txtViewTelefoneVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="start"
+            android:hint="(__)_____-____"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -200,12 +206,13 @@
             android:text="E-mail: "
             android:textSize="18sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/txtViewEmailVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="start"
+            android:hint="E-mail"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -228,12 +235,13 @@
             android:text="Endereço: "
             android:textSize="18sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/txtViewEnderecoVariavelAdapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:gravity="start"
+            android:hint="Endereço"
             android:textColor="#AA0B0B"
             android:textSize="18sp" />
 
@@ -275,12 +283,13 @@
         android:text="Descrição Técnica: "
         android:textSize="18sp" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtViewDescricaoTecnicaVariavelAdapter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:textColor="#AA0B0B"
+        android:hint="Descrição "
         android:textSize="18sp" />
 
     <LinearLayout
