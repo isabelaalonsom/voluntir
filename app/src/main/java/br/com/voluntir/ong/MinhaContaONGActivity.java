@@ -113,7 +113,7 @@ public class MinhaContaONGActivity extends AppCompatActivity {
 
         if (txtNomeOng.getText().toString().isEmpty() || txtCnpj.getText().toString().isEmpty() || txtLocalizacao.getText().toString().isEmpty() ||
                 txtCausas.getText().toString().isEmpty() || txtEmail.getText().toString().isEmpty() || txtTelefone.getText().toString().isEmpty() ||
-                txtSite.getText().toString().isEmpty() || txtResumoOng.getText().toString().isEmpty()) {
+                txtResumoOng.getText().toString().isEmpty()) {
 
             Toast.makeText(getApplicationContext(),
                     "Preencha todos os campos ",
