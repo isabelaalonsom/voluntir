@@ -6,50 +6,61 @@
     android:layout_height="match_parent"
     tools:context=".PerfilVoluntario">
 
-    <include layout="@layout/toolbar" />
-    <ScrollView
-        android:id="@+id/scrollView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <include
+            layout="@layout/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewPerfil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
-            </androidx.recyclerview.widget.RecyclerView>
+        <ScrollView
+            android:id="@+id/scrollView5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="136dp"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewPerfil"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Aprovar" />
+                    android:layout_gravity="center">
 
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="136dp"
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Reprovar" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="136dp"
+                        android:layout_height="wrap_content"
+                        android:text="Aprovar" />
+
+                    <Button
+                        android:id="@+id/button3"
+                        android:layout_width="136dp"
+                        android:layout_height="wrap_content"
+                        android:text="Reprovar" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
