@@ -279,10 +279,10 @@ public class CadastroVagaActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Ano da data de início não pode ser maior que o ano da data de término da vaga", Toast.LENGTH_SHORT).show();
         } else if (anoInicio == anoTermino) {
             if (mesInicio > mesTermino) {
-                Toast.makeText(getApplicationContext(), "Mês da data de início não pode ser maior que o mês da data de término da vaga", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Mês da data de início não pode ser maior que o mês da data de término da vaga quando os anos são os mesmos", Toast.LENGTH_LONG).show();
             } else if (mesInicio == mesTermino) {
                 if (diaInicio > diaTermino) {
-                    Toast.makeText(getApplicationContext(), "Dia da data de início não pode ser maior que o dia da data de término da vaga", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Dia da data de início não pode ser maior que o dia da data de término da vaga quando os meses e os anos são os mesmos", Toast.LENGTH_LONG).show();
                 } else {
                     podeGravar = true;
                 }
