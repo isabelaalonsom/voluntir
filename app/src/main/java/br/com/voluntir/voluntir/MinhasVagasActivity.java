@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -69,6 +73,9 @@ public class MinhasVagasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vaga);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Voluntir");
+        setSupportActionBar(toolbar);
 
 
         recyclerView = findViewById(R.id.recyclerViewVaga);
@@ -169,6 +176,24 @@ public class MinhasVagasActivity extends AppCompatActivity {
         super.onResume();
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.voltar:
+                finish();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void gerarPDF(View view, int position, Vaga vaga) throws IOException, DocumentException {

@@ -98,6 +98,7 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         if (dados != null) {
             voluntario = (Voluntario) dados.getSerializable("objeto");
 
+
             Query teste = tabelaVaga;
             teste.orderByKey().addValueEventListener(new ValueEventListener() {
                 //recuperar os dados sempre que for mudado no banco
@@ -124,19 +125,25 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                 }
             });
 
-            if (voluntario != null) {
-                txtNome.setText(voluntario.getNome());
-                txtSobrenome.setText(voluntario.getSobrenome());
-                txtCpf.setText(voluntario.getCpf());
-                txtDataNasc.setText(voluntario.getDatanasc());
-                txtEmail.setText(voluntario.getEmail());
-                txtEndereco.setText(voluntario.getEndereco());
-                txtTelefone.setText(voluntario.getTelefone());
-                txtGenero.setText(voluntario.getGenero());
-                txtDescricaoTecnica.setText(voluntario.getEspecialidade());
-            }
+
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        if (voluntario != null) {
+            txtNome.setText(voluntario.getNome());
+            txtSobrenome.setText(voluntario.getSobrenome());
+            txtCpf.setText(voluntario.getCpf());
+            txtDataNasc.setText(voluntario.getDatanasc());
+            txtEmail.setText(voluntario.getEmail());
+            txtEndereco.setText(voluntario.getEndereco());
+            txtTelefone.setText(voluntario.getTelefone());
+            txtGenero.setText(voluntario.getGenero());
+            txtDescricaoTecnica.setText(voluntario.getEspecialidade());
+        }
+        super.onResume();
     }
 
     public void clicarBotaoEditar(View view) {
