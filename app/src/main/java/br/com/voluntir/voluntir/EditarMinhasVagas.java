@@ -2,12 +2,16 @@ package br.com.voluntir.voluntir;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,8 +52,10 @@ public class EditarMinhasVagas extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Voluntir");
+        setSupportActionBar(toolbar);
 
-        getSupportActionBar().hide();
 
         recyclerViewEditarVaga = findViewById(R.id.recyclerViewVagaditarMinhasVagas);
         Bundle dados = getIntent().getExtras();
@@ -116,5 +122,23 @@ public class EditarMinhasVagas extends AppCompatActivity {
                         }
                 )
         );
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.voltar:
+                finish();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

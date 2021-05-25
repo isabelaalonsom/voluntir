@@ -25,7 +25,6 @@ public class EsqueceuASenhaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(activity_esqueceu_a_senha);
 
-        getSupportActionBar().hide();
 
         botaoEnviar = (Button) findViewById(R.id.btnEnviar);
         botaoEnviar.setOnClickListener(new View.OnClickListener() {

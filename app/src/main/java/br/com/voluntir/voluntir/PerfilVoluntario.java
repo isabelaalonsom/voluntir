@@ -1,6 +1,9 @@
 package br.com.voluntir.voluntir;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -8,6 +11,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,6 +52,9 @@ public class PerfilVoluntario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_voluntario);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Voluntir");
+        setSupportActionBar(toolbar);
         botaoAprovar = findViewById(R.id.button2);
         botaoAprovar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +116,7 @@ public class PerfilVoluntario extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
             voluntario = (Voluntario) dados.getSerializable("voluntario");
@@ -191,5 +198,21 @@ public class PerfilVoluntario extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.voltar:
+                finish();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

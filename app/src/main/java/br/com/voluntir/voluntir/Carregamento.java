@@ -39,7 +39,7 @@ public class Carregamento extends AppCompatActivity {
         setContentView(R.layout.activity_carregamento);
         progressBarCircular = findViewById(R.id.progressBarCircular);
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         Context context = this.getApplicationContext();
         Preferencias preferencias = new Preferencias(context);
         Button btnONG = findViewById(R.id.btnONG);
@@ -65,6 +65,7 @@ public class Carregamento extends AppCompatActivity {
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtra("objeto", ong);
                             context.startActivity(intent);
+                            finish();
                         } else {
 
                         }
@@ -94,6 +95,7 @@ public class Carregamento extends AppCompatActivity {
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtra("objeto", voluntario);
                             context.startActivity(intent);
+                            finish();
                         }
 
                     }

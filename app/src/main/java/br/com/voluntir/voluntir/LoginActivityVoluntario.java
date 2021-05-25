@@ -27,7 +27,7 @@ public class LoginActivityVoluntario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_voluntario);
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
         email = (EditText) findViewById(R.id.edtTextEmailLogin);
         senha = (EditText) findViewById(R.id.edtTextSenhaLogin);

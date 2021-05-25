@@ -2,6 +2,9 @@ package br.com.voluntir.ong;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -9,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,15 +50,19 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_aprovacao_candidato);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Voluntir");
+        setSupportActionBar(toolbar);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        setContentView(R.layout.activity_aprovacao_candidato);
 
-        getSupportActionBar().hide();
+
+        //getSupportActionBar().hide();
         Bundle dados = getIntent().getExtras();
         vaga = (Vaga) dados.getSerializable("objeto");
         ong = (Ong) dados.getSerializable("ong");
@@ -146,6 +154,24 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                         }
                 )
         );
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.voltar:
+                finish();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

@@ -27,7 +27,6 @@ public class LoginActivityONG extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_ong);
 
-        getSupportActionBar().hide();
 
         email = (EditText) findViewById(R.id.edtTextEmailLogin);
         senha = (EditText) findViewById(R.id.edtTextSenhaLogin);

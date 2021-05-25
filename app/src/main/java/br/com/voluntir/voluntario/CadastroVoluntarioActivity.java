@@ -61,7 +61,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_voluntario);
 
-        getSupportActionBar().hide();
         email = (EditText) findViewById(R.id.edtTextEmail);
         senha = (EditText) findViewById(R.id.edtTextSenha);
         cpf = (EditText) findViewById(R.id.edtTextCpf);
@@ -74,7 +73,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         botaoFeminino = findViewById(R.id.rdBtnFeminino);
         botaoMasculino = findViewById(R.id.rdBtnMasculino);
         confirmarSenha = findViewById(R.id.edtTextConfirmarSenha);
-
+        genero = "vazio";
         radioGroup = findViewById(R.id.rdBtnGrpGenero);
 
         refenciaBanco = BancoFirebase.getBancoReferencia();
@@ -125,6 +124,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 controleCadastro = new ControleCadastro();
                 int radioId = radioGroup.getCheckedRadioButtonId();
 
+
                 radioButton = findViewById(radioId);
 
                 voluntario.setEmail(email.getText().toString());
@@ -148,8 +148,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Preencha todos os campos ",
                             Toast.LENGTH_SHORT).show();
-                } else if (radioButton == null) {
-                    Toast.makeText(getApplicationContext(), "Preencha o gênero ", Toast.LENGTH_SHORT).show();
                 } else if (!senha.getText().toString().equals(confirmarSenha.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "As senhas não conferem.", Toast.LENGTH_LONG).show();
                 }
@@ -174,8 +172,14 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                         }
                     }
                     if (cpfCadastrado == false) {
-                        voluntario.setGenero((String) radioButton.getText());
-                        Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario, tabelaBanco, getApplicationContext());
+                        if (!genero.equalsIgnoreCase("vazio")) {
+                            voluntario.setGenero((String) radioButton.getText());
+                            Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario, tabelaBanco, getApplicationContext());
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Preencha o gênero ", Toast.LENGTH_SHORT).show();
+                        }
+
+
                     } else {
                         Toast.makeText(getApplicationContext(), "CPF já cadastrado ", Toast.LENGTH_SHORT).show();
                     }

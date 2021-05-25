@@ -56,7 +56,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
         usuarioCadastrado = false;
         setContentView(R.layout.activity_vaga_voluntario);
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
         recyclerView = findViewById(R.id.recyclerViewVaga);
         Bundle dados = getIntent().getExtras();

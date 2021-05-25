@@ -2,6 +2,9 @@ package br.com.voluntir.voluntario;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -9,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,53 +56,19 @@ public class MinhaCandidaturaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_minha_candidatura);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Voluntir");
+        setSupportActionBar(toolbar);
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
-        /*recyclerViewCandidatura = findViewById(R.id.recyclerViewCandidaturas);
-        txtViewStatus = findViewById(R.id.txtStatus);
-        txtViewStatusVariavel = findViewById(R.id.txtStatusVariavel);
-        Bundle dados = getIntent().getExtras();
-        if (dados != null) {
-            voluntario = (Voluntario) dados.getSerializable("voluntario");
-            listaVoluntario.add(voluntario);
-        }
-
-
-        //Configurar Recyclerview
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerViewCandidatura.setLayoutManager(layoutManager);
-        recyclerViewCandidatura.setHasFixedSize(true);
-        //coloca uma linha para separar
-        recyclerViewCandidatura.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
-
-        trazVagaClicada();
-        //vaga.setVoluntario(listaVoluntario);
-        tabelaVaga.addValueEventListener(new ValueEventListener() {
-            //recuperar os dados sempre que for mudado no banco
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                listaVagaCandidatada.clear();
-                listaVagaCandidatada.add(vaga);
-
-                AdapterCandidatura adapterCandidatura = new AdapterCandidatura(listaVagaCandidatada);
-
-                recyclerViewCandidatura.setAdapter(adapterCandidatura);
-            }
-
-            //trata o erro se a operação for cancelada
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });*/
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         recyclerViewCandidatura = findViewById(R.id.recyclerViewCandidaturas);
 
         Bundle dados = getIntent().getExtras();
@@ -200,6 +170,24 @@ public class MinhaCandidaturaActivity extends AppCompatActivity {
                 vaga = new Vaga();
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.voltar:
+                finish();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

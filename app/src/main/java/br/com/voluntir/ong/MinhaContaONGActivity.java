@@ -2,6 +2,9 @@ package br.com.voluntir.ong;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -9,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
@@ -45,9 +49,11 @@ public class MinhaContaONGActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_minha_conta_ong);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Voluntir");
+        setSupportActionBar(toolbar);
 
-
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         txtNomeOng = (TextView) findViewById(R.id.txtViewONGVariavel);
         txtCnpj = (TextView) findViewById(R.id.txtViewCpnjVariavel);
         txtLocalizacao = (TextView) findViewById(R.id.txtViewLocalizaoVariavel);
@@ -193,17 +199,23 @@ public class MinhaContaONGActivity extends AppCompatActivity {
 
     }
 
-//    public void limparCampos() {
-//        txtNomeOng.setText("");
-//        txtCnpj.setText("");
-//        txtLocalizacao.setText("");
-//        txtCausas.setText("");
-//        txtTelefone.setText("");
-//        txtSite.setText("");
-//        txtEmail.setText("");
-//        txtResumoOng.setText("");
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.voltar:
+                finish();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
 }

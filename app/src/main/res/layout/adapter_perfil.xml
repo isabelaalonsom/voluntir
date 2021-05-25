@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:gravity="center"
-        android:text="Perfil Voluntário"
+        android:text="PERFIL VOLUNTÁRIO"
         android:textSize="30sp" />
 
     <LinearLayout

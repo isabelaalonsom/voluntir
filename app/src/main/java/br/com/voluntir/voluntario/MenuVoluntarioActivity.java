@@ -20,7 +20,7 @@ public class MenuVoluntarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_voluntario);
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
         Bundle dados = getIntent().getExtras();
         if (dados != null) {

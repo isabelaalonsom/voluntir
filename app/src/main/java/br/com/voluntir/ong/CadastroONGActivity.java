@@ -42,7 +42,6 @@ public class CadastroONGActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_ong);
 
-        getSupportActionBar().hide();
         email = (EditText) findViewById(R.id.edtTextEmail);
         senha = (EditText) findViewById(R.id.edtTextSenha);
         cnpj = (EditText) findViewById(R.id.edtTextCpnj);

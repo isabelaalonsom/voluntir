@@ -18,7 +18,7 @@ public class VoluntarioVisualizarVaga extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voluntario_visualizar_vaga);
         vaga = new Vaga();
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
         Bundle dados = getIntent().getExtras();
         if (dados != null) {

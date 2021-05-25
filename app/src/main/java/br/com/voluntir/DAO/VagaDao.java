@@ -54,7 +54,6 @@ public class VagaDao implements DAO<Vaga> {
                 refenciaBanco.child("vaga").child(vaga.getIdVaga()).setValue(vaga);
             }
             controleCadastro = new ControleCadastro();
-            //controleCadastro.excluirDadosOng(ong, "ong", context);
             controleCadastro.excluirDadosVoluntario(voluntario, "voluntario", context);
         }
         return;
@@ -78,7 +77,6 @@ public class VagaDao implements DAO<Vaga> {
     public Vaga buscaVaga(String informacao, String idOng, String tabela, Context context, final OnGetDataListener listener) {
         listener.onStart();
         refenciaBanco = BancoFirebase.getBancoReferencia();
-        //Query pesquisa = refenciaBanco.child(tabela).orderByChild("idVaga").equalTo(id).orderByChild("idOng").equalTo();
         refenciaBanco.child(tabela).orderByChild("areaConhecimento").equalTo(informacao).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -118,10 +116,6 @@ public class VagaDao implements DAO<Vaga> {
 
         });
         return vaga;
-
-    }
-
-    public void buscaVagaNome(String informacao, String idOng, String tabela, Context context) {
 
     }
 

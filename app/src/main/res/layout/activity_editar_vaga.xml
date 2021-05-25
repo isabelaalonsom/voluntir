@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditarVaga">
+    <include layout="@layout/toolbar" />
 
     <ScrollView
         android:id="@+id/scrollView3Vaga"

@@ -20,7 +20,11 @@
         <activity android:name=".EditarMinhasVagas" />
         <activity android:name=".EditarVaga" />
         <activity android:name=".VisualizarPerfilOng" />
-        <activity android:name=".PerfilVoluntario" />
+        <activity android:name=".PerfilVoluntario">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.voluntir.ong.AprovacaoCandidatoActivity" />
+        </activity>
         <activity android:name=".MinhasVagasActivity" />
         <activity android:name="br.com.voluntir.voluntario.VagaVoluntarioActivity" />
         <activity android:name="br.com.voluntir.voluntario.MinhaCandidaturaActivity" />

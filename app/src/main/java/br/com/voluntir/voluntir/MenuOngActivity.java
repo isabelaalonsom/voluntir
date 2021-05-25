@@ -22,7 +22,7 @@ public class MenuOngActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_ong);
 
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
 
         Bundle dados = getIntent().getExtras();
 

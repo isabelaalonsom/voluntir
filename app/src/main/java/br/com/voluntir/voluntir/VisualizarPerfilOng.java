@@ -21,7 +21,7 @@ public class VisualizarPerfilOng extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizar_perfil_ong);
-        getSupportActionBar().hide();
+
 
         txtNomeOng = (TextView) findViewById(R.id.txtViewNomePerfilOng);
         txtCnpj = (TextView) findViewById(R.id.txtViewCpnjVariavelPerfilOng);
