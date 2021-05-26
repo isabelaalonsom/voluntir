@@ -22,307 +22,305 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <ScrollView
+            android:id="@+id/scrollViewMinhaContaVoluntario"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtViewMinhaConta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:text="Minha Conta"
+                    android:textSize="30sp"
+                    tools:layout_editor_absoluteX="173dp"
+                    tools:layout_editor_absoluteY="8dp" />
+
+                <LinearLayout
+                    android:id="@+id/LinearCpf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewCpf"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="CPF: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/txtViewCpfVariavel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearNome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewNomeDoVoluntario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Nome: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/txtViewNomeDoVoluntarioVariavel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearSobrenome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewSobrenome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Sobrenome: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/txtViewSobrenomeVariavel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearDataNasc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewDataNasc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Data de Nascimento: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/txtViewDataNascVariavel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearGenero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewGenero"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Gênero: "
+                        android:textSize="18sp" />
+
+                    <!-- txtViewGeneroVariavel = aqui tem que receber o conteudo do Radio Button -->
+                    <EditText
+                        android:id="@+id/txtViewGeneroVariavel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearTelefone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewTelefone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Telefone: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/txtViewTelefoneVariavel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="E-mail: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/txtViewEmailVariavel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearEndereco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewEndereco"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Endereço: "
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/txtViewEnderecoVariavel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtViewDescricaoTecnica"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Descrição Técnica: "
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/txtViewDescricaoTecnicaVariavel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#AA0B0B"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/LinearBotoes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnEditar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="clicarBotaoEditar"
+                        android:text="Editar" />
+
+                    <Button
+                        android:id="@+id/btnSair"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="clicarBotaoSair"
+                        android:text="Sair" />
+
+                    <Button
+                        android:id="@+id/btnEcluirConta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="clicarBotaoExcluir"
+                        android:text="EXCLUIR" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+            <!-- btnSair - Deve ser substituido por um botão com o ícone de portinha, veja o figma de telas (tela 12) -->
+        </ScrollView>
+
     </LinearLayout>
 
-    <ScrollView
-        android:id="@+id/scrollViewMinhaContaVoluntario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/txtViewMinhaConta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:gravity="center"
-                android:text="Minha Conta"
-                android:textSize="30sp"
-                tools:layout_editor_absoluteX="173dp"
-                tools:layout_editor_absoluteY="8dp" />
-
-            <LinearLayout
-                android:id="@+id/LinearCpf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewCpf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="CPF: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/txtViewCpfVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearNome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewNomeDoVoluntario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Nome: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/txtViewNomeDoVoluntarioVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearSobrenome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewSobrenome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Sobrenome: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/txtViewSobrenomeVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearDataNasc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewDataNasc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Data de Nascimento: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/txtViewDataNascVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearGenero"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewGenero"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Gênero: "
-                    android:textSize="18sp" />
-
-                <!-- txtViewGeneroVariavel = aqui tem que receber o conteudo do Radio Button -->
-                <EditText
-                    android:id="@+id/txtViewGeneroVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearTelefone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewTelefone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Telefone: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/txtViewTelefoneVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="E-mail: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/txtViewEmailVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearEndereco"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewEndereco"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Endereço: "
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/txtViewEnderecoVariavel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/txtViewDescricaoTecnica"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:text="Descrição Técnica: "
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/txtViewDescricaoTecnicaVariavel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="#AA0B0B"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:id="@+id/LinearBotoes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btnEditar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="clicarBotaoEditar"
-                    android:text="Editar" />
-
-                <Button
-                    android:id="@+id/btnSair"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="clicarBotaoSair"
-                    android:text="Sair" />
-
-                <Button
-                    android:id="@+id/btnEcluirConta"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="clicarBotaoExcluir"
-                    android:text="EXCLUIR" />
-
-
-            </LinearLayout>
-        </LinearLayout>
-        <!-- btnSair - Deve ser substituido por um botão com o ícone de portinha, veja o figma de telas (tela 12) -->
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
