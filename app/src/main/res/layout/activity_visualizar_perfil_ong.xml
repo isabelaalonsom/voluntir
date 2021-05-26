@@ -1,58 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".VisualizarPerfilOng">
 
-    <ScrollView
-        android:id="@+id/scrollViewContaPerfilOng"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <include
+            layout="@layout/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/txtViewPerfilOng"
+        <ScrollView
+            android:id="@+id/scrollViewContaPerfilOng"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:gravity="center"
-                android:text="Perfil ONG"
-                android:textSize="30sp"
-                tools:layout_editor_absoluteX="173dp"
-                tools:layout_editor_absoluteY="8dp" />
-
-            <LinearLayout
-                android:id="@+id/LinearNomePerfilOng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtViewONGPerfil"
+                    android:id="@+id/txtViewPerfilOng"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:clickable="false"
+                    android:layout_marginBottom="15dp"
                     android:gravity="center"
-                    android:text="Nome: "
-                    android:textSize="18sp" />
+                    android:text="Perfil ONG"
+                    android:textSize="30sp"
+                    tools:layout_editor_absoluteX="173dp"
+                    tools:layout_editor_absoluteY="8dp" />
+
+                <LinearLayout
+                    android:id="@+id/LinearNomePerfilOng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewONGPerfil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:clickable="false"
+                        android:gravity="center"
+                        android:text="Nome: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtViewNomePerfilOng"
+                        android:layout_width="291dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="start"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearCnpjPerfilOng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewCnpjPerfilOng"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="CNPJ: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtViewCpnjVariavelPerfilOng"
+                        android:layout_width="291dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="start"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearLocalizacaoPerfilOng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewLocalizacaoPerfilOng"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Localização: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtViewLocalizaoVariavelPerfilOng"
+                        android:layout_width="230dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="start"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearCausasPerfilOng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewCausasPerfilOng"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Causas: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtViewCausasVariavelPerfilOng"
+                        android:layout_width="277dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="start"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearTelefonePerfilOng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewTelefonePerfilOng"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Telefone: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtViewTelefoneVariavelPerfilOng"
+                        android:layout_width="273dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="start"
+                        android:inputType="phone"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearSitePerfilOng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewSitePerfilOng"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Site: "
+                        android:textSize="18sp" />
+
+                    <!-- esse campo não pode ser obrigatorio pq nem todas as ongs tem site -->
+                    <TextView
+                        android:id="@+id/txtViewSiteVariavelPerfilOng"
+                        android:layout_width="325dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearEmailPerfilOng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewEmailPerfilOng"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="E-mail: "
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtViewEmailVariavelPerfilOng"
+                        android:layout_width="291dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="start"
+                        android:textColor="#AA0B0B"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearResumoOngPerfilOng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewResumoOngPerfilOng"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:text="Resumo da ONG:"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/txtViewNomePerfilOng"
-                    android:layout_width="291dp"
+                    android:id="@+id/txtViewResumoOngVariavelPerfilOng"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:gravity="start"
@@ -60,205 +264,8 @@
                     android:textSize="18sp" />
 
             </LinearLayout>
+            <!-- btnSair - Deve ser substituido por um botão com o ícone de portinha, veja o figma de telas (tela 12) -->
+        </ScrollView>
+    </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/LinearCnpjPerfilOng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewCnpjPerfilOng"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="CNPJ: "
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/txtViewCpnjVariavelPerfilOng"
-                    android:layout_width="291dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="start"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearLocalizacaoPerfilOng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewLocalizacaoPerfilOng"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Localização: "
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/txtViewLocalizaoVariavelPerfilOng"
-                    android:layout_width="230dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="start"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearCausasPerfilOng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewCausasPerfilOng"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Causas: "
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/txtViewCausasVariavelPerfilOng"
-                    android:layout_width="277dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="start"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearTelefonePerfilOng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewTelefonePerfilOng"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Telefone: "
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/txtViewTelefoneVariavelPerfilOng"
-                    android:layout_width="273dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="start"
-                    android:inputType="phone"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearSitePerfilOng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewSitePerfilOng"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Site: "
-                    android:textSize="18sp" />
-
-                <!-- esse campo não pode ser obrigatorio pq nem todas as ongs tem site -->
-                <TextView
-                    android:id="@+id/txtViewSiteVariavelPerfilOng"
-                    android:layout_width="325dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearEmailPerfilOng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewEmailPerfilOng"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="E-mail: "
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/txtViewEmailVariavelPerfilOng"
-                    android:layout_width="291dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="start"
-                    android:textColor="#AA0B0B"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearResumoOngPerfilOng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewResumoOngPerfilOng"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center"
-                    android:text="Resumo da ONG:"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/txtViewResumoOngVariavelPerfilOng"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="start"
-                android:textColor="#AA0B0B"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-        <!-- btnSair - Deve ser substituido por um botão com o ícone de portinha, veja o figma de telas (tela 12) -->
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

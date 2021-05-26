@@ -1,9 +1,14 @@
 package br.com.voluntir.voluntir;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import br.com.voluntir.DAO.OngDao;
 import br.com.voluntir.controller.ControleCadastro;
@@ -21,7 +26,9 @@ public class VisualizarPerfilOng extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizar_perfil_ong);
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(" ");
+        setSupportActionBar(toolbar);
 
         txtNomeOng = (TextView) findViewById(R.id.txtViewNomePerfilOng);
         txtCnpj = (TextView) findViewById(R.id.txtViewCpnjVariavelPerfilOng);
@@ -58,6 +65,24 @@ public class VisualizarPerfilOng extends AppCompatActivity {
 
             }
         }, vaga.getIdOng());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.voltar:
+                finish();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
