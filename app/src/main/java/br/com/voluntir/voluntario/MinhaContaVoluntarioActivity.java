@@ -51,6 +51,7 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
     private final DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     private List<Vaga> listaVaga = new ArrayList<>();
     private List<Vaga> listaVagaSemVoluntario = new ArrayList<>();
+    private List<Vaga> listaVagaComVoluntario = new ArrayList<>();
     private Vaga vaga;
     private boolean acabou = false;
     int mesAtual = LocalDate.now().getMonth().getValue();
@@ -184,9 +185,37 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                 dados.setGenero(txtGenero.getText().toString());
                 dados.setEspecialidade(txtDescricaoTecnica.getText().toString());
 
-                controleCadastro = new ControleCadastro();
-                controleCadastro.atualizarDadosVoluntario(dados, tabelaVoluntario, getApplicationContext());
-                finish();
+                if (listaVaga != null) {
+                    listaVagaComVoluntario.clear();
+                    acabou = false;
+                    for (int i = 0; i < listaVaga.size(); i++) {
+                        Vaga vaga;
+                        vaga = listaVaga.get(i);
+
+                        for (int j = 0; j < vaga.getVoluntarios().size(); j++) {
+                            if (vaga.getVoluntarios().get(j).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                                vaga.getVoluntarios().remove(j);
+                                dados.setStatusVaga(voluntario.getStatusVaga());
+                                vaga.getVoluntarios().add(dados);
+                                listaVagaComVoluntario.add(vaga);
+                            }
+
+                        }
+
+
+                    }
+                    acabou = true;
+                }
+                if (listaVagaComVoluntario != null && acabou == true) {
+                    VagaDao vagaDao = new VagaDao();
+                    vagaDao.atualizaVagaPerfilVoluntario(listaVagaComVoluntario, dados, getApplicationContext());
+                    finish();
+                } else if (listaVagaComVoluntario == null && acabou == true) {
+                    controleCadastro = new ControleCadastro();
+                    controleCadastro.atualizarDadosVoluntario(dados, tabelaVoluntario, getApplicationContext());
+                    finish();
+                }
+
 
             }
 

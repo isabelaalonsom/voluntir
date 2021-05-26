@@ -42,11 +42,14 @@ public class AdapterPerfil extends RecyclerView.Adapter<AdapterPerfil.MyViewHold
         holder.endereco.setText(voluntario.getEndereco());
         holder.descricao.setText(voluntario.getEspecialidade());
         holder.status.setText(voluntario.getStatusVaga());
-        if (voluntario.getStatusVaga().equalsIgnoreCase("aprovado")) {
-            holder.status.setTextColor(Color.GREEN);
-        } else if (voluntario.getStatusVaga().equalsIgnoreCase("reprovado")) {
-            holder.status.setTextColor(Color.RED);
+        if (voluntario.getStatusVaga() != null) {
+            if (voluntario.getStatusVaga().equalsIgnoreCase("aprovado")) {
+                holder.status.setTextColor(Color.GREEN);
+            } else if (voluntario.getStatusVaga().equalsIgnoreCase("reprovado")) {
+                holder.status.setTextColor(Color.RED);
+            }
         }
+
     }
 
 
