@@ -49,7 +49,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="28dp"
-                    android:layout_marginBottom="250dp"
 
                     android:hint="Digite o e-mail cadastrado"
                     android:inputType="textEmailAddress" />

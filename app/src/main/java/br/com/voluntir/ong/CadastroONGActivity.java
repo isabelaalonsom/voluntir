@@ -1,6 +1,9 @@
 package br.com.voluntir.ong;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -8,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
@@ -41,6 +45,9 @@ public class CadastroONGActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_ong);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(" ");
+        setSupportActionBar(toolbar);
 
         email = (EditText) findViewById(R.id.edtTextEmail);
         senha = (EditText) findViewById(R.id.edtTextSenha);
@@ -162,7 +169,25 @@ public class CadastroONGActivity extends AppCompatActivity {
         senha.setText("");
         confirmarSenha.setText("");
         resumo.setText("");
-        }
-
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.voltar:
+                finish();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+}
 

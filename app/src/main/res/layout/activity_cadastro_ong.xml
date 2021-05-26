@@ -7,363 +7,376 @@
     android:orientation="vertical"
     tools:context="br.com.voluntir.ong.CadastroONGActivity">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <include
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/txtViewCadastroDaOng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="82dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="83dp"
-                android:layout_marginBottom="5dp"
-                android:text="Cadastro da ONG"
-                android:textSize="24sp"
-                tools:layout_editor_absoluteX="112dp"
-                tools:layout_editor_absoluteY="16dp" />
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/LinearNome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtViewNome"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Nome:"
-                    android:textSize="18sp"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="85dp" />
-
-                <EditText
-                    android:id="@+id/edtTextNome"
+                    android:id="@+id/txtViewCadastroDaOng"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:ems="10"
-                    android:gravity="start"
-                    android:hint="Nome"
-                    android:inputType="textPersonName"
-                    tools:layout_editor_absoluteX="81dp"
-                    tools:layout_editor_absoluteY="64dp" />
+                    android:layout_marginStart="82dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="83dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Cadastro da ONG"
+                    android:textSize="24sp"
+                    tools:layout_editor_absoluteX="112dp"
+                    tools:layout_editor_absoluteY="16dp" />
 
+                <LinearLayout
+                    android:id="@+id/LinearNome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewNome"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Nome:"
+                        android:textSize="18sp"
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="85dp" />
+
+                    <EditText
+                        android:id="@+id/edtTextNome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="Nome"
+                        android:inputType="textPersonName"
+                        tools:layout_editor_absoluteX="81dp"
+                        tools:layout_editor_absoluteY="64dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearCnpj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewCnpj"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="CNPJ:"
+                        android:textSize="18sp"
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="136dp" />
+
+                    <EditText
+                        android:id="@+id/edtTextCpnj"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="CNPJ"
+                        android:inputType="number"
+                        tools:layout_editor_absoluteX="81dp"
+                        tools:layout_editor_absoluteY="115dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearLocalizacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewLocalizacao"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Localização:"
+                        android:textSize="18sp"
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="191dp" />
+
+                    <EditText
+                        android:id="@+id/edtTextLocalizacao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="Localização"
+                        tools:layout_editor_absoluteX="135dp"
+                        tools:layout_editor_absoluteY="170dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearCausas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewCausas"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Causas:"
+                        android:textSize="18sp"
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="248dp" />
+
+                    <EditText
+                        android:id="@+id/edtTextCausas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="Causas"
+                        android:inputType="textPersonName"
+                        tools:layout_editor_absoluteX="100dp"
+                        tools:layout_editor_absoluteY="227dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearTelefone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewTelefone"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Telefone:"
+                        android:textSize="18sp"
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="479dp" />
+
+                    <EditText
+                        android:id="@+id/edtTextTelefone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="(  )____-_____"
+                        android:inputType="number"
+                        tools:layout_editor_absoluteX="100dp"
+                        tools:layout_editor_absoluteY="458dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearSite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewSite"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Site:"
+                        android:textSize="18sp"
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="539dp" />
+
+                    <EditText
+                        android:id="@+id/edtTextSite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="Site"
+                        tools:layout_editor_absoluteX="70dp"
+                        tools:layout_editor_absoluteY="519dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewEmail"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="E-mail:"
+                        android:textSize="18sp"
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="304dp" />
+
+                    <EditText
+                        android:id="@+id/edtTextEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="E-mail"
+                        android:inputType="textEmailAddress"
+                        tools:layout_editor_absoluteX="100dp"
+                        tools:layout_editor_absoluteY="283dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearSenha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewSenha"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Senha:"
+                        android:textSize="18sp"
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="364dp" />
+
+                    <EditText
+                        android:id="@+id/edtTextSenha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="Senha"
+                        android:inputType="textPassword"
+                        tools:layout_editor_absoluteX="100dp"
+                        tools:layout_editor_absoluteY="343dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearConfirmarSenhaOng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewConfirmarSenhaOng"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Repetir Senha:"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edtTextConfirmarSenhaOng"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="Repetir Senha"
+                        android:inputType="textPassword"
+                        tools:layout_editor_absoluteX="84dp"
+                        tools:layout_editor_absoluteY="484dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LinearResumoOng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtViewResumoOng"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Resumo da ONG:"
+                        android:textSize="18sp"
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="416dp" />
+
+                    <EditText
+                        android:id="@+id/edtTextResumoOng"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="Resumo da ONG"
+                        android:inputType="text"
+                        tools:layout_editor_absoluteX="163dp"
+                        tools:layout_editor_absoluteY="395dp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/LinearBotoes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/limparBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="limparDados"
+                        android:text="Limpar" />
+
+                    <Button
+                        android:id="@+id/confirmarBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="70dp"
+                        android:text="Confirmar" />
+
+                </LinearLayout>
             </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/LinearCnpj"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewCnpj"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="CNPJ:"
-                    android:textSize="18sp"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="136dp" />
-
-                <EditText
-                    android:id="@+id/edtTextCpnj"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:ems="10"
-                    android:gravity="start"
-                    android:hint="CNPJ"
-                    android:inputType="number"
-                    tools:layout_editor_absoluteX="81dp"
-                    tools:layout_editor_absoluteY="115dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearLocalizacao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewLocalizacao"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Localização:"
-                    android:textSize="18sp"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="191dp" />
-
-                <EditText
-                    android:id="@+id/edtTextLocalizacao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:ems="10"
-                    android:gravity="start"
-                    android:hint="Localização"
-                    tools:layout_editor_absoluteX="135dp"
-                    tools:layout_editor_absoluteY="170dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearCausas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewCausas"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Causas:"
-                    android:textSize="18sp"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="248dp" />
-
-                <EditText
-                    android:id="@+id/edtTextCausas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:ems="10"
-                    android:gravity="start"
-                    android:hint="Causas"
-                    android:inputType="textPersonName"
-                    tools:layout_editor_absoluteX="100dp"
-                    tools:layout_editor_absoluteY="227dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearTelefone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewTelefone"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Telefone:"
-                    android:textSize="18sp"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="479dp" />
-
-                <EditText
-                    android:id="@+id/edtTextTelefone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:ems="10"
-                    android:gravity="start"
-                    android:hint="(  )____-_____"
-                    android:inputType="number"
-                    tools:layout_editor_absoluteX="100dp"
-                    tools:layout_editor_absoluteY="458dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearSite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewSite"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Site:"
-                    android:textSize="18sp"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="539dp" />
-
-                <EditText
-                    android:id="@+id/edtTextSite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:ems="10"
-                    android:gravity="start"
-                    android:hint="Site"
-                    tools:layout_editor_absoluteX="70dp"
-                    tools:layout_editor_absoluteY="519dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewEmail"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="E-mail:"
-                    android:textSize="18sp"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="304dp" />
-
-                <EditText
-                    android:id="@+id/edtTextEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:ems="10"
-                    android:gravity="start"
-                    android:hint="E-mail"
-                    android:inputType="textEmailAddress"
-                    tools:layout_editor_absoluteX="100dp"
-                    tools:layout_editor_absoluteY="283dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearSenha"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewSenha"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Senha:"
-                    android:textSize="18sp"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="364dp" />
-
-                <EditText
-                    android:id="@+id/edtTextSenha"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:ems="10"
-                    android:gravity="start"
-                    android:hint="Senha"
-                    android:inputType="textPassword"
-                    tools:layout_editor_absoluteX="100dp"
-                    tools:layout_editor_absoluteY="343dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearConfirmarSenhaOng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewConfirmarSenhaOng"
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Repetir Senha:"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/edtTextConfirmarSenhaOng"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:ems="10"
-                    android:gravity="start"
-                    android:hint="Repetir Senha"
-                    android:inputType="textPassword"
-                    tools:layout_editor_absoluteX="84dp"
-                    tools:layout_editor_absoluteY="484dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LinearResumoOng"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtViewResumoOng"
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Resumo da ONG:"
-                    android:textSize="18sp"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="416dp" />
-
-                <EditText
-                    android:id="@+id/edtTextResumoOng"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:ems="10"
-                    android:gravity="start"
-                    android:hint="Resumo da ONG"
-                    android:inputType="text"
-                    tools:layout_editor_absoluteX="163dp"
-                    tools:layout_editor_absoluteY="395dp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/LinearBotoes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginBottom="5dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/limparBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="limparDados"
-                    android:text="Limpar" />
-
-                <Button
-                    android:id="@+id/confirmarBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="70dp"
-                    android:text="Confirmar" />
-
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
