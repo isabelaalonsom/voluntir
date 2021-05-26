@@ -36,10 +36,14 @@ public class AdapterAprovacao extends RecyclerView.Adapter<AdapterAprovacao.MyVi
         if (voluntario != null) {
             holder.nome.setText(voluntario.getNome() + " " + voluntario.getSobrenome());
             holder.status.setText(voluntario.getStatusVaga());
-            if (voluntario.getStatusVaga().equalsIgnoreCase("aprovado")) {
-                holder.status.setTextColor(Color.GREEN);
-            } else if (voluntario.getStatusVaga().equalsIgnoreCase("reprovado")) {
-                holder.status.setTextColor(Color.RED);
+            if (voluntario.getStatusVaga() != null) {
+
+
+                if (voluntario.getStatusVaga().equalsIgnoreCase("aprovado")) {
+                    holder.status.setTextColor(Color.GREEN);
+                } else if (voluntario.getStatusVaga().equalsIgnoreCase("reprovado")) {
+                    holder.status.setTextColor(Color.RED);
+                }
             }
         }
 

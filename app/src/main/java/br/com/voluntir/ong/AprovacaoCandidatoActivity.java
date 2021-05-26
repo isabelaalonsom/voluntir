@@ -36,7 +36,6 @@ import br.com.voluntir.voluntir.PerfilVoluntario;
 import br.com.voluntir.voluntir.R;
 
 public class AprovacaoCandidatoActivity extends AppCompatActivity {
-    private final List<Vaga> listaVaga = new ArrayList<>();
     private final List<Voluntario> listaVoluntario = new ArrayList<>();
     private RecyclerView recyclerViewCandidato;
     private final DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
@@ -75,11 +74,10 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
         recyclerViewCandidato.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
 
         Query teste = tabelaVaga;
-        teste.addValueEventListener(new ValueEventListener() {
+        teste.orderByKey().equalTo(vaga.getIdVaga()).addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                listaVaga.clear();
                 listaVoluntario.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
@@ -93,15 +91,13 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
                             for (int i = 0; i < vaga1.getVoluntarios().size(); i++) {
                                 voluntario = vaga1.getVoluntarios().get(i);
 
+
                                 listaVoluntario.add(voluntario);
                             }
 
                         }
 
                     }
-
-                    listaVaga.add(vagaAtualizada);
-
                 }
 
                 adapterAprovacao = new AdapterAprovacao(listaVoluntario);
