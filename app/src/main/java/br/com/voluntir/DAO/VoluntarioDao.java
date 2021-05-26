@@ -145,6 +145,10 @@ public class VoluntarioDao implements DAO<Voluntario> {
                     Toast.makeText(context,
                             "Dados atualizados com sucesso ",
                             Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context.getApplicationContext(), Carregamento.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("tela", "contaVoluntario");
+                    context.startActivity(intent);
                 } else {
                     Toast.makeText(context,
                             "Erro" + task.getException(),

@@ -22,6 +22,7 @@ import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntario.MenuVoluntarioActivity;
+import br.com.voluntir.voluntario.MinhaContaVoluntarioActivity;
 
 public class Carregamento extends AppCompatActivity {
     private final String tabelaOng = "ong", tabelaVoluntario = "voluntario";
@@ -29,7 +30,7 @@ public class Carregamento extends AppCompatActivity {
     private DatabaseReference bancoFirebase;
     private Ong ong;
     private Voluntario voluntario;
-
+    private String tela;
     private ProgressBar progressBarCircular;
     private int progresso = 0;
 
@@ -38,6 +39,12 @@ public class Carregamento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carregamento);
         progressBarCircular = findViewById(R.id.progressBarCircular);
+        Bundle dados = getIntent().getExtras();
+        if (dados != null) {
+            tela = (String) dados.getSerializable("tela");
+            ong = (Ong) dados.getSerializable("objeto");
+        }
+
 
         //getSupportActionBar().hide();
         Context context = this.getApplicationContext();
@@ -60,6 +67,7 @@ public class Carregamento extends AppCompatActivity {
                             progressBarCircular.setProgress(progresso);
                         }
                         if (ong != null) {
+
 
                             Intent intent = new Intent(context.getApplicationContext(), MenuOngActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -91,11 +99,24 @@ public class Carregamento extends AppCompatActivity {
 
                         }
                         if (voluntario != null) {
-                            Intent intent = new Intent(context.getApplicationContext(), MenuVoluntarioActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.putExtra("objeto", voluntario);
-                            context.startActivity(intent);
-                            finish();
+                            if (tela != null) {
+                                if (tela.equalsIgnoreCase("contaVoluntario")) {
+                                    Intent intent = new Intent(context.getApplicationContext(), MinhaContaVoluntarioActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.putExtra("objeto", voluntario);
+                                    context.startActivity(intent);
+                                    tela = null;
+                                    finish();
+                                }
+                            } else {
+                                Intent intent = new Intent(context.getApplicationContext(), MenuVoluntarioActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.putExtra("objeto", voluntario);
+                                context.startActivity(intent);
+                                finish();
+                            }
+
+
                         }
 
                     }

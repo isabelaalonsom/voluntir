@@ -186,6 +186,7 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
 
                 controleCadastro = new ControleCadastro();
                 controleCadastro.atualizarDadosVoluntario(dados, tabelaVoluntario, getApplicationContext());
+                finish();
 
             }
 
