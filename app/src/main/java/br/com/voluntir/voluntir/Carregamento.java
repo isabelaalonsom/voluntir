@@ -21,6 +21,7 @@ import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.ong.MinhaContaONGActivity;
 import br.com.voluntir.voluntario.MenuVoluntarioActivity;
 import br.com.voluntir.voluntario.MinhaContaVoluntarioActivity;
 
@@ -68,13 +69,22 @@ public class Carregamento extends AppCompatActivity {
                         }
                         if (ong != null) {
 
-
-                            Intent intent = new Intent(context.getApplicationContext(), MenuOngActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.putExtra("objeto", ong);
-                            context.startActivity(intent);
-                            finish();
-                        } else {
+                            if (tela != null) {
+                                if (tela.equalsIgnoreCase("contaOng")) {
+                                    Intent intent = new Intent(context.getApplicationContext(), MinhaContaONGActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.putExtra("objeto", ong);
+                                    context.startActivity(intent);
+                                    tela = null;
+                                    finish();
+                                }
+                            } else {
+                                Intent intent = new Intent(context.getApplicationContext(), MenuOngActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.putExtra("objeto", ong);
+                                context.startActivity(intent);
+                                finish();
+                            }
 
                         }
 

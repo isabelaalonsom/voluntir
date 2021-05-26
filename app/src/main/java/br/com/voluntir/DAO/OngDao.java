@@ -8,8 +8,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -148,19 +146,6 @@ public class OngDao implements DAO<Ong> {
     @Override
     public void atualiza(Ong dado, String tabela, final Context appContext) {
         bancoFirebase = BancoFirebase.getBancoReferencia();
-        bancoFirebase.child("ong").child(dado.getIdOng()).setValue(dado).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-
-            }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                    }
-                });
-
         bancoFirebase.child("ong").child(dado.getIdOng()).setValue(dado).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -168,6 +153,10 @@ public class OngDao implements DAO<Ong> {
                     Toast.makeText(appContext,
                             "Dados atualizados com sucesso ",
                             Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(appContext, Carregamento.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("tela", "contaOng");
+                    appContext.startActivity(intent);
                 } else {
                     Toast.makeText(appContext,
                             "Erro" + task.getException(),
