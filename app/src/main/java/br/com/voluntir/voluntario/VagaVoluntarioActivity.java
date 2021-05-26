@@ -2,6 +2,9 @@ package br.com.voluntir.voluntario;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -9,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -55,6 +59,9 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
         super.onResume();
         usuarioCadastrado = false;
         setContentView(R.layout.activity_vaga_voluntario);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(" ");
+        setSupportActionBar(toolbar);
 
         //getSupportActionBar().hide();
 
@@ -169,6 +176,24 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
                         }
                 )
         );
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.voltar:
+                finish();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
