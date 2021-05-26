@@ -2,10 +2,15 @@ package br.com.voluntir.voluntir;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import br.com.voluntir.model.Vaga;
 
@@ -17,8 +22,11 @@ public class VoluntarioVisualizarVaga extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voluntario_visualizar_vaga);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(" ");
+        setSupportActionBar(toolbar);
         vaga = new Vaga();
-        //getSupportActionBar().hide();
 
 
         Bundle dados = getIntent().getExtras();
@@ -46,5 +54,23 @@ public class VoluntarioVisualizarVaga extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("vaga", vaga);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.voltar:
+                finish();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
