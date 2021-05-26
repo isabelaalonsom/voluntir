@@ -53,7 +53,7 @@ public class EditarMinhasVagas extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Voluntir");
+        toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
 
 

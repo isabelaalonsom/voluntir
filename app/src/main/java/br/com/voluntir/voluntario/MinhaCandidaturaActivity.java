@@ -57,7 +57,7 @@ public class MinhaCandidaturaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_minha_candidatura);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Voluntir");
+        toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
 
         //getSupportActionBar().hide();

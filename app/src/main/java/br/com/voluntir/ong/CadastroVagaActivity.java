@@ -67,7 +67,7 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
         //getSupportActionBar().hide();
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Voluntir");
+        toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
         nome = (TextView) findViewById(R.id.txtViewNomeDaONG);
         especialidade = (EditText) findViewById(R.id.edtTextAreaConhecimento);

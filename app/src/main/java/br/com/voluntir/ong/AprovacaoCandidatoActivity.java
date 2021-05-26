@@ -52,7 +52,7 @@ public class AprovacaoCandidatoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aprovacao_candidato);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Voluntir");
+        toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
 
     }

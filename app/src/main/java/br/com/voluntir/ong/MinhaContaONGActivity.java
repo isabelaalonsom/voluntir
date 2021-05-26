@@ -50,7 +50,7 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_minha_conta_ong);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Voluntir");
+        toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
 
         //getSupportActionBar().hide();

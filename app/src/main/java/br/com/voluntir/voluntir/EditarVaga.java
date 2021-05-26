@@ -73,7 +73,7 @@ public class EditarVaga extends AppCompatActivity {
         setContentView(R.layout.activity_editar_vaga);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Voluntir");
+        toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
 
         nome = (TextView) findViewById(R.id.txtViewNomeDaONGEditarVaga);

@@ -20,6 +20,7 @@ public class VoluntarioVisualizarVaga extends AppCompatActivity {
         vaga = new Vaga();
         //getSupportActionBar().hide();
 
+
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
             vaga = (Vaga) dados.getSerializable("vaga");

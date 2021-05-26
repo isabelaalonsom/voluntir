@@ -53,7 +53,7 @@ public class PerfilVoluntario extends AppCompatActivity {
         setContentView(R.layout.activity_perfil_voluntario);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Voluntir");
+        toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
         botaoAprovar = findViewById(R.id.button2);
         botaoAprovar.setOnClickListener(new View.OnClickListener() {
