@@ -138,6 +138,7 @@ public class VoluntarioDao implements DAO<Voluntario> {
     @Override
     public void atualiza(Voluntario dado, String tabela, final Context context) {
         bancoFirebase = BancoFirebase.getBancoReferencia();
+        dado.setStatusVaga(null);
         bancoFirebase.child(tabela).child(dado.getIdVoluntario()).setValue(dado).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
