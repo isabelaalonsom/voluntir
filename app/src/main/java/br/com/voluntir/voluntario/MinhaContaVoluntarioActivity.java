@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +59,11 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
     int diaAtual = LocalDate.now().getDayOfMonth();
     int anoAtual = LocalDate.now().getYear();
     boolean dataValida = false;
+    private String genero;
+    private RadioGroup radioGroup;
+    private RadioButton radioButton;
+    private RadioButton botaoFeminino;
+    private RadioButton botaoMasculino;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +74,8 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //getSupportActionBar().hide();
+        botaoFeminino = findViewById(R.id.rdBtnFemininoE);
+        botaoMasculino = findViewById(R.id.rdBtnMasculinoE);
 
         txtNome = (TextView) findViewById(R.id.txtViewNomeDoVoluntarioVariavel);
         txtSobrenome = (TextView) findViewById(R.id.txtViewSobrenomeVariavel);
@@ -75,9 +84,10 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         txtEmail = (TextView) findViewById(R.id.txtViewEmailVariavel);
         txtEndereco = (TextView) findViewById(R.id.txtViewEnderecoVariavel);
         txtTelefone = (TextView) findViewById(R.id.txtViewTelefoneVariavel);
-        txtGenero = (TextView) findViewById(R.id.txtViewGeneroVariavel);
+        //txtGenero = (TextView) findViewById(R.id.txtViewGeneroVariavel);
         txtDescricaoTecnica = (TextView) findViewById(R.id.txtViewDescricaoTecnicaVariavel);
-
+        radioGroup = findViewById(R.id.rdBtnGrpGeneroE);
+        //genero = "vazio";
         //mascara para o Cpf
         SimpleMaskFormatter simpleMaskCpf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
         MaskTextWatcher maskCpf = new MaskTextWatcher(txtCpf, simpleMaskCpf);
@@ -140,17 +150,31 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
             txtEmail.setText(voluntario.getEmail());
             txtEndereco.setText(voluntario.getEndereco());
             txtTelefone.setText(voluntario.getTelefone());
-            txtGenero.setText(voluntario.getGenero());
+            //txtGenero.setText(voluntario.getGenero());
             txtDescricaoTecnica.setText(voluntario.getEspecialidade());
+            if (voluntario.getGenero().equalsIgnoreCase("Masculino")) {
+                radioGroup.check(botaoMasculino.getId());
+                genero = "Masculino";
+            } else {
+                radioGroup.check(botaoFeminino.getId());
+                genero = "Feminino";
+            }
         }
         super.onResume();
+    }
+
+    public void radioButtonApertadoMinhaConta(View view) {
+        int radioId = radioGroup.getCheckedRadioButtonId();
+
+        radioButton = findViewById(radioId);
+        genero = (String) radioButton.getText();
     }
 
     public void clicarBotaoEditar(View view) {
 
         if (txtNome.getText().toString().isEmpty() || txtCpf.getText().toString().isEmpty() || txtDataNasc.getText().toString().isEmpty() ||
                 txtEmail.getText().toString().isEmpty() || txtEndereco.getText().toString().isEmpty() || txtTelefone.getText().toString().isEmpty() ||
-                txtGenero.getText().toString().isEmpty() || txtDescricaoTecnica.getText().toString().isEmpty() || txtSobrenome.getText().toString().isEmpty()) {
+                txtDescricaoTecnica.getText().toString().isEmpty() || txtSobrenome.getText().toString().isEmpty()) {
 
             Toast.makeText(getApplicationContext(),
                     "Preencha todos os campos ",
@@ -181,7 +205,11 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                 dados.setEmail(txtEmail.getText().toString());
                 dados.setEndereco(txtEndereco.getText().toString());
                 dados.setTelefone(txtTelefone.getText().toString());
-                dados.setGenero(txtGenero.getText().toString());
+                int radioId = radioGroup.getCheckedRadioButtonId();
+
+                radioButton = findViewById(radioId);
+                genero = (String) radioButton.getText();
+                dados.setGenero(genero);
                 dados.setEspecialidade(txtDescricaoTecnica.getText().toString());
 
                 controleCadastro = new ControleCadastro();
@@ -262,7 +290,7 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         txtEmail.setText("");
         txtEndereco.setText("");
         txtTelefone.setText("");
-        txtGenero.setText("");
+        //txtGenero.setText("");
         txtDescricaoTecnica.setText("");
     }
 

@@ -54,7 +54,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     int mesAtual = LocalDate.now().getMonth().getValue();
     int diaAtual = LocalDate.now().getDayOfMonth();
     int anoAtual = LocalDate.now().getYear();
-    String genero;
+    private String genero;
     boolean grava = false;
     boolean mesdiaok = false;
     private DatabaseReference refenciaBanco;
