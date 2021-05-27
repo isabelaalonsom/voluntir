@@ -157,31 +157,48 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/LinearGenero"
+                    android:id="@+id/LinearGeneros"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txtViewGenero"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:gravity="center"
-                        android:text="Gênero: "
-                        android:textSize="18sp" />
-
-                    <!-- txtViewGeneroVariavel = aqui tem que receber o conteudo do Radio Button -->
-                    <EditText
-                        android:id="@+id/txtViewGeneroVariavel"
+                        android:id="@+id/txtViewGeneroE"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:gravity="center"
-                        android:textColor="#AA0B0B"
-                        android:textSize="18sp" />
+                        android:text="Gênero:"
+                        android:textSize="18sp"
+                        tools:layout_editor_absoluteX="11dp"
+                        tools:layout_editor_absoluteY="306dp" />
+
+                    <RadioGroup
+                        android:id="@+id/rdBtnGrpGeneroE"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="radioButtonApertadoMinhaConta"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rdBtnFemininoE"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Feminino"
+                            tools:layout_editor_absoluteX="82dp"
+                            tools:layout_editor_absoluteY="298dp" />
+
+                        <RadioButton
+                            android:id="@+id/rdBtnMasculinoE"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Masculino"
+                            tools:layout_editor_absoluteX="200dp"
+                            tools:layout_editor_absoluteY="296dp" />
+
+                    </RadioGroup>
 
                 </LinearLayout>
 
