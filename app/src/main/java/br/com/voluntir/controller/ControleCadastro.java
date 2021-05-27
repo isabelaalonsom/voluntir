@@ -23,6 +23,11 @@ public class ControleCadastro {
         voluntarioDao.atualizarEmail(listaVaga, voluntario, context);
     }
 
+    public void alterarEmailOng(Ong ong, Context context) {
+        ongDao = new OngDao();
+        ongDao.atualizarEmail(ong, context);
+    }
+
 
     public void excluirDadosVoluntario(Voluntario dado, String tabela, Context context) {
         voluntarioDao = new VoluntarioDao();

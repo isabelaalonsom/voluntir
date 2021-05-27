@@ -132,7 +132,7 @@ public class MinhaContaONGActivity extends AppCompatActivity {
                 dados.setSite(txtSite.getText().toString());
 
                 controleCadastro = new ControleCadastro();
-                controleCadastro.atualizarDadosOng(dados, tabelaOng, getApplicationContext());
+                controleCadastro.alterarEmailOng(dados, getApplicationContext());
             } else {
 
             }
