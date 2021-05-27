@@ -141,10 +141,24 @@ public class MinhasVagasActivity extends AppCompatActivity {
                             @Override
                             public void onLongItemClick(View view, int position) throws IOException, DocumentException {
                                 Vaga vaga = listaVaga.get(position);
+                                int voluntariosAprovados = 0;
                                 if (vaga.getVoluntarios() == null) {
                                     Toast.makeText(getApplicationContext(),
                                             "Nenhum candidato cadastrado ",
                                             Toast.LENGTH_LONG).show();
+                                } else if (vaga.getVoluntarios() != null) {
+                                    for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
+                                        Voluntario voluntario = vaga.getVoluntarios().get(i);
+                                        if (voluntario.getStatusVaga().equalsIgnoreCase("APROVADO")) {
+                                            voluntariosAprovados++;
+                                        }
+                                    }
+                                    if (voluntariosAprovados == 0) {
+                                        Toast.makeText(MinhasVagasActivity.this, "O PDF não pode ser gerado pois não tem candidatos aprovados nessa vaga.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Vaga vaga2 = listaVaga.get(position);
+                                        gerarPDF(view, position, vaga2);
+                                    }
                                 } else {
                                     Vaga vaga2 = listaVaga.get(position);
                                     gerarPDF(view, position, vaga2);
