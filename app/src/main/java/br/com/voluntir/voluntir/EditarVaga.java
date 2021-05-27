@@ -53,7 +53,6 @@ public class EditarVaga extends AppCompatActivity {
     private EditText cargaHoraria, periodicidade, especialidade, detalheVaga, qtdCandidatos, dataInicio, dataTermino;
     int mesAtual = LocalDate.now().getMonth().getValue();
     int diaAtual = LocalDate.now().getDayOfMonth();
-
     private TextView txtTituloNovaVagaEditarVaga;
     private ControleCadastro controleCadastro;
 
@@ -66,6 +65,7 @@ public class EditarVaga extends AppCompatActivity {
     private Vaga vaga2;
     private String idOng;
     private List<Vaga> listaVaga = new ArrayList<>();
+    private Vaga vagaExcluir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +93,10 @@ public class EditarVaga extends AppCompatActivity {
         if (dados != null) {
             ong = (Ong) dados.getSerializable("ong");
             vaga = (Vaga) dados.getSerializable("vaga");
+            if (vagaExcluir == null) {
+                vagaExcluir = vaga;
+            }
+
         }
 
         refenciaBanco = BancoFirebase.getBancoReferencia();
@@ -256,7 +260,7 @@ public class EditarVaga extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 if (vaga != null) {
                     controleVaga = new ControleVaga();
-                    controleVaga.deletarVaga(vaga, tabelaBanco, getApplicationContext());
+                    controleVaga.deletarVaga(vagaExcluir, tabelaBanco, getApplicationContext());
                 }
 
             }

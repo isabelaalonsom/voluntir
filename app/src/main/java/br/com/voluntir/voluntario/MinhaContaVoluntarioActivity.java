@@ -53,6 +53,7 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
     private final DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     private List<Vaga> listaVaga = new ArrayList<>();
     private List<Vaga> listaVagaSemVoluntario = new ArrayList<>();
+    private List<Vaga> listaVagaComVoluntario = new ArrayList<>();
     private Vaga vaga;
     private boolean acabou = false;
     int mesAtual = LocalDate.now().getMonth().getValue();
@@ -212,9 +213,47 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                 dados.setGenero(genero);
                 dados.setEspecialidade(txtDescricaoTecnica.getText().toString());
 
-                controleCadastro = new ControleCadastro();
-                controleCadastro.atualizarDadosVoluntario(dados, tabelaVoluntario, getApplicationContext());
-                finish();
+                if (listaVaga != null) {
+                    listaVagaComVoluntario.clear();
+                    acabou = false;
+                    for (int i = 0; i < listaVaga.size(); i++) {
+                        Vaga vaga;
+                        vaga = listaVaga.get(i);
+
+                        for (int j = 0; j < vaga.getVoluntarios().size(); j++) {
+                            if (vaga.getVoluntarios().get(j).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
+                                dados.setStatusVaga(vaga.getVoluntarios().get(j).getStatusVaga());
+                                //vaga.getVoluntarios().remove(j);
+                                vaga.getVoluntarios().get(j).setNome(dados.getNome());
+                                vaga.getVoluntarios().get(j).setSobrenome(dados.getSobrenome());
+                                vaga.getVoluntarios().get(j).setGenero(dados.getGenero());
+                                //vaga.getVoluntarios().get(j).setCpf(dados.getCpf());
+                                vaga.getVoluntarios().get(j).setDatanasc(dados.getDatanasc());
+                                vaga.getVoluntarios().get(j).setEndereco(dados.getEndereco());
+                                vaga.getVoluntarios().get(j).setTelefone(dados.getTelefone());
+                                vaga.getVoluntarios().get(j).setEspecialidade(dados.getEspecialidade());
+                                //vaga.getVoluntarios().add(dados);
+
+                            }
+
+                        }
+
+                        listaVagaComVoluntario.add(vaga);
+                    }
+                    acabou = true;
+                }
+                if (listaVagaComVoluntario != null && acabou == true) {
+                    VagaDao vagaDao = new VagaDao();
+                    //dados.setStatusVaga(null);
+                    vagaDao.atualizaVagaPerfilVoluntario(listaVagaComVoluntario, dados, getApplicationContext());
+                    finish();
+                } else if (listaVagaComVoluntario == null && acabou == true) {
+                    controleCadastro = new ControleCadastro();
+                    dados.setStatusVaga(null);
+                    controleCadastro.atualizarDadosVoluntario(dados, tabelaVoluntario, getApplicationContext());
+                    finish();
+                }
+
 
             }
 

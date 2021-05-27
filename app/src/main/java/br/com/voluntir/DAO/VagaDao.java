@@ -60,6 +60,20 @@ public class VagaDao implements DAO<Vaga> {
 
     }
 
+    public void atualizaVagaPerfilVoluntario(List<Vaga> listaVaga, Voluntario voluntario, Context context) {
+        refenciaBanco = BancoFirebase.getBancoReferencia();
+        if (listaVaga != null) {
+            for (int i = 0; i < listaVaga.size(); i++) {
+                vaga = listaVaga.get(i);
+                refenciaBanco.child("vaga").child(vaga.getIdVaga()).setValue(vaga);
+            }
+            controleCadastro = new ControleCadastro();
+            //controleCadastro.excluirDadosVoluntario(voluntario, "voluntario", context);
+            controleCadastro.atualizarDadosVoluntario(voluntario, "voluntario", context);
+        }
+        return;
+    }
+
     public void removeListaVaga(List<Vaga> listaVaga, Ong ong, Context context) {
         refenciaBanco = BancoFirebase.getBancoReferencia();
         if (listaVaga != null) {
