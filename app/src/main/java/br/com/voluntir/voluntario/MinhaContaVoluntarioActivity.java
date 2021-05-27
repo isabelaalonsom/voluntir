@@ -198,7 +198,7 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                                 //vaga.getVoluntarios().remove(j);
                                 vaga.getVoluntarios().get(j).setNome(dados.getNome());
                                 vaga.getVoluntarios().get(j).setSobrenome(dados.getSobrenome());
-                                vaga.getVoluntarios().get(j).setCpf(dados.getCpf());
+                                //vaga.getVoluntarios().get(j).setCpf(dados.getCpf());
                                 vaga.getVoluntarios().get(j).setDatanasc(dados.getDatanasc());
                                 vaga.getVoluntarios().get(j).setEndereco(dados.getEndereco());
                                 vaga.getVoluntarios().get(j).setTelefone(dados.getTelefone());
