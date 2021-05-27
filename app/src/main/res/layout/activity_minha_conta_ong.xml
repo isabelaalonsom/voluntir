@@ -299,6 +299,13 @@
                         android:onClick="clicarBotaoExcluirOng"
                         android:text="EXCLUIR" />
 
+                    <Button
+                        android:id="@+id/btnAlterarSenha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="alterarSenha"
+                        android:text="ALTERAR SENHA" />
+
 
                 </LinearLayout>
             </LinearLayout>

@@ -1,6 +1,7 @@
 package br.com.voluntir.voluntario;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -39,6 +40,7 @@ import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.voluntir.MudarSenha;
 import br.com.voluntir.voluntir.R;
 
 
@@ -336,6 +338,12 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         txtTelefone.setText("");
         //txtGenero.setText("");
         txtDescricaoTecnica.setText("");
+    }
+
+    public void alterarSenhaVoluntario(View view) {
+        Intent intent = new Intent(getApplicationContext(), MudarSenha.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     public boolean validarData(String data) {

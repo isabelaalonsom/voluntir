@@ -37,6 +37,38 @@ public class VoluntarioDao implements DAO<Voluntario> {
     private Boolean cadastrado = false;
     private DatabaseReference bancoFirebase;
 
+    public void atualizarSenha(String senha, Context context) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.updatePassword(senha).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(context,
+                            "Senha alterada com sucesso ",
+                            Toast.LENGTH_SHORT).show();
+                    Preferencias preferencias = new Preferencias(context);
+                    preferencias.salvarUsuarioPreferencias(null, null, null);
+                    //autenticacao.signOut();
+                } else {
+                    String erroExcecao = "";
+                    try {
+                        throw task.getException();
+                    } catch (FirebaseAuthWeakPasswordException e) {
+                        erroExcecao = "Digite uma senha mais forte, contendo mais caracteres";
+                    } catch (Exception e) {
+                        erroExcecao = "Ao alterar senha";
+                        e.printStackTrace();
+                    }
+
+                    Toast.makeText(context,
+                            "Erro: " + erroExcecao,
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
     public void atualizarEmail(List<Vaga> listaVaga, Voluntario voluntario, Context context) {
         //autenticacao = BancoFirebase.getFirebaseAutenticacao();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

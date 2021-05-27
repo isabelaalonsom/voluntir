@@ -37,6 +37,38 @@ public class OngDao implements DAO<Ong> {
     private Ong ong;
     private FirebaseAuth autenticacao;
 
+    public void atualizarSenha(String senha, Context context) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.updatePassword(senha).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(context,
+                            "Senha alterada com sucesso ",
+                            Toast.LENGTH_SHORT).show();
+                    Preferencias preferencias = new Preferencias(context);
+                    preferencias.salvarUsuarioPreferencias(null, null, null);
+                    //autenticacao.signOut();
+                } else {
+                    String erroExcecao = "";
+                    try {
+                        throw task.getException();
+                    } catch (FirebaseAuthWeakPasswordException e) {
+                        erroExcecao = "Digite uma senha mais forte, contendo mais caracteres";
+                    } catch (Exception e) {
+                        erroExcecao = "Ao alterar senha";
+                        e.printStackTrace();
+                    }
+
+                    Toast.makeText(context,
+                            "Erro: " + erroExcecao,
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
     public void atualizarEmail(Ong ong, Context context) {
         //autenticacao = BancoFirebase.getFirebaseAutenticacao();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -54,7 +86,6 @@ public class OngDao implements DAO<Ong> {
                     //autenticacao.signOut();
                 } else {
 
-                    cadastrado = false;
                     String erroExcecao = "";
                     try {
                         throw task.getException();

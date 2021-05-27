@@ -333,6 +333,14 @@
                         android:onClick="clicarBotaoExcluir"
                         android:text="EXCLUIR" />
 
+                    <Button
+                        android:id="@+id/btnAlterarSenhaVoluntario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="alterarSenhaVoluntario"
+                        android:text="ALTERAR SENHA" />
+
 
                 </LinearLayout>
             </LinearLayout>
