@@ -80,10 +80,10 @@ public class OngDao implements DAO<Ong> {
                             "E-mail alterado com sucesso ",
                             Toast.LENGTH_SHORT).show();
                     atualiza(ong, "ong",context);*/
-
+                    atualiza(ong, "ong", context);
                     Preferencias preferencias = new Preferencias(context);
                     preferencias.salvarUsuarioPreferencias(null, null, null);
-                    atualiza(ong, "ong", context);
+
                     //autenticacao.signOut();
                 } else {
 

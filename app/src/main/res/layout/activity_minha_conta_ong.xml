@@ -47,18 +47,17 @@
 
                 <LinearLayout
                     android:id="@+id/LinearNome"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtViewONG"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:gravity="center"
                         android:text="Nome: "
                         android:textSize="18sp" />
 
@@ -67,7 +66,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:gravity="center"
                         android:textColor="#AA0B0B"
                         android:textSize="18sp" />
 
@@ -75,18 +73,17 @@
 
                 <LinearLayout
                     android:id="@+id/LinearCnpj"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtViewCnpj"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:gravity="center"
                         android:text="CNPJ: "
                         android:textSize="18sp" />
 
@@ -94,8 +91,7 @@
                         android:id="@+id/txtViewCpnjVariavel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="center"
+                        android:layout_marginStart="10dp"
                         android:textColor="#AA0B0B"
                         android:textSize="18sp" />
 
@@ -103,14 +99,14 @@
 
                 <LinearLayout
                     android:id="@+id/LinearLocalizacao"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtViewLocalizacao"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
@@ -123,7 +119,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:gravity="center"
                         android:textColor="#AA0B0B"
                         android:textSize="18sp" />
 
@@ -131,18 +126,17 @@
 
                 <LinearLayout
                     android:id="@+id/LinearCausas"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtViewCausas"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:gravity="center"
                         android:text="Causas: "
                         android:textSize="18sp" />
 
@@ -151,7 +145,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:gravity="center"
                         android:textColor="#AA0B0B"
                         android:textSize="18sp" />
 
@@ -159,18 +152,17 @@
 
                 <LinearLayout
                     android:id="@+id/LinearTelefone"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtViewTelefone"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:gravity="center"
                         android:text="Telefone: "
                         android:textSize="18sp" />
 
@@ -179,7 +171,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:gravity="center"
                         android:inputType="phone"
                         android:textColor="#AA0B0B"
                         android:textSize="18sp" />
@@ -188,18 +179,17 @@
 
                 <LinearLayout
                     android:id="@+id/LinearSite"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtViewSite"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:gravity="center"
                         android:text="Site: "
                         android:textSize="18sp" />
 
@@ -208,7 +198,7 @@
                         android:id="@+id/txtViewSiteVariavel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:layout_marginStart="10dp"
                         android:textColor="#AA0B0B"
                         android:textSize="18sp" />
 
@@ -216,14 +206,14 @@
 
                 <LinearLayout
                     android:id="@+id/LinearEmail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtViewEmail"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
@@ -236,7 +226,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:gravity="center"
                         android:textColor="#AA0B0B"
                         android:textSize="18sp" />
 
