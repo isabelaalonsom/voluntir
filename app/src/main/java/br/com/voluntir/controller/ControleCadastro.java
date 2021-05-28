@@ -2,6 +2,8 @@ package br.com.voluntir.controller;
 
 import android.content.Context;
 
+import java.util.List;
+
 import br.com.voluntir.DAO.OngDao;
 import br.com.voluntir.DAO.VoluntarioDao;
 import br.com.voluntir.model.Ong;
@@ -15,20 +17,25 @@ public class ControleCadastro {
     private Ong ong;
     private OngDao ongDao;
 
-    public void buscarOngTeste(Vaga vaga) {
+    public void alterarSenha(String senha, String email, Context context) {
         ongDao = new OngDao();
+        ongDao.atualizarSenha(senha, email, context);
+    }
 
-        ongDao.lerDados(vaga.getIdOng(), new OngDao.OnGetDataListener() {
-            @Override
-            public void onSucess(Ong ong) {
+    public void alterarSenhaVoluntario(String senha, Context context) {
+        voluntarioDao = new VoluntarioDao();
+        voluntarioDao.atualizarSenha(senha, context);
+    }
 
-            }
 
-            @Override
-            public void onStart() {
+    public void alterarEmail(List<Vaga> listaVaga, Voluntario voluntario, Context context) {
+        voluntarioDao = new VoluntarioDao();
+        voluntarioDao.atualizarEmail(listaVaga, voluntario, context);
+    }
 
-            }
-        });
+    public void alterarEmailOng(Ong ong, Context context) {
+        ongDao = new OngDao();
+        ongDao.atualizarEmail(ong, context);
     }
 
 
@@ -106,8 +113,8 @@ public class ControleCadastro {
         this.voluntario = dado;
 
         voluntarioDao = new VoluntarioDao();
-
         voluntarioDao.atualiza(dado, tabela, context);
+
 
     }
 

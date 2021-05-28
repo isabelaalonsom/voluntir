@@ -1,6 +1,7 @@
 package br.com.voluntir.voluntario;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -39,6 +40,7 @@ import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
+import br.com.voluntir.voluntir.MudarSenha;
 import br.com.voluntir.voluntir.R;
 
 
@@ -227,7 +229,9 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                                 vaga.getVoluntarios().get(j).setNome(dados.getNome());
                                 vaga.getVoluntarios().get(j).setSobrenome(dados.getSobrenome());
                                 vaga.getVoluntarios().get(j).setGenero(dados.getGenero());
+                                vaga.getVoluntarios().get(j).setEmail(dados.getEmail());
                                 //vaga.getVoluntarios().get(j).setCpf(dados.getCpf());
+
                                 vaga.getVoluntarios().get(j).setDatanasc(dados.getDatanasc());
                                 vaga.getVoluntarios().get(j).setEndereco(dados.getEndereco());
                                 vaga.getVoluntarios().get(j).setTelefone(dados.getTelefone());
@@ -243,9 +247,12 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                     acabou = true;
                 }
                 if (listaVagaComVoluntario != null && acabou == true) {
+                    controleCadastro = new ControleCadastro();
+                    controleCadastro.alterarEmail(listaVagaComVoluntario, dados, getApplicationContext());
+/*
                     VagaDao vagaDao = new VagaDao();
-                    //dados.setStatusVaga(null);
-                    vagaDao.atualizaVagaPerfilVoluntario(listaVagaComVoluntario, dados, getApplicationContext());
+
+                    vagaDao.atualizaVagaPerfilVoluntario(listaVagaComVoluntario, dados, getApplicationContext());*/
                     finish();
                 } else if (listaVagaComVoluntario == null && acabou == true) {
                     controleCadastro = new ControleCadastro();
@@ -331,6 +338,15 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         txtTelefone.setText("");
         //txtGenero.setText("");
         txtDescricaoTecnica.setText("");
+    }
+
+    public void alterarSenhaVoluntario(View view) {
+        Intent intent = new Intent(getApplicationContext(), MudarSenha.class);
+        if (voluntario != null) {
+            intent.putExtra("email", txtEmail.getText().toString());
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     public boolean validarData(String data) {

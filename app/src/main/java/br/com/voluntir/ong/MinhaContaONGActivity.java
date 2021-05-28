@@ -1,6 +1,7 @@
 package br.com.voluntir.ong;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,6 +32,7 @@ import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
+import br.com.voluntir.voluntir.MudarSenha;
 import br.com.voluntir.voluntir.R;
 
 public class MinhaContaONGActivity extends AppCompatActivity {
@@ -132,7 +134,14 @@ public class MinhaContaONGActivity extends AppCompatActivity {
                 dados.setSite(txtSite.getText().toString());
 
                 controleCadastro = new ControleCadastro();
-                controleCadastro.atualizarDadosOng(dados, tabelaOng, getApplicationContext());
+                if (!ong.getEmailOng().equals(txtEmail.getText().toString())) {
+                    controleCadastro.alterarEmailOng(dados, getApplicationContext());
+                    finish();
+                } else {
+                    controleCadastro.atualizarDadosOng(dados, tabelaOng, getApplicationContext());
+                    finish();
+                }
+
             } else {
 
             }
@@ -145,6 +154,15 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         Preferencias preferencias = new Preferencias(getApplicationContext());
         preferencias.salvarUsuarioPreferencias(null, null, null);
         this.finishAffinity();
+    }
+
+    public void alterarSenha(View view) {
+        Intent intent = new Intent(getApplicationContext(), MudarSenha.class);
+        if (ong != null) {
+            intent.putExtra("email", txtEmail.getText().toString());
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     public void clicarBotaoExcluirOng(View view) {

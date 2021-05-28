@@ -37,6 +37,83 @@ public class OngDao implements DAO<Ong> {
     private Ong ong;
     private FirebaseAuth autenticacao;
 
+    public void atualizarSenha(String senha, String email, Context context) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.updatePassword(senha).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(context,
+                            "Senha alterada com sucesso ",
+                            Toast.LENGTH_SHORT).show();
+                    Preferencias preferencias = new Preferencias(context);
+                    try {
+                        preferencias.salvarUsuarioPreferencias(email, senha, "ong");
+                    } catch (Exception e) {
+
+                    }
+
+                    //autenticacao.signOut();
+                } else {
+                    String erroExcecao = "";
+                    try {
+                        throw task.getException();
+                    } catch (FirebaseAuthWeakPasswordException e) {
+                        erroExcecao = "Digite uma senha mais forte, contendo mais caracteres";
+                    } catch (Exception e) {
+                        erroExcecao = "Ao alterar senha";
+                        e.printStackTrace();
+                    }
+
+                    Toast.makeText(context,
+                            "Erro: " + erroExcecao,
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+    public void atualizarEmail(Ong ong, Context context) {
+        //autenticacao = BancoFirebase.getFirebaseAutenticacao();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.updateEmail(ong.getEmailOng()).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    /*Toast.makeText(context,
+                            "E-mail alterado com sucesso ",
+                            Toast.LENGTH_SHORT).show();
+                    atualiza(ong, "ong",context);*/
+                    atualiza(ong, "ong", context);
+
+                    //autenticacao.signOut();
+                } else {
+
+                    String erroExcecao = "";
+                    try {
+                        throw task.getException();
+                    } catch (FirebaseAuthInvalidCredentialsException e) {
+                        erroExcecao = "O e-mail digitado é inválido, digite um novo e-mail";
+                    } catch (FirebaseAuthUserCollisionException e) {
+                        erroExcecao = "E-mail já cadastrado";
+                    } catch (Exception e) {
+                        erroExcecao = "Ao alterar e-mail";
+                        e.printStackTrace();
+                    }
+
+                    Toast.makeText(context,
+                            "Erro: " + erroExcecao,
+                            Toast.LENGTH_SHORT).show();
+                    Log.w("CADASTRO", "signInWithEmail:erro" + erroExcecao, task.getException());
+
+                }
+
+            }
+        });
+
+    }
+
     @Override
     public void adiciona(final Ong dado, final String tabela, final Context appContext) {
         ong = dado;
@@ -153,10 +230,20 @@ public class OngDao implements DAO<Ong> {
                     Toast.makeText(appContext,
                             "Dados atualizados com sucesso ",
                             Toast.LENGTH_SHORT).show();
+                    Preferencias preferencias = new Preferencias(appContext);
+                    try {
+                        preferencias.salvarUsuarioPreferencias(dado.getEmailOng(), preferencias.getSenhaUsuarioLogado(), "ong");
+                    } catch (Exception e) {
+
+                    }
+
+
                     Intent intent = new Intent(appContext, Carregamento.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("tela", "contaOng");
                     appContext.startActivity(intent);
+
+
                 } else {
                     Toast.makeText(appContext,
                             "Erro" + task.getException(),

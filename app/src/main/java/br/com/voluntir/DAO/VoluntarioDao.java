@@ -24,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
+import br.com.voluntir.Preferencias;
+import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntario.MenuVoluntarioActivity;
 import br.com.voluntir.voluntir.Carregamento;
@@ -34,6 +36,94 @@ public class VoluntarioDao implements DAO<Voluntario> {
     private FirebaseAuth autenticacao;
     private Boolean cadastrado = false;
     private DatabaseReference bancoFirebase;
+
+    public void atualizarSenha(String senha, Context context) {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.updatePassword(senha).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(context,
+                            "Senha alterada com sucesso ",
+                            Toast.LENGTH_SHORT).show();
+                    Preferencias preferencias = new Preferencias(context);
+                    try {
+                        preferencias.salvarUsuarioPreferencias(user.getEmail(), senha, "voluntario");
+                    } catch (Exception e) {
+
+                    }
+
+                    //autenticacao.signOut();
+                } else {
+                    String erroExcecao = "";
+                    try {
+                        throw task.getException();
+                    } catch (FirebaseAuthWeakPasswordException e) {
+                        erroExcecao = "Digite uma senha mais forte, contendo mais caracteres";
+                    } catch (Exception e) {
+                        erroExcecao = "Ao alterar senha";
+                        e.printStackTrace();
+                    }
+
+                    Toast.makeText(context,
+                            "Erro: " + erroExcecao,
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+    public void atualizarEmail(List<Vaga> listaVaga, Voluntario voluntario, Context context) {
+        //autenticacao = BancoFirebase.getFirebaseAutenticacao();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.updateEmail(voluntario.getEmail()).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Preferencias preferencias = new Preferencias(context);
+
+                    try {
+                        preferencias.salvarUsuarioPreferencias(voluntario.getEmail(), preferencias.getSenhaUsuarioLogado(), "voluntario");
+                    } catch (Exception e) {
+
+                    }
+
+                    VagaDao vagaDao = new VagaDao();
+
+                    vagaDao.atualizaVagaPerfilVoluntario(listaVaga, voluntario, context);
+                    //autenticacao.signOut();
+                } else {
+
+                    cadastrado = false;
+                    String erroExcecao = "";
+                    try {
+                        throw task.getException();
+                    } catch (FirebaseAuthInvalidCredentialsException e) {
+                        erroExcecao = "O e-mail digitado é inválido, digite um novo e-mail";
+                    } catch (FirebaseAuthUserCollisionException e) {
+                        erroExcecao = "E-mail já cadastrado";
+                    } catch (Exception e) {
+                        erroExcecao = "Ao alterar e-mail";
+                        e.printStackTrace();
+                    }
+
+                    Toast.makeText(context,
+                            "Erro: " + erroExcecao,
+                            Toast.LENGTH_SHORT).show();
+                    Log.w("CADASTRO", "signInWithEmail:erro" + erroExcecao, task.getException());
+
+                }
+
+            }
+        });
+
+    }
+
+    public void atualizarSenha() {
+
+    }
 
     @Override
     public void adiciona(Voluntario dado, final String tabela, final Context appContext) {
@@ -137,6 +227,7 @@ public class VoluntarioDao implements DAO<Voluntario> {
 
     @Override
     public void atualiza(Voluntario dado, String tabela, final Context context) {
+
         bancoFirebase = BancoFirebase.getBancoReferencia();
         dado.setStatusVaga(null);
         bancoFirebase.child(tabela).child(dado.getIdVoluntario()).setValue(dado).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -146,6 +237,14 @@ public class VoluntarioDao implements DAO<Voluntario> {
                     Toast.makeText(context,
                             "Dados atualizados com sucesso ",
                             Toast.LENGTH_SHORT).show();
+                    Preferencias preferencias = new Preferencias(context);
+                    //preferencias.getSenhaUsuarioLogado();
+                    try {
+                        preferencias.salvarUsuarioPreferencias(dado.getEmail(), preferencias.getSenhaUsuarioLogado(), "voluntario");
+                    } catch (Exception e) {
+
+                    }
+
                     Intent intent = new Intent(context.getApplicationContext(), Carregamento.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("tela", "contaVoluntario");

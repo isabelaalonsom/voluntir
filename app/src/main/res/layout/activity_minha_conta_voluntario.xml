@@ -38,20 +38,26 @@
                     tools:layout_editor_absoluteX="173dp"
                     tools:layout_editor_absoluteY="8dp" />
 
+                <TextView
+                    android:id="@+id/textView101"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Para alterar os dados tenha feito login recentemente" />
+
                 <LinearLayout
                     android:id="@+id/LinearCpf"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtViewCpf"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:gravity="center"
                         android:text="CPF: "
                         android:textSize="18sp" />
 
@@ -68,18 +74,17 @@
 
                 <LinearLayout
                     android:id="@+id/LinearNome"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtViewNomeDoVoluntario"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:gravity="center"
                         android:text="Nome: "
                         android:textSize="18sp" />
 
@@ -96,18 +101,17 @@
 
                 <LinearLayout
                     android:id="@+id/LinearSobrenome"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtViewSobrenome"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:gravity="center"
                         android:text="Sobrenome: "
                         android:textSize="18sp" />
 
@@ -124,18 +128,17 @@
 
                 <LinearLayout
                     android:id="@+id/LinearDataNasc"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtViewDataNasc"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:gravity="center"
                         android:text="Data de Nascimento: "
                         android:textSize="18sp" />
 
@@ -159,7 +162,7 @@
 
                     <TextView
                         android:id="@+id/txtViewGeneroE"
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="Gênero:"
@@ -198,18 +201,17 @@
 
                 <LinearLayout
                     android:id="@+id/LinearTelefone"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtViewTelefone"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:gravity="center"
                         android:text="Telefone: "
                         android:textSize="18sp" />
 
@@ -226,18 +228,17 @@
 
                 <LinearLayout
                     android:id="@+id/LinearEmail"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtViewEmail"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:gravity="center"
                         android:text="E-mail: "
                         android:textSize="18sp" />
 
@@ -255,18 +256,17 @@
 
                 <LinearLayout
                     android:id="@+id/LinearEndereco"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtViewEndereco"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:gravity="center"
                         android:text="Endereço: "
                         android:textSize="18sp" />
 
@@ -325,6 +325,14 @@
                         android:layout_height="wrap_content"
                         android:onClick="clicarBotaoExcluir"
                         android:text="EXCLUIR" />
+
+                    <Button
+                        android:id="@+id/btnAlterarSenhaVoluntario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="alterarSenhaVoluntario"
+                        android:text="ALTERAR SENHA" />
 
 
                 </LinearLayout>

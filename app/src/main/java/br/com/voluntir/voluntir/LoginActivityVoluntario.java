@@ -34,6 +34,12 @@ public class LoginActivityVoluntario extends AppCompatActivity {
 
     }
 
+    public void onDestroy() {
+
+        super.onDestroy();
+
+    }
+
     public void clicarCriarConta(View view) {
         Intent intent = new Intent(this, CadastroVoluntarioActivity.class);
         startActivity(intent);
@@ -58,7 +64,6 @@ public class LoginActivityVoluntario extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         } else {
             controleLogin.validarLoginVoluntario(voluntario, nomeTabela, getApplicationContext());
-
 
         }
     }

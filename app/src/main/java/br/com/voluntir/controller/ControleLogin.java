@@ -29,6 +29,7 @@ import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntario.MenuVoluntarioActivity;
 import br.com.voluntir.voluntir.Carregamento;
+import br.com.voluntir.voluntir.LoginActivityVoluntario;
 import br.com.voluntir.voluntir.MenuOngActivity;
 
 public class ControleLogin {
@@ -94,6 +95,13 @@ public class ControleLogin {
                                 Toast.makeText(context,
                                         "Sucesso ao fazer Login ",
                                         Toast.LENGTH_SHORT).show();
+
+                                try {
+                                    this.finalize();
+                                } catch (Throwable throwable) {
+                                    throwable.printStackTrace();
+                                }
+
                                 Intent intent = new Intent(context.getApplicationContext(), MenuOngActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.putExtra("objeto", ong);
@@ -177,6 +185,13 @@ public class ControleLogin {
                                 Toast.makeText(context,
                                         "Sucesso ao fazer Login ",
                                         Toast.LENGTH_SHORT).show();
+
+                                try {
+                                    this.finalize();
+                                } catch (Throwable throwable) {
+                                    throwable.printStackTrace();
+                                }
+
                                 Intent intent = new Intent(context.getApplicationContext(), MenuVoluntarioActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.putExtra("objeto", voluntario);
@@ -195,6 +210,7 @@ public class ControleLogin {
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
+
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
