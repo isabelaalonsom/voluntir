@@ -342,6 +342,9 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
 
     public void alterarSenhaVoluntario(View view) {
         Intent intent = new Intent(getApplicationContext(), MudarSenha.class);
+        if (voluntario != null) {
+            intent.putExtra("email", txtEmail.getText().toString());
+        }
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

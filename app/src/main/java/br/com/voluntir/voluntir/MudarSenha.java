@@ -16,6 +16,7 @@ import br.com.voluntir.controller.ControleCadastro;
 
 public class MudarSenha extends AppCompatActivity {
     private EditText senha, confirmarSenha;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,11 @@ public class MudarSenha extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
+        Bundle dados = getIntent().getExtras();
+
+        if (dados != null) {
+            email = (String) dados.getSerializable("email");
+        }
 
 
         senha = (EditText) findViewById(R.id.edtTextRepetirSenhaContaTela);
@@ -44,7 +50,7 @@ public class MudarSenha extends AppCompatActivity {
         } else {
             String senha = this.senha.getText().toString();
             ControleCadastro controleCadastro = new ControleCadastro();
-            controleCadastro.alterarSenha(senha, getApplicationContext());
+            controleCadastro.alterarSenha(senha, email, getApplicationContext());
         }
 
     }

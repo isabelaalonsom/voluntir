@@ -151,6 +151,9 @@ public class MinhaContaONGActivity extends AppCompatActivity {
 
     public void alterarSenha(View view) {
         Intent intent = new Intent(getApplicationContext(), MudarSenha.class);
+        if (ong != null) {
+            intent.putExtra("email", txtEmail.getText().toString());
+        }
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

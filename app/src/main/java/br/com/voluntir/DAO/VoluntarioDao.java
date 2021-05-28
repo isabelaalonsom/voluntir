@@ -38,6 +38,7 @@ public class VoluntarioDao implements DAO<Voluntario> {
     private DatabaseReference bancoFirebase;
 
     public void atualizarSenha(String senha, Context context) {
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         user.updatePassword(senha).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -47,7 +48,7 @@ public class VoluntarioDao implements DAO<Voluntario> {
                             "Senha alterada com sucesso ",
                             Toast.LENGTH_SHORT).show();
                     Preferencias preferencias = new Preferencias(context);
-                    preferencias.salvarUsuarioPreferencias(null, null, null);
+                    preferencias.salvarUsuarioPreferencias(user.getEmail(), senha, "voluntario");
                     //autenticacao.signOut();
                 } else {
                     String erroExcecao = "";
@@ -80,11 +81,12 @@ public class VoluntarioDao implements DAO<Voluntario> {
                             "E-mail alterado com sucesso ",
                             Toast.LENGTH_SHORT).show();*/
 
+                    Preferencias preferencias = new Preferencias(context);
+                    preferencias.salvarUsuarioPreferencias(voluntario.getEmail(), preferencias.getSenhaUsuarioLogado(), "voluntario");
+
                     VagaDao vagaDao = new VagaDao();
 
                     vagaDao.atualizaVagaPerfilVoluntario(listaVaga, voluntario, context);
-                    Preferencias preferencias = new Preferencias(context);
-                    preferencias.salvarUsuarioPreferencias(null, null, null);
                     //autenticacao.signOut();
                 } else {
 
@@ -219,6 +221,7 @@ public class VoluntarioDao implements DAO<Voluntario> {
 
     @Override
     public void atualiza(Voluntario dado, String tabela, final Context context) {
+
         bancoFirebase = BancoFirebase.getBancoReferencia();
         dado.setStatusVaga(null);
         bancoFirebase.child(tabela).child(dado.getIdVoluntario()).setValue(dado).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -229,7 +232,8 @@ public class VoluntarioDao implements DAO<Voluntario> {
                             "Dados atualizados com sucesso ",
                             Toast.LENGTH_SHORT).show();
                     Preferencias preferencias = new Preferencias(context);
-                    preferencias.salvarUsuarioPreferencias(null, null, null);
+                    //preferencias.getSenhaUsuarioLogado();
+                    preferencias.salvarUsuarioPreferencias(dado.getEmail(), preferencias.getSenhaUsuarioLogado(), "voluntario");
                     Intent intent = new Intent(context.getApplicationContext(), Carregamento.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("tela", "contaVoluntario");

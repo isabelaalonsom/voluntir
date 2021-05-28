@@ -37,7 +37,7 @@ public class OngDao implements DAO<Ong> {
     private Ong ong;
     private FirebaseAuth autenticacao;
 
-    public void atualizarSenha(String senha, Context context) {
+    public void atualizarSenha(String senha, String email, Context context) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         user.updatePassword(senha).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -47,7 +47,7 @@ public class OngDao implements DAO<Ong> {
                             "Senha alterada com sucesso ",
                             Toast.LENGTH_SHORT).show();
                     Preferencias preferencias = new Preferencias(context);
-                    preferencias.salvarUsuarioPreferencias(null, null, null);
+                    preferencias.salvarUsuarioPreferencias(email, senha, "ong");
                     //autenticacao.signOut();
                 } else {
                     String erroExcecao = "";
@@ -81,8 +81,6 @@ public class OngDao implements DAO<Ong> {
                             Toast.LENGTH_SHORT).show();
                     atualiza(ong, "ong",context);*/
                     atualiza(ong, "ong", context);
-                    Preferencias preferencias = new Preferencias(context);
-                    preferencias.salvarUsuarioPreferencias(null, null, null);
 
                     //autenticacao.signOut();
                 } else {
@@ -227,10 +225,15 @@ public class OngDao implements DAO<Ong> {
                     Toast.makeText(appContext,
                             "Dados atualizados com sucesso ",
                             Toast.LENGTH_SHORT).show();
+                    Preferencias preferencias = new Preferencias(appContext);
+                    preferencias.salvarUsuarioPreferencias(dado.getEmailOng(), dado.getSenhaOng(), "ong");
+
                     Intent intent = new Intent(appContext, Carregamento.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("tela", "contaOng");
                     appContext.startActivity(intent);
+
+
                 } else {
                     Toast.makeText(appContext,
                             "Erro" + task.getException(),

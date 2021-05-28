@@ -17,9 +17,9 @@ public class ControleCadastro {
     private Ong ong;
     private OngDao ongDao;
 
-    public void alterarSenha(String senha, Context context) {
+    public void alterarSenha(String senha, String email, Context context) {
         ongDao = new OngDao();
-        ongDao.atualizarSenha(senha, context);
+        ongDao.atualizarSenha(senha, email, context);
     }
 
     public void alterarSenhaVoluntario(String senha, Context context) {
