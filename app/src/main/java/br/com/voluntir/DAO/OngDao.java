@@ -76,9 +76,10 @@ public class OngDao implements DAO<Ong> {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(context,
+                    /*Toast.makeText(context,
                             "E-mail alterado com sucesso ",
                             Toast.LENGTH_SHORT).show();
+                    atualiza(ong, "ong",context);*/
 
                     Preferencias preferencias = new Preferencias(context);
                     preferencias.salvarUsuarioPreferencias(null, null, null);

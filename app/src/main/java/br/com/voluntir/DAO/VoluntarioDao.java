@@ -76,9 +76,9 @@ public class VoluntarioDao implements DAO<Voluntario> {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(context,
+                    /*Toast.makeText(context,
                             "E-mail alterado com sucesso ",
-                            Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_SHORT).show();*/
 
                     VagaDao vagaDao = new VagaDao();
 
