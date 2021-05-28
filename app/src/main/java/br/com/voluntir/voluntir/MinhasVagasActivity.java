@@ -80,7 +80,10 @@ public class MinhasVagasActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerViewVaga);
         Bundle dados = getIntent().getExtras();
-        ong = (Ong) dados.getSerializable("objeto");
+        if (dados != null) {
+            ong = (Ong) dados.getSerializable("objeto");
+        }
+
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
