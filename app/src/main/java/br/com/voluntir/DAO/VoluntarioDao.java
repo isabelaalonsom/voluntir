@@ -48,7 +48,12 @@ public class VoluntarioDao implements DAO<Voluntario> {
                             "Senha alterada com sucesso ",
                             Toast.LENGTH_SHORT).show();
                     Preferencias preferencias = new Preferencias(context);
-                    preferencias.salvarUsuarioPreferencias(user.getEmail(), senha, "voluntario");
+                    try {
+                        preferencias.salvarUsuarioPreferencias(user.getEmail(), senha, "voluntario");
+                    } catch (Exception e) {
+
+                    }
+
                     //autenticacao.signOut();
                 } else {
                     String erroExcecao = "";
@@ -77,12 +82,13 @@ public class VoluntarioDao implements DAO<Voluntario> {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    /*Toast.makeText(context,
-                            "E-mail alterado com sucesso ",
-                            Toast.LENGTH_SHORT).show();*/
-
                     Preferencias preferencias = new Preferencias(context);
-                    preferencias.salvarUsuarioPreferencias(voluntario.getEmail(), preferencias.getSenhaUsuarioLogado(), "voluntario");
+
+                    try {
+                        preferencias.salvarUsuarioPreferencias(voluntario.getEmail(), preferencias.getSenhaUsuarioLogado(), "voluntario");
+                    } catch (Exception e) {
+
+                    }
 
                     VagaDao vagaDao = new VagaDao();
 
@@ -233,7 +239,12 @@ public class VoluntarioDao implements DAO<Voluntario> {
                             Toast.LENGTH_SHORT).show();
                     Preferencias preferencias = new Preferencias(context);
                     //preferencias.getSenhaUsuarioLogado();
-                    preferencias.salvarUsuarioPreferencias(dado.getEmail(), preferencias.getSenhaUsuarioLogado(), "voluntario");
+                    try {
+                        preferencias.salvarUsuarioPreferencias(dado.getEmail(), preferencias.getSenhaUsuarioLogado(), "voluntario");
+                    } catch (Exception e) {
+
+                    }
+
                     Intent intent = new Intent(context.getApplicationContext(), Carregamento.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("tela", "contaVoluntario");

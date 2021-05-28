@@ -47,7 +47,12 @@ public class OngDao implements DAO<Ong> {
                             "Senha alterada com sucesso ",
                             Toast.LENGTH_SHORT).show();
                     Preferencias preferencias = new Preferencias(context);
-                    preferencias.salvarUsuarioPreferencias(email, senha, "ong");
+                    try {
+                        preferencias.salvarUsuarioPreferencias(email, senha, "ong");
+                    } catch (Exception e) {
+
+                    }
+
                     //autenticacao.signOut();
                 } else {
                     String erroExcecao = "";
@@ -226,7 +231,12 @@ public class OngDao implements DAO<Ong> {
                             "Dados atualizados com sucesso ",
                             Toast.LENGTH_SHORT).show();
                     Preferencias preferencias = new Preferencias(appContext);
-                    preferencias.salvarUsuarioPreferencias(dado.getEmailOng(), dado.getSenhaOng(), "ong");
+                    try {
+                        preferencias.salvarUsuarioPreferencias(dado.getEmailOng(), preferencias.getSenhaUsuarioLogado(), "ong");
+                    } catch (Exception e) {
+
+                    }
+
 
                     Intent intent = new Intent(appContext, Carregamento.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
