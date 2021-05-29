@@ -32,6 +32,17 @@ public class VagaDao implements DAO<Vaga> {
     private List<Vaga> listaVaga;
     private DatabaseReference refenciaBanco;
     private ControleCadastro controleCadastro;
+
+    public void atualizaNomeOng(List<Vaga> listaVaga, Ong ong, String tabela, Context context) {
+        refenciaBanco = BancoFirebase.getBancoReferencia();
+        if (listaVaga != null) {
+            for (int i = 0; i < listaVaga.size(); i++) {
+                vaga = listaVaga.get(i);
+                refenciaBanco.child("vaga").child(vaga.getIdVaga()).child("nomeOng").setValue(ong.getNome());
+            }
+        }
+    }
+
     public void atualizaVaga(Vaga dado, String tabela, Context context, final OnGetDataListener listener) {
         listener.onStart();
         refenciaBanco = BancoFirebase.getBancoReferencia();

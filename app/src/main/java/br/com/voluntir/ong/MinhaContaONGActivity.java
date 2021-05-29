@@ -30,6 +30,7 @@ import java.util.List;
 import br.com.voluntir.DAO.VagaDao;
 import br.com.voluntir.Preferencias;
 import br.com.voluntir.controller.ControleCadastro;
+import br.com.voluntir.controller.ControleVaga;
 import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.voluntir.MudarSenha;
@@ -141,6 +142,13 @@ public class MinhaContaONGActivity extends AppCompatActivity {
                     controleCadastro.atualizarDadosOng(dados, tabelaOng, getApplicationContext());
                     finish();
                 }
+                try {
+                    ControleVaga controleVaga = new ControleVaga();
+                    controleVaga.atualizaNomeOng(listaVaga, dados, "vaga", getApplicationContext());
+                } catch (Exception e) {
+
+                }
+
 
             } else {
 

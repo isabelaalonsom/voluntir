@@ -5,7 +5,10 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 
+import java.util.List;
+
 import br.com.voluntir.DAO.VagaDao;
+import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 
 public class ControleVaga {
@@ -16,8 +19,9 @@ public class ControleVaga {
     private boolean nomeVaga = false;
 
 
-    public boolean existeVaga() {
-        return nomeVaga;
+    public void atualizaNomeOng(List<Vaga> listaVaga, Ong ong, String tabela, Context context) {
+        vagaDao = new VagaDao();
+        vagaDao.atualizaNomeOng(listaVaga, ong, tabela, context);
     }
 
     public boolean cadastrarVaga(Vaga dado, String tabela, Context context) {
