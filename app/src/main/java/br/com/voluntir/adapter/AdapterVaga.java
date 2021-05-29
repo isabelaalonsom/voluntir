@@ -35,17 +35,17 @@ public class AdapterVaga extends RecyclerView.Adapter<AdapterVaga.MyViewHolder> 
 
 
         if (vaga.getVoluntarios() != null) {
-            holder.vaga.setText(" vagas: " + (vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()));
+            holder.vaga.setText("   vagas: " + (vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()));
             if ((vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()) < 0) {
-                holder.vaga.setText(" vagas:0");
+                holder.vaga.setText("   vagas:0");
             }
         }
         holder.nomeOng.setText(vaga.getNomeOng());
         holder.areaConhecimento.setText(vaga.getAreaConhecimento());
         if (vaga.getVoluntarios() != null) {
-            holder.vaga.setText(" vagas: " + (vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()));
+            holder.vaga.setText("   vagas: " + (vaga.getQtdCandidaturas() - vaga.getVoluntarios().size()));
         } else {
-            holder.vaga.setText(" vagas: " + vaga.getQtdCandidaturas());
+            holder.vaga.setText("   vagas: " + vaga.getQtdCandidaturas());
         }
 
         holder.txtViewStatus.setVisibility(View.INVISIBLE);
