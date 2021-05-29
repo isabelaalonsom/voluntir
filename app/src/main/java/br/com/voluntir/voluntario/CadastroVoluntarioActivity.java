@@ -223,7 +223,9 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
         int radioId = radioGroup.getCheckedRadioButtonId();
 
         radioButton = findViewById(radioId);
-        genero = (String) radioButton.getText();
+        if (radioButton != null) {
+            genero = (String) radioButton.getText().toString();
+        }
     }
 
 
