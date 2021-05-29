@@ -181,13 +181,7 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         dialog.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (listaVaga != null) {
-                    VagaDao vagaDao = new VagaDao();
-                    vagaDao.removeListaVaga(listaVaga, ong, getApplicationContext());
-                } else {
-                    controleCadastro = new ControleCadastro();
-                    controleCadastro.excluirDadosOng(ong, tabelaOng, getApplicationContext());
-                }
+
 
                 Ong dados = new Ong();
                 if (ong != null) {
@@ -202,9 +196,12 @@ public class MinhaContaONGActivity extends AppCompatActivity {
                 dados.setTelefone(txtTelefone.getText().toString());
                 dados.setSite(txtSite.getText().toString());
 
-                controleCadastro = new ControleCadastro();
-                if (dados != null) {
-                    controleCadastro.excluirDadosOng(dados, tabelaOng, getApplicationContext());
+                if (listaVaga != null) {
+                    VagaDao vagaDao = new VagaDao();
+                    vagaDao.removeListaVaga(listaVaga, ong, getApplicationContext());
+                } else {
+                    controleCadastro = new ControleCadastro();
+                    controleCadastro.excluirDadosOng(ong, tabelaOng, getApplicationContext());
                 }
 
             }
