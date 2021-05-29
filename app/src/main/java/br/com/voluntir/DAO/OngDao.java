@@ -53,7 +53,6 @@ public class OngDao implements DAO<Ong> {
 
                     }
 
-                    //autenticacao.signOut();
                 } else {
                     String erroExcecao = "";
                     try {
@@ -200,7 +199,11 @@ public class OngDao implements DAO<Ong> {
                                                 "Conta excluida com sucesso ",
                                                 Toast.LENGTH_SHORT).show();
                                         Preferencias preferencias = new Preferencias(context);
-                                        preferencias.salvarUsuarioPreferencias(null, null, null);
+                                        try {
+                                            preferencias.salvarUsuarioPreferencias(null, null, null);
+                                        } catch (Exception e) {
+
+                                        }
                                         Intent intent = new Intent(context, Carregamento.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                         context.startActivity(intent);
@@ -324,29 +327,6 @@ public class OngDao implements DAO<Ong> {
 
     }
 
-    public void lerDados(String id, final OnGetDataListener listener) {
-        listener.onStart();
-        bancoFirebase = BancoFirebase.getBancoReferencia();
-        Query pesquisa = bancoFirebase.child("ong").orderByChild("idOng").equalTo(id);
-        pesquisa.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    ong = dataSnapshot.getValue(Ong.class);
-
-                }
-
-                listener.onSucess(ong);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 
     public interface FirebaseCallback {
         void onCallback(Ong ong);

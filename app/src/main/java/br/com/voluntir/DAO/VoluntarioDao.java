@@ -206,6 +206,12 @@ public class VoluntarioDao implements DAO<Voluntario> {
                                         Toast.makeText(context,
                                                 "Conta excluida com sucesso ",
                                                 Toast.LENGTH_SHORT).show();
+                                        Preferencias preferencias = new Preferencias(context);
+                                        try {
+                                            preferencias.salvarUsuarioPreferencias(null, null, null);
+                                        } catch (Exception e) {
+
+                                        }
 
                                         Intent intent = new Intent(context, Carregamento.class);
                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
