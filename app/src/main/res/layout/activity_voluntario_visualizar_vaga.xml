@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="ONG X"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -91,7 +91,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Pacote Office"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -117,7 +117,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="23/12/2020"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -141,7 +141,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="05/01/2021"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -166,7 +166,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="10:00"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -190,7 +190,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="2 "
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                     <TextView
@@ -224,12 +224,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ensinar as pessoas que estão aprendendo a utilizar o Pacote Office, especialmente Excel e Word. "
-                    android:textColor="#AA0B0B"
+                    android:textColor="#3F51B5"
                     android:textSize="18sp" />
 
                 <LinearLayout
                     android:id="@+id/LinearBotoesVoluntarioVisualizarVaga"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
                     android:gravity="center"
@@ -240,8 +240,7 @@
                         android:id="@+id/btnEditarVoluntarioVisualizarVaga"
                         android:layout_width="197dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginRight="110dp"
+                        android:background="@drawable/ic_botao_arredondado"
                         android:onClick="visualizarPerfilOng"
                         android:text="PERFIL DA ONG" />
 

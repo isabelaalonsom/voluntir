@@ -34,6 +34,8 @@
                     android:id="@+id/btnONG"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/ic_botao_arredondado"
                     android:text="ONG"
                     android:textSize="24sp" />
 
@@ -41,6 +43,7 @@
                     android:id="@+id/btnVoluntario"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/ic_botao_arredondado"
                     android:text="Voluntário"
                     android:textSize="24sp" />
             </LinearLayout>

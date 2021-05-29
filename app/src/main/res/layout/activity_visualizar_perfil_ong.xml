@@ -61,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:gravity="start"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -89,7 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:gravity="start"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -117,7 +117,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:gravity="start"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -145,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:gravity="start"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -174,7 +174,7 @@
                         android:layout_marginLeft="10dp"
                         android:gravity="start"
                         android:inputType="phone"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -202,7 +202,7 @@
                         android:layout_width="325dp"
                         android:layout_height="wrap_content"
                         android:gravity="start"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -230,7 +230,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:gravity="start"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -260,7 +260,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:gravity="start"
-                    android:textColor="#AA0B0B"
+                    android:textColor="#3F51B5"
                     android:textSize="18sp" />
 
             </LinearLayout>

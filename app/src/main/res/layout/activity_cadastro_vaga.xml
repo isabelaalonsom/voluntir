@@ -28,9 +28,10 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:baselineAligned="false"
                 android:orientation="vertical">
 
@@ -274,16 +275,17 @@
 
                 <LinearLayout
                     android:id="@+id/LinearBotoes"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/btnLimpar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="68dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/ic_botao_arredondado"
                         android:onClick="limparDadosDoCadastroVaga"
                         android:text="Limpar" />
 
@@ -291,7 +293,7 @@
                         android:id="@+id/btnConfirmarVaga"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="72dp"
+                        android:background="@drawable/ic_botao_arredondado"
                         android:text="Confirmar" />
 
                 </LinearLayout>

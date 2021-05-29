@@ -67,7 +67,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:gravity="center"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -94,7 +94,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:gravity="center"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -121,7 +121,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:gravity="center"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -148,7 +148,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:gravity="center"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -221,7 +221,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:gravity="center"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -249,7 +249,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:gravity="center"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -277,7 +277,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:gravity="center"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -296,19 +296,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:textColor="#AA0B0B"
+                    android:textColor="#3F51B5"
                     android:textSize="18sp" />
 
                 <LinearLayout
                     android:id="@+id/LinearBotoes"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/btnEditar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/ic_botao_arredondado"
                         android:onClick="clicarBotaoEditar"
                         android:text="Editar" />
 
@@ -316,6 +318,8 @@
                         android:id="@+id/btnSair"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/ic_botao_arredondado"
                         android:onClick="clicarBotaoSair"
                         android:text="Sair" />
 
@@ -323,6 +327,8 @@
                         android:id="@+id/btnEcluirConta"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/ic_botao_arredondado"
                         android:onClick="clicarBotaoExcluir"
                         android:text="EXCLUIR" />
 
@@ -331,6 +337,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:background="@drawable/ic_botao_arredondado"
                         android:onClick="alterarSenhaVoluntario"
                         android:text="ALTERAR SENHA" />
 

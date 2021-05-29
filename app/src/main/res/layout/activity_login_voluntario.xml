@@ -78,6 +78,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="clicarBotaoEntrarVoluntario"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/ic_botao_arredondado"
                 android:text="Entrar" />
 
             <Button
@@ -85,6 +87,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="clicarCriarConta"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/ic_botao_arredondado"
                 android:text="Criar Conta" />
 
             <Button
@@ -92,6 +96,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="clicarBotaoEsqueceuASenha"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/ic_botao_arredondado"
                 android:text="Esqueceu Senha" />
         </LinearLayout>
 

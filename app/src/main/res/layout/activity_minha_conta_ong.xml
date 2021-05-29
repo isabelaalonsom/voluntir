@@ -66,7 +66,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -92,7 +92,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -119,7 +119,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -145,7 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -172,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:inputType="phone"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -199,7 +199,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -225,7 +225,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:textColor="#AA0B0B"
+                        android:textColor="#3F51B5"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -255,7 +255,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
-                    android:textColor="#AA0B0B"
+                    android:textColor="#3F51B5"
                     android:textSize="18sp" />
 
                 <LinearLayout
@@ -270,6 +270,8 @@
                         android:id="@+id/btnEditar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/ic_botao_arredondado"
                         android:onClick="clicarBotaoEditarOng"
                         android:text="Editar" />
 
@@ -278,6 +280,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="clicarBotaoSairOng"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/ic_botao_arredondado"
                         android:text="Sair" />
 
                     <Button
@@ -285,12 +289,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="clicarBotaoExcluirOng"
+                        android:layout_marginRight="5dp"
+                        android:background="@drawable/ic_botao_arredondado"
                         android:text="EXCLUIR" />
 
                     <Button
                         android:id="@+id/btnAlterarSenha"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/ic_botao_arredondado"
                         android:onClick="alterarSenha"
                         android:text="ALTERAR SENHA" />
 

@@ -21,8 +21,10 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -267,7 +269,9 @@
                         android:id="@+id/btnExcluirVaga"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
                         android:layout_weight="1"
+                        android:background="@drawable/ic_botao_arredondado"
                         android:onClick="excluirVaga"
                         android:text="EXCLUIR" />
 
@@ -275,6 +279,7 @@
                         android:id="@+id/btnConfirmarVagaEditarVaga"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/ic_botao_arredondado"
                         android:text="Confirmar" />
 
                 </LinearLayout>
