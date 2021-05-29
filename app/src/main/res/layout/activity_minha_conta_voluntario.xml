@@ -334,9 +334,8 @@
 
                     <Button
                         android:id="@+id/btnAlterarSenhaVoluntario"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:background="@drawable/ic_botao_arredondado"
                         android:onClick="alterarSenhaVoluntario"
                         android:text="ALTERAR SENHA" />
