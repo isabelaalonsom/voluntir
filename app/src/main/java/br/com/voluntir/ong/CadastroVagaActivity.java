@@ -27,9 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
@@ -53,11 +53,19 @@ public class CadastroVagaActivity extends AppCompatActivity {
     boolean entrou = false;
     boolean dataInicioValida = false;
     boolean dataTerminoValida = false;
-    int mesAtual = LocalDate.now().getMonth().getValue();
-    int diaAtual = LocalDate.now().getDayOfMonth();
-    int anoAtual = LocalDate.now().getYear();
-    boolean podeGravar = false;
-    boolean existe = false;
+
+    private Date data = Calendar.getInstance().getTime();
+    private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private DateFormat diaFormat = new SimpleDateFormat("dd");
+    private DateFormat mesFormat = new SimpleDateFormat("MM");
+    private DateFormat anoFormat = new SimpleDateFormat("yyyy");
+    private String hoje = dateFormat.format(data);
+    private int anoAtual = Integer.parseInt(anoFormat.format(data));
+    private int mesAtual = Integer.parseInt(mesFormat.format(data));
+    private int diaAtual = Integer.parseInt(diaFormat.format(data));
+
+    private boolean podeGravar = false;
+    private boolean existe = false;
     private List<Vaga> listaVaga = new ArrayList<>();
 
     @Override
@@ -219,7 +227,6 @@ public class CadastroVagaActivity extends AppCompatActivity {
 
 
     public boolean validarData(String data) {
-        int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
         int ano = 0;
         String dataConfig = data;
         if (dataConfig.length() == 10) {

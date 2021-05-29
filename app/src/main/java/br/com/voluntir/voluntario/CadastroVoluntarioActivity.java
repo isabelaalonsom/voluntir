@@ -1,6 +1,5 @@
 package br.com.voluntir.voluntario;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,7 +12,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -28,8 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
@@ -38,7 +37,6 @@ import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
 
 
-@RequiresApi(api = Build.VERSION_CODES.O)
 public class CadastroVoluntarioActivity extends AppCompatActivity {
 
     private Button botaoConfirmar;
@@ -46,20 +44,27 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
     private EditText email, senha, cpf, data, nome, telefone, confirmarSenha;
     private EditText endereco, especialidade, sobrenome;
     private ControleCadastro controleCadastro;
-    private String tabelaBanco = "voluntario";
+    private final String tabelaBanco = "voluntario";
     private RadioGroup radioGroup;
     RadioButton radioButton;
     private RadioButton botaoFeminino;
     private RadioButton botaoMasculino;
-    int mesAtual = LocalDate.now().getMonth().getValue();
-    int diaAtual = LocalDate.now().getDayOfMonth();
-    int anoAtual = LocalDate.now().getYear();
+    private final Date date = Calendar.getInstance().getTime();
+    private final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private final DateFormat diaFormat = new SimpleDateFormat("dd");
+    private final DateFormat mesFormat = new SimpleDateFormat("MM");
+    private final DateFormat anoFormat = new SimpleDateFormat("yyyy");
+    private final String hoje = dateFormat.format(date);
+    private final int anoAtual = Integer.parseInt(anoFormat.format(date));
+    private final int mesAtual = Integer.parseInt(mesFormat.format(date));
+    private final int diaAtual = Integer.parseInt(diaFormat.format(date));
     private String genero;
     boolean grava = false;
     boolean mesdiaok = false;
     private DatabaseReference refenciaBanco;
-    private List<String> listaCpf = new ArrayList<>();
+    private final List<String> listaCpf = new ArrayList<>();
     private boolean cpfCadastrado = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,7 +124,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
 
         //mascara para o Telefone
         SimpleMaskFormatter simpleMaskTelefone = new SimpleMaskFormatter("(NN) NNNNN-NNNN");
-        MaskTextWatcher maskTelefone = new MaskTextWatcher(telefone,simpleMaskTelefone);
+        MaskTextWatcher maskTelefone = new MaskTextWatcher(telefone, simpleMaskTelefone);
         telefone.addTextChangedListener(maskTelefone);
 
         botaoConfirmar = findViewById(R.id.btnConfirmarVoluntario);
@@ -143,8 +148,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                 voluntario.setEndereco(endereco.getText().toString());
                 voluntario.setDatanasc(data.getText().toString());
                 voluntario.setSobrenome(sobrenome.getText().toString());
-
-
 
 
                 //verifica se todos os campos foram preenchidos
@@ -246,7 +249,6 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
 
     public boolean verificarDataMenor() {
         boolean podeGravar = false;
-        boolean podeGravar2 = false;
         int diaNascimento = 0;
         int mesNascimento = 0;
         int anoNascimento = 0;
