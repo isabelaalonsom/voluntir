@@ -29,9 +29,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import br.com.voluntir.BancoFirebase;
@@ -51,18 +51,25 @@ public class EditarVaga extends AppCompatActivity {
     boolean dataInicioValida = false;
     private TextView nome;
     private EditText cargaHoraria, periodicidade, especialidade, detalheVaga, qtdCandidatos, dataInicio, dataTermino;
-    int mesAtual = LocalDate.now().getMonth().getValue();
-    int diaAtual = LocalDate.now().getDayOfMonth();
+    private Date data = Calendar.getInstance().getTime();
+    private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private DateFormat diaFormat = new SimpleDateFormat("dd");
+    private DateFormat mesFormat = new SimpleDateFormat("MM");
+    private DateFormat anoFormat = new SimpleDateFormat("yyyy");
+    private String hoje = dateFormat.format(data);
+    private int anoAtual = Integer.parseInt(anoFormat.format(data));
+    private int mesAtual = Integer.parseInt(mesFormat.format(data));
+    private int diaAtual = Integer.parseInt(diaFormat.format(data));
     private TextView txtTituloNovaVagaEditarVaga;
     private ControleCadastro controleCadastro;
-
+    private String idVaga;
     private ControleVaga controleVaga;
     boolean dataTerminoValida = false;
-    int anoAtual = Calendar.getInstance().get(Calendar.YEAR);
     boolean podeGravar = false;
     boolean existe = false;
     private DatabaseReference refenciaBanco;
     private Vaga vaga2;
+    private String nomeOng;
     private String idOng;
     private List<Vaga> listaVaga = new ArrayList<>();
     private Vaga vagaExcluir;
@@ -93,6 +100,9 @@ public class EditarVaga extends AppCompatActivity {
         if (dados != null) {
             ong = (Ong) dados.getSerializable("ong");
             vaga = (Vaga) dados.getSerializable("vaga");
+            idVaga = vaga.getIdVaga();
+            idOng = ong.getIdOng();
+            nomeOng = ong.getNome();
             if (vagaExcluir == null) {
                 vagaExcluir = vaga;
             }
@@ -145,16 +155,13 @@ public class EditarVaga extends AppCompatActivity {
         MaskTextWatcher maskDataTermino = new MaskTextWatcher(dataTermino, simpleMaskDataTermino);
         dataTermino.addTextChangedListener(maskDataTermino);
 
-        //mascara para o Horario
-        SimpleMaskFormatter simpleMaskHorario = new SimpleMaskFormatter("NN:NN");
-        MaskTextWatcher maskHorario = new MaskTextWatcher(cargaHoraria, simpleMaskHorario);
-        cargaHoraria.addTextChangedListener(maskHorario);
 
         botaoConfirmar = findViewById(R.id.btnConfirmarVagaEditarVaga);
         botaoConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 vaga = new Vaga();
+
 
                 //verifica se todos os campos foram preenchidos
                 if (especialidade.getText().toString().isEmpty() ||
@@ -187,6 +194,7 @@ public class EditarVaga extends AppCompatActivity {
 
                     if (dataInicioValida == true && dataTerminoValida == true && podeGravar == true) {
 
+
                         entrou = false;
 
                         if (listaVaga != null) {
@@ -198,38 +206,65 @@ public class EditarVaga extends AppCompatActivity {
                                     existe = true;
                                 }
                             }
+
                         } else {
+                            Vaga vagaGrava = new Vaga();
                             if (ong != null) {
-                                vaga.setNomeOng(ong.getNome());
-                                vaga.setIdOng(ong.getIdOng());
+                                vagaGrava.setNomeOng(nomeOng);
+                                vagaGrava.setIdOng(idOng);
+                                vagaGrava.setIdVaga(idVaga);
                             }
-                            vaga.setAreaConhecimento(especialidade.getText().toString());
-                            vaga.setDataInicio(dataInicio.getText().toString());
-                            vaga.setDataTermino(dataTermino.getText().toString());
-                            vaga.setPeriodicidade(periodicidade.getText().toString());
-                            vaga.setDescricaoVaga(detalheVaga.getText().toString());
-                            vaga.setCargaHoraria(cargaHoraria.getText().toString());
-                            vaga.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
+                            vagaGrava.setAreaConhecimento(especialidade.getText().toString());
+                            vagaGrava.setDataInicio(dataInicio.getText().toString());
+                            vagaGrava.setDataTermino(dataTermino.getText().toString());
+                            vagaGrava.setPeriodicidade(periodicidade.getText().toString());
+                            vagaGrava.setDescricaoVaga(detalheVaga.getText().toString());
+                            vagaGrava.setCargaHoraria(cargaHoraria.getText().toString());
+                            vagaGrava.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
                             controleVaga = new ControleVaga();
-                            controleVaga.atualizaVagaOng(vaga, tabelaBanco, getApplicationContext());
+                            controleVaga.atualizaVagaOng(vagaGrava, tabelaBanco, getApplicationContext());
 
                         }
                         if (entrou == true && existe == true) {
-                            if (ong != null) {
-                                vaga2.setNomeOng(ong.getNome());
-                                vaga2.setIdOng(ong.getIdOng());
+                            if (vaga2.getIdVaga().equals(idVaga)) {
+                                Vaga vagaGrava = new Vaga();
+                                if (ong != null) {
+                                    vagaGrava.setNomeOng(nomeOng);
+                                    vagaGrava.setIdOng(idOng);
+                                    vagaGrava.setIdVaga(idVaga);
+                                }
+                                vagaGrava.setAreaConhecimento(especialidade.getText().toString());
+                                vagaGrava.setDataInicio(dataInicio.getText().toString());
+                                vagaGrava.setDataTermino(dataTermino.getText().toString());
+                                vagaGrava.setPeriodicidade(periodicidade.getText().toString());
+                                vagaGrava.setDescricaoVaga(detalheVaga.getText().toString());
+                                vagaGrava.setCargaHoraria(cargaHoraria.getText().toString());
+                                vagaGrava.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
+                                controleVaga = new ControleVaga();
+                                controleVaga.atualizaVagaOng(vagaGrava, tabelaBanco, getApplicationContext());
+                            } else {
+                                Toast.makeText(getApplicationContext(),
+                                        "Mude o título da vaga",
+                                        Toast.LENGTH_SHORT).show();
                             }
-                            vaga2.setAreaConhecimento(especialidade.getText().toString());
-                            vaga2.setDataInicio(dataInicio.getText().toString());
-                            vaga2.setDataTermino(dataTermino.getText().toString());
-                            vaga2.setPeriodicidade(periodicidade.getText().toString());
-                            vaga2.setDescricaoVaga(detalheVaga.getText().toString());
-                            vaga2.setCargaHoraria(cargaHoraria.getText().toString());
-                            vaga2.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
+
+
+                        } else if (entrou == true && existe == false) {
+                            Vaga vagaGrava = new Vaga();
+                            if (ong != null) {
+                                vagaGrava.setNomeOng(nomeOng);
+                                vagaGrava.setIdOng(idOng);
+                                vagaGrava.setIdVaga(idVaga);
+                            }
+                            vagaGrava.setAreaConhecimento(especialidade.getText().toString());
+                            vagaGrava.setDataInicio(dataInicio.getText().toString());
+                            vagaGrava.setDataTermino(dataTermino.getText().toString());
+                            vagaGrava.setPeriodicidade(periodicidade.getText().toString());
+                            vagaGrava.setDescricaoVaga(detalheVaga.getText().toString());
+                            vagaGrava.setCargaHoraria(cargaHoraria.getText().toString());
+                            vagaGrava.setQtdCandidaturas(Integer.parseInt(qtdCandidatos.getText().toString()));
                             controleVaga = new ControleVaga();
-                            controleVaga.atualizaVagaOng(vaga2, tabelaBanco, getApplicationContext());
-
-
+                            controleVaga.atualizaVagaOng(vagaGrava, tabelaBanco, getApplicationContext());
                         }
 
                     }
