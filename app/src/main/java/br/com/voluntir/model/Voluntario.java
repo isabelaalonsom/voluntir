@@ -1,5 +1,7 @@
 package br.com.voluntir.model;
 
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
 
 public class Voluntario implements Serializable {
@@ -26,7 +28,7 @@ public class Voluntario implements Serializable {
         this.email = email;
     }
 
-    //@Exclude
+    @Exclude
     public String getSenha() {
         return senha;
     }
