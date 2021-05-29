@@ -116,7 +116,6 @@ public class PerfilVoluntario extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        //getSupportActionBar().hide();
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
             voluntario = (Voluntario) dados.getSerializable("voluntario");

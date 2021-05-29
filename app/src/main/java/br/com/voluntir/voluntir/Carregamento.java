@@ -3,8 +3,6 @@ package br.com.voluntir.voluntir;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
@@ -46,12 +44,8 @@ public class Carregamento extends AppCompatActivity {
             ong = (Ong) dados.getSerializable("objeto");
         }
 
-
-        //getSupportActionBar().hide();
         Context context = this.getApplicationContext();
         Preferencias preferencias = new Preferencias(context);
-        Button btnONG = findViewById(R.id.btnONG);
-        Button btnVoluntario = findViewById(R.id.btnVoluntario);
         if (preferencias.getEmailUsuarioLogado() != null || preferencias.getSenhaUsuarioLogado() != null) {
             controleCadastro = new ControleCadastro();
             if ((preferencias.getUsuarioLogado().equals("ong"))) {
@@ -146,10 +140,4 @@ public class Carregamento extends AppCompatActivity {
 
     }
 
-    public void carregarProgressBar(View view) {
-
-        this.progresso = this.progresso;
-
-
-    }
 }

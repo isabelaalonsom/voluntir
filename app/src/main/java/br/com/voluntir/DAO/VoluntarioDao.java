@@ -54,7 +54,6 @@ public class VoluntarioDao implements DAO<Voluntario> {
 
                     }
 
-                    //autenticacao.signOut();
                 } else {
                     String erroExcecao = "";
                     try {
@@ -76,7 +75,6 @@ public class VoluntarioDao implements DAO<Voluntario> {
     }
 
     public void atualizarEmail(List<Vaga> listaVaga, Voluntario voluntario, Context context) {
-        //autenticacao = BancoFirebase.getFirebaseAutenticacao();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         user.updateEmail(voluntario.getEmail()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -93,7 +91,6 @@ public class VoluntarioDao implements DAO<Voluntario> {
                     VagaDao vagaDao = new VagaDao();
 
                     vagaDao.atualizaVagaPerfilVoluntario(listaVaga, voluntario, context);
-                    //autenticacao.signOut();
                 } else {
 
                     cadastrado = false;

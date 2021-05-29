@@ -63,8 +63,6 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
         toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
 
-        //getSupportActionBar().hide();
-
         recyclerView = findViewById(R.id.recyclerViewVaga);
         Bundle dados = getIntent().getExtras();
         if (dados != null) {

@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,24 +31,20 @@ import java.util.List;
 import br.com.voluntir.RecyclerItemClickListener;
 import br.com.voluntir.adapter.AdapterCandidatura;
 import br.com.voluntir.controller.ControleVaga;
-import br.com.voluntir.model.Ong;
 import br.com.voluntir.model.Vaga;
 import br.com.voluntir.model.Voluntario;
 import br.com.voluntir.voluntir.R;
 
 public class MinhaCandidaturaActivity extends AppCompatActivity {
 
-    private TextView txtViewStatus, txtViewStatusVariavel;
     private RecyclerView recyclerViewCandidatura;
     private final List<Vaga> listaVagaCandidatada = new ArrayList<>();
-    private final List<Voluntario> listaVoluntario = new ArrayList<>();
     private final DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private final DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
     private final String nomeTabelaVaga = "vaga";
     private ControleVaga controleVaga;
-    Ong ong;
-    Voluntario voluntario;
-    Vaga vaga = new Vaga();
+    private Voluntario voluntario;
+    private Vaga vaga = new Vaga();
 
 
     @Override
@@ -60,15 +55,12 @@ public class MinhaCandidaturaActivity extends AppCompatActivity {
         toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
 
-        //getSupportActionBar().hide();
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        //getSupportActionBar().hide();
         recyclerViewCandidatura = findViewById(R.id.recyclerViewCandidaturas);
 
         Bundle dados = getIntent().getExtras();
@@ -85,12 +77,9 @@ public class MinhaCandidaturaActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 listaVagaCandidatada.clear();
-                //DataSnapshot é o retorno do firebase
-                //Log.i("FIREBASE", snapshot.getValue().toString());
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     vaga = dataSnapshot.getValue(Vaga.class);
-                    //Log.i("FIREBASE", snapshot.getValue().toString());
                     if (vaga.getVoluntarios() != null) {
 
                         for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
@@ -107,7 +96,6 @@ public class MinhaCandidaturaActivity extends AppCompatActivity {
                 recyclerViewCandidatura.setAdapter(adapterCandidatura);
             }
 
-            //trata o erro se a operação for cancelada
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -121,13 +109,6 @@ public class MinhaCandidaturaActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                /*Vaga vaga = listaVagaCandidatada.get(position);
-
-                                Intent intent = new Intent(getApplicationContext(), AprovacaoCandidatoActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                intent.putExtra("objeto", vaga);
-                                intent.putExtra("ong", ong);
-                                startActivity(intent);*/
                             }
 
                             @Override
@@ -139,7 +120,7 @@ public class MinhaCandidaturaActivity extends AppCompatActivity {
                                     } else {
                                         vaga.getVoluntarios().remove(i);
                                         controleVaga = new ControleVaga();
-                                        //controleVaga.atualizaVagaVoluntario(vaga, nomeTabelaVaga, getApplicationContext());
+
                                         controleVaga.cancelarCandidatura(vaga, nomeTabelaVaga, getApplicationContext());
                                     }
                                 }

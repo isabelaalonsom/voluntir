@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +31,6 @@ public class VagaActivity extends AppCompatActivity {
     private final List<Vaga> listaVaga = new ArrayList<>();
     private final DatabaseReference bancoReferencia = FirebaseDatabase.getInstance().getReference();
     private final DatabaseReference tabelaVaga = bancoReferencia.child("vaga");
-    private final FirebaseAuth usuario = FirebaseAuth.getInstance();
     private RecyclerView recyclerView;
     private Vaga vaga = new Vaga();
     private Ong ong;

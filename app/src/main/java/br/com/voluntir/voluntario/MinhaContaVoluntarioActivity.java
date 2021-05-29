@@ -58,10 +58,10 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
     private List<Vaga> listaVagaComVoluntario = new ArrayList<>();
     private Vaga vaga;
     private boolean acabou = false;
-    int mesAtual = LocalDate.now().getMonth().getValue();
-    int diaAtual = LocalDate.now().getDayOfMonth();
-    int anoAtual = LocalDate.now().getYear();
-    boolean dataValida = false;
+    private int mesAtual = LocalDate.now().getMonth().getValue();
+    private int diaAtual = LocalDate.now().getDayOfMonth();
+    private int anoAtual = LocalDate.now().getYear();
+    private boolean dataValida = false;
     private String genero;
     private RadioGroup radioGroup;
     private RadioButton radioButton;
@@ -76,7 +76,6 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
 
-        //getSupportActionBar().hide();
         botaoFeminino = findViewById(R.id.rdBtnFemininoE);
         botaoMasculino = findViewById(R.id.rdBtnMasculinoE);
 
@@ -87,10 +86,9 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
         txtEmail = (TextView) findViewById(R.id.txtViewEmailVariavel);
         txtEndereco = (TextView) findViewById(R.id.txtViewEnderecoVariavel);
         txtTelefone = (TextView) findViewById(R.id.txtViewTelefoneVariavel);
-        //txtGenero = (TextView) findViewById(R.id.txtViewGeneroVariavel);
         txtDescricaoTecnica = (TextView) findViewById(R.id.txtViewDescricaoTecnicaVariavel);
         radioGroup = findViewById(R.id.rdBtnGrpGeneroE);
-        //genero = "vazio";
+
         //mascara para o Cpf
         SimpleMaskFormatter simpleMaskCpf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
         MaskTextWatcher maskCpf = new MaskTextWatcher(txtCpf, simpleMaskCpf);
@@ -120,7 +118,6 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                     listaVaga.clear();
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         vaga = dataSnapshot.getValue(Vaga.class);
-                        //Log.i("FIREBASE", snapshot.getValue().toString());
                         if (vaga.getVoluntarios() != null) {
 
                             for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
@@ -132,7 +129,6 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                     }
                 }
 
-                //trata o erro se a operação for cancelada
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                 }
@@ -225,19 +221,14 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                         for (int j = 0; j < vaga.getVoluntarios().size(); j++) {
                             if (vaga.getVoluntarios().get(j).getIdVoluntario().equals(voluntario.getIdVoluntario())) {
                                 dados.setStatusVaga(vaga.getVoluntarios().get(j).getStatusVaga());
-                                //vaga.getVoluntarios().remove(j);
                                 vaga.getVoluntarios().get(j).setNome(dados.getNome());
                                 vaga.getVoluntarios().get(j).setSobrenome(dados.getSobrenome());
                                 vaga.getVoluntarios().get(j).setGenero(dados.getGenero());
                                 vaga.getVoluntarios().get(j).setEmail(dados.getEmail());
-                                //vaga.getVoluntarios().get(j).setCpf(dados.getCpf());
-
                                 vaga.getVoluntarios().get(j).setDatanasc(dados.getDatanasc());
                                 vaga.getVoluntarios().get(j).setEndereco(dados.getEndereco());
                                 vaga.getVoluntarios().get(j).setTelefone(dados.getTelefone());
                                 vaga.getVoluntarios().get(j).setEspecialidade(dados.getEspecialidade());
-                                //vaga.getVoluntarios().add(dados);
-
                             }
 
                         }
@@ -249,10 +240,6 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                 if (listaVagaComVoluntario != null && acabou == true) {
                     controleCadastro = new ControleCadastro();
                     controleCadastro.alterarEmail(listaVagaComVoluntario, dados, getApplicationContext());
-/*
-                    VagaDao vagaDao = new VagaDao();
-
-                    vagaDao.atualizaVagaPerfilVoluntario(listaVagaComVoluntario, dados, getApplicationContext());*/
                     finish();
                 } else if (listaVagaComVoluntario == null && acabou == true) {
                     controleCadastro = new ControleCadastro();
@@ -371,7 +358,6 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
 
     public boolean verificarDataMenor() {
         boolean podeGravar = false;
-        boolean podeGravar2 = false;
         int diaNascimento = 0;
         int mesNascimento = 0;
         int anoNascimento = 0;

@@ -111,7 +111,7 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
 
 
         });
-        //clicarBotaoLimpar();
+
         //mascara para o Cpf
         SimpleMaskFormatter simpleMaskCpf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
         MaskTextWatcher maskCpf = new MaskTextWatcher(cpf, simpleMaskCpf);

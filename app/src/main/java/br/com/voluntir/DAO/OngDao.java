@@ -74,19 +74,13 @@ public class OngDao implements DAO<Ong> {
     }
 
     public void atualizarEmail(Ong ong, Context context) {
-        //autenticacao = BancoFirebase.getFirebaseAutenticacao();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         user.updateEmail(ong.getEmailOng()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    /*Toast.makeText(context,
-                            "E-mail alterado com sucesso ",
-                            Toast.LENGTH_SHORT).show();
-                    atualiza(ong, "ong",context);*/
                     atualiza(ong, "ong", context);
 
-                    //autenticacao.signOut();
                 } else {
 
                     String erroExcecao = "";

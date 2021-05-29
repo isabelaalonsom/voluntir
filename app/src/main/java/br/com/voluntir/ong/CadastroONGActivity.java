@@ -84,7 +84,6 @@ public class CadastroONGActivity extends AppCompatActivity {
 
         });
 
-        //limparDados();
         //mascara para o Cnpj
         SimpleMaskFormatter simpleMaskCnpj = new SimpleMaskFormatter("NN.NNN.NNN/NNNN-NN");
         MaskTextWatcher maskCnpj = new MaskTextWatcher(cnpj, simpleMaskCnpj);

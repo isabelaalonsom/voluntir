@@ -56,7 +56,6 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
 
-        //getSupportActionBar().hide();
         txtNomeOng = (TextView) findViewById(R.id.txtViewONGVariavel);
         txtCnpj = (TextView) findViewById(R.id.txtViewCpnjVariavel);
         txtLocalizacao = (TextView) findViewById(R.id.txtViewLocalizaoVariavel);
@@ -65,7 +64,6 @@ public class MinhaContaONGActivity extends AppCompatActivity {
         txtSite = (TextView) findViewById(R.id.txtViewSiteVariavel);
         txtEmail = (TextView) findViewById(R.id.txtViewEmailVariavel);
         txtResumoOng = (TextView) findViewById(R.id.txtViewResumoOngVariavel);
-        //limparCampos();
 
         //mascara para o Cnpj
         SimpleMaskFormatter simpleMaskCnpj = new SimpleMaskFormatter("NN.NNN.NNN/NNNN-NN");

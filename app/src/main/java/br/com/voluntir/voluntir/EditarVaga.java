@@ -42,7 +42,7 @@ import br.com.voluntir.model.Vaga;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class EditarVaga extends AppCompatActivity {
-    boolean entrou = false;
+    private boolean entrou = false;
     private final String tabelaBanco = "vaga";
     private Ong ong;
     private boolean grava = false, mesdiaok = false;
@@ -335,9 +335,6 @@ public class EditarVaga extends AppCompatActivity {
 
             return true;
         } catch (ParseException ex) {
-            /*Toast.makeText(getApplicationContext(),
-                    "exception" + ex.getMessage(),
-                    Toast.LENGTH_SHORT).show();*/
             return false;
         }
 
