@@ -238,10 +238,32 @@ public class MinhaContaVoluntarioActivity extends AppCompatActivity {
                     acabou = true;
                 }
                 if (listaVagaComVoluntario != null && acabou == true) {
+                    if (voluntario != null) {
+                        dados.setIdVoluntario(voluntario.getIdVoluntario());
+                    }
+
+                    dados.setNome(txtNome.getText().toString());
+                    dados.setSobrenome(txtSobrenome.getText().toString());
+                    dados.setCpf(txtCpf.getText().toString());
+                    dados.setDatanasc(txtDataNasc.getText().toString());
+                    dados.setEmail(txtEmail.getText().toString());
+                    dados.setEndereco(txtEndereco.getText().toString());
+                    dados.setTelefone(txtTelefone.getText().toString());
                     controleCadastro = new ControleCadastro();
                     controleCadastro.alterarEmail(listaVagaComVoluntario, dados, getApplicationContext());
                     finish();
                 } else if (listaVagaComVoluntario == null && acabou == true) {
+                    if (voluntario != null) {
+                        dados.setIdVoluntario(voluntario.getIdVoluntario());
+                    }
+
+                    dados.setNome(txtNome.getText().toString());
+                    dados.setSobrenome(txtSobrenome.getText().toString());
+                    dados.setCpf(txtCpf.getText().toString());
+                    dados.setDatanasc(txtDataNasc.getText().toString());
+                    dados.setEmail(txtEmail.getText().toString());
+                    dados.setEndereco(txtEndereco.getText().toString());
+                    dados.setTelefone(txtTelefone.getText().toString());
                     controleCadastro = new ControleCadastro();
                     dados.setStatusVaga(null);
                     controleCadastro.atualizarDadosVoluntario(dados, tabelaVoluntario, getApplicationContext());
