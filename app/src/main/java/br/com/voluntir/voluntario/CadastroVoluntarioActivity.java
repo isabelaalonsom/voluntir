@@ -160,42 +160,42 @@ public class CadastroVoluntarioActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 } else if (!senha.getText().toString().equals(confirmarSenha.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "As senhas não conferem.", Toast.LENGTH_LONG).show();
-                }
-                if (!data.getText().toString().isEmpty()) {
-                    if (!validarData(data.getText().toString())) {
-                        Toast.makeText(getApplicationContext(),
-                                "Data de nascimento inválida",
-                                Toast.LENGTH_SHORT).show();
-                        dataValida = false;
-                    } else {
-                        dataValida = true;
+                } else {
+                    if (!data.getText().toString().isEmpty()) {
+                        if (!validarData(data.getText().toString())) {
+                            Toast.makeText(getApplicationContext(),
+                                    "Data de nascimento inválida",
+                                    Toast.LENGTH_SHORT).show();
+                            dataValida = false;
+                        } else {
+                            dataValida = true;
+                        }
                     }
-                }
-                boolean podeGravar = verificarDataMenor();
-                if (podeGravar == true && dataValida == true) {
-                    if (listaCpf != null) {
-                        cpfCadastrado = false;
-                        for (int i = 0; i < listaCpf.size(); i++) {
-                            if (listaCpf.get(i).equals(cpf.getText().toString())) {
-                                cpfCadastrado = true;
+                    boolean podeGravar = verificarDataMenor();
+                    if (podeGravar == true && dataValida == true) {
+                        if (listaCpf != null) {
+                            cpfCadastrado = false;
+                            for (int i = 0; i < listaCpf.size(); i++) {
+                                if (listaCpf.get(i).equals(cpf.getText().toString())) {
+                                    cpfCadastrado = true;
+                                }
                             }
                         }
-                    }
-                    if (cpfCadastrado == false) {
-                        if (!genero.equalsIgnoreCase("vazio")) {
-                            voluntario.setGenero((String) radioButton.getText());
-                            Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario, tabelaBanco, getApplicationContext());
+                        if (cpfCadastrado == false) {
+                            if (!genero.equalsIgnoreCase("vazio")) {
+                                voluntario.setGenero((String) radioButton.getText());
+                                Boolean retorno = controleCadastro.cadastrarVoluntario(voluntario, tabelaBanco, getApplicationContext());
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Preencha o gênero ", Toast.LENGTH_SHORT).show();
+                            }
+
+
                         } else {
-                            Toast.makeText(getApplicationContext(), "Preencha o gênero ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "CPF já cadastrado ", Toast.LENGTH_SHORT).show();
                         }
 
-
-                    } else {
-                        Toast.makeText(getApplicationContext(), "CPF já cadastrado ", Toast.LENGTH_SHORT).show();
                     }
-
                 }
-
             }
         });
     }
