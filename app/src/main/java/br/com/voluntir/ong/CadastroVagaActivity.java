@@ -155,11 +155,11 @@ public class CadastroVagaActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 } else if (Integer.parseInt(String.valueOf(periodicidade.getText())) > 7) {
                     Toast.makeText(getApplicationContext(),
-                            "Periocidade não pode ser maior que 7 ",
+                            "A semana tem apenas 7 dias. Escolha uma periodicidade menor.",
                             Toast.LENGTH_SHORT).show();
                 } else if (Integer.parseInt(String.valueOf(periodicidade.getText())) < 1) {
                     Toast.makeText(getApplicationContext(),
-                            "Periocidade não pode ser menor que 1 ",
+                            "A periodicidade da vaga deve ser pelo menos 1 vez na semana.",
                             Toast.LENGTH_SHORT).show();
                 } else {
 
