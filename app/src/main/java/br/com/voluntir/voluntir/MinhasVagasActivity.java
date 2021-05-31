@@ -78,7 +78,7 @@ public class MinhasVagasActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        recyclerView = findViewById(R.id.recyclerViewVaga);
+        recyclerView = findViewById(R.id.recyclerViewVagaMinhasVagas);
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
             ong = (Ong) dados.getSerializable("objeto");

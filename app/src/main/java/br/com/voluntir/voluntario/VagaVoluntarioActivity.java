@@ -63,7 +63,7 @@ public class VagaVoluntarioActivity extends AppCompatActivity {
         toolbar.setTitle(" ");
         setSupportActionBar(toolbar);
 
-        recyclerView = findViewById(R.id.recyclerViewVaga);
+        recyclerView = findViewById(R.id.recyclerViewVagaVoluntario);
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
             voluntario = (Voluntario) dados.getSerializable("objeto");

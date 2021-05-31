@@ -34,7 +34,7 @@
             android:text="Dê um clique longo na vaga que deseja se candidatar" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewVaga"
+            android:id="@+id/recyclerViewVagaVoluntario"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
     </LinearLayout>

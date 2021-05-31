@@ -42,7 +42,7 @@ public class VagaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vaga);
 
 
-        recyclerView = findViewById(R.id.recyclerViewVaga);
+        recyclerView = findViewById(R.id.recyclerViewVagaVoluntario);
         Bundle dados = getIntent().getExtras();
         if (dados != null) {
             ong = (Ong) dados.getSerializable("objeto");

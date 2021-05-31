@@ -79,7 +79,6 @@ public class VagaDao implements DAO<Vaga> {
                 refenciaBanco.child("vaga").child(vaga.getIdVaga()).setValue(vaga);
             }
             controleCadastro = new ControleCadastro();
-            //controleCadastro.excluirDadosVoluntario(voluntario, "voluntario", context);
             controleCadastro.atualizarDadosVoluntario(voluntario, "voluntario", context);
         }
         return;

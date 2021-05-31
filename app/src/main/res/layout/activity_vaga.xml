@@ -42,7 +42,7 @@
                     android:text="Dê um clique longo na vaga que deseja gerar pdf dos candidatos aprovados" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewVaga"
+                    android:id="@+id/recyclerViewVagaMinhasVagas"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
             </LinearLayout>
