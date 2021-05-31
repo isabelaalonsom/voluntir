@@ -153,6 +153,10 @@ public class CadastroVagaActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Preencha todos os campos ",
                             Toast.LENGTH_SHORT).show();
+                } else if (Integer.parseInt(String.valueOf(periodicidade.getText())) > 7) {
+                    Toast.makeText(getApplicationContext(),
+                            "Periocidade não pode ser maior que 7 ",
+                            Toast.LENGTH_SHORT).show();
                 } else {
 
                     if (!validarData(dataInicio.getText().toString())) {
