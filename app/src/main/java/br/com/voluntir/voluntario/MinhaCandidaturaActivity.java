@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -116,7 +117,9 @@ public class MinhaCandidaturaActivity extends AppCompatActivity {
                                 Vaga vaga = listaVagaCandidatada.get(position);
                                 for (int i = 0; i < vaga.getVoluntarios().size(); i++) {
                                     if (!vaga.getVoluntarios().get(i).getStatusVaga().equals("EM ANÁLISE")) {
-
+                                        Toast.makeText(getApplicationContext(),
+                                                "Você só pode desistir das candidaturas que estão com o status Em Análise",
+                                                Toast.LENGTH_SHORT).show();
                                     } else {
                                         vaga.getVoluntarios().remove(i);
                                         controleVaga = new ControleVaga();
