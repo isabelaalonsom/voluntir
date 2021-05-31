@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,8 +23,8 @@
 
         <ScrollView
             android:id="@+id/scrollViewVoluntarioVisualizarVaga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -240,7 +240,7 @@
                     <!-- Esse botão volta para a activity Nova VagaActivity com os editText preenchidos para alteração posterior -->
                     <Button
                         android:id="@+id/btnEditarVoluntarioVisualizarVaga"
-                        android:layout_width="197dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/ic_botao_arredondado"
                         android:onClick="visualizarPerfilOng"

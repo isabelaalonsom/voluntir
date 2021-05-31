@@ -128,6 +128,11 @@ public class CadastroVagaActivity extends AppCompatActivity {
         MaskTextWatcher maskDataTermino = new MaskTextWatcher(dataTermino, simpleMaskDataTermino);
         dataTermino.addTextChangedListener(maskDataTermino);
 
+
+        SimpleMaskFormatter simpleMaskSemana = new SimpleMaskFormatter("N");
+        MaskTextWatcher maskSemana = new MaskTextWatcher(periodicidade, simpleMaskSemana);
+        periodicidade.addTextChangedListener(maskSemana);
+
         /*//mascara para o Horario
         SimpleMaskFormatter simpleMaskHorario = new SimpleMaskFormatter("NNN:NN");
         MaskTextWatcher maskHorario = new MaskTextWatcher(cargaHoraria, simpleMaskHorario);
