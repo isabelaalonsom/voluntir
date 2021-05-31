@@ -12,6 +12,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
@@ -59,6 +60,8 @@ public class OngDao implements DAO<Ong> {
                         throw task.getException();
                     } catch (FirebaseAuthWeakPasswordException e) {
                         erroExcecao = "Digite uma senha mais forte, contendo mais caracteres";
+                    } catch (FirebaseAuthRecentLoginRequiredException e) {
+                        erroExcecao = "Para alterar a senha faça login novamente";
                     } catch (Exception e) {
                         erroExcecao = "Ao alterar senha";
                         e.printStackTrace();
@@ -90,6 +93,8 @@ public class OngDao implements DAO<Ong> {
                         erroExcecao = "O e-mail digitado é inválido, digite um novo e-mail";
                     } catch (FirebaseAuthUserCollisionException e) {
                         erroExcecao = "E-mail já cadastrado";
+                    } catch (FirebaseAuthRecentLoginRequiredException e) {
+                        erroExcecao = "Para alterar o e-mail faça login novamente";
                     } catch (Exception e) {
                         erroExcecao = "Ao alterar e-mail";
                         e.printStackTrace();
